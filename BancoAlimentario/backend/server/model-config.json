@@ -46,5 +46,37 @@
   "Ubicacion": {
     "dataSource": "mongo",
     "public": true
+  },
+  "Beneficiario": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Voluntario": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "insignia": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Vehiculo": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Traslado": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Volumen": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Donacion": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "envioParaBeneficiario": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

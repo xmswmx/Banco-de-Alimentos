@@ -1,0 +1,28 @@
+{
+  "name": "Beneficiario",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "cantidadAtendidos": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ubicacion": {
+      "type": "hasOne",
+      "model": "Ubicacion",
+      "foreignKey": "idUbicacion"
+    },
+    "enviosParaBeneficiario": {
+      "type": "hasMany",
+      "model": "envioParaBeneficiario",
+      "foreignKey": "idEnvioParaBeneficiario"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

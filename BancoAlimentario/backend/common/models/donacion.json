@@ -1,0 +1,33 @@
+{
+  "name": "Donacion",
+  "plural": "donaciones",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fechaRegistro": {
+      "type": "date",
+      "required": true
+    },
+    "numero": {
+      "type": "number",
+      "required": true
+    },
+    "estado": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donante": {
+      "type": "belongsTo",
+      "model": "Donante",
+      "foreignKey": "idDonante"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

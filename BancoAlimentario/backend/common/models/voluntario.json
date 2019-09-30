@@ -1,0 +1,55 @@
+{
+  "name": "Voluntario",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dni": {
+      "type": "number",
+      "required": true
+    },
+    "telefono": {
+      "type": "number",
+      "required": true
+    },
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "distanciaMaxima": {
+      "type": "number"
+    },
+    "puntuacion": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ubicacion": {
+      "type": "hasOne",
+      "model": "Ubicacion",
+      "foreignKey": "idUbicacion"
+    },
+    "insignia": {
+      "type": "hasMany",
+      "model": "Insignia",
+      "foreignKey": "idInsignia"
+    },
+    "vehiculo": {
+      "type": "hasOne",
+      "model": "Vehiculo",
+      "foreignKey": "idVehiculo"
+    },
+    "traslados": {
+      "type": "hasMany",
+      "model": "Traslado",
+      "foreignKey": "idTraslado"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

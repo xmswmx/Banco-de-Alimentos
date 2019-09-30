@@ -1,0 +1,32 @@
+{
+  "name": "Vehiculo",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "marca": {
+      "type": "string",
+      "required": true
+    },
+    "modelo": {
+      "type": "string",
+      "required": true
+    },
+    "patente": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "volumen": {
+      "type": "hasOne",
+      "model": "Volumen",
+      "foreignKey": "idVolumen"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

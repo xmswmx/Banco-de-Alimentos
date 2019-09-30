@@ -1,0 +1,35 @@
+{
+  "name": "Traslado",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fechaAsignacion": {
+      "type": "date"
+    },
+    "fechaEstimada": {
+      "type": "date",
+      "required": true
+    },
+    "fechaFin": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donacion": {
+      "type": "hasOne",
+      "model": "Donacion",
+      "foreignKey": "idDonacion"
+    },
+    "enviosParaBeneficiario": {
+      "type": "hasOne",
+      "model": "envioParaBeneficiario",
+      "foreignKey": "idEnvioParaBeneficiario"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

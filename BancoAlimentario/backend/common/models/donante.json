@@ -13,7 +13,7 @@
   },
   "validations": [],
   "relations": {
-    "personaDeContactos": {
+    "personasDeContacto": {
       "type": "hasMany",
       "model": "PersonaDeContacto",
       "foreignKey": "idPContacto"
@@ -22,6 +22,16 @@
       "type": "hasOne",
       "model": "Ubicacion",
       "foreignKey": "idUbicacion"
+    },
+    "insignia": {
+      "type": "hasMany",
+      "model": "Insignia",
+      "foreignKey": "idInsignia"
+    },
+    "donaciones": {
+      "type": "hasMany",
+      "model": "Donacion",
+      "foreignKey": "idDonacion"
     }
   },
   "acls": [
