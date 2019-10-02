@@ -15,5 +15,9 @@ module.exports = function (app, cb) {
     if (err) return err;
     console.log('Created users:', users);
   });
+  
+  app.loadFixtures() .then(function() {console.log('Done!');})
+					.catch(function(err) {console.log('Errors:', err);});
+
   process.nextTick(cb);
 };
