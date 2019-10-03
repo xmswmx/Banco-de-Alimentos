@@ -1,8 +1,11 @@
 Donante:
   donante{1..10}:
-    cuil: "34646346"
+    cuil: "{{random.number}}"
     realm: "string"
-    username: "Donante {@}"
-    email: "emailDonante{@}@gmail.com"
+    username: "{{internet.userName}}"
+    email: "{{internet.email}}"
     emailVerified: true
     password: "nasus"
+
+#Son strings y adentro llevan llaves para generar cosas random como nombres, numeros, y emails
+#Aca se puede ver lo que hay https://github.com/marak/faker.js
