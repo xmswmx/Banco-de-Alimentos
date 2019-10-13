@@ -17,4 +17,11 @@ export class MockItemsService extends AbstractItemsService {
   		resolve(this.items);
   	})
   };
+  addItem(item: Item): Promise<Object> {
+    return new Promise((resolve) => {
+
+      this.items.push(item);
+      resolve();
+    });
+  };
 }
