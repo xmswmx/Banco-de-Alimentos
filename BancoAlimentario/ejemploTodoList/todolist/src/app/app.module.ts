@@ -7,6 +7,7 @@ import { TodolistComponent } from './todolist/todolist.component';
 //import { NewItemComponent } from './new-item/new-item.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { Item } from './model/Item';
+import {MockItemsService} from './services/mock-items.service';
 import { NewItemComponent } from './new-item/new-item.component';
 
 
@@ -22,7 +23,7 @@ import { NewItemComponent } from './new-item/new-item.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MockItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

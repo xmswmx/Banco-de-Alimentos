@@ -14,18 +14,20 @@ export class NewItemComponent implements OnInit {
 
   newItemForm : FormGroup;
 
-  constructor(private router:Router, private service:MockItemsService) {
-  	this.newItemForm = new FormGroup({
-  			itemName: new FormControl()
-  		});	
+  constructor( private service:MockItemsService, private router:Router, private builder: FormBuilder) {
+  //	this.newItemForm = new FormGroup({			itemName: new FormControl()		});	
+  
+  this.newItemForm = builder.group(new Item("")); 
 	}
 
   onSubmit():void{
-  	this.addItem(new Item(this.newItemForm.get('itemName').value));
+    // this.addItem(new Item(this.newItemForm.get('itemName').value));
+   this.addItem(this.newItemForm.value);
   }
 
   addItem(item :Item){
-  	this.service.addItem(item).then(()=>{this.router.navigateByUrl('/home')}).catch(err => console.log(err));
+   this.service.addItem(item).then(()=>{this.router.navigateByUrl('/home')}).catch(err => console.log(err));
+    //this.service.addItem(item).then(() => {console.log("routing");this.router.navigateByUrl('/items')}).catch(err => console.log(err));
   }
 
   ngOnInit() {
