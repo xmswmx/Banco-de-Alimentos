@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../model/Item';
+import { Item } from '../../../data/model/Item';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { MockItemsService } from '../services/mock-items.service';
-import { AbstractItemsService } from '../services/abstract-items.service';
+import { MockItemsService } from '../../../data/services/mock-items.service';
+import { AbstractItemsService } from '../../../data/services/abstract-items.service';
 
 @Component({
   selector: 'app-new-item',
