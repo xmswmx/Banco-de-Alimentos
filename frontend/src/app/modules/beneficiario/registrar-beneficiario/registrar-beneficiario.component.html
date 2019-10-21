@@ -1,1 +1,40 @@
-<p>registrar-beneficiario works!</p>
+<h2 style="text-align: center">¡Registrá tu organización como beneficiaria!</h2>
+<form (ngSubmit)="onSubmit()" [formGroup]="registrarDonanteForm" style="margin:20%;margin-bottom: 200%;" class="border-top border-bottom p-3 rounded6 mt-5 mb-5">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nombre de organización:</label>
+        <input required formControlName="nombreOrganizacion" type="text" class="form-control" id="nombreOrganizacion"
+            placeholder="Ej. Comedor Nuevo Sol">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Dirección:</label>
+        <input required formControlName="adress" type="text" class="form-control" id="adress"
+            placeholder="Ej. La plata, Calle 12 Numero 3456 ">
+    </div>
+    <div class="form-group col-xs-2">
+        <label for="exampleFormControlInput1">Cantidad de personas que atiende:</label>
+        <input required formControlName="adress" type="number" class="form-control" value=0 id="cantidadAtendidos"
+            >
+    </div>
+
+    <div class="form-group mt-5">
+        <label for="exampleFormControlInput1">Email:</label>
+        <input required formControlName="email" type="email" class="form-control" id="adress"
+            placeholder="contacto@comedornuevosol.com">
+    </div>    
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Clave:</label>
+        <input required formControlName="password1" type="password" class="form-control" id="password1"
+            >
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Confirmar clave:</label>
+        <input required formControlName="password2" type="password" class="form-control" id="password2"
+            >
+    </div>
+
+
+
+    <div class="form-group mb-5 mt-5 pull-right"> <button class="btn btn-primary m-1" type="submit">Save</button>
+        <a routerLink="/home" class="m-1 btn btn-link">Cancel</a> 
+    </div>
+</form>
