@@ -1,16 +1,25 @@
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet">
 <nav class="navbar navbar-light bg-light d-flex flex-row justify-content-between">
-    <div class="navbar-brand d-inline-flex">
-        <a  href="#">
-            <img src="../../assets/icons/logo-balp.png" width="205" height="74" alt="">
-        </a>
-    </div>
-    <div class="d-inline-flex align-bottom text-center font-weight-bold">
-        <h1>
-          <!-- Banco de alimentos -->
-        </h1>
-    </div>
-    <div>           
-           <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> 
+
+    <a href="#" class="navbar-brand d-inline-flex ml-4">
+        <img src="../../assets/icons/logo-balp.png" width="205" height="74" alt="">
+    </a>
+
+    <h1 class="d-inline-flex align-bottom text-center font-weight-bold">
+        <!-- Banco de alimentos -->
+    </h1>
+    
+    <div class="d-inline-flex mr-4">        <!-- <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> -->
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Registrarse
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/beneficiario">Como beneficiario</a>
+              <a class="dropdown-item" href="/voluntario">Como voluntario</a>
+              <a class="dropdown-item" href="/donante">Como donante</a>
+            </div>
+          </div>
+        <button type="button" class="btn btn-success ml-4">Iniciar sesión</button>
     </div>
 </nav>
