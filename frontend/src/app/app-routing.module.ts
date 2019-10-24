@@ -5,12 +5,14 @@ import { NewItemComponent } from './modules/beneficiario/new-item/new-item.compo
 import { HomeComponent } from './modules/home/home.component';
 import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/registrar-donante.component';
 import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar-beneficiario/registrar-beneficiario.component';
+import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
 	{path:'home',component:HomeComponent},
 	{path:'registrar-donante',component:RegistrarDonanteComponent},
 	{path:'registrar-beneficiario',component:RegistrarBeneficiarioComponent},
+	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'new-item',component:NewItemComponent}
 ];
 
