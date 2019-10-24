@@ -6,6 +6,10 @@ import { HomeComponent } from './modules/home/home.component';
 import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/registrar-donante.component';
 import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar-beneficiario/registrar-beneficiario.component';
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
+import { LoginComponent } from './modules/login/login.component';
+import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
+
+
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -13,6 +17,9 @@ const routes: Routes = [
 	{path:'registrar-donante',component:RegistrarDonanteComponent},
 	{path:'registrar-beneficiario',component:RegistrarBeneficiarioComponent},
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
+	{path:'login',component:LoginComponent},
+	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
+	{path:'new-item',component:NewItemComponent}
 ];
 
 @NgModule({

@@ -13,6 +13,8 @@ import { HomeComponent } from './modules/home/home.component';
 import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar-beneficiario/registrar-beneficiario.component';
 import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/registrar-donante.component';
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
+import { LoginComponent } from './modules/login/login.component';
+import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
 
 
 
@@ -27,6 +29,8 @@ import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-vol
     RegistrarBeneficiarioComponent,
     RegistrarDonanteComponent,
     RegistrarVoluntarioComponent,
+    LoginComponent,
+    PerfilVoluntarioComponent,
   ],
   imports: [
     BrowserModule,
