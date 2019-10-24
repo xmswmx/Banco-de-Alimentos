@@ -15,6 +15,7 @@ import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar
 import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/registrar-donante.component';
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
+import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
 
 
 
@@ -30,6 +31,7 @@ import { LoginComponent } from './modules/login/login.component';
     RegistrarDonanteComponent,
     RegistrarVoluntarioComponent,
     LoginComponent,
+    PerfilVoluntarioComponent,
   ],
   imports: [
     BrowserModule,
