@@ -1,34 +1,101 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1"
-            placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect2">Example multiple select</label>
-        <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+<div class="container text-center">
+    <h2>¿Queres ayudarnos a ayudar?</h2>
+    <h4>Registate como voluntario</h4>
+</div>
+<div class="card border-secondary mb-3 container mt-5">
+    <div class="card-header"> Registrar voluntario </div>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
+            <div class="form-group">
+                <label for="labelNombre">Nombre:</label>
+                <input formControlName="nombre" type="text" class="form-control" id="inputNombre"
+                    placeholder="Juan Carlos">
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Apellido:</label>
+                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" placeholder="Perez">
+            </div>
+            <div class="form-group">
+                <label for="labelDireccion">Dirección:</label>
+                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion"
+                    placeholder="Av. Siempreviva 145">
+            </div>
+            <div class="form-group">
+                <label for="labelCelular">Celular:</label>
+                <input formControlName="celular" type="text" class="form-control" id="inputCelular"
+                    placeholder="221 548 9652">
+            </div>
+            <div class="form-group">
+                <label for="labelContrasenia">Contraseña:</label>
+                <input formControlName="clave" type="password" class="form-control" id="inputClave" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="labelContrasenia">Confirmar contraseña:</label>
+                <input formControlName="confirmarClave" type="password" class="form-control" id="inputconfirmacionClave"
+                    placeholder="">
+            </div>
+            <h5>¿Tenés un vehículo?</h5>
+            <div class="form-group mt-4">
+                <label for="labelMarca">Marca:</label>
+                <input formControlName="marca" type="text" class="form-control" id="inputMarca" placeholder="Toyota">
+            </div>
+            <div class="form-group">
+                <label for="labelModelo">Modelo:</label>
+                <input formControlName="modelo" type="text" class="form-control" id="inputModelo" placeholder="Etios">
+            </div>
+            <div class="form-group">
+                <label for="labelPatente">Patente:</label>
+                <input formControlName="patente" type="text" class="form-control" id="inputModelo"
+                    placeholder="AA125FG">
+            </div>
+            <h5>Volumen a transportar</h5>
 
-    <div class="form-group"> <button class="btn btn-primary" type="submit">Save</button>
-        <a routerLink="/home" class="btn btn-link">Cancel</a> </div>
-</form>
+            <div class="form-row mt-4">
+                <div class="col mb-3">
+                    <label for="form-group">Alto:</label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " id="inputAlto" placeholder="65">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Ancho:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control " id="inputAncho" placeholder="124">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Largo:</label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " id="inputLargo" placeholder="32">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="form-group">Distancia máxima a recorrer:</label>
+                <div class="input-group w-25">
+                    <input type="text" class="form-control w-25" id="inputDistancia" placeholder="32">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend2">km</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="labelObservaciones">Observaciones</label>
+                <textarea class="form-control" id="inputObservaciones" rows="3"></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <a routerLink="/home" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
