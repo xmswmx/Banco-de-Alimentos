@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongo":  {
+    "host": "mongodb+srv://clusteriaw-odytc.mongodb.net/test",
+    "port": 47052,
+    "url": "mongodb+srv://admin:admin1@clusteriaw-odytc.mongodb.net/test?retryWrites=true&w=majority",
+    "database": "IAW2019",
+    "password": "admin1",
+    "name": "db",
+    "user": "admin",
+    "connector": "mongodb"
+  }
+}
