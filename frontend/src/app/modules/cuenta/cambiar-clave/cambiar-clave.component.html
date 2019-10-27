@@ -1,0 +1,29 @@
+<div class="container text-center">
+    <h2>Cambiar clave</h2>
+</div>
+<div class="card border-secondary mb-4 container mt-5" id="contenedor">
+    <div class="alert alert-dismissible alert-primary mt-3"> Cambio de clave </div>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
+            <div class="form-group">
+                <label for="labelClaveActual">Contraseña actual</label>
+                <input formControlName="claveActual" type="password" class="form-control" id="inputClaveActual"
+                    placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="labelClaveNueva">Clave nueva</label>
+                <input formControlName="claveNueva" type="password" class="form-control" id="inputClaveNueva" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="labelClaveNuevaConfirmacion">Confirmar clave nueva</label>
+                <input formControlName="claveNuevaConfirmacion" type="password" class="form-control" id="inputClaveNuevaConfirmacion"
+                    placeholder="">
+            </div>
+          
+            <div class="form-group text-center">
+                <button class="btn btn-primary" type="submit">Cambiar clave</button>
+                <a routerLink="/home" class="btn btn-link">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

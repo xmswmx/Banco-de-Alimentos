@@ -9,7 +9,7 @@ import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-vol
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
 import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario//buscar-voluntario.component';
-
+import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -20,6 +20,7 @@ const routes: Routes = [
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
+	{path:'cambiar-clave',component:CambiarClaveComponent},
 	{path:'new-item',component:NewItemComponent}
 ];
 
