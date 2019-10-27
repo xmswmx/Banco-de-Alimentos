@@ -17,6 +17,8 @@ import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
 
 
+import { SDKBrowserModule } from './_services/lbservice';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntari
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+	SDKBrowserModule.forRoot()
   ],
   providers: [MockItemsService],
   bootstrap: [AppComponent]
