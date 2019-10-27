@@ -8,7 +8,7 @@ import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
-
+import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario//buscar-voluntario.component';
 
 
 const routes: Routes = [
@@ -19,6 +19,7 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
+	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
 	{path:'new-item',component:NewItemComponent}
 ];
 

@@ -15,6 +15,7 @@ import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/r
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
+import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario/buscar-voluntario.component';
 
 
 
@@ -31,6 +32,7 @@ import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntari
     RegistrarVoluntarioComponent,
     LoginComponent,
     PerfilVoluntarioComponent,
+    BuscarVoluntarioComponent,
   ],
   imports: [
     BrowserModule,
