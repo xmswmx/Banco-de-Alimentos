@@ -33,6 +33,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	this.registrarBeneficiarioForm = new FormGroup({
        nombreOrganizacion: new FormControl(),
 	   adress: new FormControl(),
+	   cantAtendidos: new FormControl(),
 	   email: new FormControl(),
 	   password1: new FormControl(),
 	   password2: new FormControl()
@@ -44,8 +45,15 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	  
 	 //var item=new Item(this.newItemForm.get("itemName").value)
 	var beneficiario = new Beneficiario();
-	beneficiario.email = "unemail@gmail.com";
-	beneficiario.password = "unpassword";
+	beneficiario.username = this.registrarBeneficiarioForm.get("nombreOrganizacion").value;
+	beneficiario.cantidadAtendidos = this.registrarBeneficiarioForm.get("cantAtendidos").value;
+	beneficiario.email = this.registrarBeneficiarioForm.get("email").value;
+	
+	//Debería validarse el password, por ahora lo dejo asi
+	beneficiario.password = this.registrarBeneficiarioForm.get("password1").value;
+	
+	//beneficiario.adress = this.registrarBeneficiarioForm.get("adress").value;
+	//Hay que trabajar la ubicacion
 	
 	//this.itemApi.create(item).subscribe(()=>{
      // this.router.navigateByUrl("/")
@@ -54,7 +62,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	
 	
 	//this.nuevoBeneficiario = new Beneficiario();
-	console.log("Aca se tendria que crear un beneficiario nuevo");
+	//console.log("Aca se tendria que crear un beneficiario nuevo");
   }
   
   ngOnInit() {
