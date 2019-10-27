@@ -15,11 +15,12 @@
                 Registrarse
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="/beneficiario">Como beneficiario</a>
-              <a class="dropdown-item" href="/voluntario">Como voluntario</a>
-              <a class="dropdown-item" href="/donante">Como donante</a>
+              <a class="dropdown-item" href="/registrar-beneficiario">Como beneficiario</a>
+              <a class="dropdown-item" href="/registrar-voluntario">Como voluntario</a>
+              <a class="dropdown-item" href="/registrar-donante">Como donante</a>
             </div>
           </div>
-        <button type="button" class="btn btn-success ml-4">Iniciar sesión</button>
+		 <!-- Para harce que funcione el click importe Router en el .ts de este html -->
+        <button (click)="router.navigate(['/login']);" type="button" class="btn btn-success ml-4">Iniciar sesión</button>
     </div>
 </nav>

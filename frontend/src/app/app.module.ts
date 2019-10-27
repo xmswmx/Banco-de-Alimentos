@@ -20,6 +20,9 @@ import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-cl
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 
 
+import { SDKBrowserModule } from './_services/lbservice';
+import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
+
 
 @NgModule({
   declarations: [
@@ -34,14 +37,15 @@ import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.compone
     RegistrarVoluntarioComponent,
     LoginComponent,
     PerfilVoluntarioComponent,
+    VerBeneficiariosComponent,
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
-    VerTopComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+	SDKBrowserModule.forRoot()
   ],
   providers: [MockItemsService],
   bootstrap: [AppComponent]
