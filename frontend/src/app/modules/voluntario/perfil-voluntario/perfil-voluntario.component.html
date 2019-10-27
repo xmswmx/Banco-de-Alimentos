@@ -9,56 +9,60 @@
             <div class="form-group">
                 <label for="labelNombre">Nombre</label>
                 <input formControlName="nombre" type="text" class="form-control" id="inputNombre"
-                    placeholder="Juan Carlos">
+                    placeholder="Juan Carlos" readonly>
             </div>
             <div class="form-group">
                 <label for="labelNombre">Apellido</label>
-                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" placeholder="Perez">
+                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" placeholder="Perez" readonly>
+            </div>
+            <div class="form-group">
+                <label for="labelDireccion">DNI</label>
+                <input formControlName="dni" type="text" class="form-control" id="inputDNI" placeholder="18.542.201" readonly>
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Dirección</label>
                 <input formControlName="direccion" type="text" class="form-control" id="inputDireccion"
-                    placeholder="Av. Siempreviva 145">
+                    placeholder="Av. Siempreviva 145" readonly>
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Email</label>
                 <input formControlName="email" type="text" class="form-control" id="inputEmail"
-                    placeholder="perez@gmail.com">
+                    placeholder="perez@gmail.com" readonly>
             </div>
             <div class="form-group">
                 <label for="labelCelular">Celular</label>
                 <input formControlName="celular" type="text" class="form-control" id="inputCelular"
-                    placeholder="221 548 9652">
+                    placeholder="221 548 9652" readonly>
             </div>
             <div class="form-group">
                 <label for="labelContrasenia">Contraseña</label>
-                <input formControlName="clave" type="password" class="form-control" id="inputClave" placeholder="">
+                <input formControlName="clave" type="password" class="form-control" id="inputClave" placeholder="" readonly>
             </div>
             <div class="form-group">
                 <label for="labelContrasenia">Confirmar contraseña</label>
                 <input formControlName="confirmarClave" type="password" class="form-control" id="inputconfirmacionClave"
-                    placeholder="">
+                    placeholder="" readonly>
             </div>
             <h5>¿Tenés un vehículo?</h5>
             <div class="form-group mt-4">
                 <label for="labelMarca">Marca</label>
-                <input formControlName="marca" type="text" class="form-control" id="inputMarca" placeholder="Toyota">
+                <input formControlName="marca" type="text" class="form-control" id="inputMarca" placeholder="Toyota" readonly>
             </div>
             <div class="form-group">
                 <label for="labelModelo">Modelo</label>
-                <input formControlName="modelo" type="text" class="form-control" id="inputModelo" placeholder="Etios">
+                <input formControlName="modelo" type="text" class="form-control" id="inputModelo" placeholder="Etios" readonly>
             </div>
             <div class="form-group">
                 <label for="labelPatente">Patente</label>
                 <input formControlName="patente" type="text" class="form-control" id="inputModelo"
-                    placeholder="AA125FG">
+                    placeholder="AA125FG" readonly>
             </div>
             <h5>Volumen a transportar</h5>
             <div class="form-row mt-4">
                 <div class="col mb-3">
                     <label for="form-group">Alto</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputAlto" placeholder="65">
+                        <input type="text" class="form-control " id="inputAlto" placeholder="65" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -67,7 +71,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Ancho</label>
                     <div class="input-group">
-                        <input type="text" class="form-control " id="inputAncho" placeholder="124">
+                        <input type="text" class="form-control " id="inputAncho" placeholder="124" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -76,7 +80,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Largo</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputLargo" placeholder="32">
+                        <input type="text" class="form-control " id="inputLargo" placeholder="32" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -87,7 +91,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Distancia máxima a recorrer</label>
                     <div class="input-group w-25 ">
-                        <input type="text" class="form-control " id="inputAlto" placeholder="350">
+                        <input type="text" class="form-control " id="inputAlto" placeholder="350" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">km</span>
                         </div>
@@ -96,15 +100,11 @@
             </div>              
             <div class="form-group">
                 <label for="labelObservaciones">Observaciones</label>
-                <textarea class="form-control" id="inputObservaciones" rows="3"></textarea>
+                <textarea class="form-control" id="inputObservaciones" rows="3" readonly></textarea>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a routerLink="/home" class="btn btn-link">Cancelar</a>
+                <button class="btn btn-primary" type="submit" readonly>Volver</button>    
             </div>
         </form>
-
-
     </div>
-    puntaje
 </div>

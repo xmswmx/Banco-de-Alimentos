@@ -17,6 +17,7 @@ import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
 import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario/buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
+import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 
 
 
@@ -35,6 +36,7 @@ import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-cl
     PerfilVoluntarioComponent,
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
+    VerTopComponent,
   ],
   imports: [
     BrowserModule,
