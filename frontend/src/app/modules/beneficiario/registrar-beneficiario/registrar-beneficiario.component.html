@@ -5,10 +5,10 @@
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
     <div class="alert alert-dismissible alert-primary mt-3"> Registrar beneficiario </div>
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="registrarDonanteForm" >
+        <form (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiarioForm" >
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nombre de organización:</label>
-                <input required formControlName="nombreOrganizacion" type="text" class="form-control" id="nombreOrganizacion"
+                <input required formControlName="username" type="text" class="form-control" id="nombreOrganizacion"
                     placeholder="Ej. Comedor Nuevo Sol">
             </div>
             <div class="form-group">
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group col-xs-2">
                 <label for="exampleFormControlInput1">Cantidad de personas que atiende:</label>
-                <input required formControlName="adress" type="number" class="form-control" id="cantidadAtendidos"
+                <input required formControlName="cantAtendidos" type="number" class="form-control" id="cantidadAtendidos"
                   placeholder="50"  >
             </div>
 

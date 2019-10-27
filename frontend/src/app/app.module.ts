@@ -22,6 +22,7 @@ import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.compone
 
 import { SDKBrowserModule } from './_services/lbservice';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
+import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
 
 
 @NgModule({

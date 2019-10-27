@@ -9,7 +9,7 @@
         <!-- Banco de alimentos -->
     </h1>
     
-    <div class="d-inline-flex mr-4">        <!-- <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> -->
+    <div *ngIf="!userLogged" class="d-inline-flex mr-4">        <!-- <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> -->
         <div class="dropdown">
             <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Registrarse
@@ -23,4 +23,9 @@
 		 <!-- Para harce que funcione el click importe Router en el .ts de este html -->
         <button (click)="router.navigate(['/login']);" type="button" class="btn btn-success ml-4">Iniciar sesión</button>
     </div>
+	<div *ngIf="userLogged" class="d-inline-flex mr-4">
+		<p> ¡Hola {{userLogged.username}}!</p>
+		<button class="btn btn-success ml-4" (click)="userApi.logout()">LogOut</button>
+	
+	</div>
 </nav>
