@@ -41,7 +41,18 @@ export class RegistrarBeneficiarioComponent implements OnInit {
   }
 
   onSubmit(){
-	//var beneficiario = new Beneficiario();
+	  
+	 //var item=new Item(this.newItemForm.get("itemName").value)
+	var beneficiario = new Beneficiario();
+	beneficiario.email = "unemail@gmail.com";
+	beneficiario.password = "unpassword";
+	
+	//this.itemApi.create(item).subscribe(()=>{
+     // this.router.navigateByUrl("/")
+     // })
+	this.beneficiarioApi.create(beneficiario).subscribe(()=>{this.router.navigateByUrl("/")})
+	
+	
 	//this.nuevoBeneficiario = new Beneficiario();
 	console.log("Aca se tendria que crear un beneficiario nuevo");
   }
