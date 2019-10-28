@@ -40,6 +40,7 @@ import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiar
     VerBeneficiariosComponent,
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
+	VerTopComponent
   ],
   imports: [
     BrowserModule,
