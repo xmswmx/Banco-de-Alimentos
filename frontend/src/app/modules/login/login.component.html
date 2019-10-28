@@ -5,7 +5,7 @@
 <div class="card border-secondary mb-4 container mt-5 w-25" id="contenedor">
     <div class="card-header">Ingresá tus credenciales</div>
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
+        <form (ngSubmit)="onSubmit()" [formGroup]="logInForm" class="container">
             <div class="form-group">
                 <label for="labelNombre">Nombre de usuario</label>
                 <input formControlName="usuario" type="text" class="form-control" id="inputNombre"

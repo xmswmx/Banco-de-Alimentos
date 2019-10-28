@@ -1,3 +1,9 @@
 <footer class="bg-secondary page-footer font-small ">
     <div class="p-3">Footer</div>
+	<div *ngIf="userLogged">
+	<p>Felicidades, estas logueado :)</p>
+	<button class="btn btn-primary" (click)="userApi.logout()">LogOut</button>
+	
+	</div>
+	
 </footer>
