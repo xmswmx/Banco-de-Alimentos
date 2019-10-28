@@ -8,6 +8,7 @@ import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
+import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 
 
 
@@ -19,7 +20,8 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
-	{path:'new-item',component:NewItemComponent}
+	{path:'new-item',component:NewItemComponent},
+        {path:'ver-beneficiarios',component:VerBeneficiariosComponent}
 ];
 
 @NgModule({

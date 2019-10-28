@@ -18,6 +18,7 @@ import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntari
 
 
 import { SDKBrowserModule } from './_services/lbservice';
+import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SDKBrowserModule } from './_services/lbservice';
     RegistrarVoluntarioComponent,
     LoginComponent,
     PerfilVoluntarioComponent,
+    VerBeneficiariosComponent
   ],
   imports: [
     BrowserModule,
