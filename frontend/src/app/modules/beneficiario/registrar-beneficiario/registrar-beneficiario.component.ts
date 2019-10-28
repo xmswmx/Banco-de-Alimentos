@@ -31,7 +31,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	this.nuevoBeneficiario =  new Beneficiario();
 	
 	this.registrarBeneficiarioForm = new FormGroup({
-       nombreOrganizacion: new FormControl(),
+       username: new FormControl(),
 	   adress: new FormControl(),
 	   cantAtendidos: new FormControl(),
 	   email: new FormControl(),
@@ -45,7 +45,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	  
 	 //var item=new Item(this.newItemForm.get("itemName").value)
 	var beneficiario = new Beneficiario();
-	beneficiario.username = this.registrarBeneficiarioForm.get("nombreOrganizacion").value;
+	beneficiario.username = this.registrarBeneficiarioForm.get("username").value;
 	beneficiario.cantidadAtendidos = this.registrarBeneficiarioForm.get("cantAtendidos").value;
 	beneficiario.email = this.registrarBeneficiarioForm.get("email").value;
 	
