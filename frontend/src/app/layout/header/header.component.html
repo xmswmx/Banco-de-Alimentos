@@ -27,7 +27,7 @@
 	
 	<!-- Opciones de usuario no-logueado -->
 	<div *ngIf="userApi.getCachedCurrent()" class="d-inline-flex mr-4">
-		<p> ¡Hola {{userApi.getCachedCurrent().username}}!</p>
-		<button class="btn btn-success ml-4" (click)="logout()">LogOut</button>
+		<p class="navbar-brand"> ¡Hola {{userApi.getCachedCurrent().username}}!</p>
+		<button class="btn btn-success ml-4" (click)="logout()">Salir</button>
 	</div>
 </nav>

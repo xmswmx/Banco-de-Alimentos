@@ -25,9 +25,10 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
+	{path:'perfil-donante',component:PerfilDonanteComponent},
 
 	{path:'new-item',component:NewItemComponent},
-    {path:'ver-beneficiarios',component:VerBeneficiariosComponent},
+	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
 
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
