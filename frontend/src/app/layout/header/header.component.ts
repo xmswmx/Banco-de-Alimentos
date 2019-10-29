@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit {
   constructor(private userApi:UserApi, private router:Router) { 
 	this.userLogged = userApi.getCachedCurrent();
   }
+  
+  logout(){
+	this.userApi.logout().subscribe(()=> {this.router.navigate(['/home'])} ); 
+  }
 
   ngOnInit() {
   }
