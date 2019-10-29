@@ -12,6 +12,7 @@ import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiar
 import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario//buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
+import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
 
 
 
