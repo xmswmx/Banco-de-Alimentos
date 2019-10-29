@@ -26,8 +26,9 @@
     </div>
 	
 	<!-- Opciones de usuario no-logueado -->
-	<div *ngIf="userApi.getCachedCurrent()" class="d-inline-flex mr-4">
+	<div *ngIf="beneficiarioApi.getCachedCurrent()" class="d-inline-flex mr-4">
 		<p class="navbar-brand"> ¡Hola {{userApi.getCachedCurrent().username}}!</p>
+		<button class="btn btn-success ml-4" (click)="this.router.navigate(['/perfil-organizacion-beneficiaria']);">⚙️Editar perfil</button>
 		<button class="btn btn-success ml-4" (click)="logout()">Salir</button>
 	</div>
 </nav>

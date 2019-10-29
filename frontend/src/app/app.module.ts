@@ -2,11 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodolistComponent } from './modules/beneficiario/todolist/todolist.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { Item } from './data/model/Item';
-import {MockItemsService} from './data/services/mock-items.service';
-import { NewItemComponent } from './modules/beneficiario/new-item/new-item.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -23,13 +19,12 @@ import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.compone
 import { SDKBrowserModule } from './_services/lbservice';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
+import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodolistComponent,
-    NewItemComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -42,15 +37,15 @@ import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
     VerTopComponent,
-    PerfilDonanteComponent
+    PerfilDonanteComponent,
+    PerfilBeneficiarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-	SDKBrowserModule.forRoot()
+    SDKBrowserModule.forRoot()
   ],
-  providers: [MockItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

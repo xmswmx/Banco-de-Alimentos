@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../_services/lbservice/models';
-import { UserApi } from '../../_services/lbservice/services';
+import { User, Beneficiario } from '../../_services/lbservice/models';
+import { UserApi, BeneficiarioApi  } from '../../_services/lbservice/services';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +12,15 @@ import { UserApi } from '../../_services/lbservice/services';
 export class HeaderComponent implements OnInit {
 
   userLogged:User;
-  constructor(private userApi:UserApi, private router:Router) { 
+  constructor(private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
 	this.userLogged = userApi.getCachedCurrent();
   }
   
   logout(){
 	this.userApi.logout().subscribe(()=> {this.router.navigate(['/home'])} ); 
+  }
+  verPerfil(){
+	  
   }
 
   ngOnInit() {

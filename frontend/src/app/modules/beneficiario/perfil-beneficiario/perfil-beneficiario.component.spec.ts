@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodolistComponent } from './todolist.component';
+import { PerfilBeneficiarioComponent } from './perfil-beneficiario.component';
 
-describe('TodolistComponent', () => {
-  let component: TodolistComponent;
-  let fixture: ComponentFixture<TodolistComponent>;
+describe('PerfilBeneficiarioComponent', () => {
+  let component: PerfilBeneficiarioComponent;
+  let fixture: ComponentFixture<PerfilBeneficiarioComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodolistComponent ]
+      declarations: [ PerfilBeneficiarioComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodolistComponent);
+    fixture = TestBed.createComponent(PerfilBeneficiarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

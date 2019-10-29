@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TodolistComponent } from './modules/beneficiario/todolist/todolist.component';
-import { NewItemComponent } from './modules/beneficiario/new-item/new-item.component';
 import { HomeComponent } from './modules/home/home.component';
 import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/registrar-donante.component';
 import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar-beneficiario/registrar-beneficiario.component';
@@ -13,6 +11,7 @@ import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntari
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
+import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 
 
 
@@ -25,15 +24,12 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
-	{path:'perfil-donante',component:PerfilDonanteComponent},
-
-	{path:'new-item',component:NewItemComponent},
+	{path:'perfil-donante',component:PerfilBeneficiarioComponent},
 	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
-
+	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
-	{path:'ver-top',component:VerTopComponent},
-	{path:'new-item',component:NewItemComponent}
+	{path:'ver-top',component:VerTopComponent}
 
 ];
 
