@@ -24,7 +24,8 @@ export class MockContactoService extends AbstractContactoService {
   }
 
   deleteContacto(unContacto:Contacto){
-    return this.contactos.filter(i=>unContacto!==i);
+	this.contactos = this.contactos.filter(i=>unContacto!==i);
+    return this.contactos;
   }
 
   // getContactos(): Promise<Contacto[]> {
