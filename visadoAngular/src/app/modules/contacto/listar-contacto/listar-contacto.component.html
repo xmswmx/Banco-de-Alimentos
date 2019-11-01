@@ -1,0 +1,27 @@
+<table class="table table-sm border-bottom text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contacto of contactos; let idx=index">
+            <td>{{contacto.nombre}}</td>
+            <td>{{contacto.apellido}}</td>
+            <td>{{contacto.dni}}</td>
+            <td>{{contacto.email}}</td>
+            <td>{{contacto.telefono}}</td>
+            <button class="btn btn-primary btn-xs fa fa-pencil mr-2"
+            [routerLink]="['/registrar-contacto',idx]"></button> 
+            <button class="btn btn-danger btn-xs fa fa-trash-o"
+            (click)="onRemove(contacto)"></button>
+        </tr>
+    </tbody>
+</table>
+<a class="float-right mr-4 w-25 btn btn-primary btn-xs fa fa-plus"
+routerLink="/registrar-contacto" ></a> 

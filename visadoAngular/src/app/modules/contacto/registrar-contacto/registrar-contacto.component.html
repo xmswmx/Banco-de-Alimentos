@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="newContactoForm">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                    placeholder="Alberto" value="{{contacto.nombre}}">
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input formControlName="apellido" type="text" class="form-control" id="apellido"
+                placeholder="Lopez" value="{{contacto.apellido}}">
+        </div>
+        <div class="form-group">
+            <label for="cuil">DNI:</label>
+            <input formControlName="dni" type="number" class="form-control" id="dni" placeholder="33542807" value="{{contacto.dni}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="alberto.lopez@gmail.com" value="{{contacto.email}}">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono:</label>
+            <input formControlName="telefono" type="tel" class="form-control" id="telefono" placeholder="0221-15432453" value="{{contacto.telefono}}">
+        </div>
+        <div class="modal-footer">
+            <a routerLink="/home" class="btn btn-secondary" data-dismiss="modal" >Cancelar</a>
+            <button type="button" class="btn btn-primary" type="submit">Agregar</button>
+        </div>
+    </form>
