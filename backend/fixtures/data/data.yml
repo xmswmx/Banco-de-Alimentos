@@ -1,11 +1,32 @@
+#Para activar el plugin configurar backend/server/component-config
+#Colocar autoload en true, se generarán instancias en el cloud
+
+Ubicacion:
+    unaUbicacion:
+        direccion: "{{address.streetAddress}}"
+        puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
+
+#La siguiente linea significa que voy a crear instancias de la clase Docente
 Donante:
-  donante{1..10}:
+#La siguiente linea significa que se crearan 3 donantes, el nombre de la instancia sera "donante1", "donante2", "donante3"
+  donante{1..3}:
+  #Las cosas random las saco del plugin faker ahí hay una lista https://github.com/marak/faker.js
     cuil: "{{random.number}}"
     realm: "string"
     username: "{{internet.userName}}"
     email: "{{internet.email}}"
     emailVerified: true
+    #Abajo asigno al donante una Ubicacion que instancie mas arriba
+    idUbicacion: @unaUbicacion
     password: "nasus"
 
-#Son strings y adentro llevan llaves para generar cosas random como nombres, numeros, y emails
-#Aca se puede ver lo que hay https://github.com/marak/faker.js
+Beneficiario:
+    beneficiario{1..2}:
+      cantidadAtendidos: "{{random.number}}"
+      realm: "string"
+      username: "{{internet.userName}}"
+      email: "{{internet.email}}"
+      emailVerified: true
+      password: "nasus"
+      idUbicacion: @unaUbicacion
+   
