@@ -37,6 +37,16 @@
       "type": "hasOne",
       "model": "Donacion",
       "foreignKey": "idDonacion"
+    },
+    "productos": {
+      "type": "hasMany",
+      "model": "Producto",
+      "foreignKey": ""
+    },
+    "items": {
+      "type": "hasMany",
+      "model": "Item",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -28,7 +28,7 @@ Ubicacion:
         puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
         #en idUbicacion va la id del donante.. algo quedo mal cuando definimos los modelos pero por ahora no importa
         #observa como obtengo la id del donante que cree mas arriba, esta es la forma de conectar las entidades
-        idUbicacion: @donante{@}
+        idUDonante: @donante{@}
         
     ubicacionBeneficiario{1..2}:
         direccion: "{{address.streetAddress}}"

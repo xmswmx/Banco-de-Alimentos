@@ -1,25 +1,24 @@
 {
-  "name": "insignia",
+  "name": "TipoProducto",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "fechaOtorgada": {
-      "type": "date",
+    "nombre": {
+      "type": "string",
       "required": true
     },
-    "fechaVencimiento": {
-      "type": "date",
-      "required": true
+    "codigoBarra": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "tipo-insignia": {
+    "categoria": {
       "type": "belongsTo",
-      "model": "tipo-insignia",
+      "model": "Categoria",
       "foreignKey": ""
     }
   },

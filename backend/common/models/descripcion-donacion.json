@@ -1,0 +1,20 @@
+{
+  "name": "DescripcionDonacion",
+  "plural": "DescripcionesDonacion",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "donacion": {
+      "type": "belongsTo",
+      "model": "Donacion",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

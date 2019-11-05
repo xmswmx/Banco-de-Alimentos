@@ -16,22 +16,22 @@
     "personasDeContacto": {
       "type": "hasMany",
       "model": "PersonaDeContacto",
-      "foreignKey": "idPContacto"
+      "foreignKey": "idDonante"
     },
     "ubicacion": {
       "type": "hasOne",
       "model": "Ubicacion",
-      "foreignKey": "idUbicacion"
+      "foreignKey": "idDonante"
     },
     "insignia": {
       "type": "hasMany",
       "model": "Insignia",
-      "foreignKey": "idInsignia"
+      "foreignKey": "idDonante"
     },
     "donaciones": {
       "type": "hasMany",
       "model": "Donacion",
-      "foreignKey": "idDonacion"
+      "foreignKey": "idDonante"
     }
   },
   "acls": [
