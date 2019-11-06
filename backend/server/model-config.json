@@ -79,7 +79,7 @@
     "dataSource": "mongo",
     "public": true
   },
-  "tipo-insignia": {
+  "tipo-de-insignia": {
     "dataSource": "mongo",
     "public": true
   },

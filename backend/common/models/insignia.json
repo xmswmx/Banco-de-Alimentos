@@ -17,9 +17,9 @@
   },
   "validations": [],
   "relations": {
-    "tipo-insignia": {
+    "tipo-de-insignia": {
       "type": "belongsTo",
-      "model": "tipo-insignia",
+      "model": "tipo-de-insignia",
       "foreignKey": ""
     }
   },
