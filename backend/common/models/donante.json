@@ -31,7 +31,7 @@
     "donaciones": {
       "type": "hasMany",
       "model": "Donacion",
-      "foreignKey": "idDonante"
+      "foreignKey": ""
     }
   },
   "acls": [

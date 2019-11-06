@@ -21,22 +21,22 @@
     "beneficiario": {
       "type": "hasOne",
       "model": "Beneficiario",
-      "foreignKey": "idBeneficiario"
+      "foreignKey": ""
     },
     "volumen": {
       "type": "hasOne",
       "model": "Volumen",
-      "foreignKey": "idVolumen"
+      "foreignKey": ""
     },
     "traslados": {
       "type": "hasOne",
       "model": "Traslado",
-      "foreignKey": "idTraslado"
+      "foreignKey": ""
     },
     "donacion": {
       "type": "hasOne",
       "model": "Donacion",
-      "foreignKey": "idDonacion"
+      "foreignKey": "idEnvio"
     },
     "productos": {
       "type": "hasMany",
