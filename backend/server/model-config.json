@@ -55,7 +55,7 @@
     "dataSource": "mongo",
     "public": true
   },
-  "insignia": {
+  "Insignia": {
     "dataSource": "mongo",
     "public": true
   },
@@ -75,11 +75,7 @@
     "dataSource": "mongo",
     "public": true
   },
-  "envioParaBeneficiario": {
-    "dataSource": "mongo",
-    "public": true
-  },
-  "tipo-de-insignia": {
+  "EnvioParaBeneficiario": {
     "dataSource": "mongo",
     "public": true
   },
@@ -108,6 +104,10 @@
     "public": true
   },
   "Item": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "TipoInsignia": {
     "dataSource": "mongo",
     "public": true
   }

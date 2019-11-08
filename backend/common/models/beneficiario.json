@@ -15,12 +15,12 @@
     "ubicacion": {
       "type": "hasOne",
       "model": "Ubicacion",
-      "foreignKey": "idUbicacion"
+      "foreignKey": ""
     },
     "enviosParaBeneficiario": {
       "type": "hasMany",
       "model": "envioParaBeneficiario",
-      "foreignKey": "idEnvioParaBeneficiario"
+      "foreignKey": ""
     }
   },
   "acls": [

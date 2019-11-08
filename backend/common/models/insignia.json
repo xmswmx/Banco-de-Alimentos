@@ -1,5 +1,5 @@
 {
-  "name": "insignia",
+  "name": "Insignia",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -19,7 +19,7 @@
   "relations": {
     "tipo-de-insignia": {
       "type": "belongsTo",
-      "model": "tipo-de-insignia",
+      "model": "TipoInsignia",
       "foreignKey": ""
     }
   },

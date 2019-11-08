@@ -1,6 +1,6 @@
 {
-  "name": "envioParaBeneficiario",
-  "plural": "enviosParaBeneficiario",
+  "name": "EnvioParaBeneficiario",
+  "plural": "EnviosParaBeneficiario",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -19,7 +19,7 @@
   "validations": [],
   "relations": {
     "beneficiario": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Beneficiario",
       "foreignKey": ""
     },
