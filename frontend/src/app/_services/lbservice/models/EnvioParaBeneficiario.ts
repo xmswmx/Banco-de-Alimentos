@@ -3,7 +3,9 @@ import {
   Beneficiario,
   Volumen,
   Traslado,
-  Donacion
+  Donacion,
+  Producto,
+  Item
 } from '../index';
 
 declare var Object: any;
@@ -11,22 +13,26 @@ export interface EnvioParaBeneficiarioInterface {
   "estado": string;
   "numero": number;
   "id"?: any;
-  "idEnvioParaBeneficiario"?: any;
+  "beneficiarioId"?: any;
   beneficiario?: Beneficiario;
   volumen?: Volumen;
   traslados?: Traslado;
   donacion?: Donacion;
+  productos?: Producto[];
+  items?: Item[];
 }
 
 export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
   "estado": string;
   "numero": number;
   "id": any;
-  "idEnvioParaBeneficiario": any;
+  "beneficiarioId": any;
   beneficiario: Beneficiario;
   volumen: Volumen;
   traslados: Traslado;
   donacion: Donacion;
+  productos: Producto[];
+  items: Item[];
   constructor(data?: EnvioParaBeneficiarioInterface) {
     Object.assign(this, data);
   }
@@ -56,8 +62,8 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
   public static getModelDefinition() {
     return {
       name: 'EnvioParaBeneficiario',
-      plural: 'enviosParaBeneficiario',
-      path: 'enviosParaBeneficiario',
+      plural: 'EnviosParaBeneficiario',
+      path: 'EnviosParaBeneficiario',
       idName: 'id',
       properties: {
         "estado": {
@@ -72,8 +78,8 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           name: 'id',
           type: 'any'
         },
-        "idEnvioParaBeneficiario": {
-          name: 'idEnvioParaBeneficiario',
+        "beneficiarioId": {
+          name: 'beneficiarioId',
           type: 'any'
         },
       },
@@ -82,9 +88,9 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           name: 'beneficiario',
           type: 'Beneficiario',
           model: 'Beneficiario',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'idBeneficiario'
+          relationType: 'belongsTo',
+                  keyFrom: 'beneficiarioId',
+          keyTo: 'id'
         },
         volumen: {
           name: 'volumen',
@@ -92,7 +98,7 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           model: 'Volumen',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idVolumen'
+          keyTo: 'envioParaBeneficiarioId'
         },
         traslados: {
           name: 'traslados',
@@ -100,7 +106,7 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           model: 'Traslado',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idTraslado'
+          keyTo: 'envioParaBeneficiarioId'
         },
         donacion: {
           name: 'donacion',
@@ -108,7 +114,23 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           model: 'Donacion',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idDonacion'
+          keyTo: 'idEnvio'
+        },
+        productos: {
+          name: 'productos',
+          type: 'Producto[]',
+          model: 'Producto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'envioParaBeneficiarioId'
+        },
+        items: {
+          name: 'items',
+          type: 'Item[]',
+          model: 'Item',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'envioParaBeneficiarioId'
         },
       }
     }

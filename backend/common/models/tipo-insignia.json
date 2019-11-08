@@ -1,6 +1,5 @@
 {
   "name": "TipoInsignia",
-  "plural": "tiposInsignia",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

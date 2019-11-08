@@ -1,7 +1,6 @@
 /* tslint:disable */
 import {
-  Ubicacion,
-  EnvioParaBeneficiario
+  Ubicacion
 } from '../index';
 
 declare var Object: any;
@@ -12,11 +11,9 @@ export interface BeneficiarioInterface {
   "email": string;
   "emailVerified"?: boolean;
   "id"?: any;
-  "idBeneficiario"?: any;
   "password"?: string;
   accessTokens?: any[];
   ubicacion?: Ubicacion;
-  enviosParaBeneficiario?: EnvioParaBeneficiario[];
 }
 
 export class Beneficiario implements BeneficiarioInterface {
@@ -26,11 +23,9 @@ export class Beneficiario implements BeneficiarioInterface {
   "email": string;
   "emailVerified": boolean;
   "id": any;
-  "idBeneficiario": any;
   "password": string;
   accessTokens: any[];
   ubicacion: Ubicacion;
-  enviosParaBeneficiario: EnvioParaBeneficiario[];
   constructor(data?: BeneficiarioInterface) {
     Object.assign(this, data);
   }
@@ -88,10 +83,6 @@ export class Beneficiario implements BeneficiarioInterface {
           name: 'id',
           type: 'any'
         },
-        "idBeneficiario": {
-          name: 'idBeneficiario',
-          type: 'any'
-        },
         "password": {
           name: 'password',
           type: 'string'
@@ -112,15 +103,7 @@ export class Beneficiario implements BeneficiarioInterface {
           model: 'Ubicacion',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idUbicacion'
-        },
-        enviosParaBeneficiario: {
-          name: 'enviosParaBeneficiario',
-          type: 'EnvioParaBeneficiario[]',
-          model: 'EnvioParaBeneficiario',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'idEnvioParaBeneficiario'
+          keyTo: 'beneficiarioId'
         },
       }
     }

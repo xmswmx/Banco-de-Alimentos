@@ -9,7 +9,7 @@ export interface VehiculoInterface {
   "modelo": string;
   "patente": string;
   "id"?: any;
-  "idVehiculo"?: any;
+  "voluntarioId"?: any;
   volumen?: Volumen;
 }
 
@@ -18,7 +18,7 @@ export class Vehiculo implements VehiculoInterface {
   "modelo": string;
   "patente": string;
   "id": any;
-  "idVehiculo": any;
+  "voluntarioId": any;
   volumen: Volumen;
   constructor(data?: VehiculoInterface) {
     Object.assign(this, data);
@@ -69,8 +69,8 @@ export class Vehiculo implements VehiculoInterface {
           name: 'id',
           type: 'any'
         },
-        "idVehiculo": {
-          name: 'idVehiculo',
+        "voluntarioId": {
+          name: 'voluntarioId',
           type: 'any'
         },
       },
@@ -81,7 +81,7 @@ export class Vehiculo implements VehiculoInterface {
           model: 'Volumen',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idVolumen'
+          keyTo: 'vehiculoId'
         },
       }
     }

@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Insignia } from '../../models/Insignia';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { TipoInsignia } from '../../models/TipoInsignia';
 
 
 /**
@@ -27,6 +28,36 @@ export class InsigniaApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
+  }
+
+  /**
+   * Capta la relación belongsTo tipoInsignia.
+   *
+   * @param {any} id Insignia id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Insignia` object.)
+   * </em>
+   */
+  public getTipoInsignia(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Insignia/:id/tipoInsignia";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
   }
 
   /**
@@ -48,7 +79,7 @@ export class InsigniaApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/insignia";
+    "/Insignia";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +92,7 @@ export class InsigniaApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id insignia id
+   * @param {any} id Insignia id
    *
    * @param {object} data Request data.
    *
@@ -79,7 +110,7 @@ export class InsigniaApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/insignia/:id";
+    "/Insignia/:id";
     let _routeParams: any = {
       id: id
     };

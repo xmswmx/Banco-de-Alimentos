@@ -60,6 +60,14 @@ import { TrasladoApi } from './services/custom/Traslado';
 import { VolumenApi } from './services/custom/Volumen';
 import { DonacionApi } from './services/custom/Donacion';
 import { EnvioParaBeneficiarioApi } from './services/custom/EnvioParaBeneficiario';
+import { DescripcionDonacionApi } from './services/custom/DescripcionDonacion';
+import { DescripcionGeneralApi } from './services/custom/DescripcionGeneral';
+import { DescripcionDetalladaApi } from './services/custom/DescripcionDetallada';
+import { ProductoApi } from './services/custom/Producto';
+import { TipoProductoApi } from './services/custom/TipoProducto';
+import { CategoriaApi } from './services/custom/Categoria';
+import { ItemApi } from './services/custom/Item';
+import { TipoInsigniaApi } from './services/custom/TipoInsignia';
 /**
 * @module SDKBrowserModule
 * @description
@@ -102,6 +110,14 @@ export class SDKBrowserModule {
         VolumenApi,
         DonacionApi,
         EnvioParaBeneficiarioApi,
+        DescripcionDonacionApi,
+        DescripcionGeneralApi,
+        DescripcionDetalladaApi,
+        ProductoApi,
+        TipoProductoApi,
+        CategoriaApi,
+        ItemApi,
+        TipoInsigniaApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }
