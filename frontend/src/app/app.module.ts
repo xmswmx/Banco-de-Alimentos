@@ -23,6 +23,9 @@ import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.compone
 import { SDKBrowserModule } from './_services/lbservice';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
+import { MisDonacionesComponent } from './modules/donante/mis-donaciones/mis-donaciones.component';
+import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-donacion-detallada/registar-donacion-detallada.component';
+import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
 	VerTopComponent,
-	PerfilDonanteComponent
+	PerfilDonanteComponent,
+	MisDonacionesComponent,
+	RegistarDonacionDetalladaComponent,
+	RegistrarDonacionGeneralComponent
   ],
   imports: [
     BrowserModule,

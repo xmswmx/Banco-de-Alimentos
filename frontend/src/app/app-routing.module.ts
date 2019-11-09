@@ -13,15 +13,19 @@ import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntari
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
+import { MisDonacionesComponent } from './modules/donante/mis-donaciones/mis-donaciones.component';
+import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-donacion-detallada/registar-donacion-detallada.component';
+import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
 
-
-PerfilDonanteComponent
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
 	{path:'home',component:HomeComponent},
 	{path:'registrar-donante',component:RegistrarDonanteComponent},
 	{path:'perfil-donante',component:PerfilDonanteComponent},
+	{path:'mis-donaciones',component:MisDonacionesComponent},
+	{path:'registrar-donacion-detallada',component:RegistarDonacionDetalladaComponent},
+	{path:'registrar-donacion-general',component:RegistrarDonacionGeneralComponent},
 	{path:'registrar-beneficiario',component:RegistrarBeneficiarioComponent},
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
