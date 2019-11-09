@@ -1,5 +1,5 @@
 {
-  "name": "insignia",
+  "name": "Insignia",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,17 +10,19 @@
       "type": "date",
       "required": true
     },
-    "nombre": {
-      "type": "string",
-      "required": true
-    },
-    "imagen": {
-      "type": "img",
+    "fechaVencimiento": {
+      "type": "date",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "tipoInsignia": {
+      "type": "belongsTo",
+      "model": "TipoInsignia",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

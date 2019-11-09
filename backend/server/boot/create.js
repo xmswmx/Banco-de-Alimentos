@@ -16,8 +16,9 @@ module.exports = function (app, cb) {
     console.log('Created users:', users);
   });
   
+  /* Con estas lineas se activan los fixures, los quito porque resetean la base
   app.loadFixtures() .then(function() {console.log('Done!');})
-					.catch(function(err) {console.log('Errors:', err);});
-
+				.catch(function(err) {console.log('Errors:', err);});
+*/
   process.nextTick(cb);
 };

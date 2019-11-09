@@ -33,7 +33,7 @@
     "donante": {
       "type": "belongsTo",
       "model": "Donante",
-      "foreignKey": "idDonante"
+      "foreignKey": ""
     }
   },
   "acls": [

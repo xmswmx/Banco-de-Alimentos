@@ -1,0 +1,20 @@
+{
+  "name": "DescripcionDetallada",
+  "plural": "DescripcionesDonacion",
+  "base": "DescripcionDonacion",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "productos": {
+      "type": "hasMany",
+      "model": "Producto",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

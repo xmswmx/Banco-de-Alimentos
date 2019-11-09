@@ -22,12 +22,12 @@
     "donacion": {
       "type": "hasOne",
       "model": "Donacion",
-      "foreignKey": "idDonacion"
+      "foreignKey": ""
     },
     "enviosParaBeneficiario": {
       "type": "hasOne",
       "model": "envioParaBeneficiario",
-      "foreignKey": "idEnvioParaBeneficiario"
+      "foreignKey": "idTraslado"
     }
   },
   "acls": [],

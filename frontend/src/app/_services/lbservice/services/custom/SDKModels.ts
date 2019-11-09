@@ -12,6 +12,14 @@ import { Traslado } from '../../models/Traslado';
 import { Volumen } from '../../models/Volumen';
 import { Donacion } from '../../models/Donacion';
 import { EnvioParaBeneficiario } from '../../models/EnvioParaBeneficiario';
+import { DescripcionDonacion } from '../../models/DescripcionDonacion';
+import { DescripcionGeneral } from '../../models/DescripcionGeneral';
+import { DescripcionDetallada } from '../../models/DescripcionDetallada';
+import { Producto } from '../../models/Producto';
+import { TipoProducto } from '../../models/TipoProducto';
+import { Categoria } from '../../models/Categoria';
+import { Item } from '../../models/Item';
+import { TipoInsignia } from '../../models/TipoInsignia';
 
 export interface Models { [name: string]: any }
 
@@ -31,6 +39,14 @@ export class SDKModels {
     Volumen: Volumen,
     Donacion: Donacion,
     EnvioParaBeneficiario: EnvioParaBeneficiario,
+    DescripcionDonacion: DescripcionDonacion,
+    DescripcionGeneral: DescripcionGeneral,
+    DescripcionDetallada: DescripcionDetallada,
+    Producto: Producto,
+    TipoProducto: TipoProducto,
+    Categoria: Categoria,
+    Item: Item,
+    TipoInsignia: TipoInsignia,
     
   };
 

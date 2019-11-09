@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil-donante',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilDonanteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }

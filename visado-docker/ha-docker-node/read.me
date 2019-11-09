@@ -1,0 +1,5 @@
+read.me
+
+Correr la  imagen
+
+sudo docker run --cpu-quota=50000 -it --rm --name webapp-node -p 80:3000  -v "$PWD":/usr/src/app  -w /usr/src/app   node:6  node app.js

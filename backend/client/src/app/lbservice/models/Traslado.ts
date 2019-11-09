@@ -1,7 +1,6 @@
 /* tslint:disable */
 import {
-  Donacion,
-  EnvioParaBeneficiario
+  Donacion
 } from '../index';
 
 declare var Object: any;
@@ -10,9 +9,9 @@ export interface TrasladoInterface {
   "fechaEstimada": Date;
   "fechaFin"?: Date;
   "id"?: any;
-  "idTraslado"?: any;
+  "voluntarioId"?: any;
+  "envioParaBeneficiarioId"?: any;
   donacion?: Donacion;
-  enviosParaBeneficiario?: EnvioParaBeneficiario;
 }
 
 export class Traslado implements TrasladoInterface {
@@ -20,9 +19,9 @@ export class Traslado implements TrasladoInterface {
   "fechaEstimada": Date;
   "fechaFin": Date;
   "id": any;
-  "idTraslado": any;
+  "voluntarioId": any;
+  "envioParaBeneficiarioId": any;
   donacion: Donacion;
-  enviosParaBeneficiario: EnvioParaBeneficiario;
   constructor(data?: TrasladoInterface) {
     Object.assign(this, data);
   }
@@ -72,8 +71,12 @@ export class Traslado implements TrasladoInterface {
           name: 'id',
           type: 'any'
         },
-        "idTraslado": {
-          name: 'idTraslado',
+        "voluntarioId": {
+          name: 'voluntarioId',
+          type: 'any'
+        },
+        "envioParaBeneficiarioId": {
+          name: 'envioParaBeneficiarioId',
           type: 'any'
         },
       },
@@ -84,15 +87,7 @@ export class Traslado implements TrasladoInterface {
           model: 'Donacion',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idDonacion'
-        },
-        enviosParaBeneficiario: {
-          name: 'enviosParaBeneficiario',
-          type: 'EnvioParaBeneficiario',
-          model: 'EnvioParaBeneficiario',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'idEnvioParaBeneficiario'
+          keyTo: 'trasladoId'
         },
       }
     }

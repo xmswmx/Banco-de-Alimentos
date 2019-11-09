@@ -12131,3 +12131,38 @@ select.form-control[multiple] {
 .carousel-caption h1, .carousel-caption h2, .carousel-caption h3, .carousel-caption h4, .carousel-caption h5, .carousel-caption h6 {
   color: inherit;
 }
+
+/*
+Agrego algunos estilos para probar cosas del footer
+-Ema
+*/
+.app {
+  min-height: 100%;
+  width: 100%;
+  margin-bottom: -271px;
+}
+
+header-main,
+router-outlet,
+footer{
+  background-color: #333333;
+}
+
+header-main {
+ height: 60px;
+}
+
+router-outlet {
+  position: absolute;
+}
+
+footer {
+  height: 100px;
+}
+
+.bg-naranja {
+  background-color: #f94116;
+  color: white;
+
+}
+/* Hasta aca el footer */

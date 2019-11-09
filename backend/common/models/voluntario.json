@@ -32,22 +32,22 @@
     "ubicacion": {
       "type": "hasOne",
       "model": "Ubicacion",
-      "foreignKey": "idUbicacion"
+      "foreignKey": ""
     },
     "insignia": {
       "type": "hasMany",
       "model": "Insignia",
-      "foreignKey": "idInsignia"
+      "foreignKey": ""
     },
     "vehiculo": {
       "type": "hasOne",
       "model": "Vehiculo",
-      "foreignKey": "idVehiculo"
+      "foreignKey": ""
     },
     "traslados": {
       "type": "hasMany",
       "model": "Traslado",
-      "foreignKey": "idTraslado"
+      "foreignKey": ""
     }
   },
   "acls": [

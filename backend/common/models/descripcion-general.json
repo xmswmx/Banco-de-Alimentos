@@ -1,0 +1,25 @@
+{
+  "name": "DescripcionGeneral",
+  "plural": "DescripcionesDonacion",
+  "base": "DescripcionDonacion",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "descripcion": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "volumenes": {
+      "type": "hasOne",
+      "model": "Volumen",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

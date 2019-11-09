@@ -24,7 +24,7 @@
     "volumen": {
       "type": "hasOne",
       "model": "Volumen",
-      "foreignKey": "idVolumen"
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -8,14 +8,18 @@ export interface UbicacionInterface {
   "direccion": string;
   "puntoGeografico": GeoPoint;
   "id"?: any;
-  "idUbicacion"?: any;
+  "idDonante"?: any;
+  "beneficiarioId"?: any;
+  "voluntarioId"?: any;
 }
 
 export class Ubicacion implements UbicacionInterface {
   "direccion": string;
   "puntoGeografico": GeoPoint;
   "id": any;
-  "idUbicacion": any;
+  "idDonante": any;
+  "beneficiarioId": any;
+  "voluntarioId": any;
   constructor(data?: UbicacionInterface) {
     Object.assign(this, data);
   }
@@ -61,8 +65,16 @@ export class Ubicacion implements UbicacionInterface {
           name: 'id',
           type: 'any'
         },
-        "idUbicacion": {
-          name: 'idUbicacion',
+        "idDonante": {
+          name: 'idDonante',
+          type: 'any'
+        },
+        "beneficiarioId": {
+          name: 'beneficiarioId',
+          type: 'any'
+        },
+        "voluntarioId": {
+          name: 'voluntarioId',
           type: 'any'
         },
       },

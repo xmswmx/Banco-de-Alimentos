@@ -25,8 +25,13 @@
     "donante": {
       "type": "belongsTo",
       "model": "Donante",
-      "foreignKey": "idDonante"
-    }
+      "foreignKey": ""
+    },
+   "descripcion": {
+     "type": "hasOne",
+     "model": "DescripcionDonacion",
+     "foreignKey": "idDonacion"
+   }
   },
   "acls": [
     {

@@ -15,6 +15,8 @@ import { Beneficiario } from '../../models/Beneficiario';
 import { Volumen } from '../../models/Volumen';
 import { Traslado } from '../../models/Traslado';
 import { Donacion } from '../../models/Donacion';
+import { Producto } from '../../models/Producto';
+import { Item } from '../../models/Item';
 
 
 /**
@@ -34,9 +36,9 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   }
 
   /**
-   * Capta la relación hasOne beneficiario.
+   * Capta la relación belongsTo beneficiario.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {boolean} refresh 
    *
@@ -52,7 +54,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public getBeneficiario(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/beneficiario";
+    "/EnviosParaBeneficiario/:id/beneficiario";
     let _routeParams: any = {
       id: id
     };
@@ -64,99 +66,9 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   }
 
   /**
-   * Crea una nueva instancia en beneficiario de este modelo.
-   *
-   * @param {any} id envioParaBeneficiario id
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `EnvioParaBeneficiario` object.)
-   * </em>
-   */
-  public createBeneficiario(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/beneficiario";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Actualizar beneficiario de este modelo.
-   *
-   * @param {any} id envioParaBeneficiario id
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `EnvioParaBeneficiario` object.)
-   * </em>
-   */
-  public updateBeneficiario(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PUT";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/beneficiario";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Suprime beneficiario de este modelo.
-   *
-   * @param {any} id envioParaBeneficiario id
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public destroyBeneficiario(id: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "DELETE";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/beneficiario";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
    * Capta la relación hasOne volumen.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {boolean} refresh 
    *
@@ -172,7 +84,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public getVolumen(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/volumen";
+    "/EnviosParaBeneficiario/:id/volumen";
     let _routeParams: any = {
       id: id
     };
@@ -186,7 +98,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en volumen de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -204,7 +116,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createVolumen(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/volumen";
+    "/EnviosParaBeneficiario/:id/volumen";
     let _routeParams: any = {
       id: id
     };
@@ -219,7 +131,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Actualizar volumen de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -237,7 +149,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public updateVolumen(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/volumen";
+    "/EnviosParaBeneficiario/:id/volumen";
     let _routeParams: any = {
       id: id
     };
@@ -252,7 +164,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Suprime volumen de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -263,7 +175,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public destroyVolumen(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/volumen";
+    "/EnviosParaBeneficiario/:id/volumen";
     let _routeParams: any = {
       id: id
     };
@@ -276,7 +188,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Capta la relación hasOne traslados.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {boolean} refresh 
    *
@@ -292,7 +204,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public getTraslados(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/traslados";
+    "/EnviosParaBeneficiario/:id/traslados";
     let _routeParams: any = {
       id: id
     };
@@ -306,7 +218,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en traslados de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -324,7 +236,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createTraslados(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/traslados";
+    "/EnviosParaBeneficiario/:id/traslados";
     let _routeParams: any = {
       id: id
     };
@@ -339,7 +251,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Actualizar traslados de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -357,7 +269,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public updateTraslados(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/traslados";
+    "/EnviosParaBeneficiario/:id/traslados";
     let _routeParams: any = {
       id: id
     };
@@ -372,7 +284,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Suprime traslados de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -383,7 +295,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public destroyTraslados(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/traslados";
+    "/EnviosParaBeneficiario/:id/traslados";
     let _routeParams: any = {
       id: id
     };
@@ -396,7 +308,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Capta la relación hasOne donacion.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {boolean} refresh 
    *
@@ -412,7 +324,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public getDonacion(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/donacion";
+    "/EnviosParaBeneficiario/:id/donacion";
     let _routeParams: any = {
       id: id
     };
@@ -426,7 +338,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en donacion de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -444,7 +356,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createDonacion(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/donacion";
+    "/EnviosParaBeneficiario/:id/donacion";
     let _routeParams: any = {
       id: id
     };
@@ -459,7 +371,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Actualizar donacion de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -477,7 +389,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public updateDonacion(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/donacion";
+    "/EnviosParaBeneficiario/:id/donacion";
     let _routeParams: any = {
       id: id
     };
@@ -492,7 +404,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Suprime donacion de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -503,12 +415,430 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public destroyDonacion(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/donacion";
+    "/EnviosParaBeneficiario/:id/donacion";
     let _routeParams: any = {
       id: id
     };
     let _postBody: any = {};
     let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Buscar un elemento relacionado por id para productos.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para productos
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public findByIdProductos(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprimir un elemento relacionado por id para productos.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para productos
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyByIdProductos(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Actualizar un elemento relacionado por id para productos.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para productos
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public updateByIdProductos(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Buscar un elemento relacionado por id para items.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para items
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public findByIdItems(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprimir un elemento relacionado por id para items.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para items
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyByIdItems(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Actualizar un elemento relacionado por id para items.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {any} fk Clave foránea para items
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public updateByIdItems(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * productos consultas de EnvioParaBeneficiario.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} filter 
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public getProductos(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof filter !== 'undefined' && filter !== null) _urlParams.filter = filter;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en productos de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public createProductos(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprime todos los productos de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public deleteProductos(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Recuentos productos de EnvioParaBeneficiario.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} where Criteria to match model instances
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` - 
+   */
+  public countProductos(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos/count";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * items consultas de EnvioParaBeneficiario.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} filter 
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public getItems(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof filter !== 'undefined' && filter !== null) _urlParams.filter = filter;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en items de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public createItems(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprime todos los items de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public deleteItems(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Recuentos items de EnvioParaBeneficiario.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} where Criteria to match model instances
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` - 
+   */
+  public countItems(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items/count";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -532,7 +862,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario";
+    "/EnviosParaBeneficiario";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -545,7 +875,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -563,40 +893,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Crea una nueva instancia en beneficiario de este modelo.
-   *
-   * @param {any} id envioParaBeneficiario id
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object[]} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `EnvioParaBeneficiario` object.)
-   * </em>
-   */
-  public createManyBeneficiario(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/beneficiario";
+    "/EnviosParaBeneficiario/:id";
     let _routeParams: any = {
       id: id
     };
@@ -611,7 +908,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en volumen de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -629,7 +926,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createManyVolumen(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/volumen";
+    "/EnviosParaBeneficiario/:id/volumen";
     let _routeParams: any = {
       id: id
     };
@@ -644,7 +941,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en traslados de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -662,7 +959,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createManyTraslados(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/traslados";
+    "/EnviosParaBeneficiario/:id/traslados";
     let _routeParams: any = {
       id: id
     };
@@ -677,7 +974,7 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   /**
    * Crea una nueva instancia en donacion de este modelo.
    *
-   * @param {any} id envioParaBeneficiario id
+   * @param {any} id EnvioParaBeneficiario id
    *
    * @param {object} data Request data.
    *
@@ -695,7 +992,73 @@ export class EnvioParaBeneficiarioApi extends BaseLoopBackApi {
   public createManyDonacion(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/enviosParaBeneficiario/:id/donacion";
+    "/EnviosParaBeneficiario/:id/donacion";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en productos de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public createManyProductos(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/productos";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en items de este modelo.
+   *
+   * @param {any} id EnvioParaBeneficiario id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `EnvioParaBeneficiario` object.)
+   * </em>
+   */
+  public createManyItems(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/EnviosParaBeneficiario/:id/items";
     let _routeParams: any = {
       id: id
     };

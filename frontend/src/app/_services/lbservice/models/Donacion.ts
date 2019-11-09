@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
-  Donante
+  Donante,
+  DescripcionDonacion
 } from '../index';
 
 declare var Object: any;
@@ -9,9 +10,11 @@ export interface DonacionInterface {
   "numero": number;
   "estado": string;
   "id"?: any;
-  "idDonante"?: any;
-  "idDonacion"?: any;
+  "donanteId"?: any;
+  "trasladoId"?: any;
+  "idEnvio"?: any;
   donante?: Donante;
+  descripcion?: DescripcionDonacion;
 }
 
 export class Donacion implements DonacionInterface {
@@ -19,9 +22,11 @@ export class Donacion implements DonacionInterface {
   "numero": number;
   "estado": string;
   "id": any;
-  "idDonante": any;
-  "idDonacion": any;
+  "donanteId": any;
+  "trasladoId": any;
+  "idEnvio": any;
   donante: Donante;
+  descripcion: DescripcionDonacion;
   constructor(data?: DonacionInterface) {
     Object.assign(this, data);
   }
@@ -71,12 +76,16 @@ export class Donacion implements DonacionInterface {
           name: 'id',
           type: 'any'
         },
-        "idDonante": {
-          name: 'idDonante',
+        "donanteId": {
+          name: 'donanteId',
           type: 'any'
         },
-        "idDonacion": {
-          name: 'idDonacion',
+        "trasladoId": {
+          name: 'trasladoId',
+          type: 'any'
+        },
+        "idEnvio": {
+          name: 'idEnvio',
           type: 'any'
         },
       },
@@ -86,8 +95,16 @@ export class Donacion implements DonacionInterface {
           type: 'Donante',
           model: 'Donante',
           relationType: 'belongsTo',
-                  keyFrom: 'idDonante',
+                  keyFrom: 'donanteId',
           keyTo: 'id'
+        },
+        descripcion: {
+          name: 'descripcion',
+          type: 'DescripcionDonacion',
+          model: 'DescripcionDonacion',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'idDonacion'
         },
       }
     }

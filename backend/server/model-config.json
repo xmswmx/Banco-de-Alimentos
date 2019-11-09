@@ -55,7 +55,7 @@
     "dataSource": "mongo",
     "public": true
   },
-  "insignia": {
+  "Insignia": {
     "dataSource": "mongo",
     "public": true
   },
@@ -75,7 +75,39 @@
     "dataSource": "mongo",
     "public": true
   },
-  "envioParaBeneficiario": {
+  "EnvioParaBeneficiario": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "DescripcionDonacion": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "DescripcionGeneral": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "DescripcionDetallada": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Producto": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "TipoProducto": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Categoria": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Item": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "TipoInsignia": {
     "dataSource": "mongo",
     "public": true
   }

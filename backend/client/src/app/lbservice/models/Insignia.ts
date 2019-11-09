@@ -1,18 +1,27 @@
 /* tslint:disable */
+import {
+  TipoInsignia
+} from '../index';
 
 declare var Object: any;
 export interface InsigniaInterface {
   "fechaOtorgada": Date;
-  "nombre": string;
-  "imagen": any;
+  "fechaVencimiento": Date;
   "id"?: any;
+  "idDonante"?: any;
+  "voluntarioId"?: any;
+  "tipoInsigniaId"?: any;
+  tipoInsignia?: TipoInsignia;
 }
 
 export class Insignia implements InsigniaInterface {
   "fechaOtorgada": Date;
-  "nombre": string;
-  "imagen": any;
+  "fechaVencimiento": Date;
   "id": any;
+  "idDonante": any;
+  "voluntarioId": any;
+  "tipoInsigniaId": any;
+  tipoInsignia: TipoInsignia;
   constructor(data?: InsigniaInterface) {
     Object.assign(this, data);
   }
@@ -50,20 +59,36 @@ export class Insignia implements InsigniaInterface {
           name: 'fechaOtorgada',
           type: 'Date'
         },
-        "nombre": {
-          name: 'nombre',
-          type: 'string'
-        },
-        "imagen": {
-          name: 'imagen',
-          type: 'any'
+        "fechaVencimiento": {
+          name: 'fechaVencimiento',
+          type: 'Date'
         },
         "id": {
           name: 'id',
           type: 'any'
         },
+        "idDonante": {
+          name: 'idDonante',
+          type: 'any'
+        },
+        "voluntarioId": {
+          name: 'voluntarioId',
+          type: 'any'
+        },
+        "tipoInsigniaId": {
+          name: 'tipoInsigniaId',
+          type: 'any'
+        },
       },
       relations: {
+        tipoInsignia: {
+          name: 'tipoInsignia',
+          type: 'TipoInsignia',
+          model: 'TipoInsignia',
+          relationType: 'belongsTo',
+                  keyFrom: 'tipoInsigniaId',
+          keyTo: 'id'
+        },
       }
     }
   }

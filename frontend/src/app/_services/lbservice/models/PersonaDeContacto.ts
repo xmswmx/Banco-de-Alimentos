@@ -11,8 +11,8 @@ export interface PersonaDeContactoInterface {
   "telefono": number;
   "dni": number;
   "id"?: any;
+  "donanteId"?: any;
   "idDonante"?: any;
-  "idPContacto"?: any;
   donante?: Donante;
 }
 
@@ -23,8 +23,8 @@ export class PersonaDeContacto implements PersonaDeContactoInterface {
   "telefono": number;
   "dni": number;
   "id": any;
+  "donanteId": any;
   "idDonante": any;
-  "idPContacto": any;
   donante: Donante;
   constructor(data?: PersonaDeContactoInterface) {
     Object.assign(this, data);
@@ -83,12 +83,12 @@ export class PersonaDeContacto implements PersonaDeContactoInterface {
           name: 'id',
           type: 'any'
         },
-        "idDonante": {
-          name: 'idDonante',
+        "donanteId": {
+          name: 'donanteId',
           type: 'any'
         },
-        "idPContacto": {
-          name: 'idPContacto',
+        "idDonante": {
+          name: 'idDonante',
           type: 'any'
         },
       },
@@ -98,7 +98,7 @@ export class PersonaDeContacto implements PersonaDeContactoInterface {
           type: 'Donante',
           model: 'Donante',
           relationType: 'belongsTo',
-                  keyFrom: 'idDonante',
+                  keyFrom: 'donanteId',
           keyTo: 'id'
         },
       }

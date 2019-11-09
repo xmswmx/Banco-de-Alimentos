@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
   Ubicacion,
+  Insignia,
   Vehiculo,
   Traslado
 } from '../index';
@@ -20,6 +21,7 @@ export interface VoluntarioInterface {
   "password"?: string;
   accessTokens?: any[];
   ubicacion?: Ubicacion;
+  insignia?: Insignia[];
   vehiculo?: Vehiculo;
   traslados?: Traslado[];
 }
@@ -38,6 +40,7 @@ export class Voluntario implements VoluntarioInterface {
   "password": string;
   accessTokens: any[];
   ubicacion: Ubicacion;
+  insignia: Insignia[];
   vehiculo: Vehiculo;
   traslados: Traslado[];
   constructor(data?: VoluntarioInterface) {
@@ -134,7 +137,15 @@ export class Voluntario implements VoluntarioInterface {
           model: 'Ubicacion',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idUbicacion'
+          keyTo: 'voluntarioId'
+        },
+        insignia: {
+          name: 'insignia',
+          type: 'Insignia[]',
+          model: 'Insignia',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'voluntarioId'
         },
         vehiculo: {
           name: 'vehiculo',
@@ -142,7 +153,7 @@ export class Voluntario implements VoluntarioInterface {
           model: 'Vehiculo',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idVehiculo'
+          keyTo: 'voluntarioId'
         },
         traslados: {
           name: 'traslados',
@@ -150,7 +161,7 @@ export class Voluntario implements VoluntarioInterface {
           model: 'Traslado',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'idTraslado'
+          keyTo: 'voluntarioId'
         },
       }
     }

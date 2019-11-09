@@ -2,6 +2,7 @@
 import {
   PersonaDeContacto,
   Ubicacion,
+  Insignia,
   Donacion
 } from '../index';
 
@@ -17,6 +18,7 @@ export interface DonanteInterface {
   accessTokens?: any[];
   personasDeContacto?: PersonaDeContacto[];
   ubicacion?: Ubicacion;
+  insignia?: Insignia[];
   donaciones?: Donacion[];
 }
 
@@ -31,6 +33,7 @@ export class Donante implements DonanteInterface {
   accessTokens: any[];
   personasDeContacto: PersonaDeContacto[];
   ubicacion: Ubicacion;
+  insignia: Insignia[];
   donaciones: Donacion[];
   constructor(data?: DonanteInterface) {
     Object.assign(this, data);
@@ -109,7 +112,7 @@ export class Donante implements DonanteInterface {
           model: 'PersonaDeContacto',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'idPContacto'
+          keyTo: 'idDonante'
         },
         ubicacion: {
           name: 'ubicacion',
@@ -117,7 +120,15 @@ export class Donante implements DonanteInterface {
           model: 'Ubicacion',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idUbicacion'
+          keyTo: 'idDonante'
+        },
+        insignia: {
+          name: 'insignia',
+          type: 'Insignia[]',
+          model: 'Insignia',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'idDonante'
         },
         donaciones: {
           name: 'donaciones',
@@ -125,7 +136,7 @@ export class Donante implements DonanteInterface {
           model: 'Donacion',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'idDonacion'
+          keyTo: 'donanteId'
         },
       }
     }

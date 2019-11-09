@@ -1,0 +1,27 @@
+{
+  "name": "Producto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "cantidad": {
+      "type": "number",
+      "required": true
+    },
+    "vencimiento": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tipoProducto": {
+      "type": "belongsTo",
+      "model": "TipoProducto",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,6 +1,6 @@
 {
-  "name": "envioParaBeneficiario",
-  "plural": "enviosParaBeneficiario",
+  "name": "EnvioParaBeneficiario",
+  "plural": "EnviosParaBeneficiario",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -19,24 +19,34 @@
   "validations": [],
   "relations": {
     "beneficiario": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Beneficiario",
-      "foreignKey": "idBeneficiario"
+      "foreignKey": ""
     },
     "volumen": {
       "type": "hasOne",
       "model": "Volumen",
-      "foreignKey": "idVolumen"
+      "foreignKey": ""
     },
     "traslados": {
       "type": "hasOne",
       "model": "Traslado",
-      "foreignKey": "idTraslado"
+      "foreignKey": ""
     },
     "donacion": {
       "type": "hasOne",
       "model": "Donacion",
-      "foreignKey": "idDonacion"
+      "foreignKey": "idEnvio"
+    },
+    "productos": {
+      "type": "hasMany",
+      "model": "Producto",
+      "foreignKey": ""
+    },
+    "items": {
+      "type": "hasMany",
+      "model": "Item",
+      "foreignKey": ""
     }
   },
   "acls": [],
