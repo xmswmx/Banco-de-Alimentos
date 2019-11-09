@@ -1,0 +1,18 @@
+{
+        "version": "0.2.0",
+        "configurations": [
+
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Launch Program",
+                "program": "${workspaceRoot}/app.js"
+                ,"args": [
+                    "max-stack-size=1000","stack_size=1000"
+                ]
+            }
+        ]
+    }
+
+
+    
