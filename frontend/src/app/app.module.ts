@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -14,20 +14,14 @@ import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntari
 import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario/buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
-
-
 import { SDKBrowserModule } from './_services/lbservice';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
-<<<<<<< HEAD
 import { MisDonacionesComponent } from './modules/donante/mis-donaciones/mis-donaciones.component';
 import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-donacion-detallada/registar-donacion-detallada.component';
 import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
-
-=======
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
-import {FontAwesomeModule } from '@fortawesome/angular-fontawesome';
->>>>>>> b5269abd1619be2848f195360730df46dd805192
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -43,20 +37,15 @@ import {FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     VerBeneficiariosComponent,
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
-<<<<<<< HEAD
-	VerTopComponent,
-	PerfilDonanteComponent,
-	MisDonacionesComponent,
-	RegistarDonacionDetalladaComponent,
-	RegistrarDonacionGeneralComponent
-=======
     VerTopComponent,
     PerfilDonanteComponent,
+    MisDonacionesComponent,
+    RegistarDonacionDetalladaComponent,
+    RegistrarDonacionGeneralComponent,
     PerfilBeneficiarioComponent
->>>>>>> b5269abd1619be2848f195360730df46dd805192
   ],
   imports: [
-	FontAwesomeModule,
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
