@@ -15,12 +15,13 @@ import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.compone
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
 
 
-
+PerfilDonanteComponent
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
 	{path:'home',component:HomeComponent},
 	{path:'registrar-donante',component:RegistrarDonanteComponent},
+	{path:'perfil-donante',component:PerfilDonanteComponent},
 	{path:'registrar-beneficiario',component:RegistrarBeneficiarioComponent},
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},

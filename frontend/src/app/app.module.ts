@@ -41,7 +41,8 @@ import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-
     VerBeneficiariosComponent,
     BuscarVoluntarioComponent,
     CambiarClaveComponent,
-	VerTopComponent
+	VerTopComponent,
+	PerfilDonanteComponent
   ],
   imports: [
     BrowserModule,
