@@ -20,7 +20,7 @@ import { SDKBrowserModule } from './_services/lbservice';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
-
+import {FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,6 +41,7 @@ import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-benef
     PerfilBeneficiarioComponent
   ],
   imports: [
+	FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
