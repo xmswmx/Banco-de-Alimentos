@@ -24,7 +24,7 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
-	{path:'perfil-donante',component:PerfilBeneficiarioComponent},
+	{path:'perfil-donante',component:PerfilDonanteComponent},
 	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
 	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
