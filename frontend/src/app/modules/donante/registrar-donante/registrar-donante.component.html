@@ -3,37 +3,37 @@
 
 </div>
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
-    <div class="alert alert-dismissible alert-primary mt-3"> Registrar organización donante </div>
+    <div class="alert alert-dismissible alert-dark mt-3 "> Registrar organización donante </div>
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
             <div class="form-group">
                 <label for="labelRazonSocial">Razón social</label>
-                <input formControlName="razonSocial" type="text" class="form-control" id="inputRazonSocial"
+                <input required formControlName="razonSocial" type="text" class="form-control" id="inputRazonSocial"
                     placeholder="Estudiantes de La Plata">
             </div>
             <div class="form-group">
                 <label for="labelCuil">Cuil</label>
-                <input formControlName="cuil" type="text" class="form-control" id="inputCuil"
+                <input required formControlName="cuil" type="text" class="form-control" id="inputCuil"
                     placeholder="20-54215125458-9">
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Dirección</label>
-                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion"
+                <input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
                     placeholder="Calle 53 e/ 7 y 8">
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Email</label>
-                <input formControlName="email" type="email" class="form-control" id="inputDireccion"
+                <input required formControlName="email" type="email" class="form-control" id="inputDireccion"
                     placeholder="contacto@MiOrganizacion.com">
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Contraseña</label>
-                <input formControlName="password1" type="password" class="form-control" id="inputDireccion"
+                <input required formControlName="password1" type="password" class="form-control" id="inputDireccion"
                     >
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Confirmar contraseña</label>
-                <input formControlName="password2" type="password" class="form-control" id="inputDireccion"
+                <input required formControlName="password2" type="password" class="form-control" id="inputDireccion"
                     >
             </div>               
             <h5>Personas de contacto</h5>
@@ -48,22 +48,22 @@
             </div>
             <div class="form-group">
                 <label for="labelDNI">DNI</label>
-                <input formControlName="personaDni" type="text" class="form-control" id="inputDNI" placeholder="22.987.201">
+                <input formControlName="personaDni" type="number" class="form-control" id="inputDNI" placeholder="22.987.201">
             </div>
             <div class="form-group">
                 <label for="labelEmail">Email</label>
-                <input formControlName="personaEmail" type="text" class="form-control" id="inputEmail"
+                <input formControlName="personaEmail" type="email" class="form-control" id="inputEmail"
                     placeholder="gomezjose@gmail.com">
             </div>
             <div class="form-group">
                 <label for="labelEmail">Celular</label>
-                <input formControlName="personaCelular" type="text" class="form-control" id="inputCelular"
+                <input formControlName="personaCelular" type="number" class="form-control" id="inputCelular"
                     placeholder="221 654 8752">
             </div>
-            <p class="btn btn-primary" (click)="agregarContacto()">Agregar persona</p>
+            <p class="btn btn-dark" (click)="agregarContacto()">Agregar persona</p>
             
         <!-- <div  *ngIf="!colPersonasDeContacto[0]==null"> Con esto se esconde cuando no hay contactos pero da problemas -->
-                <section class="alert alert-dismissible alert-primary mt-3">
+                <section class="alert alert-dismissible alert-dark mt-3">
                         Personas de contacto
                 </section>
                 <table class="table table-hover table-bordered table-center">
@@ -90,8 +90,8 @@
         <!-- </div> -->
 
             <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a routerLink="/home" class="btn btn-link">Cancelar</a>
+                <button class="btn mr-5" style="background-color: #f94116; color:white" type="submit">Guardar</button>
+                <a routerLink="/home" class="btn" style="background-color: #f94116; color:white">Cancelar</a>
             </div>
         </form>
     </div>
