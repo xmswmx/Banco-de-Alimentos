@@ -6,7 +6,8 @@ import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UbicacionApi, DonanteApi, PersonaDeContactoApi } from '../../../_services/lbservice/services';
-import { GeoPoint } from '../../../_services/lbservice/models/BaseModels';
+import { GeoPoint } from '../../../_models/GeoPoint';
+import { AddressConverter } from '../../../_models/AddressConverter';
 
 @Component({
   selector: 'app-registrar-donante',
@@ -18,13 +19,17 @@ export class RegistrarDonanteComponent implements OnInit {
 	form: FormGroup;
 	nuevoDonante : Donante;
 	colPersonasDeContacto = [];
+	convertidorDeDirecciones : AddressConverter;
 
 
 	constructor(private ubicacionApi: UbicacionApi, private personasDeContactoApi: PersonaDeContactoApi, private donanteApi: DonanteApi, private route: ActivatedRoute , private router:Router) {
 
 		//Se crea el nuevo donante y los controladores de los campos
 		this.nuevoDonante =  new Donante();
-	
+		
+		//Instancio el convertidor de direcciones (mock)
+		this.convertidorDeDirecciones = new AddressConverter();
+
 		this.form = new FormGroup({
 	       razonSocial: new FormControl(),
 		   cuil: new FormControl(),
@@ -54,6 +59,7 @@ export class RegistrarDonanteComponent implements OnInit {
 			return 0;
 		}
 
+
 		//Agregar la persona al Array
 		let nuevaPersona = new PersonaDeContacto;
 		nuevaPersona.nombre = this.form.get("personaNombre").value;
@@ -79,6 +85,10 @@ export class RegistrarDonanteComponent implements OnInit {
 			alert('Las contraseñas no coinciden');
 			return 0
 		} 
+		if (this.colPersonasDeContacto.length==0){
+			alert('Debe ingresar al menos una persona de contacto');
+			return 0;
+		}
 
 		//Postear un donante nuevo con los datos recibidos
 		this.nuevoDonante = new Donante;
@@ -86,21 +96,7 @@ export class RegistrarDonanteComponent implements OnInit {
 		this.nuevoDonante.cuil = this.form.get("cuil").value;
 		this.nuevoDonante.email = this.form.get("email").value;
 		this.nuevoDonante.password = this.form.get("password1").value;
-
-		/* ¡ARREGLAR!
-		 * Necesito crearle su ubicacion 
-		 * Falta crearle el geopoint, para esto necesito tener una clase Geopoint
-		 * Por ahora hice que la API no me obligue a agregarlo y lo creo solo con su dirección 
-		 */
-		let nuevaUbicacion = new Ubicacion;
-		nuevaUbicacion.direccion = this.form.get("direccion").value;
-		//nuevaUbicacion.puntoGeografico = this.obtenerGeoPointDe(this.form.get("direccion").value);
-		this.nuevoDonante.ubicacion = nuevaUbicacion;
-		
-
-
-
-		//Inicio el array de personas de contacto
+		this.nuevoDonante.ubicacion = this.generarUbicacion(this.form.get("direccion").value);
 		this.nuevoDonante.personasDeContacto=[];
 
 		//Llamo a la api para crear el donante y con su id creo las otras entidades que le pertenecen
@@ -129,11 +125,11 @@ export class RegistrarDonanteComponent implements OnInit {
 		});			
 	}
 
-	/*
-		Colocar acá la fauncion de google para calcular el geopoint
-	*/
-	obtenerGeoPointDe(unaDireccion:String){
-		return 'GeoPoint';
+	generarUbicacion(direccion:string){
+		let nuevaUbicacion = new Ubicacion;
+		nuevaUbicacion.direccion = direccion;
+		nuevaUbicacion.puntoGeografico = this.convertidorDeDirecciones.coordinateForAddress(direccion);
+		return nuevaUbicacion;
 	}
 
 	ngOnInit() {
