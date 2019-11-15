@@ -1,7 +1,7 @@
 {
   "name": "DescripcionGeneral",
   "plural": "DescripcionesGenerales",
-  "base": "DescripcionDonacion",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -17,7 +17,7 @@
     "volumenes": {
       "type": "hasOne",
       "model": "Volumen",
-      "foreignKey": ""
+      "foreignKey": "idDescripcionGeneral"
     }
   },
   "acls": [],

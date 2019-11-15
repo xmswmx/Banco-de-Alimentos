@@ -28,24 +28,93 @@ PersonaDeContacto:
     telefono: "{{random.number}}"
     dni: "{{random.number}}"
     idDonante: @donanteSprint1
-        
+     
 Donacion:
   donacion{1..5}:
     numero: "{{random.number}}"
     fechaRegistro: "{{date.recent}}"
     estado: "'pendiente'"
-    idDonante: @donanteSprint1
-        
+    idDonante: @donanteSprint1    
+
 DescripcionGeneral:
   descripcionDeDonacion{1..5}:
     descripcion: "{{lorem.words}}"
     idDonacion: @donacion{@}
-    
+
 Volumen:
   volumenDescripcion{1..5}:
     alto: "5"
     ancho: "5"
     largo: "5"
+    idDescripcionGeneral: @descripcionDeDonacion{@}
+    
+Traslado:
+  traslado{1..5}:
+    idDonacion: @donacion{@}
+    fechaEstimada: '{{date.recent}}'
+
+Categoria:
+  # congelados:
+  #   nombre: 'congelados'
+
+  # refrigerados:
+  #   nombre: 'refrigerados'
+
+  # congeladosBalp:
+  #   nombre: 'congelados balp'
+
+  # noPerecederos:
+  #   nombre: 'no perecederos'
+
+  # lecheEnPolvo:
+  #   nombre: 'leche en polvo'
+
+  # aerosoles:
+  #   nombre: 'aerosoles'
+
+  # agua:
+  #   nombre: 'agua'
+
+  # bebida:
+  #   nombre: 'bebida'
+
+  # frutasYVerduras:
+  #   nombre: 'frutas y verduras'
+
+  golosinas:
+    nombre: 'golosinas'
+
+  # higieneYLimpieza:
+  #   nombre: 'higiene y limpieza'
+
+  # panales:
+  #   nombre: 'panales'
+
+
+TipoProducto:
+  caramelo1:
+    nombre: "CARAMELO SURTIDO MANDARINA Y FRUTILLA"
+    codigoBarra: "2145473557352"
+    categoriaId: @golosinas
+
+  menthoplus1:
+    nombre: "MENTHOPLUS ZERO POMELO ROSADO"
+    codigoBarra: "9845475257847"
+    categoriaId: @golosinas
+
+  seven1:
+    nombre: "SEVEN ULTRA RED BERRY"
+    codigoBarra: "7745729467842"
+    categoriaId: @golosinas
+
+
+
+
+
+
+
+
+
 
 
 # Fixtures de aprendizaje

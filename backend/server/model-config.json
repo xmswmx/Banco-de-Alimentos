@@ -79,10 +79,6 @@
     "dataSource": "mongo",
     "public": true
   },
-  "DescripcionDonacion": {
-    "dataSource": "mongo",
-    "public": true
-  },
   "DescripcionGeneral": {
     "dataSource": "mongo",
     "public": true

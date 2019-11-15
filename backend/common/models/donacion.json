@@ -22,14 +22,19 @@
   },
   "validations": [],
   "relations": {
-    "donante": {
-      "type": "belongsTo",
-      "model": "Donante",
-      "foreignKey": ""
-    },
-   "descripcion": {
+   "descripcionDetallada": {
      "type": "hasOne",
-     "model": "DescripcionDonacion",
+     "model": "DescripcionDetallada",
+     "foreignKey": "idDonacion"
+   },
+   "descripcionGeneral": {
+     "type": "hasOne",
+     "model": "DescripcionGeneral",
+     "foreignKey": "idDonacion"
+   },
+   "traslado": {
+     "type": "hasOne",
+     "model": "Traslado",
      "foreignKey": "idDonacion"
    }
   },

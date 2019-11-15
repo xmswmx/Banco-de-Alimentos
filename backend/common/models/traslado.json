@@ -19,11 +19,6 @@
   },
   "validations": [],
   "relations": {
-    "donacion": {
-      "type": "hasOne",
-      "model": "Donacion",
-      "foreignKey": ""
-    },
     "enviosParaBeneficiario": {
       "type": "hasOne",
       "model": "envioParaBeneficiario",
