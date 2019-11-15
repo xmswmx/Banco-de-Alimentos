@@ -1,48 +1,98 @@
-#Configurar en backend/server/component-config
-#Lista de cosas random https://github.com/marak/faker.js
+# Configurar en backend/server/component-config
+# Lista de cosas random https://github.com/marak/faker.js
+# Para quitar los comentarios o comentar muchas lineas seleccionar y darle (ctrl+q)
+
+# Fixtures del "sprint 1"
 
 Donante:
-  donante1:
-    cuil: "{{random.number}}"
+  donanteSprint1:
+    cuil: "10486"
     realm: "string"
-    username: "{{internet.userName}}"
-    email: "{{internet.email}}"
+    username: "Arcor"
+    email: "contacto@arcor.com"
     emailVerified: true
-    password: "nasus"
+    password: "'1234'"
+    
+Ubicacion:
+  ubicacionDonanteSprint1:
+    direccion: "Calle 4 566, B1902CJX La Plata, Buenos Aires"
+    puntoGeografico: "'-34.9070986,-57.955002'"
+    idDonante: @donanteSprint1
+        
 
-  donante2:
-    cuil: "{{random.number}}"
-    realm: "string"
-    username: "{{internet.userName}}"
+PersonaDeContacto:
+  persona{1..3}:
+    nombre: "{{name.firstName}}"
+    apellido: "{{name.lastName}}"
     email: "{{internet.email}}"
-    emailVerified: true
-    password: "nasus"
+    telefono: "{{random.number}}"
+    dni: "{{random.number}}"
+    idDonante: @donanteSprint1
+        
+Donacion:
+  donacion{1..5}:
+    numero: "{{random.number}}"
+    fechaRegistro: "{{date.recent}}"
+    estado: "'pendiente'"
+    idDonante: @donanteSprint1
+        
+DescripcionGeneral:
+  descripcionDeDonacion{1..5}:
+    descripcion: "{{lorem.words}}"
+    idDonacion: @donacion{@}
+    
+Volumen:
+  volumenDescripcion{1..5}:
+    alto: "5"
+    ancho: "5"
+    largo: "5"
 
-  donante3:
-    cuil: "{{random.number}}"
-    realm: "string"
-    username: "{{internet.userName}}"
-    email: "{{internet.email}}"
-    emailVerified: true
-    password: "nasus"
+
+# Fixtures de aprendizaje
+
+# Donante:
+  # donante1:
+    # cuil: "{{random.number}}"
+    # realm: "string"
+    # username: "{{internet.userName}}"
+    # email: "{{internet.email}}"
+    # emailVerified: true
+    # password: "nasus"
+
+  # donante2:
+    # cuil: "{{random.number}}"
+    # realm: "string"
+    # username: "{{internet.userName}}"
+    # email: "{{internet.email}}"
+    # emailVerified: true
+    # password: "nasus"
+
+  # donante3:
+    # cuil: "{{random.number}}"
+    # realm: "string"
+    # username: "{{internet.userName}}"
+    # email: "{{internet.email}}"
+    # emailVerified: true
+    # password: "nasus"
 
     
-Beneficiario:
-    beneficiario{1..2}:
-      cantidadAtendidos: "{{random.number}}"
-      realm: "string"
-      username: "{{internet.userName}}"
-      email: "{{internet.email}}"
-      emailVerified: true
-      password: "nasus"
+# Beneficiario:
+    # beneficiario{1..2}:
+      # cantidadAtendidos: "{{random.number}}"
+      # realm: "string"
+      # username: "{{internet.userName}}"
+      # email: "{{internet.email}}"
+      # emailVerified: true
+      # password: "nasus"
    
-Ubicacion:
-    ubicacionDonante{1..3}:
-        direccion: "{{address.streetAddress}}"
-        puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
-        idUDonante: @donante{@}
+# Ubicacion:
+    # ubicacionDonante{1..3}:
+        # direccion: "{{address.streetAddress}}"
+        # puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
+        # idUDonante: @donante{@}
         
-    ubicacionBeneficiario{1..2}:
-        direccion: "{{address.streetAddress}}"
-        puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
-        idUbicacion: @beneficiario{@}
+    # ubicacionBeneficiario{1..2}:
+        # direccion: "{{address.streetAddress}}"
+        # puntoGeografico: "'{{address.latitude}}, {{address.longitude}}'"
+        # idUbicacion: @beneficiario{@}
+        

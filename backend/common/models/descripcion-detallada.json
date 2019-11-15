@@ -1,6 +1,6 @@
 {
   "name": "DescripcionDetallada",
-  "plural": "DescripcionesDonacion",
+  "plural": "DescripcionesDetalladas",
   "base": "DescripcionDonacion",
   "idInjection": true,
   "options": {

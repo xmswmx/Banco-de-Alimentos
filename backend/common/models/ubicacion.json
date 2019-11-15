@@ -12,7 +12,7 @@
     },
     "puntoGeografico": {
       "type": "geopoint",
-      "required": true
+      "required": false
     }
   },
   "validations": [],
