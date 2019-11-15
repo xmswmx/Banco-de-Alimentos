@@ -60,7 +60,6 @@ import { TrasladoApi } from './services/custom/Traslado';
 import { VolumenApi } from './services/custom/Volumen';
 import { DonacionApi } from './services/custom/Donacion';
 import { EnvioParaBeneficiarioApi } from './services/custom/EnvioParaBeneficiario';
-import { DescripcionDonacionApi } from './services/custom/DescripcionDonacion';
 import { DescripcionGeneralApi } from './services/custom/DescripcionGeneral';
 import { DescripcionDetalladaApi } from './services/custom/DescripcionDetallada';
 import { ProductoApi } from './services/custom/Producto';
@@ -110,7 +109,6 @@ export class SDKBrowserModule {
         VolumenApi,
         DonacionApi,
         EnvioParaBeneficiarioApi,
-        DescripcionDonacionApi,
         DescripcionGeneralApi,
         DescripcionDetalladaApi,
         ProductoApi,

@@ -1,21 +1,18 @@
 /* tslint:disable */
 import {
-  Donacion,
   Producto
 } from '../index';
 
 declare var Object: any;
 export interface DescripcionDetalladaInterface {
   "id"?: any;
-  "idDescripcion"?: any;
-  donacion?: Donacion;
+  "idDonacion"?: any;
   productos?: Producto[];
 }
 
 export class DescripcionDetallada implements DescripcionDetalladaInterface {
   "id": any;
-  "idDescripcion": any;
-  donacion: Donacion;
+  "idDonacion": any;
   productos: Producto[];
   constructor(data?: DescripcionDetalladaInterface) {
     Object.assign(this, data);
@@ -46,28 +43,20 @@ export class DescripcionDetallada implements DescripcionDetalladaInterface {
   public static getModelDefinition() {
     return {
       name: 'DescripcionDetallada',
-      plural: 'DescripcionesDonacion',
-      path: 'DescripcionesDonacion',
+      plural: 'DescripcionesDetalladas',
+      path: 'DescripcionesDetalladas',
       idName: 'id',
       properties: {
         "id": {
           name: 'id',
           type: 'any'
         },
-        "idDescripcion": {
-          name: 'idDescripcion',
+        "idDonacion": {
+          name: 'idDonacion',
           type: 'any'
         },
       },
       relations: {
-        donacion: {
-          name: 'donacion',
-          type: 'Donacion',
-          model: 'Donacion',
-          relationType: 'belongsTo',
-                  keyFrom: 'idDescripcion',
-          keyTo: 'id'
-        },
         productos: {
           name: 'productos',
           type: 'Producto[]',

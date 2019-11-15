@@ -12,7 +12,6 @@ import { Traslado } from '../../models/Traslado';
 import { Volumen } from '../../models/Volumen';
 import { Donacion } from '../../models/Donacion';
 import { EnvioParaBeneficiario } from '../../models/EnvioParaBeneficiario';
-import { DescripcionDonacion } from '../../models/DescripcionDonacion';
 import { DescripcionGeneral } from '../../models/DescripcionGeneral';
 import { DescripcionDetallada } from '../../models/DescripcionDetallada';
 import { Producto } from '../../models/Producto';
@@ -39,7 +38,6 @@ export class SDKModels {
     Volumen: Volumen,
     Donacion: Donacion,
     EnvioParaBeneficiario: EnvioParaBeneficiario,
-    DescripcionDonacion: DescripcionDonacion,
     DescripcionGeneral: DescripcionGeneral,
     DescripcionDetallada: DescripcionDetallada,
     Producto: Producto,

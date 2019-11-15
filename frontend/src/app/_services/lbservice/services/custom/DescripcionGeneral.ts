@@ -11,7 +11,6 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DescripcionGeneral } from '../../models/DescripcionGeneral';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Donacion } from '../../models/Donacion';
 import { Volumen } from '../../models/Volumen';
 
 
@@ -29,36 +28,6 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Capta la relación belongsTo donacion.
-   *
-   * @param {any} id DescripcionGeneral id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `DescripcionGeneral` object.)
-   * </em>
-   */
-  public getDonacion(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/donacion";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -80,7 +49,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public getVolumenes(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/volumenes";
+    "/DescripcionesGenerales/:id/volumenes";
     let _routeParams: any = {
       id: id
     };
@@ -112,7 +81,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public createVolumenes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/volumenes";
+    "/DescripcionesGenerales/:id/volumenes";
     let _routeParams: any = {
       id: id
     };
@@ -145,7 +114,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public updateVolumenes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/volumenes";
+    "/DescripcionesGenerales/:id/volumenes";
     let _routeParams: any = {
       id: id
     };
@@ -171,7 +140,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public destroyVolumenes(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/volumenes";
+    "/DescripcionesGenerales/:id/volumenes";
     let _routeParams: any = {
       id: id
     };
@@ -200,7 +169,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion";
+    "/DescripcionesGenerales";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -231,7 +200,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id";
+    "/DescripcionesGenerales/:id";
     let _routeParams: any = {
       id: id
     };
@@ -264,7 +233,7 @@ export class DescripcionGeneralApi extends BaseLoopBackApi {
   public createManyVolumenes(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/volumenes";
+    "/DescripcionesGenerales/:id/volumenes";
     let _routeParams: any = {
       id: id
     };

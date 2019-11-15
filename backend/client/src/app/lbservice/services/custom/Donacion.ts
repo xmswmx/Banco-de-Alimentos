@@ -11,8 +11,9 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Donacion } from '../../models/Donacion';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Donante } from '../../models/Donante';
-import { DescripcionDonacion } from '../../models/DescripcionDonacion';
+import { Traslado } from '../../models/Traslado';
+import { DescripcionGeneral } from '../../models/DescripcionGeneral';
+import { DescripcionDetallada } from '../../models/DescripcionDetallada';
 
 
 /**
@@ -32,7 +33,7 @@ export class DonacionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Capta la relación belongsTo donante.
+   * Capta la relación hasOne traslado.
    *
    * @param {any} id Donacion id
    *
@@ -47,10 +48,10 @@ export class DonacionApi extends BaseLoopBackApi {
    * This usually means the response is a `Donacion` object.)
    * </em>
    */
-  public getDonante(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getTraslado(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/donante";
+    "/donaciones/:id/traslado";
     let _routeParams: any = {
       id: id
     };
@@ -62,37 +63,7 @@ export class DonacionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Capta la relación hasOne descripcion.
-   *
-   * @param {any} id Donacion id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donacion` object.)
-   * </em>
-   */
-  public getDescripcion(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/descripcion";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Crea una nueva instancia en descripcion de este modelo.
+   * Crea una nueva instancia en traslado de este modelo.
    *
    * @param {any} id Donacion id
    *
@@ -109,10 +80,10 @@ export class DonacionApi extends BaseLoopBackApi {
    * This usually means the response is a `Donacion` object.)
    * </em>
    */
-  public createDescripcion(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createTraslado(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/descripcion";
+    "/donaciones/:id/traslado";
     let _routeParams: any = {
       id: id
     };
@@ -125,7 +96,7 @@ export class DonacionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Actualizar descripcion de este modelo.
+   * Actualizar traslado de este modelo.
    *
    * @param {any} id Donacion id
    *
@@ -142,10 +113,10 @@ export class DonacionApi extends BaseLoopBackApi {
    * This usually means the response is a `Donacion` object.)
    * </em>
    */
-  public updateDescripcion(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateTraslado(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/descripcion";
+    "/donaciones/:id/traslado";
     let _routeParams: any = {
       id: id
     };
@@ -158,7 +129,7 @@ export class DonacionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Suprime descripcion de este modelo.
+   * Suprime traslado de este modelo.
    *
    * @param {any} id Donacion id
    *
@@ -168,10 +139,250 @@ export class DonacionApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyDescripcion(id: any, customHeaders?: Function): Observable<any> {
+  public destroyTraslado(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/descripcion";
+    "/donaciones/:id/traslado";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Capta la relación hasOne descripcionGeneral.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public getDescripcionGeneral(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionGeneral";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en descripcionGeneral de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public createDescripcionGeneral(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionGeneral";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Actualizar descripcionGeneral de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public updateDescripcionGeneral(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionGeneral";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprime descripcionGeneral de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyDescripcionGeneral(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionGeneral";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Capta la relación hasOne descripcionDetallada.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public getDescripcionDetallada(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionDetallada";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en descripcionDetallada de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public createDescripcionDetallada(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionDetallada";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Actualizar descripcionDetallada de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public updateDescripcionDetallada(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionDetallada";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Suprime descripcionDetallada de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyDescripcionDetallada(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionDetallada";
     let _routeParams: any = {
       id: id
     };
@@ -244,7 +455,7 @@ export class DonacionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Crea una nueva instancia en descripcion de este modelo.
+   * Crea una nueva instancia en traslado de este modelo.
    *
    * @param {any} id Donacion id
    *
@@ -261,10 +472,76 @@ export class DonacionApi extends BaseLoopBackApi {
    * This usually means the response is a `Donacion` object.)
    * </em>
    */
-  public createManyDescripcion(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyTraslado(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/donaciones/:id/descripcion";
+    "/donaciones/:id/traslado";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en descripcionGeneral de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public createManyDescripcionGeneral(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionGeneral";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Crea una nueva instancia en descripcionDetallada de este modelo.
+   *
+   * @param {any} id Donacion id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donacion` object.)
+   * </em>
+   */
+  public createManyDescripcionDetallada(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/donaciones/:id/descripcionDetallada";
     let _routeParams: any = {
       id: id
     };

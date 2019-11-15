@@ -11,7 +11,6 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DescripcionDetallada } from '../../models/DescripcionDetallada';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Donacion } from '../../models/Donacion';
 import { Producto } from '../../models/Producto';
 
 
@@ -29,36 +28,6 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Capta la relación belongsTo donacion.
-   *
-   * @param {any} id DescripcionDetallada id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `DescripcionDetallada` object.)
-   * </em>
-   */
-  public getDonacion(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/donacion";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -80,7 +49,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public findByIdProductos(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos/:fk";
+    "/DescripcionesDetalladas/:id/productos/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -107,7 +76,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public destroyByIdProductos(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos/:fk";
+    "/DescripcionesDetalladas/:id/productos/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -141,7 +110,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public updateByIdProductos(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos/:fk";
+    "/DescripcionesDetalladas/:id/productos/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -173,7 +142,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public getProductos(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos";
+    "/DescripcionesDetalladas/:id/productos";
     let _routeParams: any = {
       id: id
     };
@@ -205,7 +174,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public createProductos(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos";
+    "/DescripcionesDetalladas/:id/productos";
     let _routeParams: any = {
       id: id
     };
@@ -231,7 +200,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public deleteProductos(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos";
+    "/DescripcionesDetalladas/:id/productos";
     let _routeParams: any = {
       id: id
     };
@@ -259,7 +228,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public countProductos(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos/count";
+    "/DescripcionesDetalladas/:id/productos/count";
     let _routeParams: any = {
       id: id
     };
@@ -289,7 +258,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion";
+    "/DescripcionesDetalladas";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -320,7 +289,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id";
+    "/DescripcionesDetalladas/:id";
     let _routeParams: any = {
       id: id
     };
@@ -353,7 +322,7 @@ export class DescripcionDetalladaApi extends BaseLoopBackApi {
   public createManyProductos(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DescripcionesDonacion/:id/productos";
+    "/DescripcionesDetalladas/:id/productos";
     let _routeParams: any = {
       id: id
     };

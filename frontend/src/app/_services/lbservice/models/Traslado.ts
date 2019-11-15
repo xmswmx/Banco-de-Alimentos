@@ -1,7 +1,4 @@
 /* tslint:disable */
-import {
-  Donacion
-} from '../index';
 
 declare var Object: any;
 export interface TrasladoInterface {
@@ -10,8 +7,8 @@ export interface TrasladoInterface {
   "fechaFin"?: Date;
   "id"?: any;
   "voluntarioId"?: any;
+  "idDonacion"?: any;
   "envioParaBeneficiarioId"?: any;
-  donacion?: Donacion;
 }
 
 export class Traslado implements TrasladoInterface {
@@ -20,8 +17,8 @@ export class Traslado implements TrasladoInterface {
   "fechaFin": Date;
   "id": any;
   "voluntarioId": any;
+  "idDonacion": any;
   "envioParaBeneficiarioId": any;
-  donacion: Donacion;
   constructor(data?: TrasladoInterface) {
     Object.assign(this, data);
   }
@@ -75,20 +72,16 @@ export class Traslado implements TrasladoInterface {
           name: 'voluntarioId',
           type: 'any'
         },
+        "idDonacion": {
+          name: 'idDonacion',
+          type: 'any'
+        },
         "envioParaBeneficiarioId": {
           name: 'envioParaBeneficiarioId',
           type: 'any'
         },
       },
       relations: {
-        donacion: {
-          name: 'donacion',
-          type: 'Donacion',
-          model: 'Donacion',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'trasladoId'
-        },
       }
     }
   }

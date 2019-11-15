@@ -136,7 +136,7 @@ export class Donante implements DonanteInterface {
           model: 'Donacion',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'donanteId'
+          keyTo: 'idDonante'
         },
       }
     }

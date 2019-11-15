@@ -8,7 +8,7 @@ export interface VolumenInterface {
   "id"?: any;
   "vehiculoId"?: any;
   "envioParaBeneficiarioId"?: any;
-  "descripcionGeneralId"?: any;
+  "idDescripcionGeneral"?: any;
 }
 
 export class Volumen implements VolumenInterface {
@@ -18,7 +18,7 @@ export class Volumen implements VolumenInterface {
   "id": any;
   "vehiculoId": any;
   "envioParaBeneficiarioId": any;
-  "descripcionGeneralId": any;
+  "idDescripcionGeneral": any;
   constructor(data?: VolumenInterface) {
     Object.assign(this, data);
   }
@@ -76,8 +76,8 @@ export class Volumen implements VolumenInterface {
           name: 'envioParaBeneficiarioId',
           type: 'any'
         },
-        "descripcionGeneralId": {
-          name: 'descripcionGeneralId',
+        "idDescripcionGeneral": {
+          name: 'idDescripcionGeneral',
           type: 'any'
         },
       },

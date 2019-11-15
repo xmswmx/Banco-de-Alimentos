@@ -6,7 +6,7 @@ import {
 declare var Object: any;
 export interface UbicacionInterface {
   "direccion": string;
-  "puntoGeografico": GeoPoint;
+  "puntoGeografico"?: GeoPoint;
   "id"?: any;
   "idDonante"?: any;
   "beneficiarioId"?: any;

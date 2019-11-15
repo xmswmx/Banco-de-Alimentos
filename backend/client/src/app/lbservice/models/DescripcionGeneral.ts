@@ -1,6 +1,5 @@
 /* tslint:disable */
 import {
-  Donacion,
   Volumen
 } from '../index';
 
@@ -8,16 +7,14 @@ declare var Object: any;
 export interface DescripcionGeneralInterface {
   "descripcion": string;
   "id"?: any;
-  "idDescripcion"?: any;
-  donacion?: Donacion;
+  "idDonacion"?: any;
   volumenes?: Volumen;
 }
 
 export class DescripcionGeneral implements DescripcionGeneralInterface {
   "descripcion": string;
   "id": any;
-  "idDescripcion": any;
-  donacion: Donacion;
+  "idDonacion": any;
   volumenes: Volumen;
   constructor(data?: DescripcionGeneralInterface) {
     Object.assign(this, data);
@@ -48,8 +45,8 @@ export class DescripcionGeneral implements DescripcionGeneralInterface {
   public static getModelDefinition() {
     return {
       name: 'DescripcionGeneral',
-      plural: 'DescripcionesDonacion',
-      path: 'DescripcionesDonacion',
+      plural: 'DescripcionesGenerales',
+      path: 'DescripcionesGenerales',
       idName: 'id',
       properties: {
         "descripcion": {
@@ -60,27 +57,19 @@ export class DescripcionGeneral implements DescripcionGeneralInterface {
           name: 'id',
           type: 'any'
         },
-        "idDescripcion": {
-          name: 'idDescripcion',
+        "idDonacion": {
+          name: 'idDonacion',
           type: 'any'
         },
       },
       relations: {
-        donacion: {
-          name: 'donacion',
-          type: 'Donacion',
-          model: 'Donacion',
-          relationType: 'belongsTo',
-                  keyFrom: 'idDescripcion',
-          keyTo: 'id'
-        },
         volumenes: {
           name: 'volumenes',
           type: 'Volumen',
           model: 'Volumen',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'descripcionGeneralId'
+          keyTo: 'idDescripcionGeneral'
         },
       }
     }

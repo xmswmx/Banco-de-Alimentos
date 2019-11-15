@@ -11,7 +11,6 @@ export * from './Traslado';
 export * from './Volumen';
 export * from './Donacion';
 export * from './EnvioParaBeneficiario';
-export * from './DescripcionDonacion';
 export * from './DescripcionGeneral';
 export * from './DescripcionDetallada';
 export * from './Producto';

@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
-  Donante,
-  DescripcionDonacion
+  Traslado,
+  DescripcionGeneral,
+  DescripcionDetallada
 } from '../index';
 
 declare var Object: any;
@@ -10,11 +11,11 @@ export interface DonacionInterface {
   "numero": number;
   "estado": string;
   "id"?: any;
-  "donanteId"?: any;
-  "trasladoId"?: any;
+  "idDonante"?: any;
   "idEnvio"?: any;
-  donante?: Donante;
-  descripcion?: DescripcionDonacion;
+  traslado?: Traslado;
+  descripcionGeneral?: DescripcionGeneral;
+  descripcionDetallada?: DescripcionDetallada;
 }
 
 export class Donacion implements DonacionInterface {
@@ -22,11 +23,11 @@ export class Donacion implements DonacionInterface {
   "numero": number;
   "estado": string;
   "id": any;
-  "donanteId": any;
-  "trasladoId": any;
+  "idDonante": any;
   "idEnvio": any;
-  donante: Donante;
-  descripcion: DescripcionDonacion;
+  traslado: Traslado;
+  descripcionGeneral: DescripcionGeneral;
+  descripcionDetallada: DescripcionDetallada;
   constructor(data?: DonacionInterface) {
     Object.assign(this, data);
   }
@@ -76,12 +77,8 @@ export class Donacion implements DonacionInterface {
           name: 'id',
           type: 'any'
         },
-        "donanteId": {
-          name: 'donanteId',
-          type: 'any'
-        },
-        "trasladoId": {
-          name: 'trasladoId',
+        "idDonante": {
+          name: 'idDonante',
           type: 'any'
         },
         "idEnvio": {
@@ -90,18 +87,26 @@ export class Donacion implements DonacionInterface {
         },
       },
       relations: {
-        donante: {
-          name: 'donante',
-          type: 'Donante',
-          model: 'Donante',
-          relationType: 'belongsTo',
-                  keyFrom: 'donanteId',
-          keyTo: 'id'
+        traslado: {
+          name: 'traslado',
+          type: 'Traslado',
+          model: 'Traslado',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'idDonacion'
         },
-        descripcion: {
-          name: 'descripcion',
-          type: 'DescripcionDonacion',
-          model: 'DescripcionDonacion',
+        descripcionGeneral: {
+          name: 'descripcionGeneral',
+          type: 'DescripcionGeneral',
+          model: 'DescripcionGeneral',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'idDonacion'
+        },
+        descripcionDetallada: {
+          name: 'descripcionDetallada',
+          type: 'DescripcionDetallada',
+          model: 'DescripcionDetallada',
           relationType: 'hasOne',
                   keyFrom: 'id',
           keyTo: 'idDonacion'
