@@ -5,50 +5,26 @@
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
    
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">           
-            <section class="alert alert-dismissible alert-primary mt-3">
+        <div class="container">           
+            <section class="alert alert-dismissible alert-dark mt-3">
                     Mis donaciones
                 </section>
                 <table class="table table-hover table-bordered table-center">
                     <thead>
                         <tr class="text-center">
+                            <th scope="col">id</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Asignado a (Voluntario)</th>
-                            <th scope="col">Destino</th>
                             <th scope="col">Fecha de traslado</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
+                    <tbody *ngFor="let donacion of donaciones" class="text-center">
                         <tr>
-                            <td>Descripción de la donación</td>
+                            <td>{{donacion.numero}}</td>
+                            <td>Caramelos</td>
                             <td>Nombre y apellido del voluntario</td>
-                            <td>Destino de la donación</td>
                             <td>Fecha de traslado de la donación</td>
-                        </tr>
-                        <tr>
-                            <td>Descripción de la donación</td>
-                            <td>Nombre y apellido del voluntario</td>
-                            <td>Destino de la donación</td>
-                            <td>Fecha de traslado de la donación</td>
-                        </tr>
-                        <tr>
-                            <td>Descripción de la donación</td>
-                            <td>Nombre y apellido del voluntario</td>
-                            <td>Destino de la donación</td>
-                            <td>Fecha de traslado de la donación</td>
-                        </tr>
-                        <tr>
-                            <td>Descripción de la donación</td>
-                            <td>Nombre y apellido del voluntario</td>
-                            <td>Destino de la donación</td>
-                            <td>Fecha de traslado de la donación</td>
-                        </tr>
-                        <tr>
-                            <td>Descripción de la donación</td>
-                            <td>Nombre y apellido del voluntario</td>
-                            <td>Destino de la donación</td>
-                            <td>Fecha de traslado de la donación</td>
-                        </tr>                                                                                          
+                        </tr>                  
                     </tbody>
                 </table>
                 <section class="card-header mt-1 text-center">
@@ -84,8 +60,8 @@
                     </section>					
                 </section>	
             <div class="form-group text-center mt-5">
-                <button class="btn btn-primary" type="submit">Volver</button>               
+                <button class="btn btn-dark" type="submit">Volver</button>               
             </div>
-        </form>
+        </div>
     </div>
 </div>
