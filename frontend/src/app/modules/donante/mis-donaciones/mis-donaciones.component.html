@@ -18,12 +18,12 @@
                             <th scope="col">Fecha de traslado</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let donacion of donaciones" class="text-center">
+                    <tbody *ngFor="let donacion of datosDeDonaciones" class="text-center">
                         <tr>
-                            <td>{{donacion.numero}}</td>
-                            <td>Caramelos</td>
-                            <td>Nombre y apellido del voluntario</td>
-                            <td>Fecha de traslado de la donación</td>
+                            <td>{{donacion[1]}}</td>
+                            <td>{{donacion[2]}}</td>
+                            <td>{{donacion[3]}}</td>
+                            <td>{{donacion[4]}}</td>
                         </tr>                  
                     </tbody>
                 </table>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Donacion, Donante } from '../../../_services/lbservice/models'
-import { DonacionApi, DonanteApi } from '../../../_services/lbservice/services'
+import { Donacion, Donante, DescripcionGeneral } from '../../../_services/lbservice/models'
+import { DonacionApi, DonanteApi, DescripcionGeneralApi } from '../../../_services/lbservice/services'
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -10,22 +10,62 @@ import { DonacionApi, DonanteApi } from '../../../_services/lbservice/services'
 export class MisDonacionesComponent implements OnInit {
 
 	donaciones=[];
+	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor(apiDonante:DonanteApi,apiDonacion:DonacionApi) {
+	constructor(apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
 		this.loggedDonante = apiDonante.getCachedCurrent();
-		apiDonante.getDonaciones(this.loggedDonante.id).subscribe((colDeDonaciones)=>{
-			this.donaciones = colDeDonaciones;
-			console.log(this.donaciones);
-		})
-	 	//Esto está muy bien, pero necesito ademas obtener la desc, 
-	 	//fecha traslado, nombre y apellido voluntario y guardarlos en
-	 	//un vector de tuplas con todos los datos procesados de forma
-	 	//de poder recorrer ese vector e imprimirlo
+		apiDonante.getDonaciones(this.loggedDonante.id)
+		.subscribe((donaciones)=>{
 
-	 }
+				for (let donacion of donaciones){
+
+					apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc)=>{
+						let tupla = [
+							donacion.id,
+							donacion.numero,
+							desc.descripcion,
+							'algo',
+							'algo'
+						];
+						this.datosDeDonaciones.push(tupla);
+
+					});
+
+				}
+
+
+		});
+
+	}
+
+
+/*
+			for (let donacion of this.donaciones){
+				let tupla = [
+					donacion.id,
+					donacion.numero,
+					'algo',
+					'algo',
+					'algo'
+				];
+				this.datosDeDonaciones.push(tupla);	
+			}
+*/
 
 	ngOnInit() {
 	}
 
+	descripcionDe(apiDonacion:DonacionApi,apiDescripcionGeneral:DescripcionGeneralApi,donacion:Donacion)
+	{
+		return 'algo'
+	}
+
+	nombreCompletoVoluntario(donacion:Donacion){
+		return 'un voluntario';
+	}
+
+	fechaEstimada(donacion:Donacion){
+		return 'una/fecha/estimada';
+	}
 }
