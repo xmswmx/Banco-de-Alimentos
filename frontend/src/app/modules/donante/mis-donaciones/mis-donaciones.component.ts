@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Donacion, Donante, DescripcionGeneral } from '../../../_services/lbservice/models'
-import { DonacionApi, DonanteApi, DescripcionGeneralApi } from '../../../_services/lbservice/services'
+import { Donacion, Donante, DescripcionGeneral, Traslado, Voluntario } from '../../../_services/lbservice/models'
+import { DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi } from '../../../_services/lbservice/services'
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -13,22 +13,38 @@ export class MisDonacionesComponent implements OnInit {
 	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor(apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
+	constructor(apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
 		this.loggedDonante = apiDonante.getCachedCurrent();
 		apiDonante.getDonaciones(this.loggedDonante.id)
 		.subscribe((donaciones)=>{
-
 				for (let donacion of donaciones){
 
 					apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc)=>{
-						let tupla = [
-							donacion.id,
-							donacion.numero,
-							desc.descripcion,
-							'algo',
-							'algo'
-						];
-						this.datosDeDonaciones.push(tupla);
+						apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
+							if(traslado.voluntarioId==null){
+								let tupla = [
+									donacion.id,
+									donacion.numero,
+									desc.descripcion,
+									'Sin asignar',
+									traslado.fechaEstimada
+								];
+								this.datosDeDonaciones.push(tupla);
+							} else {
+								apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+									let tupla = [
+										donacion.id,
+										donacion.numero,
+										desc.descripcion,
+										voluntario.nombre,
+										traslado.fechaEstimada
+									];
+									this.datosDeDonaciones.push(tupla);
+								})
+							}
+
+
+						})
 
 					});
 
