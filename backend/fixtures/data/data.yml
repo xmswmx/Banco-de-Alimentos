@@ -34,12 +34,33 @@ Donacion:
     numero: "{{random.number}}"
     fechaRegistro: "{{date.recent}}"
     estado: "'pendiente'"
-    idDonante: @donanteSprint1    
+    idDonante: @donanteSprint1     
 
 DescripcionGeneral:
   descripcionDeDonacion{1..5}:
     descripcion: "{{lorem.words}}"
     idDonacion: @donacion{@}
+
+Voluntario:
+  voluntario1Sprint1:
+    email: "susana.orio@gmail.com"
+    dni: "34233534"
+    telefono: "4505590"
+    nombre: 'Susana'
+    apellido: 'Orio'
+    distanciaMaxima: "34"
+    puntuacion: "12"
+    password: "'1234'"
+
+  voluntario2Sprint1:
+    email: "homeroJS@gmail.com"
+    dni: "10233534"
+    telefono: "4555590"
+    nombre: 'Homero'
+    apellido: 'Simpson'
+    distanciaMaxima: "80"
+    puntuacion: "5"
+    password: "'1234'"
 
 Volumen:
   volumenDescripcion{1..5}:
@@ -49,8 +70,18 @@ Volumen:
     idDescripcionGeneral: @descripcionDeDonacion{@}
     
 Traslado:
-  traslado{1..5}:
+  traslado{1..3}:
     idDonacion: @donacion{@}
+    fechaEstimada: '{{date.recent}}'
+    voluntarioId: @voluntario1Sprint1
+
+  traslado4:
+    idDonacion: @donacion4
+    fechaEstimada: '{{date.recent}}'
+    voluntarioId: @voluntario2Sprint1
+
+  traslado5:
+    idDonacion: @donacion5
     fechaEstimada: '{{date.recent}}'
 
 Categoria:

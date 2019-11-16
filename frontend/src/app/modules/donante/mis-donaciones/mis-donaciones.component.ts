@@ -36,7 +36,7 @@ export class MisDonacionesComponent implements OnInit {
 										donacion.id,
 										donacion.numero,
 										desc.descripcion,
-										voluntario.nombre,
+										voluntario.nombre+' '+voluntario.apellido,
 										traslado.fechaEstimada
 										//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
 									];
