@@ -18,6 +18,10 @@
       "type": "string",
       "required": true
     },
+    "apellido": {
+      "type": "string",
+      "required": true
+    },
     "distanciaMaxima": {
       "type": "number"
     },

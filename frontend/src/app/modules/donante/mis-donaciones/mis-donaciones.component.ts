@@ -38,6 +38,7 @@ export class MisDonacionesComponent implements OnInit {
 										desc.descripcion,
 										voluntario.nombre,
 										traslado.fechaEstimada
+										//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
 									];
 									this.datosDeDonaciones.push(tupla);
 								})

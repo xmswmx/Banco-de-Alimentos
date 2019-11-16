@@ -11,6 +11,7 @@ export interface VoluntarioInterface {
   "dni": number;
   "telefono": number;
   "nombre": string;
+  "apellido": string;
   "distanciaMaxima"?: number;
   "puntuacion": number;
   "realm"?: string;
@@ -30,6 +31,7 @@ export class Voluntario implements VoluntarioInterface {
   "dni": number;
   "telefono": number;
   "nombre": string;
+  "apellido": string;
   "distanciaMaxima": number;
   "puntuacion": number;
   "realm": string;
@@ -86,6 +88,10 @@ export class Voluntario implements VoluntarioInterface {
         },
         "nombre": {
           name: 'nombre',
+          type: 'string'
+        },
+        "apellido": {
+          name: 'apellido',
           type: 'string'
         },
         "distanciaMaxima": {
