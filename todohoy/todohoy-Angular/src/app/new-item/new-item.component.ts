@@ -33,7 +33,8 @@ export class NewItemComponent implements OnInit {
     }
 
     this.newItemForm = new FormGroup({
-      itemName: new FormControl(this.item.name)
+      itemName: new FormControl(this.item.name),
+      itemName2: new FormControl(this.item.name)
     }); 
   }
   
@@ -44,7 +45,9 @@ export class NewItemComponent implements OnInit {
   //Hago una llamada a la API
   onSubmit(){
  
-    var item=new Item(this.newItemForm.get("itemName").value)
+    var item=new Item(this.newItemForm.get("itemName").value,
+                      this.newItemForm.get("itemName").value)
+ 
 
     this.itemApi.create(item).subscribe(()=>{
       this.router.navigateByUrl("/")
