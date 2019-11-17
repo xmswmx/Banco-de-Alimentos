@@ -38,7 +38,9 @@ export class MisDonacionesComponent implements OnInit {
 										desc.descripcion,
 										voluntario.nombre+' '+voluntario.apellido,
 										traslado.fechaEstimada
+										//Sobre formatear hora (se hace en la plantilla)
 										//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
+										//https://www.geeksforgeeks.org/angularjs-date-filter/
 									];
 									this.datosDeDonaciones.push(tupla);
 								})
