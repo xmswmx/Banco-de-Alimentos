@@ -4,6 +4,63 @@
 
 # Fixtures del "sprint 1"
 
+Categoria:
+  # congelados:
+  #   nombre: 'congelados'
+
+  # refrigerados:
+  #   nombre: 'refrigerados'
+
+  # congeladosBalp:
+  #   nombre: 'congelados balp'
+
+  # noPerecederos:
+  #   nombre: 'no perecederos'
+
+  # lecheEnPolvo:
+  #   nombre: 'leche en polvo'
+
+  # aerosoles:
+  #   nombre: 'aerosoles'
+
+  # agua:
+  #   nombre: 'agua'
+
+  # bebida:
+  #   nombre: 'bebida'
+
+  # frutasYVerduras:
+  #   nombre: 'frutas y verduras'
+
+  golosinas:
+    nombre: 'golosinas'
+
+  # higieneYLimpieza:
+  #   nombre: 'higiene y limpieza'
+
+  # panales:
+  #   nombre: 'panales'
+
+TipoInsignia:
+    primerAporte:
+      nombre: 'Primer aporte'
+      imagen: 'faGift'
+    papaNoel:
+      nombre: 'Papa noel'
+      imagen: 'faCandyCane'
+    conejoDePascua:
+      nombre: 'Conejo de Pascua'
+      imagen: 'faEgg'
+    rachaViajera:
+      nombre: 'Racha viajera'
+      imagen: 'faGifts'
+    amigoConstante:
+      nombre: 'Amigo constante'
+      imagen: 'faHandsHelping'
+    estrellaDeOro:
+      nombre: 'Estrella de Oro'
+      imagen: 'faStar'
+
 Donante:
   donanteSprint1:
     cuil: "10486"
@@ -84,44 +141,6 @@ Traslado:
     idDonacion: @donacion5
     fechaEstimada: '{{date.recent}}'
 
-Categoria:
-  # congelados:
-  #   nombre: 'congelados'
-
-  # refrigerados:
-  #   nombre: 'refrigerados'
-
-  # congeladosBalp:
-  #   nombre: 'congelados balp'
-
-  # noPerecederos:
-  #   nombre: 'no perecederos'
-
-  # lecheEnPolvo:
-  #   nombre: 'leche en polvo'
-
-  # aerosoles:
-  #   nombre: 'aerosoles'
-
-  # agua:
-  #   nombre: 'agua'
-
-  # bebida:
-  #   nombre: 'bebida'
-
-  # frutasYVerduras:
-  #   nombre: 'frutas y verduras'
-
-  golosinas:
-    nombre: 'golosinas'
-
-  # higieneYLimpieza:
-  #   nombre: 'higiene y limpieza'
-
-  # panales:
-  #   nombre: 'panales'
-
-
 TipoProducto:
   caramelo1:
     nombre: "CARAMELO SURTIDO MANDARINA Y FRUTILLA"
@@ -137,6 +156,30 @@ TipoProducto:
     nombre: "SEVEN ULTRA RED BERRY"
     codigoBarra: "7745729467842"
     categoriaId: @golosinas
+
+Insignia:
+  insignia1:
+    tipoInsigniaId: @primerAporte
+    fechaOtorgada: '{{date.recent}}'
+    fechaVencimiento: '{{date.future}}'
+    idDonante: @donanteSprint1
+    #voluntarioId: (si fuera de un voluntario)
+
+  insignia2:
+    tipoInsigniaId: @estrellaDeOro
+    fechaOtorgada: '{{date.recent}}'
+    fechaVencimiento: '{{date.future}}'
+    idDonante: @donanteSprint1
+
+  insignia3:
+    tipoInsigniaId: @amigoConstante
+    fechaOtorgada: '{{date.recent}}'
+    fechaVencimiento: '{{date.future}}'
+    idDonante: @donanteSprint1
+  
+
+
+
 
 
 
