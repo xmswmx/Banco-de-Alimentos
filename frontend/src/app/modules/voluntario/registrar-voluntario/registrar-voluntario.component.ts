@@ -18,11 +18,15 @@ export class RegistrarVoluntarioComponent implements OnInit {
   vehiculo: Vehiculo;
   volumen: Volumen;
 
-  constructor(private voluntarioApi: VoluntarioApi, ) {
+  constructor(private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi ) {
 
+    // se crean las instancias de voluntario, vehiculo y volumen
     this.voluntario = new Voluntario();
+    this.vehiculo = new Vehiculo();
+    this.volumen = new Volumen();
 
     this.form = new FormGroup({
+      // atributos del voluntario
       nombre: new FormControl(),
       apellido: new FormControl(),
       dni: new FormControl(),
@@ -35,10 +39,12 @@ export class RegistrarVoluntarioComponent implements OnInit {
       distancia: new FormControl(),
       observaciones: new FormControl(),
 
+      // atributos del vehículo
       marca: new FormControl(),
       modelo: new FormControl(),
       patente: new FormControl(),
 
+      // atributos del volumen
       alto: new FormControl(),
       ancho: new FormControl(),
       largo: new FormControl(),
@@ -56,27 +62,29 @@ export class RegistrarVoluntarioComponent implements OnInit {
     "capturo cada uno de los valores que se ingresaron en los inputs"
     this.voluntario.nombre = this.form.get("nombre").value();                         
     this.voluntario.apellido = this.form.get("apellido").value();                   
-    this.voluntario.dni = this.form.get("dni").value();                                  
+    this.voluntario.dni = this.form.get("dni").value();     
+    // agregar el atributo direccion en loopback. Luego descomentar la linea 67     
+    // this.voluntario.direccion = this.form.get("direccion").value();                        
     this.voluntario.username = this.form.get("username").value();                     
     this.voluntario.email = this.form.get("email").value();                         
     this.voluntario.telefono = this.form.get("celular").value();                           
-    "agregar el atributo password en loopback. Luego descomentar la linea 60"
-    "this.voluntario.password = this.form.get(password1).value()"
-    this.voluntario = this.form.get("password2").value();
+    // agregar el atributo password en loopback. Luego descomentar la linea 72
+    // this.voluntario.password = this.form.get("password1").value()
+    // this.voluntario = this.form.get("password2").value();
     this.voluntario.distanciaMaxima = this.form.get("distancia").value();           
     this.voluntario.puntuacion = 0;                                                 
-    "Roles de loopback. Se deja con un string vacío por ahora."
+    // Roles de loopback. Se deja con un string vacío por ahora.
     this.voluntario.realm = "";
-    "agregar el atributo observaciones en loopback. Luego descomentar la linea 67"
-    "this.voluntario = this.form.get(observaciones).value();"
+    //agregar el atributo observaciones en loopback. Luego descomentar la linea 79
+    // this.voluntario = this.form.get("observaciones").value();
  
-    "se crea el vehículo del voluntario"
+    // Se crea el vehículo del voluntario
     this.vehiculo.marca = this.form.get("marca").value();
     this.vehiculo.modelo = this.form.get("modelo").value();
     this.vehiculo.patente = this.form.get("patente").value();
     this.vehiculo.voluntarioId = "idDelVoluntarioQueSeCree - Falta hacer"
 
-    "se crea el volumen del vehículo del voluntario"
+    // Se crea el volumen del vehículo del voluntario"
     this.volumen.alto = this.form.get("alto").value();
     this.volumen.ancho = this.form.get("ancho").value();
     this.volumen.largo = this.form.get("largo").value();
@@ -85,15 +93,27 @@ export class RegistrarVoluntarioComponent implements OnInit {
     this.volumen.idDescripcionGeneral = "Descripcion general del envio - VER"
     
 
-    // creo el voluntario y genero una promesa
+    // Creo el voluntario y genero una promesa
     this.voluntarioApi.create(this.voluntario).subscribe((voluntarioCreado: Voluntario) => { 
-      alert('El voluntario se registró exitosamente');
+
+      // Creo el vehículo y se lo asocio al voluntario
+      this.voluntario.vehiculo.voluntarioId = voluntarioCreado.id;
+
+      // creo la promesa para el vehículo del voluntario
+      this.vehiculoApi.create(this.voluntario.vehiculo).subscribe(() => {
+
+          // creo la promesa para el volumen del vehículo del voluntario
+          this.volumenApi.create(this.vehiculo.volumen).subscribe(() => {
+              alert('El voluntario se registró exitosamente');
+          })
+      })
+
    });
 
- 
 }
 
 ngOnInit() {
 
 }
+
 }
