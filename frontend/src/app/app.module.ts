@@ -22,6 +22,7 @@ import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-
 import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     FontAwesomeModule,
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

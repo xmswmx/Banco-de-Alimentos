@@ -18,7 +18,7 @@
                             <th scope="col">Fecha de traslado</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let donacion of datosDeDonaciones" class="text-center">
+                    <tbody *ngFor="let donacion of datosDeDonaciones| paginate: { itemsPerPage: 3, currentPage: p }" class="text-center">
                         <tr>
                             <td>{{donacion[1]}}</td>
                             <td>{{donacion[2]}}</td>
@@ -27,40 +27,9 @@
                         </tr>                  
                     </tbody>
                 </table>
-                <section class="card-header mt-1 text-center">
-                    <section class="text-center">
-                        <section class="text-xs-center ">						
-                                <ul class="pagination" style="display: inline-flex; margin: 0 auto;">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#">&laquo;</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">4</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">5</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">&raquo;</a>
-                                    </li>
-                                </ul>							
-                        </section>
-                    </section>
-                    <section class="mt-3">
-                        Sólo se muestran 10 resultados por página
-                    </section>					
-                </section>	
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             <div class="form-group text-center mt-5">
-                <button class="btn btn-dark" type="submit">Volver</button>               
+                <button class="btn btn-dark" (click)='this._location.back()'>Volver</button>               
             </div>
         </div>
     </div>
