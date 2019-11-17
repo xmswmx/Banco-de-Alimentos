@@ -81,28 +81,31 @@ export class RegistrarVoluntarioComponent implements OnInit {
     this.vehiculo.marca = this.form.get("marca").value;
     this.vehiculo.modelo = this.form.get("modelo").value;
     this.vehiculo.patente = this.form.get("patente").value;
-    this.vehiculo.voluntarioId = "idDelVoluntarioQueSeCree - Falta hacer"
+    //this.vehiculo.voluntarioId = "idDelVoluntarioQueSeCree - Falta hacer"
 
     // Se crea el volumen del vehículo del voluntario"
     this.volumen.alto = this.form.get("alto").value;
     this.volumen.ancho = this.form.get("ancho").value;
     this.volumen.largo = this.form.get("largo").value;
-    this.volumen.vehiculoId =  "idDelVehiculoQueSeCree - FALTA HACE"
+    //this.volumen.vehiculoId =  "idDelVehiculoQueSeCree - FALTA HACE"
     this.volumen.envioParaBeneficiarioId = "VER"
-    this.volumen.idDescripcionGeneral = "Descripcion general del envio - VER"
     
 
     // Creo el voluntario y genero una promesa
     this.voluntarioApi.create(this.voluntario).subscribe((voluntarioCreado: Voluntario) => { 
 
+      // asocio el voluntario al vehiculo
+      this.vehiculo.voluntarioId = voluntarioCreado.id;
+     
       // creo la promesa para el vehículo del voluntario
       this.vehiculoApi.create(this.voluntario.vehiculo).subscribe((vehiculoCreado: Vehiculo) => {
 
-              // Creo el vehículo y se lo asocio al voluntario
-              this.voluntario.vehiculo.id = vehiculoCreado.id;
-          // creo la promesa para el volumen del vehículo del voluntario
-          this.volumenApi.create(this.vehiculo.volumen).subscribe(() => {
-              alert('El voluntario se registró exitosamente');
+            // Asocio al volumen, el vehiculo.
+            this.volumen.vehiculoId = vehiculoCreado.id;
+
+           // creo la promesa para el volumen del vehículo del voluntario
+            this.volumenApi.create(this.vehiculo.volumen).subscribe(() => {
+               alert('El voluntario se registró exitosamente');
           })
       })
 
