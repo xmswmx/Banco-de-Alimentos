@@ -18,22 +18,8 @@ export class HeaderComponent implements OnInit {
   userLogged:User;
   constructor(private donanteApi:DonanteApi,private voluntarioApi:VoluntarioApi,private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
 	  this.userLogged = userApi.getCachedCurrent();
-
-    //Hago trampa para averiguar que tipo de usuario es, hay que arreglarlo
-    if(this.userLogged.id != null){
-      if(this.userLogged.cantidadAtendidos != null){this.isBeneficiario = true}
-        else{
-          if(this.userLogged.distanciaMaxima != null){this.isVoluntario = true}
-            else{
-              if(this.userLogged.cuil != null){this.isVoluntario = true}
-                else {
-                  this.isAdmin = true;
-                }
-            }
-        }
-    }
-    console.log(this.isAdmin,this.isBeneficiario,this.isDonante,this.isVoluntario);
-
+    //No estoy consiguiendo una forma de detectar que tipo de usuario es el que está logueado
+    //Voy a tener que agregar un campo "tipoDeUsuario" en loopback
   }
   
   logout(){
