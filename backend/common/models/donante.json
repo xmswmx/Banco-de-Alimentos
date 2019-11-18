@@ -9,6 +9,21 @@
     "cuil": {
       "type": "string",
       "required": true
+    },
+  "totalDonado": {
+      "type": "number",
+      "required": true,
+      "default": 0 
+    },
+  "totalDonadoEsteMes": {
+      "type": "number",
+      "required": true,
+      "default": 0 
+    },
+  "puntuacion": {
+      "type": "number",
+      "required": true,
+      "default": 0 
     }
   },
   "validations": [],

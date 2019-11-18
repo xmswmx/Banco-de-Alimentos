@@ -4,24 +4,26 @@
             <h1 class="">Arcor</h1>
             <br>
             <p>
-                <strong>CUIL:</strong> 3234234 
+                <strong>CUIL:</strong> {{this.donante.cuil}}
             </p>
             <p>
-                <strong>Dirección: </strong>La Plata, 8 y 50
+                <strong>Dirección: </strong> {{this.direccion}}
             </p>
             <p>
-                <strong>Cantidad donada: </strong>80Kg
+                <strong>Cantidad donada: </strong>{{this.donante.totalDonado}}Kg
             </p>
             <p>
-                <strong>Cantidad donada este mes: </strong>20kg
+                <strong>Cantidad donada este mes: </strong>{{this.donante.totalDonadoEsteMes}}kg
             </p>
         </div>
         <div class="text-center col-md-4 mt-3">
-                <fa-icon [icon]="star" size="6x" [fixedWidth]="true" [styles]="{'color': '#dbab09'}"></fa-icon>
-                <div style='position: relative; top:-50px;color:white;'>
-                    <h2><strong> 110 </strong></h2>
-                    <p style='color: black;'><strong>Puntuación</strong></p>
+                    <fa-icon [icon]="faStar" size="6x" [fixedWidth]="true" [styles]="{'color': '#dbab09'}"></fa-icon>
+                    <div title="Puntuación" style='position: relative; top:-50px;color:white;'>
+                        <h2><strong> {{this.donante.puntuacion}} </strong></h2>
                 </div>
+            <div class="container">
+                    <fa-icon title="Insignia" *ngFor="let badge of badges" class="inline" [icon]="faCandyCane" size="4x" [fixedWidth]="true" [styles]="{'color': '#f94116'}"></fa-icon>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -40,39 +42,14 @@
                       
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody  *ngFor="let persona of personas| paginate: { itemsPerPage: 3, currentPage: p }" class="text-center">
                     <tr>
-                        <td>Juan</td>
-                        <td>Gomez</td>
-                        <td>DNI de la persona</td>
-                        <td>Email de la persona</td>
-                        <td>Celular de la persona</td>
-                       
-                        </tr>
-                        <tr>
-                            <td>Jose</td>
-                            <td>Gonzales</td>
-                            <td>DNI de la persona</td>
-                            <td>Email de la persona</td>
-                            <td>Celular de la persona</td>
-                          
-                        </tr>
-                        <tr>
-                            <td>Matías</td>
-                            <td>Perez</td>
-                            <td>DNI de la persona</td>
-                            <td>Email de la persona</td>
-                            <td>Celular de la persona</td>
-                        
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>Lopez</td>
-                            <td>DNI de la persona</td>
-                            <td>Email de la persona</td>
-                            <td>Celular de la persona</td>
-                        
-                        </tr>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.apellido}}</td>
+                        <td>{{persona.dni}}</td>
+                        <td>{{persona.email}}</td>
+                        <td>{{persona.telefono}}</td>
+                    </tr>
                     </tbody>
                 </table>
         </div>

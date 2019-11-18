@@ -69,6 +69,7 @@ Donante:
     email: "contacto@arcor.com"
     emailVerified: true
     password: "'1234'"
+    puntuacion: "23"
     
 Ubicacion:
   ubicacionDonanteSprint1:

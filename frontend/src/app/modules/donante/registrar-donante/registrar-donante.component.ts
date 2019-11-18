@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { LoopBackConfig, BaseLoopBackApi } from '../../../_services/lbservice';
-import { Ubicacion, Donante, PersonaDeContacto } from '../../../_services/lbservice/models';  
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UbicacionApi, DonanteApi, PersonaDeContactoApi } from '../../../_services/lbservice/services';
+import { Ubicacion, Donante, PersonaDeContacto } from '../../../_services/lbservice/models';  
 import { GeoPoint } from '../../../_models/GeoPoint';
 import { AddressConverter } from '../../../_models/AddressConverter';
 
