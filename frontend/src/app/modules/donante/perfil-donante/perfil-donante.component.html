@@ -1,48 +1,53 @@
-<div class="container text-center">
-    <h2>Ver perfil de donante</h2>
-
-</div>
-<div class="card border-secondary mb-4 container mt-5" id="contenedor">
-    <div class="alert alert-dismissible alert-primary mt-3">Datos del donante</div>
-    <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
-            <div class="form-group">
-                <label for="labelRazonSocial">Razón social</label>
-                <input formControlName="razonSocial" type="text" class="form-control" id="inputRazonSocial"
-                    placeholder="Estudiantes de La Plata" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelCuil">Cuil</label>
-                <input formControlName="cuil" type="text" class="form-control" id="inputCuil"
-                    placeholder="20-54215125458-9" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelDireccion">Dirección</label>
-                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion"
-                    placeholder="Calle 53 e/ 7 y 8" readonly>
-            </div>           
-            <section class="alert alert-dismissible alert-primary mt-3">
-                    Personas de contacto
-                </section>
-                <table class="table table-hover table-bordered table-center">
-                    <thead>
-                        <tr class="text-center">
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">DNI</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Celular</th>
-                          
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr>
-                            <td>Juan</td>
-                            <td>Gomez</td>
-                            <td>DNI de la persona</td>
-                            <td>Email de la persona</td>
-                            <td>Celular de la persona</td>
-                           
+<div class="container mt-3 mb-3">   <!-- Datos --> 
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="">Arcor</h1>
+            <br>
+            <p>
+                <strong>CUIL:</strong> 3234234 
+            </p>
+            <p>
+                <strong>Dirección: </strong>La Plata, 8 y 50
+            </p>
+            <p>
+                <strong>Cantidad donada: </strong>80Kg
+            </p>
+            <p>
+                <strong>Cantidad donada este mes: </strong>20kg
+            </p>
+        </div>
+        <div class="text-center col-md-4 mt-3">
+                <fa-icon [icon]="star" size="6x" [fixedWidth]="true" [styles]="{'color': '#dbab09'}"></fa-icon>
+                <div style='position: relative; top:-50px;color:white;'>
+                    <h2><strong> 110 </strong></h2>
+                    <p style='color: black;'><strong>Puntuación</strong></p>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <section class="alert bg-dark mt-5">
+                Personas de contacto
+            </section>
+            <table class="table table-hover table-bordered table-center">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Celular</th>
+                      
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td>Juan</td>
+                        <td>Gomez</td>
+                        <td>DNI de la persona</td>
+                        <td>Email de la persona</td>
+                        <td>Celular de la persona</td>
+                       
                         </tr>
                         <tr>
                             <td>Jose</td>
@@ -70,9 +75,16 @@
                         </tr>
                     </tbody>
                 </table>
-            <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit">Volver</button>               
-            </div>
-        </form>
-    </div>
+        </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@
         <!-- Banco de alimentos -->
     </h1>
     
-	<!-- Opciones NO-LOGUEADO -->
+    <!-- Opciones de usuario logueado -->
     <div *ngIf="!userApi.getCachedCurrent()" class="d-inline-flex mr-4">        <!-- <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> -->
         <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,34 +20,15 @@
               <a class="dropdown-item" href="/registrar-donante">Como donante</a>
             </div>
           </div>
+         <!-- Para harce que funcione el click importe Router en el .ts de este html -->
         <button (click)="router.navigate(['/login']);" type="button" class="btn btn-dark ml-4">Iniciar sesión</button>
     </div>
-	
-
-
-
-    <!-- Opciones template -->
-	<div *ngIf="this.beneficiarioLogged" class="d-inline-flex mr-4">
-		<p class="navbar-brand"> ¡Hola BENEFICIARIO {{userApi.getCachedCurrent().username}}!</p>
-		<button class="btn btn-dark ml-4" (click)="this.router.navigate(['/perfil-organizacion-beneficiaria']);">⚙️Editar perfil</button>
+    
+    <!-- Opciones de usuario no-logueado -->
+    <div *ngIf="beneficiarioApi.getCachedCurrent()" class="d-inline-flex mr-4">
+        <p class="navbar-brand"> ¡Hola {{userApi.getCachedCurrent().username}}!</p>
+        <button class="btn btn-dark ml-4" (click)="this.router.navigate(['/perfil-organizacion-beneficiaria']);">⚙️Editar perfil</button>
     <button class="btn btn-dark ml-4" (click)="this.router.navigate(['/mis-donaciones']);">Mis donaciones</button>
-		<button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
-	</div>
-
-    <!-- Opciones BENEFICIARIO -->
-    <div *ngIf="this.beneficiarioLogged" class="d-inline-flex mr-4">
+        <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
     </div>
-
-    <!-- Opciones DONANTE -->
-    <div *ngIf="this.donanteLogged" class="d-inline-flex mr-4">
-    </div>
-
-    <!-- Opciones VOLUNTARIO -->
-    <div *ngIf="this.voluntarioLogged" class="d-inline-flex mr-4">
-    </div>
-
-    <!-- Opciones ADMIN -->
-    <div *ngIf="this.adminLogged" class="d-inline-flex mr-4">
-    </div>
-
 </nav>
