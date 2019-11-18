@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Donacion, Donante, DescripcionGeneral, Traslado, Voluntario } from '../../../_services/lbservice/models'
 import { DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi } from '../../../_services/lbservice/services'
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -13,7 +14,7 @@ export class MisDonacionesComponent implements OnInit {
 	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor(apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
+	constructor(private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
 		this.loggedDonante = apiDonante.getCachedCurrent();
 		apiDonante.getDonaciones(this.loggedDonante.id)
 		.subscribe((donaciones)=>{
@@ -43,48 +44,23 @@ export class MisDonacionesComponent implements OnInit {
 										//https://www.geeksforgeeks.org/angularjs-date-filter/
 									];
 									this.datosDeDonaciones.push(tupla);
-								})
-							}
+								}) //voluntario
+							} //Else
 
 
-						})
+						}) //Donacion
 
-					});
+					}); //Traslado
 
-				}
-
-
-		});
-
-	}
+				} //ForEach donacion
 
 
-/*
-			for (let donacion of this.donaciones){
-				let tupla = [
-					donacion.id,
-					donacion.numero,
-					'algo',
-					'algo',
-					'algo'
-				];
-				this.datosDeDonaciones.push(tupla);	
-			}
-*/
+		}); //GetDonaciones
+
+	} //Constructor
+
 
 	ngOnInit() {
 	}
 
-	descripcionDe(apiDonacion:DonacionApi,apiDescripcionGeneral:DescripcionGeneralApi,donacion:Donacion)
-	{
-		return 'algo'
-	}
-
-	nombreCompletoVoluntario(donacion:Donacion){
-		return 'un voluntario';
-	}
-
-	fechaEstimada(donacion:Donacion){
-		return 'una/fecha/estimada';
-	}
 }
