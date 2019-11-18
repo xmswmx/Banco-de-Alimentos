@@ -74,7 +74,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
     this.voluntario.puntuacion = 0;                                                 
     // Roles de loopback. Se deja con un string vacío por ahora.
     this.voluntario.realm = "";
-    //agregar el atributo observaciones en loopback. Luego descomentar la linea 79
+    //agregar el atributo observaciones en loopback. Luego descomentar la linea 78
     // this.voluntario = this.form.get("observaciones").value();
  
     // Se crea el vehículo del voluntario
@@ -98,13 +98,13 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.vehiculo.voluntarioId = voluntarioCreado.id;
      
       // creo la promesa para el vehículo del voluntario
-      this.vehiculoApi.create(this.voluntario.vehiculo).subscribe((vehiculoCreado: Vehiculo) => {
+      this.vehiculoApi.create(this.vehiculo).subscribe((vehiculoCreado: Vehiculo) => {
 
             // Asocio al volumen, el vehiculo.
             this.volumen.vehiculoId = vehiculoCreado.id;
 
            // creo la promesa para el volumen del vehículo del voluntario
-            this.volumenApi.create(this.vehiculo.volumen).subscribe(() => {
+            this.volumenApi.create(this.volumen).subscribe(() => {
                alert('El voluntario se registró exitosamente');
           })
       })
