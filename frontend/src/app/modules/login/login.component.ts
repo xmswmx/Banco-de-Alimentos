@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 			this.voluntario = new Voluntario();
 			this.voluntario.username = this.logInForm.get("usuario").value;
 			this.voluntario.password = this.logInForm.get("clave").value;
-			this.voluntarioApi.login(this.voluntario).subscribe((token: AccessToken)=> {this.router.navigate(['/home'])});
+			this.voluntarioApi.login(this.voluntario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-voluntario'])});
 			break;
 		 
 	 }
