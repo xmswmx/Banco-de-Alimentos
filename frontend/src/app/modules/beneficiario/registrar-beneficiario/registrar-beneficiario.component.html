@@ -1,45 +1,49 @@
 <div class="container text-center">
-    <h2>¿Queres ayudarnos a ayudar?</h2>
-    <h4>Registate como beneficiario</h4>
+    <h2>¡Registrá tu organización como beneficiaria!</h2>
 </div>
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
     <div class="alert alert-dismissible alert-primary mt-3"> Registrar beneficiario </div>
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiarioForm" >
+        <form (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiario">
             <div class="form-group">
-                <label for="exampleFormControlInput1">Nombre de organización:</label>
-                <input required formControlName="username" type="text" class="form-control" id="nombreOrganizacion"
-                    placeholder="Ej. Comedor Nuevo Sol">
+                <label for="nombreOrganizacion" id="labelNombreOrganizacion">Nombre de organización:</label>
+                <input required formControlName="nombreOrganizacion" type="text" class="form-control"
+                    id="inputNombreOrganizacion" placeholder="Ej. Comedor Nuevo Sol">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Dirección:</label>
-                <input required formControlName="adress" type="text" class="form-control" id="adress"
+                <label for="direccion" id="labelDireccion">Dirección:</label>
+                <input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
                     placeholder="Ej. La plata, Calle 12 Numero 3456 ">
             </div>
             <div class="form-group col-xs-2">
-                <label for="exampleFormControlInput1">Cantidad de personas que atiende:</label>
-                <input required formControlName="cantAtendidos" type="number" class="form-control" id="cantidadAtendidos"
-                  placeholder="50"  >
+                <label for="cantidadAtendidos" id="labelCantidadAtendidos">Cantidad de personas que atiende:</label>
+                <input required formControlName="cantidadAtendidos" type="number" class="form-control"
+                    id="inputCantidadAtendidos" placeholder="50">
             </div>
 
             <div class="form-group mt-5">
-                <label for="exampleFormControlInput1">Email:</label>
-                <input required formControlName="email" type="email" class="form-control" id="adress"
-                    placeholder="contacto@comedornuevosol.com">
-            </div>    
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Clave:</label>
-                <input required formControlName="password1" type="password" class="form-control" id="password1"
-                    >
+                <label id="labelEmail" for="email">Email:</label>
+                <input required [class.is-invalid]="emailIsInvalid" formControlName="email" type="email"
+                    class="form-control" id="inputEmail" placeholder="contacto@comedornuevosol.com">
+                <div *ngIf="emailIsInvalid">
+                    <small class="text-danger">El correo ingresado no es válildo</small>
+                </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Confirmar clave:</label>
-                <input required formControlName="password2" type="password" class="form-control" id="password2"
-                    >
+                <label id="labelPassword" for="password">Clave:</label>
+                <input required formControlName="password" type="password" class="form-control" id="inputPassword">
+            </div>
+            <div class="form-group">
+                <label id="labelPasswordConfirm" for="passwordConfirm">Confirmar clave:</label>
+                <input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm" type="password" class="form-control"
+                    id="inputPasswordConfirm">
+                <div *ngIf="passwordsNotEquals">
+                    <small class="text-danger">Las contraseñas no coinciden</small>
+                </div>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a routerLink="/home" class="btn btn-link">Cancelar</a>
+                <button [disabled]="!registrarBeneficiario.valid" class="btn btn-primary" type="submit">Guardar</button>
+                <a routerLink="/home" class="btn" style="background-color: #f94116; color:white">Cancelar</a>
             </div>
         </form>
     </div>
