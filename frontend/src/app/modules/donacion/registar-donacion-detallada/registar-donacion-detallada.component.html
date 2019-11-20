@@ -8,7 +8,7 @@
 
 
             <div class="form-group">
-                <label for="labelCodigoDeBarras">Codigo de barras</label>
+                <label for="labelCodigoDeBarras">Código de barras</label>
                 <input formControlName="codigoDeBarras" type="text" class="form-control" id="inputCodigoDeBarras">
             </div>
             <div class="form-group">
@@ -19,9 +19,23 @@
                 <label for="labelNombre">Fecha asignada de retiro</label>
                 <input formControlName="fechaRetirro" type="date" class="form-control" id="inputFechaRetiro">
             </div>
-            <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit">Agregar producto</button>
+
+<!-- Mini Form del producto -->
+
+            <div id="agregarProducto" class="container border mt-5">
+                
+                <div class="form-group mt-2 ">
+                    <label for="labelNombreProducto">Código</label>
+                    <input type="string" class="form-control" id="barCode" placeholder="">
+                </div>
+                <div  class="form-group mb-2 "> 
+                        <label for="labelNombre">Cantidad</label>
+                        <input type="number" class="form-control" id="cantProducto" placeholder="">
+                </div>
+                <button class="btn btn-primary mt-2 mb-2 inline">Agregar producto</button>
+                <button class="btn btn-primary mt-2 mb-2 ml-2">Leer con scanner</button>
             </div>
+
             <section class="alert alert-dismissible alert-primary mt-3">
                 Productos agregados
             </section>
