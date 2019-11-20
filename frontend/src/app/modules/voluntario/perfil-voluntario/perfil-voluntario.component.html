@@ -5,64 +5,54 @@
 <div class="card border-secondary mb-4 container mt-5 " id="contenedor">
     <div class="alert alert-dismissible alert-primary mt-3">Datos del voluntario </div>
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
             <div class="form-group">
                 <label for="labelNombre">Nombre</label>
-                <input formControlName="nombre" type="text" class="form-control" id="inputNombre"
-                    placeholder="Juan Carlos" readonly>
+                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.nombre}}"
+                     readonly>
             </div>
             <div class="form-group">
                 <label for="labelNombre">Apellido</label>
-                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" placeholder="Perez" readonly>
+                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.apellido}}" readonly>
             </div>
             <div class="form-group">
                 <label for="labelDireccion">DNI</label>
-                <input formControlName="dni" type="text" class="form-control" id="inputDNI" placeholder="18.542.201" readonly>
+                <input formControlName="dni" type="text" class="form-control" id="inputDNI" value="{{this.voluntario.dni}}" readonly>
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Dirección</label>
-                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion"
-                    placeholder="Av. Siempreviva 145" readonly>
+                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion" value= "Acá va el domicilio, falta crearlo en loopback" readonly>
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Email</label>
-                <input formControlName="email" type="text" class="form-control" id="inputEmail"
-                    placeholder="perez@gmail.com" readonly>
+                <input formControlName="email" type="text" class="form-control" id="inputEmail" value= "{{this.voluntario.email}}" readonly>
             </div>
             <div class="form-group">
                 <label for="labelCelular">Celular</label>
-                <input formControlName="celular" type="text" class="form-control" id="inputCelular"
-                    placeholder="221 548 9652" readonly>
+                <input formControlName="celular" type="text" class="form-control" id="inputCelular" value= "{{this.voluntario.telefono}}" readonly>
             </div>
             <div class="form-group">
                 <label for="labelContrasenia">Contraseña</label>
-                <input formControlName="clave" type="password" class="form-control" id="inputClave" placeholder="" readonly>
+                <input formControlName="clave" type="password" class="form-control" id="inputClave" value= "{{this.voluntario.password}}"  readonly>
             </div>
-            <div class="form-group">
-                <label for="labelContrasenia">Confirmar contraseña</label>
-                <input formControlName="confirmarClave" type="password" class="form-control" id="inputconfirmacionClave"
-                    placeholder="" readonly>
-            </div>
-            <h5>¿Tenés un vehículo?</h5>
+            <h5>Vehículo asociado</h5>
             <div class="form-group mt-4">
                 <label for="labelMarca">Marca</label>
-                <input formControlName="marca" type="text" class="form-control" id="inputMarca" placeholder="Toyota" readonly>
+                <input formControlName="marca" type="text" class="form-control" id="inputMarca"  value= "{{this.vehiculo.marca}}"  readonly>
             </div>
             <div class="form-group">
                 <label for="labelModelo">Modelo</label>
-                <input formControlName="modelo" type="text" class="form-control" id="inputModelo" placeholder="Etios" readonly>
+                <input formControlName="modelo" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.modelo}}" readonly>
             </div>
             <div class="form-group">
                 <label for="labelPatente">Patente</label>
-                <input formControlName="patente" type="text" class="form-control" id="inputModelo"
-                    placeholder="AA125FG" readonly>
+                <input formControlName="patente" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.patente}}" readonly>
             </div>
-            <h5>Volumen a transportar</h5>
+            <h5>Volumen a transportar en el vehículo</h5>
             <div class="form-row mt-4">
                 <div class="col mb-3">
                     <label for="form-group">Alto</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputAlto" placeholder="65" readonly>
+                        <input type="text" class="form-control " id="inputAlto"  value= "{{this.volumen.alto}}" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -71,7 +61,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Ancho</label>
                     <div class="input-group">
-                        <input type="text" class="form-control " id="inputAncho" placeholder="124" readonly>
+                        <input type="text" class="form-control " id="inputAncho" value="{{this.volumen.ancho}}" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -80,7 +70,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Largo</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputLargo" placeholder="32" readonly>
+                        <input type="text" class="form-control " id="inputLargo" value="{{this.volumen.largo}}" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -91,7 +81,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Distancia máxima a recorrer</label>
                     <div class="input-group w-25 ">
-                        <input type="text" class="form-control " id="inputAlto" placeholder="350" readonly>
+                        <input type="text" class="form-control " id="inputAlto" value="{{this.voluntario.distanciaMaxima}}" readonly>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">km</span>
                         </div>
@@ -100,11 +90,10 @@
             </div>              
             <div class="form-group">
                 <label for="labelObservaciones">Observaciones</label>
-                <textarea class="form-control" id="inputObservaciones" rows="3" readonly></textarea>
+                <textarea class="form-control" id="inputObservaciones" rows="3" readonly>Acá van las observaciones, falta crearlo en loopback </textarea>
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-primary" type="submit" readonly>Volver</button>    
             </div>
-        </form>
     </div>
 </div>
