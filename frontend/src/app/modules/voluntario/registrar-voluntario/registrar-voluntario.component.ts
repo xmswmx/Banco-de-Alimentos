@@ -33,7 +33,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
       dni: new FormControl('',[Validators.required]),
       direccion: new FormControl('',[Validators.required]),
       username: new FormControl('',[Validators.required]),
-      email: new FormControl('',[Validators.required,Validators.email]),
+      email: new FormControl('',[Validators.required,Validators.email,Validators.email]),
       celular: new FormControl('',[Validators.required]),
       password1: new FormControl('',[Validators.required]),
       password2: new FormControl('',[Validators.required]),
@@ -73,6 +73,15 @@ export class RegistrarVoluntarioComponent implements OnInit {
   get alto() {return this.form.get('alto');}
   get ancho() {return this.form.get('ancho');}
   get largo() {return this.form.get('largo');}
+
+  
+	get emailIsInvalid(){	
+		return this.form.get('email').dirty && !this.form.get('email').valid
+  }
+  
+  get passwordsNotEquals(){
+		return this.form.get('password2').dirty && (this.form.get('password1').value != this.form.get('password2').value) 
+	}
 
 
   onSubmit() {
