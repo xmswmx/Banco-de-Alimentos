@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //Voy a usar el model que traje desde LB, tal vez haya que hacer una clase nueva en Angular
-import { Beneficiario, Ubicacion } from '../../../_services/lbservice/models';  
+import { Beneficiario, Ubicacion } from '../../../_services/lbservice/models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -16,71 +16,87 @@ import { Route } from '@angular/compiler/src/core';
 	styleUrls: ['./registrar-beneficiario.component.css']
 })
 export class RegistrarBeneficiarioComponent implements OnInit {
-	
+
 	registrarBeneficiario: FormGroup;
-	nuevoBeneficiario : Beneficiario;
-	convertidorDeDirecciones : AddressConverter;
-	
-	constructor(private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute , private router:Router) {
-		
-		this.nuevoBeneficiario =  new Beneficiario();
-		this.convertidorDeDirecciones = new AddressConverter();	
+	nuevoBeneficiario: Beneficiario;
+	convertidorDeDirecciones: AddressConverter;
+
+	constructor(private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
+
+		this.nuevoBeneficiario = new Beneficiario();
+		this.convertidorDeDirecciones = new AddressConverter();
 		this.registrarBeneficiario = new FormGroup({
 			nombreOrganizacion: new FormControl(),
 			direccion: new FormControl(),
 			cantidadAtendidos: new FormControl(),
-			email: new FormControl('',[Validators.required,Validators.email]),
+			email: new FormControl('', [Validators.required, Validators.email]),
 			password: new FormControl(),
 			passwordConfirm: new FormControl()
 		});
-		
+
 	}
-	
-	onSubmit(){
-		console.warn(this.registrarBeneficiario.value);
-		this.nuevoBeneficiario =  new Beneficiario();
-		this.nuevoBeneficiario.username =  this.registrarBeneficiario.get("nombreOrganizacion").value;
-		this.nuevoBeneficiario.cantidadAtendidos=  this.registrarBeneficiario.get("cantidadAtendidos").value;
-		this.nuevoBeneficiario.email=  this.registrarBeneficiario.get("email").value;
-		this.nuevoBeneficiario.password=  this.registrarBeneficiario.get("password").value;
 
-		// this.nuevoBeneficiario.ubicacion = this.generarUbicacion(this.registrarBeneficiario.get("direccion").value);
+	onSubmit() {
+		if (this.registrarBeneficiario.valid) {
+			console.warn(this.registrarBeneficiario.value);
+			this.nuevoBeneficiario = new Beneficiario();
+			this.nuevoBeneficiario.username = this.registrarBeneficiario.get("nombreOrganizacion").value;
 
-		this.beneficiarioApi.create(this.nuevoBeneficiario).subscribe((beneficiarioCreado:Beneficiario)=>{
-			this.router.navigateByUrl("/login");
-			alert('Se registró exitosamente');		
-			// this.nuevoBeneficiario.ubicacion.beneficiarioId = beneficiarioCreado.id;
-			// this.ubicacionApi.create(this.nuevoBeneficiario.ubicacion).subscribe(()=>{	
-			//beneficiario.adress = this.registrarBeneficiarioForm.get("adress").value;
-			//Hay que trabajar la ubicacion
-			//this.itemApi.create(item).subscribe(()=>{
-			// this.router.navigateByUrl("/")
-			// })
-			//this.nuevoBeneficiario = new Beneficiario();
-			//console.log("Aca se tendria que crear un beneficiario nuevo");
-		})
-			
+			//this.nuevoBeneficiario.ubicacion = this.generarUbicacion(this.registrarBeneficiario.get("direccion").value);
+
+			this.nuevoBeneficiario.cantidadAtendidos = this.registrarBeneficiario.get("cantidadAtendidos").value;
+			this.nuevoBeneficiario.email = this.registrarBeneficiario.get("email").value;
+			this.nuevoBeneficiario.password = this.registrarBeneficiario.get("password").value;
+
+			this.beneficiarioApi.create(this.nuevoBeneficiario).subscribe((beneficiarioCreado: Beneficiario) => {
+				// this.ubicacionApi.create(this.nuevoBeneficiario.ubicacion).subscribe(()=>{
+				// 	this.nuevoBeneficiario.ubicacion.beneficiarioId = beneficiarioCreado.id;
+				 	this.router.navigateByUrl("/login");
+				 	alert('Se registró exitosamente');
+				
+				// })
+					
+			})
+		}
 	}
-		
 
-	
 
-	generarUbicacion(direccion:string){
+	generarUbicacion(direccion: string) {
 		let nuevaUbicacion = new Ubicacion;
 		nuevaUbicacion.direccion = direccion;
 		nuevaUbicacion.puntoGeografico = this.convertidorDeDirecciones.coordinateForAddress(direccion);
 		return nuevaUbicacion;
 	}
 
-	get emailIsInvalid(){	
+	get emailIsInvalid() {
 		return this.registrarBeneficiario.get('email').dirty && !this.registrarBeneficiario.get('email').valid
 	}
-	
-	get passwordsNotEquals(){
-		return this.registrarBeneficiario.get('passwordConfirm').dirty && (this.registrarBeneficiario.get('password').value != this.registrarBeneficiario.get('passwordConfirm').value) 
+
+	get passwordsNotEquals() {
+		return this.registrarBeneficiario.get('passwordConfirm').dirty && (this.registrarBeneficiario.get('password').value != this.registrarBeneficiario.get('passwordConfirm').value)
 	}
-	
+
+	get nombreOrganizacion() {
+		return this.registrarBeneficiario.get('nombreOrganizacion')
+	}
+	get direccion() {
+		return this.registrarBeneficiario.get('direccion')
+	}
+	get email() {
+		return this.registrarBeneficiario.get('email')
+	}	
+	get cantidadAtendidos() {
+		return this.registrarBeneficiario.get('cantidadAtendidos')
+	}
+	get password() {
+		return this.registrarBeneficiario.get('password')
+	}
+	get passwordConfirm() {
+		return this.registrarBeneficiario.get('passwordConfirm')
+	}			
+
+
 	ngOnInit() {
 	}
-	
+
 }
