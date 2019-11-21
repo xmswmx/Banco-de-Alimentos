@@ -18,7 +18,7 @@ import { Ubicacion, Donante, PersonaDeContacto, Insignia, TipoInsignia } from '.
 export class PerfilDonanteComponent implements OnInit {
 
 
-	//imagenes de insignias
+	  //Estos son los iconos
   	faCandyCane=faCandyCane;
   	faGift=faGift;
   	faGifts=faGifts;
@@ -28,13 +28,24 @@ export class PerfilDonanteComponent implements OnInit {
   	faStar=faStar;
 
   	//Artributos que quiero mostrar
+    iconos = [];
   	donante: Donante;
   	personas;
   	direccion = 'Cargando..';
-    prueba = 'title= "faGift"'
-    pruebas = ['faGift','faEgg'];
     badges = []; //Se 0:Nombre, 1:icono, 2:fechaOtorgada, 3:vto
   constructor(private apiInsignia: InsigniaApi,private apiUbicacion: UbicacionApi, private apiDonante:DonanteApi, private apiPersona:PersonaDeContactoApi,private router:Router) { 
+    //Esto es como un diccionario que uso para convertir texto de la api en iconos mostrables
+    this.iconos=[
+    ['faEgg',faEgg],
+    ['faCandyCane',faCandyCane],
+    ['faGift',faGift],
+    ['faGifts',faGifts],
+    ['faHandsHelping',faHandsHelping],
+    ['faDonate',faDonate],
+    ['faStar',faStar],
+    ];
+    
+    //Llamo a la api para leer los datos a mostrar
     this.donante = apiDonante.getCachedCurrent();
   	apiDonante.getPersonasDeContacto(this.donante.id).subscribe((personas)=>{
   		this.personas = personas;
@@ -43,85 +54,23 @@ export class PerfilDonanteComponent implements OnInit {
         apiDonante.getInsignia(this.donante.id).subscribe((insignias)=>{
           for (let insignia of insignias){
             apiInsignia.getTipoInsignia(insignia.id,true).subscribe((tipodeinsignia:TipoInsignia)=>{
+                let parNombreIcono = this.iconos.find(elemento => elemento[0] == tipodeinsignia.imagen)
+                let icono = parNombreIcono[1];
                 this.badges.push([
                    tipodeinsignia.nombre,
-                   faGifts, //Necesito guardar objetos de la clase "tipodeinsignia.imagen"
+                   icono,
                    insignia.fechaOtorgada,
                    insignia.fechaVencimiento
                   ]);
-
-              })
-            
+              })            
             } //Termina el for
-
-            this.convertirEnIconos()
-          //Pero necesito averiguar el tipo de insignia para saber como es su dibujo
         })
       })
-
-
   	}); //fin primer promesa
-
-
-
-
   } //Fin constructor
-
-
-  convertirEnIconos(){
-    console.log(this.badges);
-    for (let badge of this.badges){
-      if (badge[1]=='faGift'){
-        badge[1] = this.faGift;
-        console.log('detectado');
-      } else {
-              if (badge[1]=='faEgg'){
-                badge[1] = this.faEgg;
-                console.log('detectado');
-              } else {
-                if (badge[1]=='faGifts'){
-                  badge[1] = this.faGifts;
-                  console.log('detectado');
-                 } else {
-                  if (badge[1]=='faStar'){
-                    badge[1] = this.faStar;
-                    console.log('detectado');
-                  } else {
-                     if (badge[1]=='faCandyCane'){
-                      badge[1] = this.faCandyCane;console.log('detectado');
-                     } else {
-                       if (badge[1]=='faHandsHelping'){
-                        badge[1] = this.faHandsHelping;console.log('detectado');
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          console.log(this.badges)
-        }
 
   ngOnInit() {
   }
 
 }
 
-
-/*
-
-          apiDonante.getInsignia(this.donante.id).subscribe((insignias)=>{
-            console.log(insignias);
-            for (let insignia of insignias){
-              console.log(insignia);
-              apiInsignia.getTipoInsignia(insignia.id).subscribe((tipodeinsignia:TipoInsignia)=>{
-                this.badges.push([
-                   tipodeinsignia.nombre,
-                   tipodeinsignia.imagen,
-                   insignia.fechaOtorgada,
-                   insignia.fechaVencimiento
-                  ]);
-              })
-            }
-
-            */

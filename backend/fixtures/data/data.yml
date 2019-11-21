@@ -2,6 +2,64 @@
 # Lista de cosas random https://github.com/marak/faker.js
 # Para quitar los comentarios o comentar muchas lineas seleccionar y darle (ctrl+q)
 
+# Fixtures del "sprint 2"
+Voluntario:
+  voluntario1Sprint1:
+    username: "voluntario1"
+    realm: "string"
+    email: "susana.orio@gmail.com"
+    dni: "34233534"
+    telefono: "4505590"
+    nombre: 'Susana'
+    apellido: 'Orio'
+    distanciaMaxima: "34"
+    puntuacion: "12"
+    password: "'1234'"
+
+  voluntario2Sprint1:
+    username: "voluntario2"
+    realm: "string"
+    email: "homeroJS@gmail.com"
+    dni: "10233534"
+    telefono: "4555590"
+    nombre: 'Homero'
+    apellido: 'Simpson'
+    distanciaMaxima: "80"
+    puntuacion: "5"
+    password: "'1234'"
+    
+  voluntario1Sprint2:
+    username: "voluntario"
+    realm: "string"
+    email: "hernes.tito@gmail.com"
+    dni: "36233534"
+    telefono: "4545590"
+    nombre: 'Hernesto'
+    apellido: 'Tito'
+    distanciaMaxima: "15"
+    puntuacion: "10"
+    password: "'1234'"
+
+Ubicacion:
+  ubicacionVoluntario1Sprint2:
+    direccion: "Calle 4 566, B1902CJX La Plata, Buenos Aires"
+    puntoGeografico: "'-34.9070986,-57.955002'"
+    idDonante: @voluntario1Sprint2
+
+Vehiculo:
+  vehiculo1Sprint2:
+    marca: "Renault"
+    modelo: "Kangoo"
+    patente: "ABC-123"
+    voluntarioId: @voluntario1Sprint2
+
+Volumen:
+  volumenDescripcionSprint2:
+    alto: "100"
+    ancho: "100"
+    largo: "100"
+    vehiculoId: @vehiculo1Sprint2
+
 # Fixtures del "sprint 1"
 
 Categoria:
@@ -99,26 +157,6 @@ DescripcionGeneral:
     descripcion: "{{lorem.words}}"
     idDonacion: @donacion{@}
 
-Voluntario:
-  voluntario1Sprint1:
-    email: "susana.orio@gmail.com"
-    dni: "34233534"
-    telefono: "4505590"
-    nombre: 'Susana'
-    apellido: 'Orio'
-    distanciaMaxima: "34"
-    puntuacion: "12"
-    password: "'1234'"
-
-  voluntario2Sprint1:
-    email: "homeroJS@gmail.com"
-    dni: "10233534"
-    telefono: "4555590"
-    nombre: 'Homero'
-    apellido: 'Simpson'
-    distanciaMaxima: "80"
-    puntuacion: "5"
-    password: "'1234'"
 
 Volumen:
   volumenDescripcion{1..5}:
