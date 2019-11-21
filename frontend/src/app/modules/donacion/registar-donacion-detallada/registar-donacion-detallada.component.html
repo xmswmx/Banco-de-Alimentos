@@ -17,9 +17,15 @@
                     <label for="labelNombreProducto">Código</label>
                     <input formControlName="barcode" type="number" placeholder="0023383424" class="form-control" id="barCode" >
                 </div>
-                <div formControlNAme="ammount" class="form-group mb-2 "> 
+
+                <div  class="form-group mb-2 "> 
+                        <label for="labelNombre">Fecha de vencimiento</label>
+                        <input formControlName="vto" type="date" min="1" class="form-control" id="vto" placeholder="">
+                </div>
+
+                <div class="form-group mb-2 "> 
                         <label for="labelNombre">Cantidad</label>
-                        <input type="number" min="1" class="form-control" id="cantProducto" placeholder="">
+                        <input  formControlName="ammount" type="number" min="1" class="form-control" id="ammount" placeholder="">
                 </div>
                 <button class="btn btn-dark mt-2 mb-2 inline" (click)="agregarProducto()">Agregar producto</button>
                 <button class="btn btn-dark mt-2 mb-2 ml-2" (click)="leerConScanner()">Leer con scanner</button>
@@ -34,16 +40,19 @@
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Descripción del producto</th>
+                        <th scope="col">Fecha de vencimiento</th>
                         <th scope="col">Cantidad</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody *ngFor="let producto of productos| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
                     <tr>
-                        <td>una descripcion de producto</td>
-                        <td>234234</td>
+                        <td>{{producto[0]}}</td>
+                        <td>{{producto[2]}}</td>
+                        <td>{{producto[1]}}</td>
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
 <!-- FIN Lista de productos -->
 
             <div class="form-group text-center mt-5">

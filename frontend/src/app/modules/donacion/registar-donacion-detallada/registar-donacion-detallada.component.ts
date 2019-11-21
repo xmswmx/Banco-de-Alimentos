@@ -32,20 +32,60 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   traslado: Traslado;
 
   //Inicializar el form y algunas variables
-  constructor() {
+  constructor(apiTraslado:TrasladoApi,apiDonante: DonanteApi,apiDonacion:DonacionApi, apiDescripcion:DescripcionDetalladaApi,apiProducto:ProductoApi,apiTipoProducto:TipoProductoApi ) {
   	  this.form = new FormGroup({
         fechaRetiro: new FormControl(),
         barcode: new FormControl(),
-        ammount: new FormControl()
+        ammount: new FormControl(),
+        vto: new FormControl()
 
-      })
+      });
+      this.nuevaDonacion = new Donacion;
+      this.descripcion = new DescripcionDetallada;
+      this.traslado = new Traslado;
+
+
+      //Le pido todos los tipo producto a la api (0:nombre,1:codigo,2:id)
+      apiTipoProducto.find().subscribe((todoslosproductos)=>{
+        this.productosValidos = todoslosproductos;
+        console.log(this.productosValidos); //testing
+      });
    }
 
 
    //Se llama cuando se presiona agregar producto
    //Si el producto es válido lo agrega a la lista de productos
+   //Se agrega: Descripcion del producto, cantidad, idTipoProducto, vencimiento
    agregarProducto(){
-     alert('Presionaste agregar producto')
+     
+     // VALIDACIONES
+     let barcode = this.form.get("barcode").value;
+     let existeElCodigo = this.productosValidos.some((element:TipoProducto)=> element.codigoBarra == barcode);
+     let cantidad = this.form.get("ammount").value;
+     let vto = this.form.get("vto").value;
+     if (!existeElCodigo){
+       alert("El código no existe");
+       return 0;
+     }
+     if (cantidad <= 0){
+       alert(cantidad);
+       return 0;
+     }
+     //Controlar que noeste vencido
+     
+     // CARGAR
+     // Quiero cargar Descripcion (esta en tipoProducto), vto, cantidad, idTipoProducto
+     let tipo:TipoProducto = this.productosValidos.find(tipoproducto => tipoproducto.codigoBarra == barcode);
+     console.log(tipo);
+     this.productos.push([
+         tipo.nombre,
+         cantidad,
+         vto,
+         tipo.id
+       ])
+     
+     //Los productos se agregan y se muestran, ahora hay que mandar todo a la API
+
    }
 
    //Debe enviar a la api el traslado, donacion, descripcion, productos
@@ -56,7 +96,8 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
    //En el futuro se mostrará un lector de código de barras y al captar
    //rellenará el campo de código por lo que estaría bueno mockear ese fill
    leerConScanner(){
-     alert('Presionaste lector de barras, se llenarán los campos automaticamente')
+     alert('Se simula la lectura de un menthoplus');
+     this.form.get("barcode").setValue('9845475257847');
    }
 
   ngOnInit() {
