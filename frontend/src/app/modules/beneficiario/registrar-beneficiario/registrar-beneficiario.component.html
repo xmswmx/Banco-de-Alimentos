@@ -5,21 +5,39 @@
     <div class="alert alert-dismissible alert-primary mt-3"> Registrar beneficiario </div>
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiario">
+
             <div class="form-group">
                 <label for="nombreOrganizacion" id="labelNombreOrganizacion">Nombre de organización:</label>
                 <input required formControlName="nombreOrganizacion" type="text" class="form-control"
                     id="inputNombreOrganizacion" placeholder="Ej. Comedor Nuevo Sol">
+                <div *ngIf="nombreOrganizacion.invalid && nombreOrganizacion.touched ">
+                    <small class="text-danger">El nombre de la organización es obligatorio</small>
+                </div>
+                <!-- <div *ngIf="direccion.touched">
+                        <small class="text-danger">El nombre de la organización es obligatorio</small>
+                    </div> -->
             </div>
+
+
             <div class="form-group">
                 <label for="direccion" id="labelDireccion">Dirección:</label>
                 <input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
                     placeholder="Ej. La plata, Calle 12 Numero 3456 ">
+                <div *ngIf="direccion.invalid && direccion.touched ">
+                    <small class="text-danger">El campo dirección es obligatorio</small>
+                </div>
             </div>
+
+
             <div class="form-group col-xs-2">
                 <label for="cantidadAtendidos" id="labelCantidadAtendidos">Cantidad de personas que atiende:</label>
                 <input required formControlName="cantidadAtendidos" type="number" class="form-control"
                     id="inputCantidadAtendidos" placeholder="50">
+                <div *ngIf="cantidadAtendidos.invalid && cantidadAtendidos.touched">
+                    <small class="text-danger">El campo cantidad de personas que atiende es obligatorio</small>
+                </div>
             </div>
+
 
             <div class="form-group mt-5">
                 <label id="labelEmail" for="email">Email:</label>
@@ -28,23 +46,40 @@
                 <div *ngIf="emailIsInvalid">
                     <small class="text-danger">El correo ingresado no es válildo</small>
                 </div>
+                <div *ngIf="email.invalid && email.touched">
+                    <small class="text-danger">El campo correo es obligatorio</small>
+                </div>
             </div>
+
+
             <div class="form-group">
                 <label id="labelPassword" for="password">Clave:</label>
                 <input required formControlName="password" type="password" class="form-control" id="inputPassword">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">La contraseña es obligatoria</small>
+                </div>
             </div>
+
+
             <div class="form-group">
                 <label id="labelPasswordConfirm" for="passwordConfirm">Confirmar clave:</label>
-                <input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm" type="password" class="form-control"
-                    id="inputPasswordConfirm">
+                <input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm"
+                    type="password" class="form-control" id="inputPasswordConfirm">
                 <div *ngIf="passwordsNotEquals">
                     <small class="text-danger">Las contraseñas no coinciden</small>
                 </div>
+                <div *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
+                    <small class="text-danger">Por favor introduzca la verificación de la contraseña</small>
+                </div>
             </div>
+
+
             <div class="form-group text-center">
                 <button [disabled]="!registrarBeneficiario.valid" class="btn btn-primary" type="submit">Guardar</button>
                 <a routerLink="/home" class="btn" style="background-color: #f94116; color:white">Cancelar</a>
             </div>
+
+
         </form>
     </div>
 </div>
