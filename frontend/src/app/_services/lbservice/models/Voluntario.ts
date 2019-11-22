@@ -14,6 +14,8 @@ export interface VoluntarioInterface {
   "apellido": string;
   "distanciaMaxima"?: number;
   "puntuacion": number;
+  "tipoDeUsuario"?: string;
+  "observaciones": string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -34,6 +36,8 @@ export class Voluntario implements VoluntarioInterface {
   "apellido": string;
   "distanciaMaxima": number;
   "puntuacion": number;
+  "tipoDeUsuario": string;
+  "observaciones": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -102,6 +106,16 @@ export class Voluntario implements VoluntarioInterface {
           name: 'puntuacion',
           type: 'number',
           default: 0
+        },
+        "tipoDeUsuario": {
+          name: 'tipoDeUsuario',
+          type: 'string',
+          default: 'voluntario'
+        },
+        "observaciones": {
+          name: 'observaciones',
+          type: 'string',
+          default: ' '
         },
         "realm": {
           name: 'realm',

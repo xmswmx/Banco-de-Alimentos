@@ -8,6 +8,10 @@
   "properties": {
     "cantidadAtendidos": {
       "type": "number"
+    },
+    "tipoDeUsuario": {
+      "type": "string",
+      "default": "beneficiario"
     }
   },
   "validations": [],

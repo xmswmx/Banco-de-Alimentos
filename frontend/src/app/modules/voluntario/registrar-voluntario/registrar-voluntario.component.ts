@@ -4,8 +4,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Voluntario, Vehiculo, Volumen } from '../../../_services/lbservice/models';
-import { VoluntarioApi, VehiculoApi, VolumenApi } from '../../../_services/lbservice/services';
+import { Voluntario, Vehiculo, Volumen, Ubicacion } from '../../../_services/lbservice/models';
+import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
+import { GeoPoint } from '../../../_models/GeoPoint';
+import { AddressConverter } from '../../../_models/AddressConverter';
 
 @Component({
   selector: 'app-registrar-voluntario',
@@ -18,13 +20,17 @@ export class RegistrarVoluntarioComponent implements OnInit {
   voluntario: Voluntario;
   vehiculo: Vehiculo;
   volumen: Volumen;
+  addressConverter: AddressConverter;
+  ubicacion: Ubicacion;
 
-  constructor(private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi ) {
+  constructor(private ubicacionApi:UbicacionApi, private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi ) {
 
     // se crean las instancias de voluntario, vehiculo y volumen
     this.voluntario = new Voluntario();
     this.vehiculo = new Vehiculo();
     this.volumen = new Volumen();
+    this.ubicacion = new Ubicacion();
+    this.addressConverter= new AddressConverter;
 
     this.form = new FormGroup({
       // atributos del voluntario
@@ -92,7 +98,18 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.voluntario.apellido = this.form.get("apellido").value;                   
       this.voluntario.dni = this.form.get("dni").value;     
       // agregar el atributo direccion en loopback. Luego descomentar la linea 67     
-      // this.voluntario.direccion = this.form.get("direccion").value();                        
+      // this.voluntario.direccion = this.form.get("direccion").value(); 
+      /*
+       * La dirección nos quedó en ubicación, es porque lleva asociado un geopoint
+       * Entonces hay que crear un objeto ubicación, agregarle la dirección y usar
+       * el convertidor de direcciones a geopoints mockeado para darle un geopoint
+       * luego asociar esa ubicacion al voluntario dandole su id       
+      */
+      this.ubicacion.direccion =this.form.get("direccion").value;
+      this.ubicacion.puntoGeografico =
+      this.addressConverter.coordinateForAddress(this.ubicacion.direccion);
+      //this.ubicacion.beneficiarioId = La pido a la api mas delante
+      //                       
       this.voluntario.username = this.form.get("username").value;                     
       this.voluntario.email = this.form.get("email").value;                         
       this.voluntario.telefono = this.form.get("celular").value;                        
@@ -102,8 +119,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.voluntario.puntuacion = 0;                                                 
       // Roles de loopback. Se deja con un string vacío por ahora.
       this.voluntario.realm = "";
-      //agregar el atributo observaciones en loopback. Luego descomentar la linea 78
-      // this.voluntario = this.form.get("observaciones").value();
+      this.voluntario.observaciones = this.form.get("observaciones").value;
    
       // Se crea el vehículo del voluntario
       this.vehiculo.marca = this.form.get("marca").value;
@@ -116,15 +132,19 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.volumen.ancho = this.form.get("ancho").value;
       this.volumen.largo = this.form.get("largo").value;
       //this.volumen.vehiculoId =  "idDelVehiculoQueSeCree - FALTA HACE"
-      this.volumen.envioParaBeneficiarioId = "VER"
+      //this.volumen.envioParaBeneficiarioId = "VER"
+      /* El volumen puede ser de un auto, un envio, o alguna otra cosa,
+       * Si el volumen que estás creando no es de un envio por ejemplo solo lo dejas en null
+       * En este caso solo se completaria el volumen.vehiculoId, lo demás en blanco
+      */
       
   
       // Creo el voluntario y genero una promesa
       this.voluntarioApi.create(this.voluntario).subscribe((voluntarioCreado: Voluntario) => { 
   
-        // asocio el voluntario al vehiculo
+        // asocio el voluntario al vehiculo y a su ubicacion
         this.vehiculo.voluntarioId = voluntarioCreado.id;
-       
+        this.ubicacion.voluntarioId = voluntarioCreado.id;
         // creo la promesa para el vehículo del voluntario
         this.vehiculoApi.create(this.vehiculo).subscribe((vehiculoCreado: Vehiculo) => {
   
@@ -133,7 +153,10 @@ export class RegistrarVoluntarioComponent implements OnInit {
   
              // creo la promesa para el volumen del vehículo del voluntario
               this.volumenApi.create(this.volumen).subscribe(() => {
-                 alert('El voluntario se registró exitosamente');
+                 this.ubicacionApi.create(this.ubicacion).subscribe(()=>{
+                     alert('El voluntario se registró exitosamente');
+                 })
+                 
             })
         })
      });

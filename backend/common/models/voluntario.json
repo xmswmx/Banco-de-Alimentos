@@ -29,6 +29,15 @@
       "type": "number",
       "required": true,
       "default": 0
+    },
+    "tipoDeUsuario": {
+      "type": "string",
+      "default": "voluntario"
+    },
+    "observaciones": {
+      "type": "string",
+      "required": true,
+      "default": " "
     }
   },
   "validations": [],

@@ -6,6 +6,7 @@ import {
 declare var Object: any;
 export interface BeneficiarioInterface {
   "cantidadAtendidos"?: number;
+  "tipoDeUsuario"?: string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -18,6 +19,7 @@ export interface BeneficiarioInterface {
 
 export class Beneficiario implements BeneficiarioInterface {
   "cantidadAtendidos": number;
+  "tipoDeUsuario": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -62,6 +64,11 @@ export class Beneficiario implements BeneficiarioInterface {
         "cantidadAtendidos": {
           name: 'cantidadAtendidos',
           type: 'number'
+        },
+        "tipoDeUsuario": {
+          name: 'tipoDeUsuario',
+          type: 'string',
+          default: 'beneficiario'
         },
         "realm": {
           name: 'realm',

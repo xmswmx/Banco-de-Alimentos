@@ -9,6 +9,10 @@ import {
 declare var Object: any;
 export interface DonanteInterface {
   "cuil": string;
+  "totalDonado": number;
+  "totalDonadoEsteMes": number;
+  "puntuacion": number;
+  "tipoDeUsuario"?: string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -24,6 +28,10 @@ export interface DonanteInterface {
 
 export class Donante implements DonanteInterface {
   "cuil": string;
+  "totalDonado": number;
+  "totalDonadoEsteMes": number;
+  "puntuacion": number;
+  "tipoDeUsuario": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -71,6 +79,26 @@ export class Donante implements DonanteInterface {
         "cuil": {
           name: 'cuil',
           type: 'string'
+        },
+        "totalDonado": {
+          name: 'totalDonado',
+          type: 'number',
+          default: 0
+        },
+        "totalDonadoEsteMes": {
+          name: 'totalDonadoEsteMes',
+          type: 'number',
+          default: 0
+        },
+        "puntuacion": {
+          name: 'puntuacion',
+          type: 'number',
+          default: 0
+        },
+        "tipoDeUsuario": {
+          name: 'tipoDeUsuario',
+          type: 'string',
+          default: 'donante'
         },
         "realm": {
           name: 'realm',
