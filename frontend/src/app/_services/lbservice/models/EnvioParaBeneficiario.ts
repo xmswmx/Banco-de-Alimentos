@@ -106,7 +106,7 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
           model: 'Traslado',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'envioParaBeneficiarioId'
+          keyTo: 'idEnvioTrasladadoAUnBeneficiario'
         },
         donacion: {
           name: 'donacion',

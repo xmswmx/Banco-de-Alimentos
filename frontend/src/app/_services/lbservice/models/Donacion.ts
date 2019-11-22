@@ -93,7 +93,7 @@ export class Donacion implements DonacionInterface {
           model: 'Traslado',
           relationType: 'hasOne',
                   keyFrom: 'id',
-          keyTo: 'idDonacion'
+          keyTo: 'idDonacionTrasladadaAlBanco'
         },
         descripcionGeneral: {
           name: 'descripcionGeneral',

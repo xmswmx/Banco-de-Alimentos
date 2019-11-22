@@ -101,10 +101,11 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
      //this.nuevaDonacion.numero
      this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
        //Ahora creo su traslado
-       //Falta inicializar cosas
+       this.traslado.fechaEstimada = this.form.get("fechaRetiro").value;
        //this.traslado.
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          this.apiDescripcion.create(this.descripcion).subscribe((desc:DescripcionDetallada)=>{
+           let nuevosProductos = [];
            for(let producto of this.productos){
              /* Esto tiene this.productos
                0 tipo.nombre,
@@ -117,10 +118,10 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
              nuevoProducto.vencimiento = this.productos[2];
              nuevoProducto.tipoProductoId = this.productos[3];
              nuevoProducto.descripcionDetalladaId = desc.id;
-             this.apiProducto.create(nuevoProducto).subscribe(()=>{
-               //Controlar si soy el ultimo
-             }) //Fin de create producto
            } //Fin for productos
+           this.apiDescripcion.createProductos(desc.id,nuevosProductos).subscribe(()=>{
+            console.log('se crearon los productos'); 
+           }) //Fin productos
          }) //Fin descripcion
        }) //Fin traslado
      }) //Fin donacion

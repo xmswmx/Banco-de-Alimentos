@@ -31,7 +31,7 @@
     "traslados": {
       "type": "hasOne",
       "model": "Traslado",
-      "foreignKey": ""
+      "foreignKey": "idEnvioTrasladadoAUnBeneficiario"
     },
     "donacion": {
       "type": "hasOne",

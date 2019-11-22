@@ -7,8 +7,8 @@ export interface TrasladoInterface {
   "fechaFin"?: Date;
   "id"?: any;
   "voluntarioId"?: any;
-  "idDonacion"?: any;
-  "envioParaBeneficiarioId"?: any;
+  "idDonacionTrasladadaAlBanco"?: any;
+  "idEnvioTrasladadoAUnBeneficiario"?: any;
 }
 
 export class Traslado implements TrasladoInterface {
@@ -17,8 +17,8 @@ export class Traslado implements TrasladoInterface {
   "fechaFin": Date;
   "id": any;
   "voluntarioId": any;
-  "idDonacion": any;
-  "envioParaBeneficiarioId": any;
+  "idDonacionTrasladadaAlBanco": any;
+  "idEnvioTrasladadoAUnBeneficiario": any;
   constructor(data?: TrasladoInterface) {
     Object.assign(this, data);
   }
@@ -72,12 +72,12 @@ export class Traslado implements TrasladoInterface {
           name: 'voluntarioId',
           type: 'any'
         },
-        "idDonacion": {
-          name: 'idDonacion',
+        "idDonacionTrasladadaAlBanco": {
+          name: 'idDonacionTrasladadaAlBanco',
           type: 'any'
         },
-        "envioParaBeneficiarioId": {
-          name: 'envioParaBeneficiarioId',
+        "idEnvioTrasladadoAUnBeneficiario": {
+          name: 'idEnvioTrasladadoAUnBeneficiario',
           type: 'any'
         },
       },

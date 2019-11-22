@@ -23,6 +23,11 @@
       "type": "hasOne",
       "model": "envioParaBeneficiario",
       "foreignKey": "idTraslado"
+    },
+    "envioAPartirDeDonacion": {
+      "type": "hasOne",
+      "model": "donacion",
+      "foreignKey": "idTrasladoQueLaIncluyeEnUnEnvio"
     }
   },
   "acls": [],

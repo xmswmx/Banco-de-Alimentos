@@ -35,7 +35,7 @@
    "traslado": {
      "type": "hasOne",
      "model": "Traslado",
-     "foreignKey": "idDonacion"
+     "foreignKey": "idDonacionTrasladadaAlBanco"
    }
   },
   "acls": [
