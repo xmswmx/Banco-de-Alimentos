@@ -8,7 +8,7 @@
         <!-- Banco de alimentos -->
     </h1>
     
-    <!-- Opciones de usuario logueado -->
+    <!-- OPCIONES DE USUARIO NO LOGUEADO -->
     <div *ngIf="!userApi.getCachedCurrent()" class="d-inline-flex mr-4">        <!-- <img src="../../assets/icons/user.png" width="74" height="74" alt="" class="rounded-circle"> -->
         <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,15 +20,72 @@
               <a class="dropdown-item" href="/registrar-donante">Como donante</a>
             </div>
           </div>
-         <!-- Para harce que funcione el click importe Router en el .ts de este html -->
         <button (click)="router.navigate(['/login']);" type="button" class="btn btn-dark ml-4">Iniciar sesión</button>
     </div>
     
-    <!-- Opciones de usuario no-logueado -->
-    <div *ngIf="beneficiarioApi.getCachedCurrent()" class="d-inline-flex mr-4">
-        <p class="navbar-brand"> ¡Hola {{userApi.getCachedCurrent().username}}!</p>
-        <button class="btn btn-dark ml-4" (click)="this.router.navigate(['/perfil-organizacion-beneficiaria']);">⚙️Editar perfil</button>
-    <button class="btn btn-dark ml-4" (click)="this.router.navigate(['/mis-donaciones']);">Mis donaciones</button>
-        <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
+    <!-- OPCIONES DE USUARIOS
+        * Lo que falta es completar todas las opciones posibles de cada perfil
+        * Averigualas viendo los mockup
+        * Usate esto en lugar del href (click)="router.navigate(['/perfil-donante'])"
+        * Con el href no funcionan algunas cositas de angular como un botón de volvever para atrás
+    -->
+    <!-- OPCIONES DONANTE -->
+    <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'donante')"  class="d-inline-flex mr-4">
+            <span class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{this.userLogged.username}} 
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Ver mi perfil</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </span>
+            <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
+    </div>
+
+    <!-- OPCIONES VOLUNTARIO -->
+    <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'voluntario')" class="d-inline-flex mr-4" >
+            <span class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{this.userLogged.username}} 
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </span>
+            <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
+    </div>
+
+    <!-- OPCIONES BENEFICIARIO -->
+    <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'beneficiario')" class="d-inline-flex mr-4" >
+            <span class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{this.userLogged.username}} 
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </span>
+            <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
+    </div>
+
+    <!-- OPCIONES ADMIN -->
+    <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'admin')"  class="d-inline-flex mr-4">
+            <span class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Opciones de administrador
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </span>
+            <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
     </div>
 </nav>

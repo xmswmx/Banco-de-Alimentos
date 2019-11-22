@@ -11,13 +11,21 @@ import { UserApi, BeneficiarioApi  } from '../../_services/lbservice/services';
 })
 export class HeaderComponent implements OnInit {
 
-  userLogged:User;
+  userLogged;
+  tipoDeUsuario;
   constructor(private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
-  this.userLogged = userApi.getCachedCurrent();
+    this.userLogged = userApi.getCachedCurrent();
+    if (this.userLogged) {
+      this.tipoDeUsuario = this.userLogged.tipoDeUsuario;
+      console.log(this.tipoDeUsuario);
+      if (this.tipoDeUsuario=='donante'){
+        console.log(this.userLogged);
+      }
+    }
   }
   
   logout(){
-  this.userApi.logout().subscribe(()=> {this.router.navigate(['/home'])} ); 
+    this.userApi.logout().subscribe(()=> {this.router.navigate(['/home'])} ); 
   }
   verPerfil(){
     
