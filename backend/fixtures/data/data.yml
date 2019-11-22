@@ -3,6 +3,17 @@
 # Para quitar los comentarios o comentar muchas lineas seleccionar y darle (ctrl+q)
 
 # Fixtures del "sprint 2"
+
+Donante:
+  donanteSprint1:
+    cuil: "10486"
+    realm: "string"
+    username: "Arcor"
+    email: "contacto@arcor.com"
+    emailVerified: true
+    password: "'1234'"
+    puntuacion: "23"
+
 Voluntario:
   voluntario1Sprint1:
     username: "voluntario1"
@@ -46,6 +57,11 @@ Ubicacion:
     puntoGeografico: "'-34.9070986,-57.955002'"
     idDonante: @voluntario1Sprint2
 
+  ubicacionDonanteSprint1:
+    direccion: "Calle 4 566, B1902CJX La Plata, Buenos Aires"
+    puntoGeografico: "'-34.9070986,-57.955002'"
+    idDonante: @donanteSprint1
+
 Vehiculo:
   vehiculo1Sprint2:
     marca: "Renault"
@@ -59,8 +75,6 @@ Volumen:
     ancho: "100"
     largo: "100"
     vehiculoId: @vehiculo1Sprint2
-
-# Fixtures del "sprint 1"
 
 Categoria:
   # congelados:
@@ -119,21 +133,7 @@ TipoInsignia:
       nombre: 'Estrella de Oro'
       imagen: 'faStar'
 
-Donante:
-  donanteSprint1:
-    cuil: "10486"
-    realm: "string"
-    username: "Arcor"
-    email: "contacto@arcor.com"
-    emailVerified: true
-    password: "'1234'"
-    puntuacion: "23"
-    
-Ubicacion:
-  ubicacionDonanteSprint1:
-    direccion: "Calle 4 566, B1902CJX La Plata, Buenos Aires"
-    puntoGeografico: "'-34.9070986,-57.955002'"
-    idDonante: @donanteSprint1
+
         
 
 PersonaDeContacto:
