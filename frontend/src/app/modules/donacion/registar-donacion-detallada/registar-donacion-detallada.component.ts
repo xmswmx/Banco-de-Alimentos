@@ -31,8 +31,9 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   //fecha estimada = fecha de retiro del form
   traslado: Traslado;
 
+  idDonante;
   //Inicializar el form y algunas variables
-  constructor(apiTraslado:TrasladoApi,apiDonante: DonanteApi,apiDonacion:DonacionApi, apiDescripcion:DescripcionDetalladaApi,apiProducto:ProductoApi,apiTipoProducto:TipoProductoApi ) {
+  constructor(private apiTraslado:TrasladoApi,private apiDonante: DonanteApi,private apiDonacion:DonacionApi, private apiDescripcion:DescripcionDetalladaApi,private apiProducto:ProductoApi,private apiTipoProducto:TipoProductoApi ) {
   	  this.form = new FormGroup({
         fechaRetiro: new FormControl(),
         barcode: new FormControl(),
@@ -40,6 +41,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
         vto: new FormControl()
 
       });
+      this.idDonante = apiDonante.getCachedCurrent().id;
       this.nuevaDonacion = new Donacion;
       this.descripcion = new DescripcionDetallada;
       this.traslado = new Traslado;
@@ -85,13 +87,44 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
        ])
      
      //Los productos se agregan y se muestran, ahora hay que mandar todo a la API
-
+     //en onSubmit
    }
 
    //Debe enviar a la api el traslado, donacion, descripcion, productos
    onSubmit(){
-     alert('Presionaste guardar')
-   }
+
+     this.idDonante
+     this.nuevaDonacion.estado = 'nueva'; 
+     //Estaria bien que la api lo inicialize
+     //Definir estados 
+     //this.nuevaDonacion.fechaRegistro = Date.now();
+     //this.nuevaDonacion.numero
+     this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
+       //Ahora creo su traslado
+       //Falta inicializar cosas
+       //this.traslado.
+       this.apiTraslado.create(this.traslado).subscribe(()=>{
+         this.apiDescripcion.create(this.descripcion).subscribe((desc:DescripcionDetallada)=>{
+           for(let producto of this.productos){
+             /* Esto tiene this.productos
+               0 tipo.nombre,
+               1 cantidad,
+               2 vto,
+               3 tipo.id
+             */
+             let nuevoProducto = new Producto;
+             nuevoProducto.cantidad = this.productos[1];
+             nuevoProducto.vencimiento = this.productos[2];
+             nuevoProducto.tipoProductoId = this.productos[3];
+             nuevoProducto.descripcionDetalladaId = desc.id;
+             this.apiProducto.create(nuevoProducto).subscribe(()=>{
+               //Controlar si soy el ultimo
+             }) //Fin de create producto
+           } //Fin for productos
+         }) //Fin descripcion
+       }) //Fin traslado
+     }) //Fin donacion
+   } //Fin submit
 
    //En el futuro se mostrará un lector de código de barras y al captar
    //rellenará el campo de código por lo que estaría bueno mockear ese fill
