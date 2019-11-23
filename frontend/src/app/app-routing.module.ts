@@ -15,7 +15,7 @@ import { MisDonacionesComponent } from './modules/donante/mis-donaciones/mis-don
 import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-donacion-detallada/registar-donacion-detallada.component';
 import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
-
+import { PanelComponent } from "./modules/admin/panel/panel.component";
 
 
 
@@ -36,7 +36,8 @@ const routes: Routes = [
 	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
-	{path:'ver-top',component:VerTopComponent}
+	{path:'ver-top',component:VerTopComponent},
+	{path:'panel-de-control',component:PanelComponent}
 
 ];
 
