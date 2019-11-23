@@ -63,7 +63,8 @@ export class Donacion implements DonacionInterface {
       properties: {
         "fechaRegistro": {
           name: 'fechaRegistro',
-          type: 'Date'
+          type: 'Date',
+          default: new Date(0)
         },
         "numero": {
           name: 'numero',

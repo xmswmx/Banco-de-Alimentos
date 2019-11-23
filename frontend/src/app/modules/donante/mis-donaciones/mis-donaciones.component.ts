@@ -20,45 +20,76 @@ export class MisDonacionesComponent implements OnInit {
 		apiDonante.getDonaciones(this.loggedDonante.id)
 		.subscribe((donaciones)=>{
 				for (let donacion of donaciones){
-
+					console.log(donacion.numero);
 					apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc)=>{
-						apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
-							if(traslado.voluntarioId==null){
-								let tupla = [
-									donacion.id,
-									donacion.numero,
-									desc.descripcion,
-									'Sin asignar',
-									traslado.fechaEstimada
-								];
-								this.datosDeDonaciones.push(tupla);
-							} else {
-								apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+						
+							apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
+								if(traslado.voluntarioId==null){
 									let tupla = [
 										donacion.id,
 										donacion.numero,
 										desc.descripcion,
-										voluntario.nombre+' '+voluntario.apellido,
+										'Sin asignar',
 										traslado.fechaEstimada
-										//Sobre formatear hora (se hace en la plantilla)
-										//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
-										//https://www.geeksforgeeks.org/angularjs-date-filter/
 									];
 									this.datosDeDonaciones.push(tupla);
-								}) //voluntario
-							} //Else
+								} else {
+									apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+										let tupla = [
+											donacion.id,
+											donacion.numero,
+											desc.descripcion,
+											voluntario.nombre+' '+voluntario.apellido,
+											traslado.fechaEstimada
+											//Sobre formatear hora (se hace en la plantilla)
+											//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
+											//https://www.geeksforgeeks.org/angularjs-date-filter/
+										];
+										this.datosDeDonaciones.push(tupla);
+									}) //voluntario
+								} //Else
+							}) //Donacion
+						}) //Fin intentocon descripcion general
+					//Ahora pruebo con desc detallada
+					apiDonacion.getDescripcionDetallada(donacion.id,true).subscribe((desc)=>{
+							apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
+								
 
 
-						}) //Donacion
+								if(traslado.voluntarioId==null){
+									let tupla = [
+										donacion.id,
+										donacion.numero,
+										desc.descripcion,
+										'Sin asignar',
+										traslado.fechaEstimada
+									];
+									this.datosDeDonaciones.push(tupla);
+								} else {
+									apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+										let tupla = [
+											donacion.id,
+											donacion.numero,
+											desc.descripcion,
+											voluntario.nombre+' '+voluntario.apellido,
+											traslado.fechaEstimada
+											//Sobre formatear hora (se hace en la plantilla)
+											//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
+											//https://www.geeksforgeeks.org/angularjs-date-filter/
+										];
+										this.datosDeDonaciones.push(tupla);
+									}) //voluntario
+								} //Else
+							}) //Donacion
+						}) //Fin intentocon descripcion general
 
-					}); //Traslado
+						} //for Donaciones
+						
 
-				} //ForEach donacion
+					}); //Promesa get donaciones
+				} //constructor
 
 
-		}); //GetDonaciones
-
-	} //Constructor
 
 
 	ngOnInit() {

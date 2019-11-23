@@ -51,7 +51,8 @@ export class DescripcionGeneral implements DescripcionGeneralInterface {
       properties: {
         "descripcion": {
           name: 'descripcion',
-          type: 'string'
+          type: 'string',
+          default: ''
         },
         "id": {
           name: 'id',

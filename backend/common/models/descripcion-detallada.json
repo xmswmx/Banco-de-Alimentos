@@ -6,7 +6,13 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "descripcion": {
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  },
   "validations": [],
   "relations": {
     "productos": {

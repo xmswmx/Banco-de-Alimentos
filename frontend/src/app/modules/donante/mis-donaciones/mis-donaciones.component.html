@@ -18,7 +18,7 @@
                             <th scope="col">Fecha de traslado</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let donacion of datosDeDonaciones| paginate: { itemsPerPage: 3, currentPage: p }" class="text-center">
+                    <tbody *ngFor="let donacion of datosDeDonaciones| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
                         <tr>
                             <td>{{donacion[1]}}</td>
                             <td>{{donacion[2]}}</td>

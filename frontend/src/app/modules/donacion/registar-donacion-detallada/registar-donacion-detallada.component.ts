@@ -27,6 +27,8 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
 
   //contiene la lista de productos
   descripcion: DescripcionDetallada;
+  //un texto descriptivo que va a contener los nombres de todos los productos
+  textoDescriptivo: string;
 
   //se lo debe iniciar vinculado a la nueva donacion y con
   //fecha estimada = fecha de retiro del form
@@ -99,11 +101,16 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
    //Debe enviar a la api el traslado, donacion, descripcion, productos
    onSubmit(){
 
-     this.idDonante
+     //genero el texto descriptivo
+     this.textoDescriptivo = 'Descripción:';
+     for (let producto of this.productos){
+       this.textoDescriptivo = this.textoDescriptivo + '\n* '+ producto[0] + ' x'+producto[1];
+     };
+     console.log(this.textoDescriptivo);
+
+     this.nuevaDonacion.idDonante = this.idDonante;
      this.nuevaDonacion.estado = 'nueva'; 
      this.nuevaDonacion.numero = this.numeroDonacion;
-     //Definir estados 
-     //this.nuevaDonacion.numero
      this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
        //Ahora creo su traslado
        console.log('Se creo la donacion vacia');
@@ -112,6 +119,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          console.log('Se creo el traslado');
          this.descripcion.idDonacion = donacionCreada.id;
+         this.descripcion.descripcion = this.textoDescriptivo;
          this.apiDescripcion.create(this.descripcion).subscribe((desc:DescripcionDetallada)=>{
            console.log('Se creo la desc');
            let nuevosProductos = [];

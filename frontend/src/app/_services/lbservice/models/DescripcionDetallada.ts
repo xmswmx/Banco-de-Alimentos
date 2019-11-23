@@ -5,12 +5,14 @@ import {
 
 declare var Object: any;
 export interface DescripcionDetalladaInterface {
+  "descripcion": string;
   "id"?: any;
   "idDonacion"?: any;
   productos?: Producto[];
 }
 
 export class DescripcionDetallada implements DescripcionDetalladaInterface {
+  "descripcion": string;
   "id": any;
   "idDonacion": any;
   productos: Producto[];
@@ -47,6 +49,11 @@ export class DescripcionDetallada implements DescripcionDetalladaInterface {
       path: 'DescripcionesDetalladas',
       idName: 'id',
       properties: {
+        "descripcion": {
+          name: 'descripcion',
+          type: 'string',
+          default: ''
+        },
         "id": {
           name: 'id',
           type: 'any'
