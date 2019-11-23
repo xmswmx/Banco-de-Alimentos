@@ -23,6 +23,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
 
   //conoce su descripcion y se debe crear un traslado con su fecha de retiro
   nuevaDonacion: Donacion; 
+  numeroDonacion: number;
 
   //contiene la lista de productos
   descripcion: DescripcionDetallada;
@@ -33,7 +34,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
 
   idDonante;
   //Inicializar el form y algunas variables
-  constructor(private apiTraslado:TrasladoApi,private apiDonante: DonanteApi,private apiDonacion:DonacionApi, private apiDescripcion:DescripcionDetalladaApi,private apiProducto:ProductoApi,private apiTipoProducto:TipoProductoApi ) {
+  constructor(private router:Router,private apiTraslado:TrasladoApi,private apiDonante: DonanteApi,private apiDonacion:DonacionApi, private apiDescripcion:DescripcionDetalladaApi,private apiProducto:ProductoApi,private apiTipoProducto:TipoProductoApi ) {
   	  this.form = new FormGroup({
         fechaRetiro: new FormControl(),
         barcode: new FormControl(),
@@ -52,6 +53,11 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
         this.productosValidos = todoslosproductos;
         console.log(this.productosValidos); //testing
       });
+
+      //Obtengo el numero de donacion
+      this.apiDonacion.count().subscribe((numero)=>{
+        this.numeroDonacion = numero.count;
+      })
    }
 
 
@@ -95,18 +101,23 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
 
      this.idDonante
      this.nuevaDonacion.estado = 'nueva'; 
-     //Estaria bien que la api lo inicialize
+     this.nuevaDonacion.numero = this.numeroDonacion;
      //Definir estados 
-     //this.nuevaDonacion.fechaRegistro = Date.now();
      //this.nuevaDonacion.numero
      this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
        //Ahora creo su traslado
+       console.log('Se creo la donacion vacia');
        this.traslado.fechaEstimada = this.form.get("fechaRetiro").value;
-       //this.traslado.
+       this.traslado.idDonacionTrasladadaAlBanco = donacionCreada.id;
        this.apiTraslado.create(this.traslado).subscribe(()=>{
+         console.log('Se creo el traslado');
+         this.descripcion.idDonacion = donacionCreada.id;
          this.apiDescripcion.create(this.descripcion).subscribe((desc:DescripcionDetallada)=>{
+           console.log('Se creo la desc');
            let nuevosProductos = [];
+           console.log(this.productos);
            for(let producto of this.productos){
+             console.log(producto)
              /* Esto tiene this.productos
                0 tipo.nombre,
                1 cantidad,
@@ -114,13 +125,16 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
                3 tipo.id
              */
              let nuevoProducto = new Producto;
-             nuevoProducto.cantidad = this.productos[1];
-             nuevoProducto.vencimiento = this.productos[2];
-             nuevoProducto.tipoProductoId = this.productos[3];
+             nuevoProducto.cantidad = producto[1];
+             nuevoProducto.vencimiento = producto[2];
+             nuevoProducto.tipoProductoId = producto[3];
              nuevoProducto.descripcionDetalladaId = desc.id;
+             console.log(nuevoProducto.cantidad);
+             nuevosProductos.push(nuevoProducto);
            } //Fin for productos
            this.apiDescripcion.createProductos(desc.id,nuevosProductos).subscribe(()=>{
-            console.log('se crearon los productos'); 
+              this.router.navigateByUrl("/mis-donaciones");
+              alert('Se registró la donación');
            }) //Fin productos
          }) //Fin descripcion
        }) //Fin traslado

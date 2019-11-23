@@ -9,10 +9,12 @@
   "properties": {
     "fechaRegistro": {
       "type": "date",
+      "default": "$now",
       "required": true
     },
     "numero": {
       "type": "number",
+      "unique": true,
       "required": true
     },
     "estado": {

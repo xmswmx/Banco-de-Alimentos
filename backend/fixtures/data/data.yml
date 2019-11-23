@@ -167,18 +167,19 @@ Volumen:
     
 Traslado:
   traslado{1..3}:
-    idDonacion: @donacion{@}
+    idDonacionTrasladadaAlBanco: @donacion{@}
     fechaEstimada: '{{date.recent}}'
     voluntarioId: @voluntario1Sprint1
 
   traslado4:
-    idDonacion: @donacion4
+    idDonacionTrasladadaAlBanco: @donacion4
     fechaEstimada: '{{date.recent}}'
     voluntarioId: @voluntario2Sprint1
 
   traslado5:
-    idDonacion: @donacion5
+    idDonacionTrasladadaAlBanco: @donacion5
     fechaEstimada: '{{date.recent}}'
+    voluntarioId: @voluntario1Sprint2
 
 TipoProducto:
   caramelo1:

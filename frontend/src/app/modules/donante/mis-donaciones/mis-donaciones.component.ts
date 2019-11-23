@@ -15,6 +15,7 @@ export class MisDonacionesComponent implements OnInit {
 	loggedDonante : Donante;
 
 	constructor(private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
+		console.log('Si se actualiza la base log out y log in del usuario (El catcheado tiene diferente id)');
 		this.loggedDonante = apiDonante.getCachedCurrent();
 		apiDonante.getDonaciones(this.loggedDonante.id)
 		.subscribe((donaciones)=>{
