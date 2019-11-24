@@ -10,8 +10,26 @@ import {Location} from '@angular/common';
 })
 export class TrasladosSinVoluntarioComponent implements OnInit {
 
-	traslados = ['asddas','sdasd','sdaasd'];
-	constructor(private _location: Location) {
+	traslados;
+	filas = [];
+	constructor(private _location: Location, apiTraslado: TrasladoApi) {
+		apiTraslado.find({ 
+			where: {
+				estado: 'pendiente de retiro'
+					}
+			}).subscribe((traslados)=>{
+				this.traslados = traslados; //test (borrar)
+				for (let traslado of traslados){
+					//obtener su descripcion
+						//obtener su origen
+							//obtener su destino
+								//obtener su fecha estimada
+									//crear fila
+									//pushear fila
+				}
+
+
+			});
 	 }
 
 	ngOnInit() {

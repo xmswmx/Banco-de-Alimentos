@@ -33,12 +33,12 @@
     <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'donante')"  class="d-inline-flex mr-4">
             <span class="dropdown">
               <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{this.userLogged.username}} 
+                {{userApi.getCachedCurrent().username}} 
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Ver mi perfil</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" (click)="router.navigate(['/registrar-donacion-detallada'])">Nueva donacion</a>
+                <a class="dropdown-item" (click)="router.navigate(['/mis-donaciones'])">Mis donaciones</a>
               </div>
             </span>
             <button class="btn btn-dark ml-4" (click)="logout()">Salir</button>
@@ -48,7 +48,7 @@
     <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'voluntario')" class="d-inline-flex mr-4" >
             <span class="dropdown">
               <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{this.userLogged.username}} 
+                {{userApi.getCachedCurrent().username}} 
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Action</a>
@@ -63,7 +63,7 @@
     <div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'beneficiario')" class="d-inline-flex mr-4" >
             <span class="dropdown">
               <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{this.userLogged.username}} 
+                {{userApi.getCachedCurrent().username}} 
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Action</a>
