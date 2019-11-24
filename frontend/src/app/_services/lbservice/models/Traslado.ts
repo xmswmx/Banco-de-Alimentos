@@ -5,6 +5,7 @@ export interface TrasladoInterface {
   "fechaAsignacion"?: Date;
   "fechaEstimada": Date;
   "fechaFin"?: Date;
+  "estado"?: string;
   "id"?: any;
   "voluntarioId"?: any;
   "idDonacionTrasladadaAlBanco"?: any;
@@ -15,6 +16,7 @@ export class Traslado implements TrasladoInterface {
   "fechaAsignacion": Date;
   "fechaEstimada": Date;
   "fechaFin": Date;
+  "estado": string;
   "id": any;
   "voluntarioId": any;
   "idDonacionTrasladadaAlBanco": any;
@@ -63,6 +65,11 @@ export class Traslado implements TrasladoInterface {
         "fechaFin": {
           name: 'fechaFin',
           type: 'Date'
+        },
+        "estado": {
+          name: 'estado',
+          type: 'string',
+          default: 'pendiente de retiro'
         },
         "id": {
           name: 'id',

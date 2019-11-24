@@ -16,6 +16,7 @@ import { RegistarDonacionDetalladaComponent } from './modules/donacion/registar-
 import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-donacion-general/registrar-donacion-general.component';
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 import { PanelComponent } from "./modules/admin/panel/panel.component";
+import { TrasladosSinVoluntarioComponent } from "./modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component";
 
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
 	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
 	{path:'ver-top',component:VerTopComponent},
-	{path:'panel-de-control',component:PanelComponent}
+	{path:'panel-de-control',component:PanelComponent},
+	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
 
 ];
 

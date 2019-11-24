@@ -19,7 +19,7 @@ export class PanelComponent implements OnInit {
 	 faCubes=faCubes
 	 faKey=faKey;
 
-	constructor() { }
+	constructor(private router:Router) { }
 
 	ngOnInit() {
 	}
