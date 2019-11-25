@@ -116,6 +116,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
        console.log('Se creo la donacion vacia');
        this.traslado.fechaEstimada = this.form.get("fechaRetiro").value;
        this.traslado.idDonacionTrasladadaAlBanco = donacionCreada.id;
+       this.traslado.tipo = 'donacion';
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          console.log('Se creo el traslado');
          this.descripcion.idDonacion = donacionCreada.id;

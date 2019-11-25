@@ -19,6 +19,9 @@
     "estado": {
       "type": "string",
       "default": "pendiente de retiro"
+    },
+    "tipo": {
+      "type":"string"
     }
   },
   "validations": [],

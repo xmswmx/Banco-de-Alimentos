@@ -10,6 +10,7 @@ export interface DonacionInterface {
   "fechaRegistro": Date;
   "numero": number;
   "estado": string;
+  "tipoDescripcion"?: string;
   "id"?: any;
   "idDonante"?: any;
   "idEnvio"?: any;
@@ -22,6 +23,7 @@ export class Donacion implements DonacionInterface {
   "fechaRegistro": Date;
   "numero": number;
   "estado": string;
+  "tipoDescripcion": string;
   "id": any;
   "idDonante": any;
   "idEnvio": any;
@@ -72,6 +74,10 @@ export class Donacion implements DonacionInterface {
         },
         "estado": {
           name: 'estado',
+          type: 'string'
+        },
+        "tipoDescripcion": {
+          name: 'tipoDescripcion',
           type: 'string'
         },
         "id": {

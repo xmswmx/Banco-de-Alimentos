@@ -19,12 +19,12 @@
                             <th scope="col">Opciones</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let traslado of traslados| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
+                    <tbody *ngFor="let fila of filas| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
                         <tr>
-                            <td title="productosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductos"><p class="text">productosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductosproductos</p></td>
-                            <td>unaDir</td>
-                            <td>otraDir</td>
-                            <td>unaFecha</td>
+                            <td title="{{fila[4]}}"><p class="text">{{fila[4]}}</p></td>
+                            <td>{{fila[0]}}</td>
+                            <td>{{fila[1]}}</td>
+                            <td>{{fila[3]}}</td>
                             <td>
                             	<button class="btn btn-dark btn-sm mr-1">Buscar voluntarios</button>
                             	<button class="btn btn-dark btn-sm">Postulantes</button>

@@ -20,6 +20,9 @@
     "estado": {
       "type": "string",
       "required": true
+    },
+    "tipoDescripcion": {
+      "type": "string"
     }
   },
   "validations": [],
