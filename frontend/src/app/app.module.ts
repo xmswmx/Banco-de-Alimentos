@@ -11,7 +11,7 @@ import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/r
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
-import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario/buscar-voluntario.component';
+import { BuscarVoluntarioComponent } from './modules/admin/buscar-voluntario/buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 import { SDKBrowserModule } from './_services/lbservice';

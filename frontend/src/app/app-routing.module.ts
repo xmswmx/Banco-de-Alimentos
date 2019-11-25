@@ -7,7 +7,7 @@ import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-vol
 import { LoginComponent } from './modules/login/login.component';
 import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
-import { BuscarVoluntarioComponent } from './modules/voluntario/buscar-voluntario//buscar-voluntario.component';
+import { BuscarVoluntarioComponent } from './modules/admin/buscar-voluntario//buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
@@ -35,7 +35,7 @@ const routes: Routes = [
 	{path:'perfil-donante',component:PerfilDonanteComponent},
 	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
 	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
-	{path:'buscar-voluntario',component:BuscarVoluntarioComponent},
+	{path:'buscar-voluntarios',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
 	{path:'ver-top',component:VerTopComponent},
 	{path:'panel-de-control',component:PanelComponent},

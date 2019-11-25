@@ -12,6 +12,8 @@ declare var Object: any;
 export interface EnvioParaBeneficiarioInterface {
   "estado": string;
   "numero": number;
+  "tipo": string;
+  "descripcion"?: string;
   "id"?: any;
   "beneficiarioId"?: any;
   beneficiario?: Beneficiario;
@@ -25,6 +27,8 @@ export interface EnvioParaBeneficiarioInterface {
 export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
   "estado": string;
   "numero": number;
+  "tipo": string;
+  "descripcion": string;
   "id": any;
   "beneficiarioId": any;
   beneficiario: Beneficiario;
@@ -73,6 +77,16 @@ export class EnvioParaBeneficiario implements EnvioParaBeneficiarioInterface {
         "numero": {
           name: 'numero',
           type: 'number'
+        },
+        "tipo": {
+          name: 'tipo',
+          type: 'string',
+          default: 'a partir de stock'
+        },
+        "descripcion": {
+          name: 'descripcion',
+          type: 'string',
+          default: ''
         },
         "id": {
           name: 'id',

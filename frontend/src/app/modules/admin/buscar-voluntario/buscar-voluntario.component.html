@@ -1,10 +1,13 @@
 <!-- CRITERIOS DE BUSQUEDA DE USUARIOS -->
 <div class="container text-center">
-    <h2>Buscar voluntario</h2>
+    <h2>Buscar voluntario para traslado</h2>
     <h4></h4>
 </div>
 
+
 <div class="card border-secondary mb-3 container mt-5 shadow" id="contenedor">
+    
+<!-- Deseable
     <section class="alert alert-dismissible alert-primary mt-3">
         Elegí un criterio de búsqueda
     </section>
@@ -23,11 +26,12 @@
             <section class="col">
                 <button type="submit" class="btn btn-primary text-center mr-3">Buscar</button>
             </section>
-
         </section>
     </section>
-    <section class="alert alert-dismissible alert-primary mt-3">
-        Resultados de la búsqueda
+-->
+
+    <section class="alert alert-dismissible alert-dark mt-3">
+        Los siguientes voluntarios indicaron que poseen capacidad y están dispuestos a recorrer la distancia de este traslado
     </section>
     <table class="table table-hover table-bordered table-center">
         <thead>
@@ -37,7 +41,7 @@
                 <th scope="col">Dirección</th>
                 <th scope="col">Email</th>
                 <th scope="col">Celular</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Seleccionar</th>
             </tr>
         </thead>
         <tbody class="text-center">
@@ -47,31 +51,9 @@
                 <td>Direccion de la persona</td>
                 <td>Email de la persona</td>
                 <td>Celular de la persona</td>
-                <td>  <button class="btn btn-primary" type="submit">Ver detalles</button></td>
-            </tr>
-            <tr>
-                <td>Jose</td>
-                <td>Gonzales</td>
-                <td>Direccion de la persona</td>
-                <td>Email de la persona</td>
-                <td>Celular de la persona</td>
-                <td>  <button class="btn btn-primary" type="submit">Ver detalles</button></td>
-            </tr>
-            <tr>
-                <td>Matías</td>
-                <td>Perez</td>
-                <td>Direccion de la persona</td>
-                <td>Email de la persona</td>
-                <td>Celular de la persona</td>
-                <td>  <button class="btn btn-primary" type="submit">Ver detalles</button></td>
-            </tr>
-            <tr>
-                <td>Ricardo</td>
-                <td>Lopez</td>
-                <td>Direccion de la persona</td>
-                <td>Email de la persona</td>
-                <td>Celular de la persona</td>
-                <td>  <button class="btn btn-primary" type="submit">Ver detalles</button></td>
+                <td>  
+                    <input type="checkbox" id="cbox1" value="first_checkbox">    
+                </td>
             </tr>
         </tbody>
     </table>
@@ -108,6 +90,7 @@
         </section>					
     </section>				
     <section class="card-header text-center p-3 mt-4 mb-4">
-        <button type="button" class="btn btn-primary text-center">Volver</button>
+        <button type="button" class="btn btn-dark text-center mr-2">Enviar correo a los seleccionados</button>
+        <button type="button" class="btn btn-dark text-center">Volver</button>
     </section>
 </div>
