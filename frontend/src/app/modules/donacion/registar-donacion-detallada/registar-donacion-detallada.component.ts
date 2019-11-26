@@ -142,6 +142,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
              nuevosProductos.push(nuevoProducto);
            } //Fin for productos
            this.apiDescripcion.createProductos(desc.id,nuevosProductos).subscribe(()=>{
+              //Aca tendria que agregarle el volumen a la donacion
               this.router.navigateByUrl("/mis-donaciones");
               alert('Se registró la donación');
            }) //Fin productos

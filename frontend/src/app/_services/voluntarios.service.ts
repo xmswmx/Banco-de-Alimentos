@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Voluntario, Traslado, Ubicacion, Volumen } from 'src/app/_services/lbservice/models'
+import { Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from 'src/app/_services/lbservice/models';
+import { VoluntarioApi, VolumenApi, UbicacionApi, DonacionApi, EnvioParaBeneficiarioApi } from 'src/app/_services/lbservice';
+import { AddressConverter } from 'src/app/_models/AddressConverter'
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +12,49 @@ export class VoluntariosService {
 	una lista de voluntarios leida de la API y obtener los datos necesarios
 	para mostrarlos y enviarles un correo con un código de confirmación
 */
-	//Debe incluir los voluntarios y también su ubicación
-	todosLosVoluntarios:Voluntario[] = []; 
+
+	totalVolumen:number; //Listo
+	distancia:number; //Listo
+	todosLosVoluntarios:Voluntario[] = []; // !
 	voluntariosQuePueden:Voluntario[] = []; 
-	constructor() {
+	converter : AddressConverter = new AddressConverter;
+	constructor(private apiEnvio:EnvioParaBeneficiarioApi, private apiDonacion:DonacionApi,private apiVoluntario: VoluntarioApi) {
+		apiVoluntario.find().subscribe((voluntarios:Voluntario[])=>{
+			this.todosLosVoluntarios=voluntarios;
+			for(let voluntario of this.todosLosVoluntarios){
+				//Necesito agregarle su .vehiculo.volumen en caso de tener
+			}			
+		})
 
 	}
 
-	//Debe recibir el traslado, segun su tipo con su envio+beneficiario+ubicacion
-	// o donacion+donante+ubicacion
+	//Recibe parámetros para setear el traslado, distancia, volumen que los voluntarios deben cumplir
+	//para aparecer en la próxima lista en pedirse
 	setTraslado(traslado:Traslado, origen: string, destino:string){
 		//Averiguar
-		let volumenTraslado:Volumen;
+		this.totalVolumen;
+		if (traslado.tipo=='donacion'){
+			//Caso donacion
+			this.apiDonacion.getVolumen(traslado.idDonacionTrasladadaAlBanco,true).subscribe((volumen:Volumen)=>{
+				this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
+				let o = this.converter.coordinateForAddress(origen);
+				let d = this.converter.coordinateForAddress(destino);
+				this.distancia=this.converter.distanceFromTo(o,d);
+			}) //Fin getVolumen
+		} //Fin caso donacion
+		else {
+			//Caso envio
+			this.apiEnvio.getVolumen(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((volumen:Volumen)=>{
+				this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
+				let o = this.converter.coordinateForAddress(origen);
+				let d = this.converter.coordinateForAddress(destino);
+				this.distancia=this.converter.distanceFromTo(o,d);
+			}) //Fin getVolumen
+		} //Fin caso envio
+	} //Fin setTraslado
 
-		//Distancia
-		let distancia:number;
-
-		//Obtener su donacion o envio
-
-	}
-
+	//Devuelve una lista de voluntarios filtrada por los que cumplen con la distancia y volumen total
+	//Para el último traslado seteado
 	getVoluntariosParaElTraslado():Voluntario[]{
 
 

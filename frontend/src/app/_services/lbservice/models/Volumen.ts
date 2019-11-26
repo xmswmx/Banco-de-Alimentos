@@ -7,6 +7,7 @@ export interface VolumenInterface {
   "ancho": number;
   "id"?: any;
   "vehiculoId"?: any;
+  "idDonacion"?: any;
   "envioParaBeneficiarioId"?: any;
   "idDescripcionGeneral"?: any;
 }
@@ -17,6 +18,7 @@ export class Volumen implements VolumenInterface {
   "ancho": number;
   "id": any;
   "vehiculoId": any;
+  "idDonacion": any;
   "envioParaBeneficiarioId": any;
   "idDescripcionGeneral": any;
   constructor(data?: VolumenInterface) {
@@ -70,6 +72,10 @@ export class Volumen implements VolumenInterface {
         },
         "vehiculoId": {
           name: 'vehiculoId',
+          type: 'any'
+        },
+        "idDonacion": {
+          name: 'idDonacion',
           type: 'any'
         },
         "envioParaBeneficiarioId": {

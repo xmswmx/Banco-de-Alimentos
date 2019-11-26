@@ -1,5 +1,6 @@
 /* tslint:disable */
 import {
+  Volumen,
   Traslado,
   DescripcionGeneral,
   DescripcionDetallada
@@ -14,6 +15,7 @@ export interface DonacionInterface {
   "id"?: any;
   "idDonante"?: any;
   "idEnvio"?: any;
+  volumen?: Volumen;
   traslado?: Traslado;
   descripcionGeneral?: DescripcionGeneral;
   descripcionDetallada?: DescripcionDetallada;
@@ -27,6 +29,7 @@ export class Donacion implements DonacionInterface {
   "id": any;
   "idDonante": any;
   "idEnvio": any;
+  volumen: Volumen;
   traslado: Traslado;
   descripcionGeneral: DescripcionGeneral;
   descripcionDetallada: DescripcionDetallada;
@@ -94,6 +97,14 @@ export class Donacion implements DonacionInterface {
         },
       },
       relations: {
+        volumen: {
+          name: 'volumen',
+          type: 'Volumen',
+          model: 'Volumen',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'idDonacion'
+        },
         traslado: {
           name: 'traslado',
           type: 'Traslado',

@@ -32,6 +32,11 @@
      "model": "DescripcionDetallada",
      "foreignKey": "idDonacion"
    },
+   "volumen": {
+     "type": "hasOne",
+     "model": "Volumen",
+     "foreignKey": "idDonacion"
+   },
    "descripcionGeneral": {
      "type": "hasOne",
      "model": "DescripcionGeneral",
