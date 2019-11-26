@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from 'src/app/_services/lbservice/models';
-import { VoluntarioApi, VolumenApi, UbicacionApi, DonacionApi, EnvioParaBeneficiarioApi } from 'src/app/_services/lbservice';
+import { Vehiculo, Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from 'src/app/_services/lbservice/models';
+import { VehiculoApi, VoluntarioApi, VolumenApi, UbicacionApi, DonacionApi, EnvioParaBeneficiarioApi } from 'src/app/_services/lbservice';
 import { AddressConverter } from 'src/app/_models/AddressConverter'
 
 @Injectable({
@@ -18,13 +18,30 @@ export class VoluntariosService {
 	todosLosVoluntarios:Voluntario[] = []; // !
 	voluntariosQuePueden:Voluntario[] = []; 
 	converter : AddressConverter = new AddressConverter;
-	constructor(private apiEnvio:EnvioParaBeneficiarioApi, private apiDonacion:DonacionApi,private apiVoluntario: VoluntarioApi) {
+	constructor(private apiVehiculo:VehiculoApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonacion:DonacionApi,private apiVoluntario: VoluntarioApi) {
 		apiVoluntario.find().subscribe((voluntarios:Voluntario[])=>{
 			this.todosLosVoluntarios=voluntarios;
+			this.todosLosVoluntarios = this.todosLosVoluntarios.filter(vol => vol.distanciaMaxima > this.distancia);
 			for(let voluntario of this.todosLosVoluntarios){
-				//Necesito agregarle su .vehiculo.volumen en caso de tener
-			}			
-		})
+				apiVoluntario.getVehiculo(voluntario.id).subscribe((vehiculo)=>{
+					if (vehiculo != null){
+						apiVehiculo.getVolumen(vehiculo.id).subscribe((volumen:Volumen)=>{
+							if ((volumen.alto*volumen.ancho*volumen.largo)>this.totalVolumen){
+								this.voluntariosQuePueden.push(voluntario);
+								console.log('Se agregó un voluntario');
+							} //Fin if volumen >
+						}) // fin getvolumen
+					} //fin if tiene vehiculo
+					else {
+						//Si no tiene vehiculo que lleve 2 mts caminando
+						if ((2*2*2)>this.totalVolumen){
+							this.voluntariosQuePueden.push(voluntario);
+							console.log('Se agregó un voluntario');
+						}
+					}
+				})//Fin vehiculo
+			} //Fin FOR			
+		})// Fin voluntarios
 
 	}
 
