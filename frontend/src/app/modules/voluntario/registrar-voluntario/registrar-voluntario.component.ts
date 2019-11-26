@@ -96,8 +96,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
       "capturo cada uno de los valores que se ingresaron en los inputs"
       this.voluntario.nombre = this.form.get("nombre").value;                         
       this.voluntario.apellido = this.form.get("apellido").value;                   
-      this.voluntario.dni = this.form.get("dni").value;     
-      // agregar el atributo direccion en loopback. Luego descomentar la linea 67     
+      this.voluntario.dni = this.form.get("dni").value;        
       // this.voluntario.direccion = this.form.get("direccion").value(); 
       /*
        * La dirección nos quedó en ubicación, es porque lleva asociado un geopoint
@@ -108,8 +107,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.ubicacion.direccion =this.form.get("direccion").value;
       this.ubicacion.puntoGeografico =
       this.addressConverter.coordinateForAddress(this.ubicacion.direccion);
-      //this.ubicacion.beneficiarioId = La pido a la api mas delante
-      //                       
+      //this.ubicacion.beneficiarioId = La pido a la api mas delante                  
       this.voluntario.username = this.form.get("username").value;                     
       this.voluntario.email = this.form.get("email").value;                         
       this.voluntario.telefono = this.form.get("celular").value;                        
@@ -117,7 +115,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
       // this.voluntario = this.form.get("password2").value();
       this.voluntario.distanciaMaxima = this.form.get("distancia").value;           
       this.voluntario.puntuacion = 0;                                                 
-      // Roles de loopback. Se deja con un string vacío por ahora.
+      // Roles de loopback. Se deja con un string vacío.
       this.voluntario.realm = "";
       this.voluntario.observaciones = this.form.get("observaciones").value;
    
@@ -125,13 +123,13 @@ export class RegistrarVoluntarioComponent implements OnInit {
       this.vehiculo.marca = this.form.get("marca").value;
       this.vehiculo.modelo = this.form.get("modelo").value;
       this.vehiculo.patente = this.form.get("patente").value;
-      //this.vehiculo.voluntarioId = "idDelVoluntarioQueSeCree - Falta hacer"
+      //this.vehiculo.voluntarioId = Se crea mas abajo, como una promesa
   
       // Se crea el volumen del vehículo del voluntario"
       this.volumen.alto = this.form.get("alto").value;
       this.volumen.ancho = this.form.get("ancho").value;
       this.volumen.largo = this.form.get("largo").value;
-      //this.volumen.vehiculoId =  "idDelVehiculoQueSeCree - FALTA HACE"
+      //this.volumen.vehiculoId =  Se crea mas abajo, como una promesa
       //this.volumen.envioParaBeneficiarioId = "VER"
       /* El volumen puede ser de un auto, un envio, o alguna otra cosa,
        * Si el volumen que estás creando no es de un envio por ejemplo solo lo dejas en null
