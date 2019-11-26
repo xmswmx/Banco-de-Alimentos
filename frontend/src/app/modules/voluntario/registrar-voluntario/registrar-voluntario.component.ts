@@ -23,7 +23,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
   addressConverter: AddressConverter;
   ubicacion: Ubicacion;
 
-  constructor(private ubicacionApi:UbicacionApi, private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi ) {
+  constructor(private ubicacionApi:UbicacionApi, private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi, private route: ActivatedRoute , private router:Router ) {
 
     // se crean las instancias de voluntario, vehiculo y volumen
     this.voluntario = new Voluntario();
@@ -71,6 +71,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
   get password1() {return this.form.get('password1');}
   get password2() {return this.form.get('password2');}
   get distancia() {return this.form.get('distancia');}
+  get observaciones() {return this.form.get('observaciones')}
 
   get marca() {return this.form.get('marca');}
   get modelo() {return this.form.get('modelo');}
@@ -153,6 +154,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
               this.volumenApi.create(this.volumen).subscribe(() => {
                  this.ubicacionApi.create(this.ubicacion).subscribe(()=>{
                      alert('El voluntario se registró exitosamente');
+                     this.router.navigateByUrl("/perfil-voluntario");
                  })
                  
             })
