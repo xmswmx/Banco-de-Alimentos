@@ -21,7 +21,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	nuevoBeneficiario: Beneficiario;
 	convertidorDeDirecciones: AddressConverter;
 
-	constructor(private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
+	constructor(private ubicacionApi:UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
 
 		this.nuevoBeneficiario = new Beneficiario();
 		this.convertidorDeDirecciones = new AddressConverter();
@@ -41,32 +41,23 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 			console.warn(this.registrarBeneficiario.value);
 			this.nuevoBeneficiario = new Beneficiario();
 			this.nuevoBeneficiario.username = this.registrarBeneficiario.get("nombreOrganizacion").value;
-
-			//this.nuevoBeneficiario.ubicacion = this.generarUbicacion(this.registrarBeneficiario.get("direccion").value);
-
 			this.nuevoBeneficiario.cantidadAtendidos = this.registrarBeneficiario.get("cantidadAtendidos").value;
 			this.nuevoBeneficiario.email = this.registrarBeneficiario.get("email").value;
 			this.nuevoBeneficiario.password = this.registrarBeneficiario.get("password").value;
 
 			this.beneficiarioApi.create(this.nuevoBeneficiario).subscribe((beneficiarioCreado: Beneficiario) => {
-				// this.ubicacionApi.create(this.nuevoBeneficiario.ubicacion).subscribe(()=>{
-				// 	this.nuevoBeneficiario.ubicacion.beneficiarioId = beneficiarioCreado.id;
+				let ubicacion:Ubicacion;
+				ubicacion.beneficiarioId = beneficiarioCreado.id;
+				ubicacion.direccion =  this.registrarBeneficiario.get("direccion").value;
+				ubicacion.puntoGeografico = this.convertidorDeDirecciones.coordinateForAddress(ubicacion.direccion);
+				this.ubicacionApi.create(this.nuevoBeneficiario.ubicacion).subscribe(()=>{
 				 	this.router.navigateByUrl("/login");
 				 	alert('Se registró exitosamente');
-				
-				// })
-					
-			})
-		}
-	}
+				}) //ubicacion	
+			})//beneficiario
+		}//Validation
+	}//submit
 
-
-	generarUbicacion(direccion: string) {
-		let nuevaUbicacion = new Ubicacion;
-		nuevaUbicacion.direccion = direccion;
-		nuevaUbicacion.puntoGeografico = this.convertidorDeDirecciones.coordinateForAddress(direccion);
-		return nuevaUbicacion;
-	}
 
 	get emailIsInvalid() {
 		return this.registrarBeneficiario.get('email').dirty && !this.registrarBeneficiario.get('email').valid
