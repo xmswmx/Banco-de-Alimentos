@@ -3,6 +3,9 @@ import { Beneficiario, EnvioParaBeneficiario, Donacion, Donante, DescripcionGene
 import { BeneficiarioApi, EnvioParaBeneficiarioApi ,DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi, UbicacionApi, DescripcionDetalladaApi } from '../../../_services/lbservice/services'
 import {Location} from '@angular/common';
 import { BALP } from '../../../_models/BALP'
+import { VoluntariosService } from 'src/app/_services/voluntarios.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-traslados-sin-voluntario',
@@ -14,7 +17,7 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 	traslados:Traslado[];
 	filas = [];
 	balp:BALP; 
-	constructor(private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) {
+	constructor(private router:Router,private service: VoluntariosService,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) {
 		
 		this.balp = new BALP;
 
@@ -30,6 +33,7 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 						apiDonacion.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
 							apiDonante.findById(donacion.idDonante).subscribe((donante:Donante)=>{
 								apiDonante.getUbicacion(donante.id,true).subscribe((ubicacion:Ubicacion)=>{
+									donante.ubicacion = ubicacion;
 									let origen = ubicacion.direccion;
 									let destino = this.balp.ubicacionBALP.direccion;
 									let idDonante = donante.id;
@@ -42,7 +46,9 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 												destino,
 												idDonante,
 												fecha,
-												desc.descripcion
+												desc.descripcion,
+												donante,
+												traslado
 											]) //Fin push
 										});//Fin desc general
 									} else {
@@ -53,7 +59,9 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 												destino,
 												idDonante,
 												fecha,
-												desc.descripcion
+												desc.descripcion,
+												donante,
+												traslado
 											]) //Fin push
 										}); //Fin desc detallada
 									} //Fin else
@@ -67,6 +75,7 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 						apiEnvio.findById(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario)=>{
 							apiBeneficiario.findById(envio.beneficiarioId).subscribe((beneficiario:Beneficiario)=>{
 								apiBeneficiario.getUbicacion(beneficiario.id, true).subscribe((ubicacion:Ubicacion)=>{
+									beneficiario.ubicacion = ubicacion;
 									let origen = this.balp.ubicacionBALP.direccion;
 									let destino = ubicacion.direccion;
 									let idBeneficiario = beneficiario.id;
@@ -77,7 +86,9 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 												destino,
 												idBeneficiario,
 												fecha,
-												descripcion
+												descripcion,
+												beneficiario,
+												traslado
 											]) //Fin push
 								})//Fin ubicacion
 							}) //Fin beneficiario
@@ -92,6 +103,11 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 				} // Fin For
 			}); //Fin find()
 	 } //Fin constructor
+
+	buscarVoluntariosParaFila(fila){
+		this.service.setTraslado(fila[6], fila[0], fila[1]);
+		this.router.navigate(['/buscar-voluntarios']);
+	}
 
 	ngOnInit() {
 	}
