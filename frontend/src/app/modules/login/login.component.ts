@@ -34,19 +34,19 @@ export class LoginComponent implements OnInit {
 			this.user = new User();
 			this.user.username = this.logInForm.get("usuario").value;
 			this.user.password = this.logInForm.get("clave").value;
-			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/home'])});
+			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-administrador'])});
 			break;
 		case 'b':
 			this.beneficiario = new Beneficiario();
 			this.beneficiario.username = this.logInForm.get("usuario").value;
 			this.beneficiario.password = this.logInForm.get("clave").value;
-			this.beneficiarioApi.login(this.beneficiario).subscribe((token: AccessToken)=> {this.router.navigate(['/home'])});
+			this.beneficiarioApi.login(this.beneficiario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-beneficiario'])});
 			break;
 		case 'd':
 			this.donante = new Donante();
 			this.donante.username = this.logInForm.get("usuario").value;
 			this.donante.password = this.logInForm.get("clave").value;
-			this.donanteApi.login(this.donante).subscribe((token: AccessToken)=> {this.router.navigate(['/home'])});
+			this.donanteApi.login(this.donante).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-donante'])});
 			break;
 		case 'v':
 			this.voluntario = new Voluntario();

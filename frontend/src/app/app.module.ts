@@ -25,6 +25,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PanelComponent } from './modules/admin/panel/panel.component';
 import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component';
+import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
+import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
+import { NuevoTrasladoComponent } from './modules/admin/nuevo-traslado/nuevo-traslado.component';
+import { SolicitudesTrasladoComponent } from './modules/voluntario/solicitudes-traslado/solicitudes-traslado.component';
+import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/confirmar-traslado-realizado/confirmar-traslado-realizado.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,12 @@ import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-v
     RegistrarDonacionGeneralComponent,
     PerfilBeneficiarioComponent,
     PanelComponent,
-    TrasladosSinVoluntarioComponent
+    TrasladosSinVoluntarioComponent,
+    TrasladosPendientesComponent,
+    RegistrarDonacionComponent,
+    NuevoTrasladoComponent,
+    SolicitudesTrasladoComponent,
+    ConfirmarTrasladoRealizadoComponent
   ],
   imports: [
     FontAwesomeModule,

@@ -5,9 +5,9 @@ import { RegistrarDonanteComponent } from './modules/donante/registrar-donante/r
 import { RegistrarBeneficiarioComponent } from './modules/beneficiario/registrar-beneficiario/registrar-beneficiario.component';
 import { RegistrarVoluntarioComponent } from './modules/voluntario/registrar-voluntario/registrar-voluntario.component';
 import { LoginComponent } from './modules/login/login.component';
-import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario//perfil-voluntario.component';
+import { PerfilVoluntarioComponent } from './modules/voluntario/perfil-voluntario/perfil-voluntario.component';
 import { VerBeneficiariosComponent } from './modules/beneficiario/ver-beneficiarios/ver-beneficiarios.component';
-import { BuscarVoluntarioComponent } from './modules/admin/buscar-voluntario//buscar-voluntario.component';
+import { BuscarVoluntarioComponent } from './modules/admin/buscar-voluntario/buscar-voluntario.component';
 import { CambiarClaveComponent } from './modules/cuenta/cambiar-clave/cambiar-clave.component';
 import { VerTopComponent } from './modules/topDonaciones/ver-top/ver-top.component';
 import { PerfilDonanteComponent } from './modules/donante/perfil-donante/perfil-donante.component';
@@ -17,7 +17,7 @@ import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 import { PanelComponent } from "./modules/admin/panel/panel.component";
 import { TrasladosSinVoluntarioComponent } from "./modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component";
-
+import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
 
 
 const routes: Routes = [
@@ -32,7 +32,7 @@ const routes: Routes = [
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
 	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
-	{path:'perfil-donante',component:PerfilDonanteComponent},
+	{path:'perfil-beneficiario',component:PerfilBeneficiarioComponent},
 	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
 	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
 	{path:'buscar-voluntarios',component:BuscarVoluntarioComponent},
@@ -40,7 +40,7 @@ const routes: Routes = [
 	{path:'ver-top',component:VerTopComponent},
 	{path:'panel-de-control',component:PanelComponent},
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
-
+	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
 ];
 
 @NgModule({
