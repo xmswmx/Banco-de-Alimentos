@@ -16,7 +16,12 @@ export class BuscarVoluntarioComponent implements OnInit {
 //Necesito recibir la ID del traslado, la distancia y el volumen
 	voluntarios : Voluntario[] = [];
   constructor(private service:VoluntariosService, private router: Router) {
-  	this.voluntarios = service.getVoluntariosParaElTraslado();
+  	service.getVoluntariosParaElTraslado().then((voluntarios)=>{
+  		this.voluntarios = voluntarios;
+  	});
+  	//no se alcanza a setear que se lee el array
+  	console.log('Se leyeron los voluntarios del servicio');
+  	console.log(this.voluntarios)
   }
 
   ngOnInit() {

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Vehiculo, Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from 'src/app/_services/lbservice/models';
 import { VehiculoApi, VoluntarioApi, VolumenApi, UbicacionApi, DonacionApi, EnvioParaBeneficiarioApi } from 'src/app/_services/lbservice';
-import { AddressConverter } from 'src/app/_models/AddressConverter'
+import { AddressConverter } from 'src/app/_models/AddressConverter';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,64 +16,78 @@ export class VoluntariosService {
 
 	totalVolumen:number; //Listo
 	distancia:number; //Listo
-	todosLosVoluntarios:Voluntario[] = []; // !
-	voluntariosQuePueden:Voluntario[] = []; 
+	todosLosVoluntarios:Voluntario[] = []; //listo
+	voluntariosQuePueden:Voluntario[] = []; //listo
 	converter : AddressConverter = new AddressConverter;
-	constructor(private apiVehiculo:VehiculoApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonacion:DonacionApi,private apiVoluntario: VoluntarioApi) {
-		apiVoluntario.find().subscribe((voluntarios:Voluntario[])=>{
-			this.todosLosVoluntarios=voluntarios;
-			this.todosLosVoluntarios = this.todosLosVoluntarios.filter(vol => vol.distanciaMaxima > this.distancia);
-			for(let voluntario of this.todosLosVoluntarios){
-				apiVoluntario.getVehiculo(voluntario.id).subscribe((vehiculo)=>{
-					if (vehiculo != null){
-						apiVehiculo.getVolumen(vehiculo.id).subscribe((volumen:Volumen)=>{
-							if ((volumen.alto*volumen.ancho*volumen.largo)>this.totalVolumen){
-								this.voluntariosQuePueden.push(voluntario);
-								console.log('Se agregó un voluntario');
-							} //Fin if volumen >
-						}) // fin getvolumen
-					} //fin if tiene vehiculo
-					else {
-						//Si no tiene vehiculo que lleve 2 mts caminando
-						if ((2*2*2)>this.totalVolumen){
-							this.voluntariosQuePueden.push(voluntario);
-							console.log('Se agregó un voluntario');
-						}
-					}
-				})//Fin vehiculo
-			} //Fin FOR			
-		})// Fin voluntarios
-
+	constructor(private router:Router, private apiVehiculo:VehiculoApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonacion:DonacionApi,private apiVoluntario: VoluntarioApi) {
 	}
 
 	//Recibe parámetros para setear el traslado, distancia, volumen que los voluntarios deben cumplir
 	//para aparecer en la próxima lista en pedirse
-	setTraslado(traslado:Traslado, origen: string, destino:string){
-		//Averiguar
-		this.totalVolumen;
-		if (traslado.tipo=='donacion'){
-			//Caso donacion
-			this.apiDonacion.getVolumen(traslado.idDonacionTrasladadaAlBanco,true).subscribe((volumen:Volumen)=>{
-				this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
-				let o = this.converter.coordinateForAddress(origen);
-				let d = this.converter.coordinateForAddress(destino);
-				this.distancia=this.converter.distanceFromTo(o,d);
-			}) //Fin getVolumen
-		} //Fin caso donacion
-		else {
-			//Caso envio
-			this.apiEnvio.getVolumen(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((volumen:Volumen)=>{
-				this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
-				let o = this.converter.coordinateForAddress(origen);
-				let d = this.converter.coordinateForAddress(destino);
-				this.distancia=this.converter.distanceFromTo(o,d);
-			}) //Fin getVolumen
-		} //Fin caso envio
+	setTraslado(traslado:Traslado, origen: string, destino:string):Promise<string>{
+		return new Promise((resolve)=>{
+			console.log('entro al set');
+			if (traslado.tipo=='donacion'){
+				//Caso donacion
+				this.apiDonacion.getVolumen(traslado.idDonacionTrasladadaAlBanco,true).subscribe((volumen:Volumen)=>{
+					this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
+					let o = this.converter.coordinateForAddress(origen);
+					let d = this.converter.coordinateForAddress(destino);
+					this.distancia=this.converter.distanceFromTo(o,d);
+					console.log('se seteo la distancia del service');
+					console.log(this.distancia);
+				}) //Fin getVolumen
+			} //Fin caso donacion
+			else {
+				//Caso envio
+				this.apiEnvio.getVolumen(traslado.idEnvioTrasladadoAUnBeneficiario,true).subscribe((volumen:Volumen)=>{
+					this.totalVolumen=volumen.alto*volumen.ancho*volumen.largo;
+					let o = this.converter.coordinateForAddress(origen);
+					let d = this.converter.coordinateForAddress(destino);
+					this.distancia=this.converter.distanceFromTo(o,d);
+				}) //Fin getVolumen
+			} //Fin caso envio
+
+
+			//Recargo la lista y la filtro por 
+			this.apiVoluntario.find().subscribe((voluntarios:Voluntario[])=>{
+				//Me quedo solo los de la distancia apropiada
+				this.todosLosVoluntarios=voluntarios;
+				console.log('se levantan todos los voluntarios');
+				console.log(this.todosLosVoluntarios);
+				this.todosLosVoluntarios = this.todosLosVoluntarios.filter(volun => volun.distanciaMaxima > this.distancia);
+				console.log('me quede solo con los que tienen distancia maxima mayor a la distancia');
+				console.log(this.todosLosVoluntarios);
+				//Por cada uno voy a pushearlo solo si cumple con el volumen
+				this.voluntariosQuePueden= [];
+				for(let voluntario of this.todosLosVoluntarios){
+					if (voluntario.tieneVehiculo == 'si') {
+					this.apiVoluntario.getVehiculo(voluntario.id,true).subscribe((vehiculo)=>{
+							this.apiVehiculo.getVolumen(vehiculo.id,true).subscribe((volumen:Volumen)=>{
+								if ((volumen.alto*volumen.ancho*volumen.largo)>this.totalVolumen){
+									this.voluntariosQuePueden.push(voluntario);
+									console.log('Se agregó un voluntario');
+								} //Fin if volumen >
+							}) // fin getvolumen
+						}) //Fin gevehiculo
+					} else {
+						//Si no tiene vehiculo que lo lleve en una caja tipo glovo, de 1 metro cubico
+							if (0<=this.totalVolumen){ //Poner en 1
+								this.voluntariosQuePueden.push(voluntario);
+								console.log('Se agregó un voluntario');
+								this.router.navigate(['/buscar-voluntarios']);
+							} //Fin if
+						} //Fin else
+					}//Fin for voluntario
+					//Problema: el programa se va antes de que se cumplan las promesas
+					//this.router.navigate(['/buscar-voluntarios']);
+			})// Fin voluntarios promesa
+		}); //Fin promesa
 	} //Fin setTraslado
 
 	//Devuelve una lista de voluntarios filtrada por los que cumplen con la distancia y volumen total
 	//Para el último traslado seteado
-	getVoluntariosParaElTraslado():Voluntario[]{
+	getVoluntariosParaElTraslado():Promise<Voluntario[]> {
 
 
 		//Mock
@@ -94,6 +109,7 @@ export class VoluntariosService {
 		vol2.ubicacion = ub2;
 		vol2.telefono = 12537534;
 
-		return [vol1,vol2];
+		//return [vol1,vol2];
+		return new Promise((resolve)=>{this.voluntariosQuePueden;})
 	}
 }

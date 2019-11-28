@@ -105,8 +105,13 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 	 } //Fin constructor
 
 	buscarVoluntariosParaFila(fila){
-		this.service.setTraslado(fila[6], fila[0], fila[1]);
-		this.router.navigate(['/buscar-voluntarios']);
+		this.service.setTraslado(fila[6], fila[0], fila[1]).then((string)=>{
+			console.log('Deberia seguir');
+			this.router.navigate(['/buscar-voluntarios']);
+			
+		});
+		
+		
 	}
 
 	ngOnInit() {
