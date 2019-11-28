@@ -30,6 +30,7 @@ import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion
 import { NuevoTrasladoComponent } from './modules/admin/nuevo-traslado/nuevo-traslado.component';
 import { SolicitudesTrasladoComponent } from './modules/voluntario/solicitudes-traslado/solicitudes-traslado.component';
 import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/confirmar-traslado-realizado/confirmar-traslado-realizado.component';
+import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/conf
     RegistrarDonacionComponent,
     NuevoTrasladoComponent,
     SolicitudesTrasladoComponent,
-    ConfirmarTrasladoRealizadoComponent
+    ConfirmarTrasladoRealizadoComponent,
+    AsignarTrasladoComponent
   ],
   imports: [
     FontAwesomeModule,

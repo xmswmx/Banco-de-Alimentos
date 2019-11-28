@@ -18,7 +18,7 @@ import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-benef
 import { PanelComponent } from "./modules/admin/panel/panel.component";
 import { TrasladosSinVoluntarioComponent } from "./modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component";
 import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
-
+import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -35,12 +35,13 @@ const routes: Routes = [
 	{path:'perfil-beneficiario',component:PerfilBeneficiarioComponent},
 	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
 	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
-	{path:'buscar-voluntarios',component:BuscarVoluntarioComponent},
+	{path:'buscar-voluntarios/:idTraslado/:origen/:destino',component:BuscarVoluntarioComponent},
 	{path:'cambiar-clave',component:CambiarClaveComponent},
 	{path:'ver-top',component:VerTopComponent},
 	{path:'panel-de-control',component:PanelComponent},
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
+	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent}
 ];
 
 @NgModule({

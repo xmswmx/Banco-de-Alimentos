@@ -22,6 +22,9 @@
     },
     "tipo": {
       "type":"string"
+    },
+    "volumenTotal": {
+      "type":"number"
     }
   },
   "validations": [],
