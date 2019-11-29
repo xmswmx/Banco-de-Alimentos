@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet">
 <nav class="navbar navbar-light d-flex flex-row justify-content-between" [ngClass]="[userApi.getCachedCurrent() ? '' : 'bg-naranja']">
 	<a (click)="this.router.navigate(['/home']);" class="navbar-brand d-inline-flex ml-4 pointer">
 		<img *ngIf="!userApi.getCachedCurrent()" src="../../assets/icons/logo-balp-blanco.png" width="205" height="74"
@@ -42,7 +42,7 @@
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Ver mi perfil</a>
-				<a class="dropdown-item" (click)="router.navigate(['/registrar-donacion-detallada'])">Nueva donacion</a>
+				<a class="dropdown-item" (click)="router.navigate(['/registrar-donacion'])">Nueva donacion</a>
 				<a class="dropdown-item" (click)="router.navigate(['/mis-donaciones'])">Mis donaciones</a>
 				<a class="dropdown-item" (click)="router.navigate(['/puntajes-insignias'])">Puntajes e Insignias</a>				
 				<a class="dropdown-item" (click)="logout()">Cerrar sesión</a>

@@ -19,7 +19,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   productos = [];
 
   //fechaRetirro, barcode, ammount
-  form: FormGroup;
+  formDetallada: FormGroup;
 
   //conoce su descripcion y se debe crear un traslado con su fecha de retiro
   nuevaDonacion: Donacion; 
@@ -37,11 +37,14 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   idDonante;
   //Inicializar el form y algunas variables
   constructor(private router:Router,private apiTraslado:TrasladoApi,private apiDonante: DonanteApi,private apiDonacion:DonacionApi, private apiDescripcion:DescripcionDetalladaApi,private apiProducto:ProductoApi,private apiTipoProducto:TipoProductoApi ) {
-  	  this.form = new FormGroup({
+  	  this.formDetallada = new FormGroup({
         fechaRetiro: new FormControl(),
         barcode: new FormControl(),
         ammount: new FormControl(),
-        vto: new FormControl()
+        vto: new FormControl(),
+        alto: new FormControl(),
+        ancho: new FormControl(),
+        largo: new FormControl()
 
       });
       this.idDonante = apiDonante.getCachedCurrent().id;
@@ -69,10 +72,10 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
    agregarProducto(){
      
      // VALIDACIONES
-     let barcode = this.form.get("barcode").value;
+     let barcode = this.formDetallada.get("barcode").value;
      let existeElCodigo = this.productosValidos.some((element:TipoProducto)=> element.codigoBarra == barcode);
-     let cantidad = this.form.get("ammount").value;
-     let vto = this.form.get("vto").value;
+     let cantidad = this.formDetallada.get("ammount").value;
+     let vto = this.formDetallada.get("vto").value;
      if (!existeElCodigo){
        alert("El código no existe");
        return 0;
@@ -114,12 +117,12 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
      this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
        //Ahora creo su traslado
        console.log('Se creo la donacion vacia');
-       this.traslado.fechaEstimada = this.form.get("fechaRetiro").value;
+       this.traslado.fechaEstimada = this.formDetallada.get("fechaRetiro").value;
        this.traslado.idDonacionTrasladadaAlBanco = donacionCreada.id;
        this.traslado.tipo = 'donacion';
        
        //testear que se guarde el volumenTotal correcto
-       this.traslado.volumenTotal = this.form.get("alto").value + this.form.get("ancho").value + this.form.get("largo").value;
+       this.traslado.volumenTotal = this.formDetallada.get("alto").value + this.formDetallada.get("ancho").value + this.formDetallada.get("largo").value;
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          console.log('Se creo el traslado');
          this.descripcion.idDonacion = donacionCreada.id;
@@ -158,7 +161,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
    //rellenará el campo de código por lo que estaría bueno mockear ese fill
    leerConScanner(){
      alert('Se simula la lectura de un menthoplus');
-     this.form.get("barcode").setValue('9845475257847');
+     this.formDetallada.get("barcode").setValue('9845475257847');
    }
 
   ngOnInit() {

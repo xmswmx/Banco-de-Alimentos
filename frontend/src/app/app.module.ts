@@ -31,6 +31,8 @@ import { NuevoTrasladoComponent } from './modules/admin/nuevo-traslado/nuevo-tra
 import { SolicitudesTrasladoComponent } from './modules/voluntario/solicitudes-traslado/solicitudes-traslado.component';
 import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/confirmar-traslado-realizado/confirmar-traslado-realizado.component';
 import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
+import { MatTabsModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SDKBrowserModule.forRoot()
+    SDKBrowserModule.forRoot(),
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
