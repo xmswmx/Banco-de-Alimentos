@@ -20,7 +20,7 @@ import { TrasladosSinVoluntarioComponent } from "./modules/admin/traslados-sin-v
 import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
 import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
-
+import { NuevoEnvioPrincipalComponent } from './modules/admin/nuevo-envio/nuevo-envio-principal/nuevo-envio-principal.component';
 
 
 const routes: Routes = [
@@ -45,7 +45,9 @@ const routes: Routes = [
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
 	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent},
-	{path:'registrar-donacion',component:RegistrarDonacionComponent}
+	{path:'registrar-donacion',component:RegistrarDonacionComponent},
+	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent}
+	
 ];
 
 @NgModule({

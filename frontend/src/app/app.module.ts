@@ -33,6 +33,11 @@ import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/conf
 import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 import { MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NuevoEnvioPrincipalComponent } from './modules/admin/nuevo-envio/nuevo-envio-principal/nuevo-envio-principal.component';
+import { NuevoEnvioSeleccionarDonanteComponent } from './modules/admin/nuevo-envio/nuevo-envio-seleccionar-donante/nuevo-envio-seleccionar-donante.component';
+import { NuevoEnvioSeleccionarDonacionComponent } from './modules/admin/nuevo-envio/nuevo-envio-seleccionar-donacion/nuevo-envio-seleccionar-donacion.component';
+import { NuevoEnvioAPartirDeStockComponent } from './modules/admin/nuevo-envio/nuevo-envio-a-partir-de-stock/nuevo-envio-a-partir-de-stock.component';
+import { NuevoEnvioItemsComponent } from './modules/admin/nuevo-envio/nuevo-envio-items/nuevo-envio-items.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +66,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NuevoTrasladoComponent,
     SolicitudesTrasladoComponent,
     ConfirmarTrasladoRealizadoComponent,
-    AsignarTrasladoComponent
+    AsignarTrasladoComponent,
+    NuevoEnvioPrincipalComponent,
+    NuevoEnvioSeleccionarDonanteComponent,
+    NuevoEnvioSeleccionarDonacionComponent,
+    NuevoEnvioAPartirDeStockComponent,
+    NuevoEnvioItemsComponent
   ],
   imports: [
     FontAwesomeModule,

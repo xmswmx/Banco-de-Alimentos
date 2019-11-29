@@ -1,0 +1,13 @@
+<h1> Nuevo envio </h1>
+<button (click)="enviar()"></button>
+<p>{{this.var}}</p>
+<form [formGroup]="formEnvio" class="mb-5" >
+	<app-nuevo-envio-seleccionar-donante></app-nuevo-envio-seleccionar-donante>
+	<input type="text" formControlName="texto">
+	<app-nuevo-envio-seleccionar-donacion></app-nuevo-envio-seleccionar-donacion>
+
+	<app-nuevo-envio-a-partir-de-stock></app-nuevo-envio-a-partir-de-stock>
+
+	<app-nuevo-envio-items></app-nuevo-envio-items>
+	
+</form >
