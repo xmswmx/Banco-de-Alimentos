@@ -3492,6 +3492,7 @@ input[type="button"].btn-block {
   white-space: nowrap;
   background-color: transparent;
   border: 0;
+  cursor: default;
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
@@ -12166,3 +12167,21 @@ footer {
 
 }
 /* Hasta aca el footer */
+
+/*Estilos para botones*/
+.br-25{
+  border-radius: 25px;
+}
+.br-50{
+  border-radius: 25px;
+}
+.br-75{
+  border-radius: 25px;
+}
+.br-100{
+  border-radius: 25px;
+}
+
+.pointer{
+  cursor:pointer
+}

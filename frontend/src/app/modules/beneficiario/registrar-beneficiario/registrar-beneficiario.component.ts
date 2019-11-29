@@ -47,10 +47,11 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 
 			this.beneficiarioApi.create(this.nuevoBeneficiario).subscribe((beneficiarioCreado: Beneficiario) => {
 				let ubicacion:Ubicacion;
+				ubicacion=new Ubicacion;
 				ubicacion.beneficiarioId = beneficiarioCreado.id;
 				ubicacion.direccion =  this.registrarBeneficiario.get("direccion").value;
 				ubicacion.puntoGeografico = this.convertidorDeDirecciones.coordinateForAddress(ubicacion.direccion);
-				this.ubicacionApi.create(this.nuevoBeneficiario.ubicacion).subscribe(()=>{
+				this.ubicacionApi.create(ubicacion).subscribe(()=>{
 				 	this.router.navigateByUrl("/login");
 				 	alert('Se registró exitosamente');
 				}) //ubicacion	

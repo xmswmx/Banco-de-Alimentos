@@ -2,16 +2,16 @@
     <h2>Registrar donación general</h2>
 </div>
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
-    <div class="alert alert-dismissible alert-primary mt-3"> Registrar donación general </div>
+    <div class="alert alert-dismissible alert-dark mt-3"> Registrar donación general </div>
     <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="newItemForm" class="container">
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGeneral" class="container">
 
             <h5>Volumen de alimentos</h5>
             <div class="form-row mt-4">
                 <div class="col mb-3">
                     <label for="form-group">Alto</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputAlto" placeholder="65">
+                        <input formControlName="alto" type="text" class="form-control " id="inputAlto" placeholder="65">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">mts</span>
                         </div>
@@ -20,7 +20,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Ancho</label>
                     <div class="input-group">
-                        <input type="text" class="form-control " id="inputAncho" placeholder="124">
+                        <input formControlName="ancho" type="text" class="form-control " id="inputAncho" placeholder="124">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">mts</span>
                         </div>
@@ -29,7 +29,7 @@
                 <div class="col mb-3">
                     <label for="form-group">Largo</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control " id="inputLargo" placeholder="32">
+                        <input formControlName="largo" type="text" class="form-control " id="inputLargo" placeholder="32">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">mts</span>
                         </div>
@@ -38,14 +38,14 @@
             </div>
             <div class="form-group">
                 <label for="labelObservaciones">Caracteristicas generales de la donación</label>
-                <textarea class="form-control" id="inputObservaciones" rows="3"></textarea>
+                <textarea formControlName="texto" class="form-control" id="inputObservaciones" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="labelNombre">Fecha asignada de retiro</label>
-                <input formControlName="fechaRetirro" type="date" class="form-control" id="inputFechaRetiro">
+                <input formControlName="fechaRetiro" type="date" class="form-control" id="inputFechaRetiro">
             </div>
             <div class="form-group text-center mt-5">
-                <button class="btn btn-primary" type="submit">Guardar</button>
+                <button class="btn btn-dark" type="submit">Guardar</button>
                 <a routerLink="/home" class="btn btn-link">Cancelar</a>
             </div>
         </form>

@@ -26,6 +26,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { PanelComponent } from './modules/admin/panel/panel.component';
 import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component';
 import { AceptarTrasladoComponent } from './modules/voluntario/aceptar-traslado/aceptar-traslado.component';
+import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
+import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
+import { NuevoTrasladoComponent } from './modules/admin/nuevo-traslado/nuevo-traslado.component';
+import { SolicitudesTrasladoComponent } from './modules/voluntario/solicitudes-traslado/solicitudes-traslado.component';
+import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/confirmar-traslado-realizado/confirmar-traslado-realizado.component';
+import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
+import { MatTabsModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -49,7 +57,16 @@ import { AceptarTrasladoComponent } from './modules/voluntario/aceptar-traslado/
     PerfilBeneficiarioComponent,
     PanelComponent,
     TrasladosSinVoluntarioComponent,
+<<<<<<< HEAD
     AceptarTrasladoComponent
+=======
+    TrasladosPendientesComponent,
+    RegistrarDonacionComponent,
+    NuevoTrasladoComponent,
+    SolicitudesTrasladoComponent,
+    ConfirmarTrasladoRealizadoComponent,
+    AsignarTrasladoComponent
+>>>>>>> fd7a434604a7750309eec20f69adcedd38d5286b
   ],
   imports: [
     FontAwesomeModule,
@@ -57,7 +74,9 @@ import { AceptarTrasladoComponent } from './modules/voluntario/aceptar-traslado/
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SDKBrowserModule.forRoot()
+    SDKBrowserModule.forRoot(),
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -22,6 +22,12 @@
     },
     "tipo": {
       "type":"string"
+    },
+    "volumenTotal": {
+      "type":"number"
+    },
+    "puntaje": {
+      "type":"number"
     }
   },
   "validations": [],

@@ -8,7 +8,7 @@ import { LoggerService, LoopBackConfig } from './_services/lbservice';
 })
 export class AppComponent {
   title = 'Banco de Alimentos';
-
+  tituloHeader = "probar";
   constructor(private log: LoggerService){
 	  LoopBackConfig.setDebugMode(false);
 	  this.log.info('Component is Loaded');
