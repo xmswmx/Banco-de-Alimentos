@@ -17,8 +17,10 @@ export class AsignarTrasladoComponent implements OnInit {
 	idTraslado: string;
 	form: FormGroup;
   	traslado : Traslado;
-	ubicacion: Ubicacion;
+	origen: Ubicacion;
+	destino: Ubicacion;
 	voluntario: Voluntario;
+	balp : BALP;
 
 	/*
 		El usuario recibe un email como 
@@ -44,7 +46,8 @@ export class AsignarTrasladoComponent implements OnInit {
 			this.traslado = trasladoRecuperado;
 			// obtengo la dirección del traslado
 			apiTraslado.getUbicacion(this.idTraslado, true).subscribe((ubicacionDelTraslado) => {
-				this.ubicacion = ubicacionDelTraslado.dirección;
+				this.origen = balp;
+				this.destino = ubicacionDelTraslado;
 			})
 		})
 		// SE MUESTRAN EN LA VISTA LOS DATOS DEL TRASLADO
