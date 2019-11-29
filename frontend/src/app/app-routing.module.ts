@@ -44,13 +44,10 @@ const routes: Routes = [
 	{path:'ver-top',component:VerTopComponent},
 	{path:'panel-de-control',component:PanelComponent},
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
-<<<<<<< HEAD
 	{path:'aceptar-traslado',component:AceptarTrasladoComponent},
-=======
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
 	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent},
 	{path:'registrar-donacion',component:RegistrarDonacionComponent}
->>>>>>> fd7a434604a7750309eec20f69adcedd38d5286b
 ];
 
 @NgModule({

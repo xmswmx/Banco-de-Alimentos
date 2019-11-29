@@ -57,16 +57,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PerfilBeneficiarioComponent,
     PanelComponent,
     TrasladosSinVoluntarioComponent,
-<<<<<<< HEAD
-    AceptarTrasladoComponent
-=======
+    AceptarTrasladoComponent,
     TrasladosPendientesComponent,
     RegistrarDonacionComponent,
     NuevoTrasladoComponent,
     SolicitudesTrasladoComponent,
     ConfirmarTrasladoRealizadoComponent,
     AsignarTrasladoComponent
->>>>>>> fd7a434604a7750309eec20f69adcedd38d5286b
   ],
   imports: [
     FontAwesomeModule,
