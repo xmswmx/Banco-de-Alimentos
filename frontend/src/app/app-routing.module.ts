@@ -17,6 +17,7 @@ import { RegistrarDonacionGeneralComponent } from './modules/donacion/registrar-
 import { PerfilBeneficiarioComponent } from './modules/beneficiario/perfil-beneficiario/perfil-beneficiario.component';
 import { PanelComponent } from "./modules/admin/panel/panel.component";
 import { TrasladosSinVoluntarioComponent } from "./modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component";
+import { AceptarTrasladoComponent } from "./modules/voluntario/aceptar-traslado/aceptar-traslado.component";
 import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
 import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
 	{path:'ver-top',component:VerTopComponent},
 	{path:'panel-de-control',component:PanelComponent},
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
+	{path:'aceptar-traslado',component:AceptarTrasladoComponent},
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
 	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent},
 	{path:'registrar-donacion',component:RegistrarDonacionComponent},
