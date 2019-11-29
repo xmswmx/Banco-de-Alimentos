@@ -25,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PanelComponent } from './modules/admin/panel/panel.component';
 import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component';
+import { AceptarTrasladoComponent } from './modules/voluntario/aceptar-traslado/aceptar-traslado.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-v
     RegistrarDonacionGeneralComponent,
     PerfilBeneficiarioComponent,
     PanelComponent,
-    TrasladosSinVoluntarioComponent
+    TrasladosSinVoluntarioComponent,
+    AceptarTrasladoComponent
   ],
   imports: [
     FontAwesomeModule,
