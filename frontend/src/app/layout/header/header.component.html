@@ -6,7 +6,7 @@
 		<img *ngIf="userApi.getCachedCurrent()" src="../../assets/icons/logo-balp.png" width="205" height="74" alt="">
 	</a>
 	<h1 class="d-inline-flex text-center font-weight-bold pt-4">
-		Mi Perfil
+		<!-- Variable -->
 	</h1>
 
 	<!-- OPCIONES DE USUARIO NO LOGUEADO -->
@@ -41,10 +41,9 @@
 				{{userApi.getCachedCurrent().username}}
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Ver mi perfil</a>
-				<a class="dropdown-item" (click)="router.navigate(['/registrar-donacion'])">Nueva donacion</a>
-				<a class="dropdown-item" (click)="router.navigate(['/mis-donaciones'])">Mis donaciones</a>
-				<a class="dropdown-item" (click)="router.navigate(['/puntajes-insignias'])">Puntajes e Insignias</a>				
+				<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Mis datos</a>
+				<a class="dropdown-item" (click)="router.navigate(['/registrar-donacion-detallada'])">Registrar donación</a>
+				<a class="dropdown-item" (click)="router.navigate(['/mis-donaciones'])">Mis donaciones</a>			
 				<a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
 			</div>
 		</span>
@@ -59,8 +58,8 @@
 				{{userApi.getCachedCurrent().username}}
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" (click)="router.navigate(['/perfil-voluntario'])">Ver mi perfil</a>
-				<a class="dropdown-item" (click)="router.navigate(['/solicitudes-traslado'])">Solicitudes de traslado</a>
+				<a class="dropdown-item" (click)="router.navigate(['/perfil-voluntario'])">Mis datos</a>
+				<!-- <a class="dropdown-item" (click)="router.navigate(['/solicitudes-traslado'])">Solicitudes de traslado</a> -->
 				<a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
 			</div>
 		</span>
@@ -75,8 +74,8 @@
 				{{userApi.getCachedCurrent().username}}
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Ver mi perfil</a>
-					<a class="dropdown-item" (click)="router.navigate(['/confirmar-traslado-realizado'])">Confirmar traslado efectuado</a>			
+					<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Mis datos</a>
+					<!-- <a class="dropdown-item" (click)="router.navigate(['/confirmar-traslado-realizado'])">Confirmar traslado efectuado</a>			 -->
 					<a class="dropdown-item"  (click)="logout()">Cerrar sesión</a>
 			</div>
 		</span>
@@ -91,12 +90,7 @@
 				Opciones de administrador
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" (click)="router.navigate(['/panel'])">Panel de control</a>
-					<a class="dropdown-item" (click)="router.navigate(['/nuevo-traslado'])">Crear envío</a>						
-					<a class="dropdown-item" (click)="router.navigate(['/traslados-pendientes'])">Envíos pendientes de traslado</a>
-					<a class="dropdown-item" (click)="router.navigate(['/traslados-sin-voluntario'])">Notificar nuevo traslado a voluntarios</a>
-					<a class="dropdown-item" (click)="router.navigate(['/'])">Listado de voluntarios disponibles para el traslado (revisar)</a>			
-					<a class="dropdown-item" (click)="router.navigate(['/'])">Asignar traslado (revisar)</a>			
+					<a class="dropdown-item" (click)="router.navigate(['/panel'])">Panel de control</a>			
 					<a class="dropdown-item"  (click)="logout()">Cerrar sesión</a>
 			</div>
 		</span>

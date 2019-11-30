@@ -42,7 +42,7 @@ export class AsignarTrasladoComponent implements OnInit {
 		this.voluntario = apiVoluntario.getCachedCurrent();
 	
 		// obtengo el traslado a partir del idDeTraslado recibido por parámetro
-		apiTraslado.getTraslado(this.idTraslado, true).subscribe((trasladoRecuperado) => {
+		apiTraslado.findById(this.idTraslado).subscribe((trasladoRecuperado:Traslado) =>	{
 			this.traslado = trasladoRecuperado;
 			// obtengo la dirección del traslado
 			apiTraslado.getUbicacion(this.idTraslado, true).subscribe((ubicacionDelTraslado) => {
