@@ -25,11 +25,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PanelComponent } from './modules/admin/panel/panel.component';
 import { TrasladosSinVoluntarioComponent } from './modules/admin/traslados-sin-voluntario/traslados-sin-voluntario.component';
+import { AceptarTrasladoComponent } from './modules/voluntario/aceptar-traslado/aceptar-traslado.component';
 import { TrasladosPendientesComponent } from './modules/admin/traslados-pendientes/traslados-pendientes.component';
 import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
 import { NuevoTrasladoComponent } from './modules/admin/nuevo-traslado/nuevo-traslado.component';
 import { SolicitudesTrasladoComponent } from './modules/voluntario/solicitudes-traslado/solicitudes-traslado.component';
 import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/confirmar-traslado-realizado/confirmar-traslado-realizado.component';
+import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
+import { MatTabsModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -53,11 +57,13 @@ import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/conf
     PerfilBeneficiarioComponent,
     PanelComponent,
     TrasladosSinVoluntarioComponent,
+    AceptarTrasladoComponent,
     TrasladosPendientesComponent,
     RegistrarDonacionComponent,
     NuevoTrasladoComponent,
     SolicitudesTrasladoComponent,
-    ConfirmarTrasladoRealizadoComponent
+    ConfirmarTrasladoRealizadoComponent,
+    AsignarTrasladoComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -65,7 +71,9 @@ import { ConfirmarTrasladoRealizadoComponent } from './modules/beneficiario/conf
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SDKBrowserModule.forRoot()
+    SDKBrowserModule.forRoot(),
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

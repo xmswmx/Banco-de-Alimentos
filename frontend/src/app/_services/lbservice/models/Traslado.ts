@@ -7,6 +7,8 @@ export interface TrasladoInterface {
   "fechaFin"?: Date;
   "estado"?: string;
   "tipo"?: string;
+  "volumenTotal"?: number;
+  "puntaje"?: number;
   "id"?: any;
   "voluntarioId"?: any;
   "idDonacionTrasladadaAlBanco"?: any;
@@ -19,6 +21,8 @@ export class Traslado implements TrasladoInterface {
   "fechaFin": Date;
   "estado": string;
   "tipo": string;
+  "volumenTotal": number;
+  "puntaje": number;
   "id": any;
   "voluntarioId": any;
   "idDonacionTrasladadaAlBanco": any;
@@ -76,6 +80,14 @@ export class Traslado implements TrasladoInterface {
         "tipo": {
           name: 'tipo',
           type: 'string'
+        },
+        "volumenTotal": {
+          name: 'volumenTotal',
+          type: 'number'
+        },
+        "puntaje": {
+          name: 'puntaje',
+          type: 'number'
         },
         "id": {
           name: 'id',

@@ -16,6 +16,7 @@ export interface VoluntarioInterface {
   "puntuacion": number;
   "tipoDeUsuario"?: string;
   "observaciones": string;
+  "tieneVehiculo": string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -38,6 +39,7 @@ export class Voluntario implements VoluntarioInterface {
   "puntuacion": number;
   "tipoDeUsuario": string;
   "observaciones": string;
+  "tieneVehiculo": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -116,6 +118,11 @@ export class Voluntario implements VoluntarioInterface {
           name: 'observaciones',
           type: 'string',
           default: ' '
+        },
+        "tieneVehiculo": {
+          name: 'tieneVehiculo',
+          type: 'string',
+          default: 'no'
         },
         "realm": {
           name: 'realm',

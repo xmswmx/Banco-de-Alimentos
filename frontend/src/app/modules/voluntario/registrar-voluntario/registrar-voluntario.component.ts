@@ -136,6 +136,10 @@ export class RegistrarVoluntarioComponent implements OnInit {
        * Si el volumen que estás creando no es de un envio por ejemplo solo lo dejas en null
        * En este caso solo se completaria el volumen.vehiculoId, lo demás en blanco
       */
+      //Marco que tiene vehiculo
+      if (this.form.get("marca").value != null){
+        this.voluntario.tieneVehiculo = "si" //Defalt es no asique se asigna solo
+      }
       
   
       // Creo el voluntario y genero una promesa
