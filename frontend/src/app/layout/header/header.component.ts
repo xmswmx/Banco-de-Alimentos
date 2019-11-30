@@ -10,7 +10,7 @@ import { UserApi, BeneficiarioApi  } from '../../_services/lbservice/services';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  titulo = "";
   userLogged;
   tipoDeUsuario;
   constructor(private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
   }
   verPerfil(){
     
+  }
+
+  setTitulo(titulo){
+    this.titulo = titulo;
   }
 
   ngOnInit() {
