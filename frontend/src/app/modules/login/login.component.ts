@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 			this.user = new User();
 			this.user.username = this.logInForm.get("usuario").value;
 			this.user.password = this.logInForm.get("clave").value;
-			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-administrador'])});
+			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/panel-de-control'])});
 			break;
 		case 'b':
 			this.beneficiario = new Beneficiario();
