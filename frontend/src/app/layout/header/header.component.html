@@ -85,14 +85,14 @@
 	<div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'admin')"
 		class="d-inline-flex mr-4">
 		<span class="dropdown">
-			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">
-				Opciones de administrador
+			<button class="btn btn-dark mr-1" type="button" id="panelButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false" (click)="router.navigate(['/panel-de-control'])">
+				Panel de control
 			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" (click)="router.navigate(['/panel'])">Panel de control</a>			
-					<a class="dropdown-item"  (click)="logout()">Cerrar sesión</a>
-			</div>
+			<button   class="btn btn-dark" type="button" id="panelButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false" (click)="router.navigate(['/panel-de-control'])" (click)="logout()">
+				Salir
+			</button>
 		</span>
 	</div>
 </nav>

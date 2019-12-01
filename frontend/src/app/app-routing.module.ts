@@ -22,38 +22,42 @@ import { TrasladosPendientesComponent } from './modules/admin/traslados-pendient
 import { AsignarTrasladoComponent } from './modules/voluntario/asignar-traslado/asignar-traslado.component';
 import { RegistrarDonacionComponent } from './modules/donante/registrar-donacion/registrar-donacion.component';
 import { NuevoEnvioPrincipalComponent } from './modules/admin/nuevo-envio/nuevo-envio-principal/nuevo-envio-principal.component';
-
+import { AdminGuard } from './_guards/admin.guard';
+import { VoluntarioGuard } from './_guards/voluntario.guard';
+import { DonanteGuard } from './_guards/donante.guard';
+import { BeneficiarioGuard } from './_guards/beneficiario.guard';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
 	{path:'home',component:HomeComponent},
 	{path:'registrar-donante',component:RegistrarDonanteComponent},
-	{path:'perfil-donante',component:PerfilDonanteComponent},
-	{path:'mis-donaciones',component:MisDonacionesComponent},
-	{path:'registrar-donacion-detallada',component:RegistarDonacionDetalladaComponent},
-	{path:'registrar-donacion-general',component:RegistrarDonacionGeneralComponent},
+	{path:'perfil-donante',component:PerfilDonanteComponent, canActivate:[DonanteGuard]},
+	{path:'mis-donaciones',component:MisDonacionesComponent, canActivate:[DonanteGuard]},
+	{path:'registrar-donacion-detallada',component:RegistarDonacionDetalladaComponent, canActivate:[DonanteGuard]},
+	{path:'registrar-donacion-general',component:RegistrarDonacionGeneralComponent, canActivate:[DonanteGuard]},
 	{path:'registrar-beneficiario',component:RegistrarBeneficiarioComponent},
 	{path:'registrar-voluntario',component:RegistrarVoluntarioComponent},
 	{path:'login',component:LoginComponent},
-	{path:'perfil-voluntario',component:PerfilVoluntarioComponent},
-	{path:'perfil-beneficiario',component:PerfilBeneficiarioComponent},
-	{path:'ver-beneficiarios',component:VerBeneficiariosComponent},
-	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent},
-	{path:'buscar-voluntarios/:idTraslado/:origen/:destino',component:BuscarVoluntarioComponent},
-	{path:'cambiar-clave',component:CambiarClaveComponent},
+	{path:'perfil-voluntario',component:PerfilVoluntarioComponent, canActivate:[VoluntarioGuard]},
+	{path:'perfil-beneficiario',component:PerfilBeneficiarioComponent, canActivate:[BeneficiarioGuard]},
+	{path:'ver-beneficiarios',component:VerBeneficiariosComponent, canActivate:[AdminGuard]},
+	{path:'perfil-organizacion-beneficiaria',component:PerfilBeneficiarioComponent, canActivate:[BeneficiarioGuard]},
+	{path:'buscar-voluntarios/:idTraslado/:origen/:destino',component:BuscarVoluntarioComponent, canActivate:[AdminGuard]},
+	{path:'cambiar-clave',component:CambiarClaveComponent, canActivate:[AdminGuard]},
 	{path:'ver-top',component:VerTopComponent},
-	{path:'panel-de-control',component:PanelComponent},
-	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent},
-	{path:'aceptar-traslado',component:AceptarTrasladoComponent},
-	{path:'traslados-pendientes',component:TrasladosPendientesComponent},
-	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent},
-	{path:'registrar-donacion',component:RegistrarDonacionComponent},
-	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent}
+	{path:'panel-de-control',component:PanelComponent, canActivate:[AdminGuard]},
+	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent, canActivate:[AdminGuard]},
+	{path:'aceptar-traslado',component:AceptarTrasladoComponent, canActivate:[VoluntarioGuard]},
+	{path:'traslados-pendientes',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
+	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent, canActivate:[VoluntarioGuard]},
+	{path:'registrar-donacion',component:RegistrarDonacionComponent, canActivate:[DonanteGuard]},
+	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]}
 	
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AdminGuard, BeneficiarioGuard, VoluntarioGuard, DonanteGuard]
 })
 export class AppRoutingModule { }
