@@ -87,14 +87,20 @@ export class AsignarTrasladoComponent implements OnInit {
 			// DE ACA EN ADELANTE SE ASOCIA EL VOLUNTARIO AL TRASLADO
 			onSubmit() {
 
-				/* El update es un poco mas complicado y no lo se hacer bien todavia, lo dejo comentado asi compila
+			// El mensaje update no existe como tal en loopback, las de abajo son variantes que ofrece la api
+			//	this.apiTraslado.update(this.idTraslado).subscribe((trasladoActualizado : Traslado) => {
+			//	this.apiTraslado.onUpdateAll(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id)
+				this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
 
-				this.trasladoApi.update(this.idTraslado).subscribe((trasladoActualizado : Traslado) => {
+				//this.apiTraslado.onReplaceById(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id) 
 				// asocio al traslado en cuestión el id del voluntario que tiene la sesión iniciada
-					this.traslado.voluntarioId = this.voluntario.id;
+					//this.traslado.voluntarioId = this.voluntario.id;
 					alert('La asignación del traslado se registró correctamente');
-			}) 
-			*/ 
+					// imprimo por consola el voluntario asignado a traslado
+					console.log('voluntario asignado al traslado:', this.traslado.voluntarioId);
+					console.log('voluntario logueado:', this.voluntario.id);
+			//}) 
+			
 			}
 
 	ngOnInit() {
