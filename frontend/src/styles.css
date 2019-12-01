@@ -2885,6 +2885,7 @@ fieldset:disabled a.btn {
           box-shadow: 0 0 0 0.2rem rgba(222, 222, 222, 0.5);
 }
 
+
 .btn-dark {
   color: #fff;
   background: #222 -webkit-gradient(linear, left top, left bottom, from(#434343), to(#222)) repeat-x;
@@ -12166,6 +12167,23 @@ footer {
   color: white;
 
 }
+
+.btn-orange {
+  background-color: #f94116; 
+  color:white
+}
+
+.btn-orange:hover {
+  background: #ffeed9 linear-gradient(180deg, #ffeed9, #ffeed9) repeat-x;
+  border-color: #ffeed9
+}
+
+.btn-orange:focus, .btn-secondary.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 222, 222, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(222, 222, 222, 0.5);
+}
+
+
 /* Hasta aca el footer */
 
 /*Estilos para botones*/
