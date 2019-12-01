@@ -1,1 +1,26 @@
-<p>traslados-pendientes works!</p>
+<h2 class="mb-5"> Envios pendientes de traslado</h2>
+
+<form [formGroup]="form">
+	<div>
+		<input formControlName="nombre" type="search" id="buscarVoluntario" name="buscarVoluntario" placeholder="Filtrar por voluntario">
+	    <button>Buscar</button>
+	</div>
+</form>
+<table class="egt">
+  <tr>
+    <th>Descripción</th>
+    <th>Voluntario</th>
+    <th>Origen</th>
+    <th>Destino</th>
+    <th>Fecha estimada</th>
+    <th>Distancia total</th>
+  </tr>
+  <tr>
+    <td>Celda 1</td>
+    <td>Celda 2</td>
+    <td>Celda 3</td>
+    <td>Celda 3</td>
+    <td>Celda 3</td>
+    <td>Celda 3</td>
+  </tr>
+</table>

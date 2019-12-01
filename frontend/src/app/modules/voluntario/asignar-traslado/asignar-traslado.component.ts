@@ -24,7 +24,7 @@ export class AsignarTrasladoComponent implements OnInit {
 
 	/*
 		El usuario recibe un email como 
-		localhost:4200/asignar-traslado/laIdDeUnTraslado
+		localhost:4200/asignar-traslado/5de0d2485d310221a87098aa
 	*/
  	constructor(private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
  		//Obtengo el idTraslado por la URL
