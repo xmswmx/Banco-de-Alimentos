@@ -16,9 +16,9 @@ export class AsignarTrasladoComponent implements OnInit {
 
 	idTraslado: string;
 	form: FormGroup;
-  	traslado : Traslado;
-	origen: String;
-	destino: String;
+	traslado : Traslado;
+	origen: string;
+	destino:  string;
 	voluntario: Voluntario;
 	balp : BALP = new BALP;
 
@@ -43,6 +43,7 @@ export class AsignarTrasladoComponent implements OnInit {
 		// obtengo el traslado a partir del idDeTraslado recibido por parámetro
 		apiTraslado.findById(this.idTraslado).subscribe((trasladoRecuperado:Traslado) =>	{
 			this.traslado = trasladoRecuperado;
+			console.log('Tipo donación ', this.traslado);
 			/*	Tenemos el traslado
 				A partir de acá pueden pasar dos cosas
 					1. El traslado es de una donacion, entonces el origen es un donante y el destino el banco
@@ -51,15 +52,27 @@ export class AsignarTrasladoComponent implements OnInit {
 			if (this.traslado.tipo == 'donacion'){
 				//Caso 1 (donación)
 				//1. Recuperar la donacion trasladada al banco
+				console.log('Tipo donación ', this.traslado.tipo);
 				apiDonacion.findById(this.traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion) => {
-					//2. Recuperar el donante de esa donacion 
-					apiDonacion.findById(donacion.idDonante).subscribe((donanteRecuperado:Donante) => { // obtuve al donante
+					//2. Recuperar el donante de esa donacion 	
+					console.log('donación recuperada ', donacion);			
+					apiDonante.findById(donacion.idDonante).subscribe((donanteRecuperado:Donante) => { // obtuve al donante
 						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)
-				     	apiUbicacion.findById(donanteRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{  // obtuve la ubicación del donante				
+						console.log('DONACION', donanteRecuperado);
+						apiUbicacion.findById(donanteRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{  // obtuve la ubicación del donante				
 							//4. Guardar la direccion como origen
-							this.origen = ubicacionRecuperada.direccion;
+							console.log('UBICACION ', ubicacionRecuperada.direccion);
+							//console.log('destino1:', this.destino);
+							this.origen = ubicacionRecuperada.direccion
+							this.destino = this.balp.ubicacionBALP.direccion;	
+							console.log('origen1:', this.origen);
+							console.log('destino1:', this.destino);
 							//5. Guardar la dirección del banco como destino
-							this.destino = this.balp.ubicacionBALP.direccion;						
+							//this.destino = this.balp.ubicacionBALP.direccion;	
+							//let origenoo = ubicacionRecuperada.direccion;
+							//let destinoo = this.balp.ubicacionBALP.direccion;
+							//console.log('origen:', origenoo);
+							//console.log('destino:', destinoo);											
 					   })
 					}) 
 				}) //Fin donacion
@@ -71,10 +84,17 @@ export class AsignarTrasladoComponent implements OnInit {
 					apiEnvio.findById(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario) => {
 						//3. Recuperar la ubicacion de ese beneficiario
 						apiUbicacion.findById(beneficiarioRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{
+							console.log('UBICACION RECUPERADA:', ubicacionRecuperada);
 							//4. Guardar la direccion como destino
-							this.destino = ubicacionRecuperada.direccion;
+							 this.destino = ubicacionRecuperada.direccion;						
 							//5. Guardar la direccion del banco como origen
 							this.origen = this.balp.ubicacionBALP.direccion;
+							console.log('origen2:', this.origen);
+							console.log('destino2:', this.destino);
+							//let origenoo = ubicacionRecuperada.direccion;
+							//let destinoo = this.balp.ubicacionBALP.direccion;
+							//console.log('origen:', origenoo);
+							//console.log('destino:', destinoo);
 						})
 					})				
 				}) // Fin envío																	
@@ -91,16 +111,12 @@ export class AsignarTrasladoComponent implements OnInit {
 			//	this.apiTraslado.update(this.idTraslado).subscribe((trasladoActualizado : Traslado) => {
 			//	this.apiTraslado.onUpdateAll(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id)
 
-
-			/*Probar 
-			
-			this.apiTraslado.updateAttributes(this.traslado.id,{voluntarioId: this.voluntario.id}).subscribe(()=>{
-					alert('funciono')
+			this.traslado.voluntarioId = this.voluntario.id;	
+			console.log('id voluntario asiginado al traslado:', this.traslado.voluntarioId);
+			// this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
+			this.apiTraslado.upsert(this.traslado.voluntarioId).subscribe(()=>{
 				
-				})
-
-			*/
-				this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
+			})
 
 				//this.apiTraslado.onReplaceById(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id) 
 				// asocio al traslado en cuestión el id del voluntario que tiene la sesión iniciada
