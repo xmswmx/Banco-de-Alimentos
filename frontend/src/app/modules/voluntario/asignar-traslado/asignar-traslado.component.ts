@@ -90,8 +90,11 @@ export class AsignarTrasladoComponent implements OnInit {
 			// El mensaje update no existe como tal en loopback, las de abajo son variantes que ofrece la api
 			//	this.apiTraslado.update(this.idTraslado).subscribe((trasladoActualizado : Traslado) => {
 			//	this.apiTraslado.onUpdateAll(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id)
-				this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
-
+			this.traslado.voluntarioId = this.voluntario.id;	
+			// this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
+			this.apiTraslado.upsert(this.traslado.voluntarioId).subscribe(()=>{
+				
+			})
 				//this.apiTraslado.onReplaceById(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id) 
 				// asocio al traslado en cuestión el id del voluntario que tiene la sesión iniciada
 					//this.traslado.voluntarioId = this.voluntario.id;
