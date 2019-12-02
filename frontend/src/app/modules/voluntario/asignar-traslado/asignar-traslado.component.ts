@@ -57,9 +57,11 @@ export class AsignarTrasladoComponent implements OnInit {
 						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)
 				     	apiUbicacion.findById(donanteRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{  // obtuve la ubicación del donante				
 							//4. Guardar la direccion como origen
-							this.origen = ubicacionRecuperada.direccion;
+							this.origen = ubicacionRecuperada.direccion
+							//this.origen = ubicacionRecuperada.direccion;
 							//5. Guardar la dirección del banco como destino
-							this.destino = this.balp.ubicacionBALP.direccion;						
+							this.destino = this.balp.ubicacionBALP.direccion;	
+							console.log('destino:', this.destino);					
 					   })
 					}) 
 				}) //Fin donacion
@@ -75,6 +77,7 @@ export class AsignarTrasladoComponent implements OnInit {
 							this.destino = ubicacionRecuperada.direccion;
 							//5. Guardar la direccion del banco como origen
 							this.origen = this.balp.ubicacionBALP.direccion;
+							console.log('origen:', this.origen);
 						})
 					})				
 				}) // Fin envío																	
