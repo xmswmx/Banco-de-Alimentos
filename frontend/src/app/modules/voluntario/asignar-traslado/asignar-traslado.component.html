@@ -9,7 +9,7 @@
             <div class="form-group mt-4">
                 <label for="labelfechaEstimada">Fecha de traslado</label>
                 <input formControlName="fechaEstimada" type="text" class="form-control" id="fechaEstimada"
-                value= "{{this.traslado.fechaEstimada| date: 'dd/MM/yyyy hh:mm'}}" readonly>
+                value= "{{this.traslado.fechaEstimada| date: 'dd/MM/yyyy  -  hh:mm'}} hs." readonly>
             </div>
             <div class="form-group">
                 <label for="labeldireccion">Origen</label>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="labelpuntaje">Puntaje del traslado</label>
                 <input formControlName="puntaje" type="text" class="form-control" id="puntaje"
-                    value="{{this.traslado.puntaje}}" readonly>
+                    value="{{this.traslado.puntaje}} puntos" readonly>
             </div>
             <div class="form-group text-center mt-4">
                 <button class="btn mr-2 btn-orange " type="submit">Aceptar

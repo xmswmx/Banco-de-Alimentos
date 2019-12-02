@@ -26,7 +26,7 @@ export class AsignarTrasladoComponent implements OnInit {
 		El usuario recibe un email como 
 		localhost:4200/asignar-traslado/5de0d2485d310221a87098aa
 	*/
- 	constructor(private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
+ 	constructor(private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
  		//Obtengo el idTraslado por la URL
 		  this.idTraslado = route.snapshot.paramMap.get("idTraslado")
 		  this.form = new FormGroup ({
@@ -42,8 +42,7 @@ export class AsignarTrasladoComponent implements OnInit {
 	
 		// obtengo el traslado a partir del idDeTraslado recibido por parámetro
 		apiTraslado.findById(this.idTraslado).subscribe((trasladoRecuperado:Traslado) =>	{
-			this.traslado = trasladoRecuperado;
-			console.log('Tipo donación ', this.traslado);
+			this.traslado = trasladoRecuperado;		
 			/*	Tenemos el traslado
 				A partir de acá pueden pasar dos cosas
 					1. El traslado es de una donacion, entonces el origen es un donante y el destino el banco
@@ -51,28 +50,16 @@ export class AsignarTrasladoComponent implements OnInit {
 			*/
 			if (this.traslado.tipo == 'donacion'){
 				//Caso 1 (donación)
-				//1. Recuperar la donacion trasladada al banco
-				console.log('Tipo donación ', this.traslado.tipo);
+				//1. Recuperar la donacion trasladada al banco				
 				apiDonacion.findById(this.traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion) => {
-					//2. Recuperar el donante de esa donacion 	
-					console.log('donación recuperada ', donacion);			
+					//2. Recuperar el donante de esa donacion 							
 					apiDonante.findById(donacion.idDonante).subscribe((donanteRecuperado:Donante) => { // obtuve al donante
-						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)
-						console.log('DONACION', donanteRecuperado);
-						apiUbicacion.findById(donanteRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{  // obtuve la ubicación del donante				
+						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)					
+						apiDonante.getUbicacion(donanteRecuperado.id,true).subscribe((ubicacionRecuperada)=>{						
 							//4. Guardar la direccion como origen
-							console.log('UBICACION ', ubicacionRecuperada.direccion);
-							//console.log('destino1:', this.destino);
+							//console.log('Ubicacion ', ubicacionRecuperada.direccion);					
 							this.origen = ubicacionRecuperada.direccion
-							this.destino = this.balp.ubicacionBALP.direccion;	
-							console.log('origen1:', this.origen);
-							console.log('destino1:', this.destino);
-							//5. Guardar la dirección del banco como destino
-							//this.destino = this.balp.ubicacionBALP.direccion;	
-							//let origenoo = ubicacionRecuperada.direccion;
-							//let destinoo = this.balp.ubicacionBALP.direccion;
-							//console.log('origen:', origenoo);
-							//console.log('destino:', destinoo);											
+							this.destino = this.balp.ubicacionBALP.direccion;																			
 					   })
 					}) 
 				}) //Fin donacion
@@ -82,19 +69,13 @@ export class AsignarTrasladoComponent implements OnInit {
 				apiEnvio.findById(this.traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario) => {
 					//2. Recuperar el beneficiario de ese envio
 					apiEnvio.findById(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario) => {
-						//3. Recuperar la ubicacion de ese beneficiario
-						apiUbicacion.findById(beneficiarioRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{
-							console.log('UBICACION RECUPERADA:', ubicacionRecuperada);
+						//3. Recuperar la ubicacion de ese beneficiario						
+						apiBeneficiario.getUbicacion(beneficiarioRecuperado.id,true).subscribe((ubicacionRecuperada)=>{															
 							//4. Guardar la direccion como destino
 							 this.destino = ubicacionRecuperada.direccion;						
 							//5. Guardar la direccion del banco como origen
 							this.origen = this.balp.ubicacionBALP.direccion;
-							console.log('origen2:', this.origen);
-							console.log('destino2:', this.destino);
-							//let origenoo = ubicacionRecuperada.direccion;
-							//let destinoo = this.balp.ubicacionBALP.direccion;
-							//console.log('origen:', origenoo);
-							//console.log('destino:', destinoo);
+					    	// console.log('origen2:', this.origen);					
 						})
 					})				
 				}) // Fin envío																	
