@@ -3,6 +3,8 @@ import { TrasladoApi, DonanteApi, DonacionApi, DescripcionGeneralApi} from '../.
 import { Donante, Donacion, DescripcionGeneral, Traslado } from '../../../_services/lbservice/models';  
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { BALP } from '../../../_models/BALP';
+import { AddressConverter } from '../../../_models/AddressConverter'
 
 @Component({
   selector: 'app-registrar-donacion-general',
@@ -12,6 +14,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class RegistrarDonacionGeneralComponent implements OnInit {
 
 	formGeneral: FormGroup;
+  distancia;
   constructor(private router:Router,private trasladoApi:TrasladoApi,private donanteApi: DonanteApi, private donacionApi:DonacionApi, private descApi:DescripcionGeneralApi) {
 
   	 this.formGeneral = new FormGroup({
@@ -22,6 +25,18 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
         texto: new FormControl()
 
       });
+
+      //Obteniendo distancia
+      let idDonante = donanteApi.getCachedCurrent().id;
+      let converter = new AddressConverter;
+      let balp = new BALP;
+      this.donanteApi.getUbicacion(idDonante,true).subscribe((ubi)=>{
+        let origen = converter.coordinateForAddress(ubi.direccion);
+        let destino = converter.coordinateForAddress(balp.ubicacionBALP.direccion);
+        this.distancia = converter.distanceFromTo(origen,destino);
+      })
+
+
 
   }
 
@@ -39,7 +54,8 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
     let idDonante = this.donanteApi.getCachedCurrent().id;
 
      donacion.idDonante = idDonante;
-     donacion.estado = 'nueva'; 
+     donacion.estado = 'nueva';
+     donacion.tipoDescripcion = 'general';
 
      this.donacionApi.count().subscribe((numero)=>{
         donacion.numero = numero.count;
@@ -48,8 +64,14 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
           traslado.idDonacionTrasladadaAlBanco = donacionCreada.id;
           traslado.tipo = 'donacion';
           traslado.volumenTotal = alto * ancho * largo;
+          traslado.descripcion = texto;
+          traslado.puntaje = 5;
+          traslado.distancia = this.distancia;
           this.trasladoApi.create(traslado).subscribe(()=>{
+            
+            //De legado
             desc.descripcion=texto;
+
             desc.idDonacion=donacionCreada.id;
             //desc.volumenes FALTA pero es obsoleto por ahora
             this.descApi.create(desc).subscribe((desc:DescripcionGeneral)=>{

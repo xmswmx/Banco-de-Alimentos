@@ -47,6 +47,7 @@ const routes: Routes = [
 	{path:'panel-de-control',component:PanelComponent, canActivate:[AdminGuard]},
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent, canActivate:[AdminGuard]},
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
+	{path:'traslados-pendientes/:userVoluntario',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
 	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent, canActivate:[VoluntarioGuard]},
 	{path:'registrar-donacion',component:RegistrarDonacionComponent, canActivate:[DonanteGuard]},
 	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]}

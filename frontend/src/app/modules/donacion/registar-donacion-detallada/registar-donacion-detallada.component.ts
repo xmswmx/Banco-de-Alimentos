@@ -3,6 +3,8 @@ import { TrasladoApi, DonanteApi, DonacionApi, DescripcionDetalladaApi, Producto
 import { Donante, Donacion, DescripcionDetallada, Producto, TipoProducto, Traslado } from '../../../_services/lbservice/models';  
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { BALP } from '../../../_models/BALP';
+import { AddressConverter } from '../../../_models/AddressConverter'
 
 @Component({
   selector: 'app-registar-donacion-detallada',
@@ -35,6 +37,8 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   traslado: Traslado;
 
   idDonante;
+  distancia;
+  balp = new BALP;
   //Inicializar el form y algunas variables
   constructor(private router:Router,private apiTraslado:TrasladoApi,private apiDonante: DonanteApi,private apiDonacion:DonacionApi, private apiDescripcion:DescripcionDetalladaApi,private apiProducto:ProductoApi,private apiTipoProducto:TipoProductoApi ) {
   	  this.formDetallada = new FormGroup({
@@ -51,6 +55,15 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
       this.nuevaDonacion = new Donacion;
       this.descripcion = new DescripcionDetallada;
       this.traslado = new Traslado;
+
+      //Obteniendo distancia
+      let converter = new AddressConverter;
+      this.apiDonante.getUbicacion(this.idDonante,true).subscribe((ubi)=>{
+        let origen = converter.coordinateForAddress(ubi.direccion);
+        let destino = converter.coordinateForAddress(this.balp.ubicacionBALP.direccion);
+        this.distancia = converter.distanceFromTo(origen,destino);
+      })
+
 
 
       //Le pido todos los tipo producto a la api (0:nombre,1:codigo,2:id)
@@ -114,6 +127,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
      this.nuevaDonacion.idDonante = this.idDonante;
      this.nuevaDonacion.estado = 'nueva'; 
      this.nuevaDonacion.numero = this.numeroDonacion;
+     this.nuevaDonacion.tipoDescripcion = 'detallada';
      this.apiDonacion.create(this.nuevaDonacion).subscribe((donacionCreada:Donacion)=>{
        //Ahora creo su traslado
        console.log('Se creo la donacion vacia');
@@ -123,10 +137,18 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
        
        //testear que se guarde el volumenTotal correcto
        this.traslado.volumenTotal = this.formDetallada.get("alto").value + this.formDetallada.get("ancho").value + this.formDetallada.get("largo").value;
+       
+       this.traslado.distancia = this.distancia;
+       this.traslado.descripcion = this.textoDescriptivo;
+       this.traslado.puntaje = 5;
+
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          console.log('Se creo el traslado');
          this.descripcion.idDonacion = donacionCreada.id;
+
+         //De legado
          this.descripcion.descripcion = this.textoDescriptivo;
+
          this.apiDescripcion.create(this.descripcion).subscribe((desc:DescripcionDetallada)=>{
            console.log('Se creo la desc');
            let nuevosProductos = [];

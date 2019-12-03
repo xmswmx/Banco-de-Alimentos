@@ -19,11 +19,13 @@ export class TrasladosPendientesComponent implements OnInit {
   form : FormGroup;
   filas : FilaTrasladoPendiente[] = [];
   dirBALP : Ubicacion = (new BALP).ubicacionBALP;
-  constructor(private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
+  filasOriginal;
+  constructor(private route: ActivatedRoute, private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
 
-  this.form = new FormGroup ({
-  	nombre : new FormControl()
-  });
+
+    this.form = new FormGroup ({
+    	nombre : new FormControl()
+    });
 
   	apiTraslado.find().subscribe((traslados:Traslado[])=>{
   		traslados = traslados.filter(traslado => traslado.voluntarioId != null);
@@ -83,6 +85,21 @@ export class TrasladosPendientesComponent implements OnInit {
 
   	}) //Fin traslados
   }// Fin del constructor
+
+  filtrar(){
+    if (this.filasOriginal == null) {
+      this.filasOriginal = this.filas;
+      this.filas = this.filas.filter((fila:FilaTrasladoPendiente) => fila.printVoluntario() == this.form.get("nombre").value);
+    } else {
+      this.filas = this.filasOriginal.filter((fila:FilaTrasladoPendiente) => fila.printVoluntario() == this.form.get("nombre").value);
+    }
+  }
+
+  verTodos(){
+    if (!this.filasOriginal == null ){
+      this.filas = this.filasOriginal;
+    }
+  }
 
   ngOnInit() {
   }

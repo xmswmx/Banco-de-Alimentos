@@ -1,29 +1,51 @@
-<h2 class="mb-5"> Envios pendientes de traslado</h2>
+<div class="container text-center">
+    <h1>Envios Pendientes de traslado</h1>
+</div>
 
-<form [formGroup]="form">
-	<div>
-		<input formControlName="nombre" type="search" id="buscarVoluntario" name="buscarVoluntario" placeholder="Filtrar por voluntario">
-	    <button>Buscar</button>
-	</div>
-</form>
-<table class="egt">
-  <thead>
-    <tr>
-      <th>Descripción</th>
-      <th>Voluntario</th>
-      <th>Origen</th>
-      <th>Destino</th>
-      <th>Fecha estimada</th>
-      <th>Distancia total</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let fila of filas| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
-    <tr>
-      <td>{{fila.printDescripcion()}}</td>
-      <td>{{fila.printVoluntario()}}</td>
-      <td>{{fila.printOrigen()}}</td>
-      <td>{{fila.printDestino()}}</td>
-      <td>{{fila.getFecha()| date: 'dd/MM/yyyy'}}</td>
-      <td>{{fila.getDistancia()}}</td>
-    </tr>
-</table>
+<div class="card border-secondary mb-4 container mt-5" id="contenedor">
+  
+
+  <form [formGroup]="form">
+    <div>
+      <input formControlName="nombre" type="search" id="buscarVoluntario" name="buscarVoluntario" placeholder="Filtrar por voluntario">
+        <button (click)="filtrar()">Filtrar</button>
+        <button (click)="verTodos()">Ver todos</button>
+    </div>
+  </form>
+
+
+
+  <div class="card-body">
+    <div class="container">   
+      <section class="alert alert-dismissible alert-dark mt-3">
+                    Traslados que tienen un voluntario asignado pero aún no fueron trasladados
+      </section>
+      <table class="table table-hover table-bordered table-center">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Voluntario</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Fecha estimada</th>
+            <th>Distancia total</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let fila of filas| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
+          <tr>
+            <td>{{fila.printDescripcion()}}</td>
+            <td>{{fila.printVoluntario()}}</td>
+            <td>{{fila.printOrigen()}}</td>
+            <td>{{fila.printDestino()}}</td>
+            <td>{{fila.getFecha()| date: 'dd/MM/yyyy'}}</td>
+            <td>{{fila.getDistancia()}}</td>
+          </tr>
+        </tbody>        
+      </table>
+      <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+      <div class="form-group text-center mt-5">
+        <button class="btn btn-dark" (click)='this._location.back()'>Volver</button>               
+      </div>
+    </div>
+  </div>
+</div>
