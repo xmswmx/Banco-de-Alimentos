@@ -1,0 +1,75 @@
+<div class="container text-center">
+    <h2>Editar voluntario</h2>
+    <h4></h4>
+</div>
+<div class="card border-secondary mb-4 container mt-5 " id="contenedor">
+    <div class="alert alert-dismissible alert-dark mt-3">Datos del voluntario </div>
+    <div class="card-body">
+            <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
+                    
+            <div class="form-group">
+                <label for="labelDireccion">Dirección</label>
+                <input formControlName="ubicacion" type="text" class="form-control" formControlName="ubicacion" id="ubicacion" value= "{{this.ubicacion}}">
+            </div>
+            
+            <h5>Vehículo asociado</h5>
+            <div class="form-group mt-4">
+                <label for="labelMarca">Marca</label>
+                <input formControlName="marca" type="text" class="form-control" formControlName="marca" id="marca"  value= "{{this.vehiculo.marca}}">
+            </div>
+            <div class="form-group">
+                <label for="labelModelo">Modelo</label>
+                <input formControlName="modelo" type="text" class="form-control" iformControlName="modelo" id="modelo"  value= "{{this.vehiculo.modelo}}">
+            </div>
+            <div class="form-group">
+                <label for="labelPatente">Patente</label>
+                <input formControlName="patente" type="text" class="form-control" formControlName="patente" id="patente"  value= "{{this.vehiculo.patente}}">
+            </div>
+            <h5>Volumen a transportar en el vehículo</h5>
+            <div class="form-row mt-4">
+                <div class="col mb-3">
+                    <label for="form-group">Alto</label>
+                    <div class="input-group ">
+                        <input type="number" class="form-control" formControlName="alto" id="alto" value= "{{this.volumen.alto}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Ancho</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" formControlName="ancho" id="ancho" value="{{this.volumen.ancho}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Largo</label>
+                    <div class="input-group ">
+                        <input type="number" class="form-control " formControlName="largo" id="largo" value="{{this.volumen.largo}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="col mb-3">
+                    <label for="form-group">Distancia máxima a recorrer</label>
+                    <div class="input-group w-25 ">
+                        <input type="text" class="form-control" formControlName="distancia" id="distancia" value="{{this.voluntario.distanciaMaxima}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">km</span>
+                        </div>
+                    </div>
+                </div>
+            </div>              
+            <div class="form-group text-center">
+               <button class="btn mr-2 btn-orange " type="submit">Modificar</button>
+                <button class="btn mr-2 btn-orange" type="submit">Volver</button>    
+            </div>
+        </form>
+    </div>
+</div>

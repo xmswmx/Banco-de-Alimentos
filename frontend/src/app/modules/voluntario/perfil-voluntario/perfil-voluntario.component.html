@@ -3,7 +3,7 @@
     <h4></h4>
 </div>
 <div class="card border-secondary mb-4 container mt-5 " id="contenedor">
-    <div class="alert alert-dismissible alert-primary mt-3">Datos del voluntario </div>
+    <div class="alert alert-dismissible alert-dark mt-3">Datos del voluntario </div>
     <div class="card-body">
         <div  [formGroup]="form">
                     
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="labelDireccion">Dirección</label>
-                <input formControlName="direccion" type="text" class="form-control" id="inputDireccion" value= "Acá va el domicilio, falta crearlo en loopback" readonly>
+                <input formControlName="ubicacion" type="text" class="form-control" id="ubicacion" value= "{{this.ubicacion}}" readonly>
             </div>
             <div class="form-group">
                     <label for="labelNombreDeUsuario">Nombre de usuario</label>
@@ -36,10 +36,12 @@
                 <label for="labelCelular">Celular</label>
                 <input formControlName="celular" type="text" class="form-control" id="inputCelular" value= "{{this.voluntario.telefono}}" readonly>
             </div>
+            <!--
             <div class="form-group">
                 <label for="labelContrasenia">Contraseña</label>
                 <input formControlName="clave" type="password" class="form-control" id="inputClave" value= "{{this.voluntario.password}}"  readonly>
             </div>
+            -->
             <h5>Vehículo asociado</h5>
             <div class="form-group mt-4">
                 <label for="labelMarca">Marca</label>
