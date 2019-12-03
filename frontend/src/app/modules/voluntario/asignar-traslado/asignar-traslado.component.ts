@@ -92,21 +92,29 @@ export class AsignarTrasladoComponent implements OnInit {
 			//	this.apiTraslado.update(this.idTraslado).subscribe((trasladoActualizado : Traslado) => {
 			//	this.apiTraslado.onUpdateAll(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id)
 			this.traslado.voluntarioId = this.voluntario.id;	
-			console.log('id voluntario asiginado al traslado:', this.traslado.voluntarioId);
-			// this.apiTraslado.updateAttributes(this.idTraslado, this.traslado.voluntarioId  = this.voluntario.id)
-			this.apiTraslado.upsert(this.traslado.voluntarioId).subscribe(()=>{
+			//console.log('id voluntario asiginado al traslado:', this.traslado.voluntarioId);
+			// this.apiTraslado.updateAttributes({this.traslado.voluntarioId: this.voluntario.id})
+			//this.apiTraslado.upsert({this.traslado.voluntarioId).subscribe()})=>{
+				// this.apiTraslado.upsert({this.traslado.voluntarioId: model.id}, model, successCallback, failCallback);
+				//this.apiTraslado.upsertWithWhere(this.traslado.voluntarioId = this.voluntario.id);
+				//this.apiTraslado.upsert(this.voluntario.id)
+				this.apiTraslado.upsert(this.traslado).subscribe(()=>
+					console.log('id voluntario:', this.voluntario.id)
+				)
 				
-			})
+				alert('La asignación del traslado se registró correctamente');
+					// imprimo por consola el voluntario asignado a traslado
+					console.log('voluntario asignado al traslado:', this.traslado.voluntarioId);
+					console.log('id de voluntario:', this.voluntario.id);
+					console.log('datos del traslado:', this.traslado);
+					//console.log('voluntario logueado:', this.voluntario.id);
+			}
+		
 				//this.apiTraslado.onReplaceById(this.idTraslado, this.traslado.voluntarioId = this.voluntario.id) 
 				// asocio al traslado en cuestión el id del voluntario que tiene la sesión iniciada
 					//this.traslado.voluntarioId = this.voluntario.id;
-					alert('La asignación del traslado se registró correctamente');
-					// imprimo por consola el voluntario asignado a traslado
-					console.log('voluntario asignado al traslado:', this.traslado.voluntarioId);
-					console.log('voluntario logueado:', this.voluntario.id);
-			//}) 
+					
 			
-			}
 
 	ngOnInit() {
 	}	
