@@ -87,18 +87,21 @@ export class TrasladosPendientesComponent implements OnInit {
   }// Fin del constructor
 
   filtrar(){
-    if (this.filasOriginal == null) {
-      this.filasOriginal = this.filas;
-      this.filas = this.filas.filter((fila:FilaTrasladoPendiente) => fila.printVoluntario() == this.form.get("nombre").value);
-    } else {
-      this.filas = this.filasOriginal.filter((fila:FilaTrasladoPendiente) => fila.printVoluntario() == this.form.get("nombre").value);
-    }
+
+
+  if (this.filasOriginal == null) {
+    this.filasOriginal = this.filas;
+  }
+  this.filas = [];
+  for (let fila of this.filasOriginal.filter((fila:FilaTrasladoPendiente) =>
+   fila.printVoluntario() == this.form.get("nombre").value)){
+    this.filas.push(fila);
+  }
+
   }
 
   verTodos(){
-    if (!this.filasOriginal == null ){
-      this.filas = this.filasOriginal;
-    }
+    this.filas = this.filasOriginal;
   }
 
   ngOnInit() {
