@@ -25,6 +25,7 @@ import { AdminGuard } from './_guards/admin.guard';
 import { VoluntarioGuard } from './_guards/voluntario.guard';
 import { DonanteGuard } from './_guards/donante.guard';
 import { BeneficiarioGuard } from './_guards/beneficiario.guard';
+import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntario/editar-voluntario.component';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -49,7 +50,8 @@ const routes: Routes = [
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
 	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent, canActivate:[VoluntarioGuard]},
 	{path:'registrar-donacion',component:RegistrarDonacionComponent, canActivate:[DonanteGuard]},
-	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]}
+	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]},
+	{path:'editar-voluntario',component:EditarVoluntarioComponent}
 	
 ];
 

@@ -5,7 +5,7 @@
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
             <h3 class="mt-3 text-center">¡Hola {{voluntario.nombre}}! Tenés un traslado disponibe para realizar</h3>
-            <h3 class="form-group mt-4">Datos del traslado</h3>
+            <div class="alert alert-dismissible alert-dark mt-4"> Datos del traslado</div>
             <div class="form-group mt-4">
                 <label for="labelfechaEstimada">Fecha de traslado</label>
                 <input formControlName="fechaEstimada" type="text" class="form-control" id="fechaEstimada"
