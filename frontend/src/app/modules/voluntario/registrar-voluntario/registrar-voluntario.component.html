@@ -86,16 +86,20 @@
             <div class="form-group">
                 <label for="labelModelo">Modelo</label>
                 <input formControlName="modelo" type="text" class="form-control" id="inputModelo" placeholder="Etios">
+              <!--
                 <div *ngIf="modelo.invalid && modelo.touched">
                     <small class="text-danger">El modelo es obligatorio</small>
                 </div>
+                -->
             </div>
             <div class="form-group">
                 <label for="labelPatente">Patente</label>
                 <input formControlName="patente" type="text" class="form-control" id="inputPatente" placeholder="AA125FG">
+                <!--
                 <div *ngIf="patente.invalid && patente.touched">
                     <small class="text-danger">La patente es obligatoria</small>
                 </div>
+                -->
             </div>
             <h5>Volumen a transportar</h5>
             <div class="form-row mt-4">
@@ -107,9 +111,11 @@
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
                     </div>
+                    <!--
                     <div *ngIf="alto.invalid && alto.touched">
                         <small class="text-danger">El alto es obligatorio</small>
                     </div>
+                     -->
                 </div>
                 
                 <div class="col mb-3">
@@ -120,9 +126,11 @@
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
                     </div>
+                    <!--
                     <div *ngIf="ancho.invalid && ancho.touched">
                         <small class="text-danger">El ancho es obligatorio</small>
                     </div>
+                 -->
                 </div>
                 <div class="col mb-3">
                     <label for="form-group">Largo</label>
@@ -132,9 +140,11 @@
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
                     </div>
+                    <!--
                     <div *ngIf="largo.invalid && largo.touched">
                         <small class="text-danger">El largo es obligatorio</small>
                     </div>
+                     -->
                 </div>
             </div>
             <div class="form-row mt-4">
@@ -146,9 +156,11 @@
                             <span class="input-group-text" id="inputGroupPrepend2">km</span>
                         </div>
                     </div>
+                    <!--
                     <div *ngIf="distancia.invalid && distancia.touched">
                         <small class="text-danger">La distancia es obligatoria</small>
                     </div>
+                -->
                 </div>
             </div>              
             <div class="form-group">

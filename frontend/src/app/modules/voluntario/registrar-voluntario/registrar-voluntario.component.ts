@@ -43,18 +43,18 @@ export class RegistrarVoluntarioComponent implements OnInit {
       celular: new FormControl('',[Validators.required]),
       password1: new FormControl('',[Validators.required]),
       password2: new FormControl('',[Validators.required]),
-      distancia: new FormControl('',[Validators.required]),
-      observaciones: new FormControl(),
+      distancia: new FormControl(' '),
+      observaciones: new FormControl(' '),
     
       // atributos del vehículo
-      marca: new FormControl('',[Validators.required]),
-      modelo: new FormControl('',[Validators.required]),
-      patente: new FormControl('',[Validators.required]),
+      marca: new FormControl(' '),
+      modelo: new FormControl(' '),
+      patente: new FormControl(' '),
 
       // atributos del volumen
-      alto: new FormControl('',[Validators.required]),
-      ancho: new FormControl('',[Validators.required]),
-      largo: new FormControl('',[Validators.required]),
+      alto: new FormControl(' '),
+      ancho: new FormControl(' '),
+      largo: new FormControl(' '),
 
     });
     
@@ -107,16 +107,13 @@ export class RegistrarVoluntarioComponent implements OnInit {
       */
       this.ubicacion.direccion =this.form.get("direccion").value;
       this.ubicacion.puntoGeografico =
-      this.addressConverter.coordinateForAddress(this.ubicacion.direccion);
-      //this.ubicacion.beneficiarioId = La pido a la api mas delante                  
+      this.addressConverter.coordinateForAddress(this.ubicacion.direccion);                 
       this.voluntario.username = this.form.get("username").value;                     
       this.voluntario.email = this.form.get("email").value;                         
       this.voluntario.telefono = this.form.get("celular").value;                        
       this.voluntario.password = this.form.get("password1").value;
-      // this.voluntario = this.form.get("password2").value();
       this.voluntario.distanciaMaxima = this.form.get("distancia").value;           
       this.voluntario.puntuacion = 0;                                                 
-      // Roles de loopback. Se deja con un string vacío.
       this.voluntario.realm = "";
       this.voluntario.observaciones = this.form.get("observaciones").value;
    
