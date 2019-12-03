@@ -7,20 +7,23 @@
 	</div>
 </form>
 <table class="egt">
-  <tr>
-    <th>Descripción</th>
-    <th>Voluntario</th>
-    <th>Origen</th>
-    <th>Destino</th>
-    <th>Fecha estimada</th>
-    <th>Distancia total</th>
-  </tr>
-  <tr>
-    <td>Celda 1</td>
-    <td>Celda 2</td>
-    <td>Celda 3</td>
-    <td>Celda 3</td>
-    <td>Celda 3</td>
-    <td>Celda 3</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Voluntario</th>
+      <th>Origen</th>
+      <th>Destino</th>
+      <th>Fecha estimada</th>
+      <th>Distancia total</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let fila of filas| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
+    <tr>
+      <td>{{fila.printDescripcion()}}</td>
+      <td>{{fila.printVoluntario()}}</td>
+      <td>{{fila.printOrigen()}}</td>
+      <td>{{fila.printDestino()}}</td>
+      <td>{{fila.getFecha()| date: 'dd/MM/yyyy'}}</td>
+      <td>{{fila.getDistancia()}}</td>
+    </tr>
 </table>

@@ -28,6 +28,12 @@
     },
     "puntaje": {
       "type":"number"
+    },
+    "distancia": {
+      "type":"number"
+    },
+    "descripcion": {
+      "type":"string"
     }
   },
   "validations": [],

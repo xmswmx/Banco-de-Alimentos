@@ -3,7 +3,7 @@ import { Beneficiario, EnvioParaBeneficiario, Donacion, Donante, DescripcionGene
 import { BeneficiarioApi, EnvioParaBeneficiarioApi ,DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi, UbicacionApi, DescripcionDetalladaApi } from '../../../_services/lbservice/services'
 import {Location} from '@angular/common';
 import { BALP } from '../../../_models/BALP';
-import { FilaTrasladoPendiente } from '../../../_models/FilaTrasladoPendiente'
+import { FilaTrasladoPendiente } from './FilaTrasladoPendiente'
 import { VoluntariosService } from 'src/app/_services/voluntarios.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +17,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class TrasladosPendientesComponent implements OnInit {
 
   form : FormGroup;
-  filas : FilaTrasladoPendiente[];
+  filas : FilaTrasladoPendiente[] = [];
   dirBALP : Ubicacion = (new BALP).ubicacionBALP;
   constructor(private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
 
@@ -26,7 +26,9 @@ export class TrasladosPendientesComponent implements OnInit {
   });
 
   	apiTraslado.find().subscribe((traslados:Traslado[])=>{
-  		for (let traslado of traslados){
+  		traslados = traslados.filter(traslado => traslado.voluntarioId != null);
+      console.log(traslados);
+      for (let traslado of traslados){
   			// Pido voluntario
         voluntarioApi.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
           // Bifurcada
@@ -35,16 +37,22 @@ export class TrasladosPendientesComponent implements OnInit {
               //Pido donacion
               apiDonacion.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
                  apiDonante.findById(donacion.idDonante).subscribe((donante:Donante)=>{
-                   apiDonante.getUbicacion(donante.id).subscribe((ubicacion:Ubicacion)=>{
+                   apiDonante.getUbicacion(donante.id,true).subscribe((ubicacion:Ubicacion)=>{
                        //Bifurcada descripcion
+                       if (donacion.tipoDescripcion=='general'){
                          //Caso general
-                         //Caso detallada
-  
-
-
-                         this.filas.push(
-                           new FilaTrasladoPendiente(traslado,voluntario,donacion,ubicacion,this.dirBALP)
+                         apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc:DescripcionGeneral)=>{
+                           this.filas.push(
+                             new FilaTrasladoPendiente(traslado,voluntario,donacion,ubicacion,this.dirBALP)
                            ) //fin push
+                         })
+                       } else {
+                         apiDonacion.getDescripcionDetallada(donacion.id,true).subscribe((desc:DescripcionDetallada)=>{
+                           this.filas.push(
+                             new FilaTrasladoPendiente(traslado,voluntario,donacion,ubicacion,this.dirBALP)
+                           ) //fin push
+                         })
+                       } //fin if/else
                    }) //Fin ubicacion
                  }) //fin donante
               }) //Fin donacion  
@@ -52,10 +60,10 @@ export class TrasladosPendientesComponent implements OnInit {
             //Caso envio
             //Pido envio
             apiEnvio.findById(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario)=>{
-              apiEnvio.getBeneficiario(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((beneficiario:Beneficiario)=>{
-                apiBeneficiario.getUbicacion(beneficiario.id).subscribe((ubicacion:Ubicacion)=>{
+              apiEnvio.getBeneficiario(traslado.idEnvioTrasladadoAUnBeneficiario,true).subscribe((beneficiario:Beneficiario)=>{
+                apiBeneficiario.getUbicacion(beneficiario.id,true).subscribe((ubicacion:Ubicacion)=>{
                   this.filas.push(
-                      new FilaTrasladoPendiente(traslado,beneficiario,envio,this.dirBALP,ubicacion)
+                      new FilaTrasladoPendiente(traslado,voluntario,envio,this.dirBALP,ubicacion)
                     )
                 }) //fin ubi
               }) //fin bene
