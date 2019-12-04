@@ -27,6 +27,10 @@ import { DonanteGuard } from './_guards/donante.guard';
 import { BeneficiarioGuard } from './_guards/beneficiario.guard';
 import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntario/editar-voluntario.component';
 import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-donante.component';
+import { TrasladoAsignadoGuard } from './_guards/traslado-asignado.guard';
+
+
+
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
 	{path:'home',component:HomeComponent},
@@ -49,7 +53,7 @@ const routes: Routes = [
 	{path:'traslados-sin-voluntario',component:TrasladosSinVoluntarioComponent, canActivate:[AdminGuard]},
 	{path:'traslados-pendientes',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
 	{path:'traslados-pendientes/:userVoluntario',component:TrasladosPendientesComponent, canActivate:[AdminGuard]},
-	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent, canActivate:[VoluntarioGuard]},
+	{path:'asignar-traslado/:idTraslado',component:AsignarTrasladoComponent, canActivate:[VoluntarioGuard, TrasladoAsignadoGuard]},
 	{path:'registrar-donacion',component:RegistrarDonacionComponent, canActivate:[DonanteGuard]},
 	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]},
 	{path:'editar-voluntario',component:EditarVoluntarioComponent},
@@ -59,6 +63,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AdminGuard, BeneficiarioGuard, VoluntarioGuard, DonanteGuard]
+  providers: [TrasladoAsignadoGuard, AdminGuard, BeneficiarioGuard, VoluntarioGuard, DonanteGuard]
 })
 export class AppRoutingModule { }

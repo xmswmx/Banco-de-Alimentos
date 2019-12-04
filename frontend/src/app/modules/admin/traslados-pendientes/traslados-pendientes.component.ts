@@ -28,7 +28,7 @@ export class TrasladosPendientesComponent implements OnInit {
     });
 
   	apiTraslado.find().subscribe((traslados:Traslado[])=>{
-  		traslados = traslados.filter(traslado => traslado.voluntarioId != null);
+  		traslados = traslados.filter(traslado => traslado.estado == "en traslado");
       console.log(traslados);
       for (let traslado of traslados){
   			// Pido voluntario
