@@ -91,10 +91,31 @@ export class EditarVoluntarioComponent implements OnInit {
       console.log('Vehículo:', this.vehiculo)
       
     // Actualizar el vehículo + volumen + distanciaMáxima
-    this.apiVoluntario.upsert(this.voluntario).subscribe(()=>
-     console.log('voluntario despues:', this.voluntario)
-    )
+   // this.apiVoluntario.upsert(this.voluntario).subscribe(()=>
+    // console.log('voluntario despues:', this.voluntario)
+   // )
 
+   // Actualizo al voluntario
+    this.apiVoluntario.patchAttributes(this.apiVoluntario.getCachedCurrent().id,{
+      "distanciaMaxima": this.voluntario.distanciaMaxima   
+    }).subscribe(()=>{alert('actualizado')
+    this.router.navigateByUrl("/perfil-voluntario");
+    console.log('Voluntario después:', this.voluntario)})
+   
+/*
+    // Actualizo el vehíulo de voluntario
+    this.apiVehiculo.patchAttributes(this.apiVoluntario.getCachedCurrent().id,{
+      "marca": this.vehiculo.marca,
+      "modelo" : this.vehiculo.modelo,
+      "patente" : this.vehiculo.patente
+    }).subscribe(()=>{alert('actualizado')})
+
+    // Actualizo el volumen del vehículo del voluntario
+    this.apiVolumen.patchAttributes(this.apiVehiculo.id, {
+
+
+    }).subscribe(() => {alert('')})
+*/
     
     
     
