@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Voluntario, Vehiculo, Volumen, Ubicacion } from '../../../_services/lbservice/models';
+import { Voluntario, Vehiculo, Volumen, Ubicacion, Donante } from '../../../_services/lbservice/models';
 import { DonanteApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { AddressConverter } from '../../../_models/AddressConverter';
 
@@ -16,8 +16,10 @@ export class EditarDonanteComponent implements OnInit {
 
   form: FormGroup;
   addressConverter: AddressConverter;
+  donante;
+  ubicacion;
 
-  constructor(private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
+  constructor(private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
 
     this.form = new FormGroup({   
       cuil: new FormControl(),
@@ -25,6 +27,24 @@ export class EditarDonanteComponent implements OnInit {
       email: new FormControl()
      });
     this.addressConverter = new AddressConverter;
+    apiDonante.findById(this.apiDonante.getCachedCurrent().id).subscribe((donante:Donante)=>{
+      apiDonante.getUbicacion(donante.id,true).subscribe((ub)=>{
+        this.ubicacion= ub.direccion;
+        console.log(ub);
+        this.form.controls["cuil"].setValue(donante.cuil);
+        this.form.controls["ubicacion"].setValue(ub.direccion);
+        this.form.controls["email"].setValue(donante.email);
+        
+        /* Sobre la lectura de los datos a mostrar
+
+          Cuidado, no usar los datos del usuario catcheado para mostrar
+          ya que se quedan ahí aún después de modificiarlos.
+          Es mejor pedirlos a la api para mantenerlos actualizados
+
+        */
+      })      
+    })
+
    }
 
   onSubmit() {
@@ -39,7 +59,17 @@ export class EditarDonanteComponent implements OnInit {
       this.apiDonante.patchAttributes(this.apiDonante.getCachedCurrent().id,{
         "cuil": cuil,
         "email": email
-      }).subscribe(()=>{alert('actualizado')})
+      }).subscribe(()=>{
+        this.apiDonante.getUbicacion(this.apiDonante.getCachedCurrent().id,true).subscribe((ubi:Ubicacion)=>{
+          this.apiUbicacion.patchAttributes(ubi.id,{
+            "direccion": ubicacion.direccion,
+            "puntoGeografico": ubicacion.puntoGeografico
+          }).subscribe(()=>{
+            alert("Se actualizaron los datos. 👌")
+          })
+        })
+
+      })
       
     }
   }

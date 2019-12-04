@@ -5,6 +5,7 @@
 			alt="">
 		<img *ngIf="userApi.getCachedCurrent()" src="../../assets/icons/logo-balp.png" width="205" height="74" alt="">
 	</a>
+
 	<h1 class="d-inline-flex text-center font-weight-bold pt-4">
 		<!-- Variable -->
 	</h1>
@@ -26,12 +27,6 @@
 		<button (click)="router.navigate(['/login']);" type="button" class="btn btn-dark ml-4">Iniciar sesión</button>
 	</div>
 
-	<!-- OPCIONES DE USUARIOS
-								* Lo que falta es completar todas las opciones posibles de cada perfil
-								* Averigualas viendo los mockup
-								* Usate esto en lugar del href (click)="router.navigate(['/perfil-donante'])"
-								* Con el href no funcionan algunas cositas de angular como un botón de volvever para atrás
-				-->
 	<!-- OPCIONES DONANTE -->
 	<div *ngIf="userApi.getCachedCurrent() && (userApi.getCachedCurrent().tipoDeUsuario == 'donante')" class="d-inline-flex mr-4">
 		<span class="dropdown">
@@ -42,6 +37,7 @@
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Mis datos</a>
+				<a class="dropdown-item" (click)="router.navigate(['/editar-donante'])">Configurar cuenta</a>
 				<a class="dropdown-item" (click)="router.navigate(['/registrar-donacion'])">Registrar donación</a>
 				<a class="dropdown-item" (click)="router.navigate(['/mis-donaciones'])">Mis donaciones</a>			
 				<a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
@@ -59,6 +55,7 @@
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<a class="dropdown-item" (click)="router.navigate(['/perfil-voluntario'])">Mis datos</a>
+				<a class="dropdown-item" (click)="router.navigate(['/editar-voluntario'])">Configurar cuenta</a>
 				<!-- <a class="dropdown-item" (click)="router.navigate(['/solicitudes-traslado'])">Solicitudes de traslado</a> -->
 				<a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
 			</div>
@@ -75,6 +72,7 @@
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Mis datos</a>
+					<a class="dropdown-item" (click)="router.navigate(['/editar-beneficiario'])">Configurar cuenta</a>
 					<!-- <a class="dropdown-item" (click)="router.navigate(['/confirmar-traslado-realizado'])">Confirmar traslado efectuado</a>			 -->
 					<a class="dropdown-item"  (click)="logout()">Cerrar sesión</a>
 			</div>
