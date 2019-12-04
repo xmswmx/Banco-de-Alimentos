@@ -56,7 +56,7 @@
         </tbody>
     </table>
 			
-			
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>	
     <section class="card-header text-center p-3 mt-4 mb-4">
         <button type="button" class="btn btn-dark text-center mr-2" (click)="enviarEmails()">Enviar correo a los seleccionados</button>
         <button type="button" class="btn btn-dark text-center"  (click)='this._location.back()'>Volver</button>
