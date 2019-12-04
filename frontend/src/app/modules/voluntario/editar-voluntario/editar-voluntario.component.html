@@ -1,36 +1,103 @@
 <div class="container text-center">
     <h2>Editar voluntario</h2>
-    <h4></h4>
 </div>
 <div class="card border-secondary mb-4 container mt-5 " id="contenedor">
     <div class="alert alert-dismissible alert-dark mt-3">Datos del voluntario </div>
     <div class="card-body">
-            <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
-                    
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
             <div class="form-group">
-                <label for="labelDireccion">Dirección</label>
-                <input formControlName="ubicacion" type="text" class="form-control" formControlName="ubicacion" id="ubicacion" value= "{{this.ubicacion}}">
+                <label for="labelNombre">Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" id="nombre"
+                    value="{{this.voluntario.nombre}}">
+                <!-- 
+                <div *ngIf="nombre.invalid && nombre.touched">
+                    <small class="text-danger">El nombre es obligatorio</small>
+                </div>
+                --> 
             </div>
-            
+            <div class="form-group">
+                <label for="labelNombre">Apellido</label>
+                <input type="text" class="form-control" formControlName="apellido" id="apellido"
+                    value="{{this.voluntario.apellido}}">
+                <!-- 
+                <div *ngIf="apellido.invalid && apellido.touched">
+                    <small class="text-danger">El apellido es obligatorio</small>
+                </div>
+            --> 
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">DNI</label>
+                <input type="text" class="form-control" formControlName="dni" id="dni" value="{{this.voluntario.dni}}">
+                <!-- 
+                <div *ngIf="dni.invalid && dni.touched">
+                    <small class="text-danger">El DNI es obligatorio</small>
+                </div>
+            --> 
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Dirección</label>
+                <input type="text" class="form-control" formControlName="ubicacion" id="ubicacion"
+                    value="{{this.ubicacion}}">
+                <!-- 
+                <div *ngIf="direccion.invalid && direccion.touched">
+                    <small class="text-danger">La dirección es obligatoria</small>
+                </div>
+            --> 
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Nombre de usuario</label>
+                <input type="text" class="form-control" formControlName="username" id="username"
+                    value="{{this.voluntario.username}}">
+                <!-- 
+                    <div *ngIf="username.invalid && username.touched">
+                            <small class="text-danger">El nombre de usuario es obligatorio</small>
+                        </div> 
+                    --> 
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Email</label>
+                <input type="text" class="form-control" formControlName="email" id="email"
+                    value="{{this.voluntario.email}}">
+                <!-- 
+                    <div *ngIf="email.invalid && email.touched && emailIsInvalid ">
+                            <small class="text-danger">Se debe ingresar un correo con el formato mi@correo.com</small>
+                        </div> 
+                    --> 
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Celular</label>
+                <input type="text" class="form-control" formControlName="celular" id="celular"
+                    value="{{this.voluntario.telefono}}">
+                    <!-- 
+                    <div *ngIf="celular.invalid && celular.touched">
+                            <small class="text-danger">El celular es obligatorio</small>
+                        </div>
+                    --> 
+            </div>
+
             <h5>Vehículo asociado</h5>
             <div class="form-group mt-4">
                 <label for="labelMarca">Marca</label>
-                <input formControlName="marca" type="text" class="form-control" formControlName="marca" id="marca"  value= "{{this.vehiculo.marca}}">
+                <input formControlName="marca" type="text" class="form-control" formControlName="marca" id="marca"
+                    value="{{this.vehiculo.marca}}">
             </div>
             <div class="form-group">
                 <label for="labelModelo">Modelo</label>
-                <input formControlName="modelo" type="text" class="form-control" iformControlName="modelo" id="modelo"  value= "{{this.vehiculo.modelo}}">
+                <input formControlName="modelo" type="text" class="form-control" iformControlName="modelo" id="modelo"
+                    value="{{this.vehiculo.modelo}}">
             </div>
             <div class="form-group">
                 <label for="labelPatente">Patente</label>
-                <input formControlName="patente" type="text" class="form-control" formControlName="patente" id="patente"  value= "{{this.vehiculo.patente}}">
+                <input formControlName="patente" type="text" class="form-control" formControlName="patente" id="patente"
+                    value="{{this.vehiculo.patente}}">
             </div>
             <h5>Volumen a transportar en el vehículo</h5>
             <div class="form-row mt-4">
                 <div class="col mb-3">
                     <label for="form-group">Alto</label>
                     <div class="input-group ">
-                        <input type="number" class="form-control" formControlName="alto" id="alto" value= "{{this.volumen.alto}}">
+                        <input type="number" class="form-control" formControlName="alto" id="alto"
+                            value="{{this.volumen.alto}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -39,7 +106,8 @@
                 <div class="col mb-3">
                     <label for="form-group">Ancho</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" formControlName="ancho" id="ancho" value="{{this.volumen.ancho}}">
+                        <input type="number" class="form-control" formControlName="ancho" id="ancho"
+                            value="{{this.volumen.ancho}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -48,7 +116,8 @@
                 <div class="col mb-3">
                     <label for="form-group">Largo</label>
                     <div class="input-group ">
-                        <input type="number" class="form-control " formControlName="largo" id="largo" value="{{this.volumen.largo}}">
+                        <input type="number" class="form-control " formControlName="largo" id="largo"
+                            value="{{this.volumen.largo}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -59,16 +128,22 @@
                 <div class="col mb-3">
                     <label for="form-group">Distancia máxima a recorrer</label>
                     <div class="input-group w-25 ">
-                        <input type="text" class="form-control" formControlName="distancia" id="distancia" value="{{this.voluntario.distanciaMaxima}}">
+                        <input type="text" class="form-control" formControlName="distancia" id="distancia"
+                            value="{{this.voluntario.distanciaMaxima}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">km</span>
                         </div>
                     </div>
                 </div>
-            </div>              
+            </div>
+            <div class="form-group">
+                <label for="labelObservaciones">Observaciones</label>
+                <textarea class="form-control" formControlName="observaciones" id="observaciones" rows="3"
+                    value="{{this.voluntario.observaciones}}"> </textarea>
+            </div>
             <div class="form-group text-center">
-               <button class="btn mr-2 btn-orange " type="submit">Modificar</button>
-                <button class="btn mr-2 btn-orange" type="submit">Volver</button>    
+                <button class="btn mr-2 btn-orange " type="submit">Modificar</button>
+                <button class="btn mr-2 btn-orange" type="submit">Volver</button>
             </div>
         </form>
     </div>
