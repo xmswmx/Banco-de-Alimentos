@@ -40,6 +40,7 @@ import { NuevoEnvioAPartirDeStockComponent } from './modules/admin/nuevo-envio/n
 import { NuevoEnvioItemsComponent } from './modules/admin/nuevo-envio/nuevo-envio-items/nuevo-envio-items.component';
 import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntario/editar-voluntario.component';
 import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-donante.component';
+import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-
     NuevoEnvioAPartirDeStockComponent,
     NuevoEnvioItemsComponent,
     EditarVoluntarioComponent,
-    EditarDonanteComponent
+    EditarDonanteComponent,
+    MisTrasladosComponent
   ],
   imports: [
     FontAwesomeModule,
