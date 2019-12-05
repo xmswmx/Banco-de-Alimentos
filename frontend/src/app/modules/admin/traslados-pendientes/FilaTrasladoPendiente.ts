@@ -20,6 +20,9 @@ export class FilaTrasladoPendiente {
 			//this.distancia=(new AddressConverter).distanceFromTo(uOrigen.puntoGeografico,uDestino.puntoGeografico);
 		}
 
+		getVoluntario(){
+			return this.voluntario;
+		}
 		printDescripcion():string{
 			return (this.traslado.descripcion);
 		}

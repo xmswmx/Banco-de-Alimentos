@@ -48,7 +48,8 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
         vto: new FormControl(),
         alto: new FormControl(),
         ancho: new FormControl(),
-        largo: new FormControl()
+        largo: new FormControl(),
+        peso: new FormControl()
 
       });
       this.idDonante = apiDonante.getCachedCurrent().id;
@@ -134,13 +135,14 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
        this.traslado.fechaEstimada = this.formDetallada.get("fechaRetiro").value;
        this.traslado.idDonacionTrasladadaAlBanco = donacionCreada.id;
        this.traslado.tipo = 'donacion';
+       this.traslado.peso = this.formDetallada.get("peso").value;
        
        //testear que se guarde el volumenTotal correcto
        this.traslado.volumenTotal = this.formDetallada.get("alto").value + this.formDetallada.get("ancho").value + this.formDetallada.get("largo").value;
        
        this.traslado.distancia = this.distancia;
        this.traslado.descripcion = this.textoDescriptivo;
-       this.traslado.puntaje = 5;
+       this.traslado.puntaje = Math.round(this.traslado.peso * this.distancia);
 
        this.apiTraslado.create(this.traslado).subscribe(()=>{
          console.log('Se creo el traslado');

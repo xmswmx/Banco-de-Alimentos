@@ -88,7 +88,8 @@ export class AsignarTrasladoComponent implements OnInit {
 			// DE ACA EN ADELANTE SE ASOCIA EL VOLUNTARIO AL TRASLADO
 			onSubmit() {
 			this.traslado.voluntarioId = this.voluntario.id;
-			this.traslado.estado = "en traslado";	
+			this.traslado.estado = "en traslado";
+			this.traslado.fechaAsignacion = new Date;	
 		
 				this.apiTraslado.upsert(this.traslado).subscribe(()=>
 					console.log('id voluntario:', this.voluntario.id)

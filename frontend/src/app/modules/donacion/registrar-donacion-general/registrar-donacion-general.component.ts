@@ -22,7 +22,8 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
         alto: new FormControl(),
         ancho: new FormControl(),
         largo: new FormControl(),
-        texto: new FormControl()
+        texto: new FormControl(),
+        peso: new FormControl()
 
       });
 
@@ -46,6 +47,7 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
     let alto = this.formGeneral.get("alto").value;
     let ancho = this.formGeneral.get("ancho").value;
     let largo = this.formGeneral.get("largo").value;
+    let peso = this.formGeneral.get("peso").value;
 
     let desc: DescripcionGeneral = new DescripcionGeneral;
     let donante: Donante = new Donante;
@@ -65,8 +67,9 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
           traslado.tipo = 'donacion';
           traslado.volumenTotal = alto * ancho * largo;
           traslado.descripcion = texto;
-          traslado.puntaje = 5;
+          traslado.puntaje = Math.round(this.distancia * peso);
           traslado.distancia = this.distancia;
+          traslado.peso= peso;
           this.trasladoApi.create(traslado).subscribe(()=>{
             
             //De legado

@@ -11,6 +11,7 @@ export interface TrasladoInterface {
   "puntaje"?: number;
   "distancia"?: number;
   "descripcion"?: string;
+  "peso"?: number;
   "id"?: any;
   "voluntarioId"?: any;
   "idDonacionTrasladadaAlBanco"?: any;
@@ -27,6 +28,7 @@ export class Traslado implements TrasladoInterface {
   "puntaje": number;
   "distancia": number;
   "descripcion": string;
+  "peso": number;
   "id": any;
   "voluntarioId": any;
   "idDonacionTrasladadaAlBanco": any;
@@ -100,6 +102,10 @@ export class Traslado implements TrasladoInterface {
         "descripcion": {
           name: 'descripcion',
           type: 'string'
+        },
+        "peso": {
+          name: 'peso',
+          type: 'number'
         },
         "id": {
           name: 'id',

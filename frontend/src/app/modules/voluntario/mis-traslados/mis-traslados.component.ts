@@ -88,6 +88,53 @@ export class MisTrasladosComponent implements OnInit {
   	}) //Fin traslados
   }// Fin del constructor
 
+  efectuar(traslado:Traslado,voluntario:Voluntario){
+    traslado.estado = "entregado";
+    traslado.fechaFin = new Date;
+    console.log(traslado.fechaFin);
+    voluntario.puntuacion = voluntario.puntuacion + traslado.puntaje;
+    //Checkear si obtuvo insignia
+    if (traslado.tipo="donacion"){
+      this.apiDonacion.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
+        this.apiDonante.findById(donacion.idDonante).subscribe((donante:Donante)=>{
+          donante.puntuacion=donante.puntuacion + traslado.peso;
+          donante.totalDonado = donante.totalDonado + traslado.peso;
+          donante.totalDonadoEsteMes = donante.totalDonadoEsteMes + traslado.peso;
+          //Chequear insignias
+
+          this.apiTraslado.patchAttributes(traslado.id,{
+            "estado":traslado.estado,
+            "fechaFin":traslado.fechaFin
+          }).subscribe(()=>{
+            this.apiVoluntario.patchAttributes(voluntario.id,{
+              "puntuacion": voluntario.puntuacion
+            }).subscribe(()=>{
+              this.apiDonante.patchAttributes(donante.id,{
+                "puntuacion":donante.puntuacion,
+                "totalDonado":donante.totalDonado,
+                "totalDonadoEsteMes":donante.totalDonadoEsteMes
+              }).subscribe(()=>{
+                alert("funciona");
+                //Notificar y volver
+              })
+            })
+          })
+        })
+      })
+    } else {
+      this.apiTraslado.patchAttributes(traslado.id,{
+        "estado":traslado.estado,
+        "fechaFin":traslado.fechaFin
+      }).subscribe(()=>{
+        this.apiVoluntario.patchAttributes(voluntario.id,{
+          "puntuacion": voluntario.puntuacion
+        }).subscribe(()=>{
+          //Notificar y volver
+          alert("funciona");
+        })
+      })
+    }
+  }
 
   ngOnInit() {
   }
