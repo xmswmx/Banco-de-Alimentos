@@ -114,8 +114,7 @@ export class MisTrasladosComponent implements OnInit {
                 "totalDonado":donante.totalDonado,
                 "totalDonadoEsteMes":donante.totalDonadoEsteMes
               }).subscribe(()=>{
-                alert("funciona");
-                //Notificar y volver
+                //Listo
               })
             })
           })
@@ -129,8 +128,7 @@ export class MisTrasladosComponent implements OnInit {
         this.apiVoluntario.patchAttributes(voluntario.id,{
           "puntuacion": voluntario.puntuacion
         }).subscribe(()=>{
-          //Notificar y volver
-          alert("funciona");
+          //Listo
         })
       })
     }

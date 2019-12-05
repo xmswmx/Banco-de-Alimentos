@@ -25,7 +25,11 @@ export class HeaderComponent implements OnInit {
   }
   
   logout(){
-    this.userApi.logout().subscribe(()=> {this.router.navigate(['/home'])} ); 
+    this.userApi.logout().subscribe(()=> {
+    }); 
+    this.sleep(500).then(() => {
+      this.router.navigate(['/home'])
+    });
   }
   verPerfil(){
     
@@ -37,5 +41,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+  sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 }

@@ -43,4 +43,7 @@ export class FilaTrasladoPendiente {
 		getDistancia(){
 			return this.traslado.distancia;
 		}
+		roundDistancia():number{
+			return (Math.round(this.traslado.distancia))
+		}
 }
