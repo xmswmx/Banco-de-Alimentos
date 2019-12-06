@@ -4,104 +4,123 @@
 </div>
 <div class="card border-secondary mb-4 container mt-5 " id="contenedor">
     <div class="alert alert-dismissible alert-dark mt-3">Datos del voluntario </div>
-    <div class="card-body">
-        <div  [formGroup]="form">
-                    
-            <div class="form-group">
-                <label for="labelNombre">Nombre</label>
-                <input formControlName="nombre" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.nombre}}"readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelNombre">Apellido</label>
-                <input formControlName="apellido" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.apellido}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelDireccion">DNI</label>
-                <input formControlName="dni" type="text" class="form-control" id="inputDNI" value="{{this.voluntario.dni}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelDireccion">Dirección</label>
-                <input formControlName="ubicacion" type="text" class="form-control" id="ubicacion" value= "{{this.ubicacion}}" readonly>
-            </div>
-            <div class="form-group">
-                    <label for="labelNombreDeUsuario">Nombre de usuario</label>
-                    <input formControlName="username" type="text" class="form-control" id="inputUsername" value= "{{this.voluntario.username}}" readonly>
-                </div>
-            <div class="form-group">
-                <label for="labelDireccion">Email</label>
-                <input formControlName="email" type="text" class="form-control" id="inputEmail" value= "{{this.voluntario.email}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelCelular">Celular</label>
-                <input formControlName="celular" type="text" class="form-control" id="inputCelular" value= "{{this.voluntario.telefono}}" readonly>
-            </div>
-            <!--
-            <div class="form-group">
-                <label for="labelContrasenia">Contraseña</label>
-                <input formControlName="clave" type="password" class="form-control" id="inputClave" value= "{{this.voluntario.password}}"  readonly>
-            </div>
-            -->
-            <h5>Vehículo asociado</h5>
-            <div class="form-group mt-4">
-                <label for="labelMarca">Marca</label>
-                <input formControlName="marca" type="text" class="form-control" id="inputMarca"  value= "{{this.vehiculo.marca}}"  readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelModelo">Modelo</label>
-                <input formControlName="modelo" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.modelo}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="labelPatente">Patente</label>
-                <input formControlName="patente" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.patente}}" readonly>
-            </div>
-            <h5>Volumen a transportar en el vehículo</h5>
-            <div class="form-row mt-4">
-                <div class="col mb-3">
-                    <label for="form-group">Alto</label>
-                    <div class="input-group ">
-                        <input type="text" class="form-control " id="inputAlto"  value= "{{this.volumen.alto}}" readonly>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+    <mat-tab-group>
+        <mat-tab label="Información personal">
+            <div class="card-body">
+                <div  [formGroup]="form">
+                            
+                    <div class="form-group">
+                        <label for="labelNombre">Nombre</label>
+                        <input formControlName="nombre" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.nombre}}"readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelNombre">Apellido</label>
+                        <input formControlName="apellido" type="text" class="form-control" id="inputNombre" value= "{{this.voluntario.apellido}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelDireccion">DNI</label>
+                        <input formControlName="dni" type="text" class="form-control" id="inputDNI" value="{{this.voluntario.dni}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelDireccion">Dirección</label>
+                        <input formControlName="ubicacion" type="text" class="form-control" id="ubicacion" value= "{{this.ubicacion}}" readonly>
+                    </div>
+                    <div class="form-group">
+                            <label for="labelNombreDeUsuario">Nombre de usuario</label>
+                            <input formControlName="username" type="text" class="form-control" id="inputUsername" value= "{{this.voluntario.username}}" readonly>
+                        </div>
+                    <div class="form-group">
+                        <label for="labelDireccion">Email</label>
+                        <input formControlName="email" type="text" class="form-control" id="inputEmail" value= "{{this.voluntario.email}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelCelular">Celular</label>
+                        <input formControlName="celular" type="text" class="form-control" id="inputCelular" value= "{{this.voluntario.telefono}}" readonly>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label for="labelContrasenia">Contraseña</label>
+                        <input formControlName="clave" type="password" class="form-control" id="inputClave" value= "{{this.voluntario.password}}"  readonly>
+                    </div>
+                    -->
+                    <h5>Vehículo asociado</h5>
+                    <div class="form-group mt-4">
+                        <label for="labelMarca">Marca</label>
+                        <input formControlName="marca" type="text" class="form-control" id="inputMarca"  value= "{{this.vehiculo.marca}}"  readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelModelo">Modelo</label>
+                        <input formControlName="modelo" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.modelo}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="labelPatente">Patente</label>
+                        <input formControlName="patente" type="text" class="form-control" id="inputModelo"  value= "{{this.vehiculo.patente}}" readonly>
+                    </div>
+                    <h5>Volumen a transportar en el vehículo</h5>
+                    <div class="form-row mt-4">
+                        <div class="col mb-3">
+                            <label for="form-group">Alto</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control " id="inputAlto"  value= "{{this.volumen.alto}}" readonly>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="form-group">Ancho</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control " id="inputAncho" value="{{this.volumen.ancho}}" readonly>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="form-group">Largo</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control " id="inputLargo" value="{{this.volumen.largo}}" readonly>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col mb-3">
-                    <label for="form-group">Ancho</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control " id="inputAncho" value="{{this.volumen.ancho}}" readonly>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
+                    <div class="form-row mt-4">
+                        <div class="col mb-3">
+                            <label for="form-group">Distancia máxima a recorrer</label>
+                            <div class="input-group w-25 ">
+                                <input type="text" class="form-control " id="inputAlto" value="{{this.voluntario.distanciaMaxima}}" readonly>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">km</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>              
+                    <div class="form-group">
+                        <label for="labelObservaciones">Observaciones</label>
+                        <textarea class="form-control" id="inputObservaciones" rows="3" readonly>{{this.voluntario.observaciones}} </textarea>
                     </div>
-                </div>
-                <div class="col mb-3">
-                    <label for="form-group">Largo</label>
-                    <div class="input-group ">
-                        <input type="text" class="form-control " id="inputLargo" value="{{this.volumen.largo}}" readonly>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupPrepend2">cm</span>
-                        </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary" type="submit" readonly>Volver</button>    
                     </div>
                 </div>
             </div>
-            <div class="form-row mt-4">
-                <div class="col mb-3">
-                    <label for="form-group">Distancia máxima a recorrer</label>
-                    <div class="input-group w-25 ">
-                        <input type="text" class="form-control " id="inputAlto" value="{{this.voluntario.distanciaMaxima}}" readonly>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupPrepend2">km</span>
+        </mat-tab>
+        <mat-tab label="Puntos e insignias">
+            <div class="card-body">
+                <div class="text-center col-md-4 mt-3">
+                            <fa-icon [icon]="faStar" size="6x" [fixedWidth]="true" [styles]="{'color': '#dbab09'}"></fa-icon>
+                            <div title="Puntuación" style='position: relative; top:-50px;color:white;'>
+                                <h2><strong> 1000 </strong></h2>
                         </div>
+                    <div class="container">
+                        <span class='inline p-1' *ngFor="let badge of badges" title="Insignia de {{badge[0]}}">
+                            <fa-icon  class="inline" [icon]=badge[1] size="4x" [fixedWidth]="true" [styles]="{'color': '#f94116'}"></fa-icon>
+                        </span>
                     </div>
                 </div>
-            </div>              
-            <div class="form-group">
-                <label for="labelObservaciones">Observaciones</label>
-                <textarea class="form-control" id="inputObservaciones" rows="3" readonly>{{this.voluntario.observaciones}} </textarea>
             </div>
-            <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit" readonly>Volver</button>    
-            </div>
-        </div>
-    </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>
