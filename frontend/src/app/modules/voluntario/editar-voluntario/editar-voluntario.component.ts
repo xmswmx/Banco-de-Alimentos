@@ -65,6 +65,8 @@ export class EditarVoluntarioComponent implements OnInit {
 
  })
 
+    this.form.controls["dni"].setValue(this.voluntario.dni);
+    this.form.controls["nombre"].setValue(this.voluntario.nombre);
  }
 
 
@@ -72,7 +74,8 @@ export class EditarVoluntarioComponent implements OnInit {
   onSubmit() {
  
   //  if (this.form.valid) {       
-      // capturo y actualizo los atributos del voluntario       
+      // capturo y actualizo los atributos del voluntario 
+      /*      
       this.voluntario.nombre = this.form.get("nombre").value;
       this.voluntario.apellido = this.form.get("apellido").value;
       this.voluntario.dni = this.form.get("dni").value;
@@ -81,7 +84,7 @@ export class EditarVoluntarioComponent implements OnInit {
       this.voluntario.telefono = this.form.get("celular").value;
       this.voluntario.observaciones = this.form.get("observaciones").value;  
       this.voluntario.distanciaMaxima = this.form.get("distancia").value;    
-
+*/
       console.log('nombre:', this.voluntario.nombre)
       console.log('apellido:', this.voluntario.apellido)
       console.log('dni:', this.voluntario.dni)
@@ -93,12 +96,13 @@ export class EditarVoluntarioComponent implements OnInit {
 
 
       // capturo y actualizo la dirección del voluntario
-      this.ubicacion = this.form.get("direccion").value;            
+  
+  //    this.ubicacion = this.form.get("direccion").value;            
       
       // capturo y actualizo los datos del vehículo del voluntario
-      this.vehiculo.marca = this.form.get("marca").value;
+   /*   this.vehiculo.marca = this.form.get("marca").value;
       this.vehiculo.modelo = this.form.get("modelo").value;
-      this.vehiculo.patente = this.form.get("patente").value;
+      this.vehiculo.patente = this.form.get("patente").value;*/
 
       console.log('marca :', this.vehiculo.marca)
       console.log('modelo  :', this.vehiculo.modelo)
@@ -107,9 +111,9 @@ export class EditarVoluntarioComponent implements OnInit {
       console.log('Vehículo 1:', this.vehiculo)
   
       // capturo y actualizo el volumen del vehículo del voluntario"
-      this.volumen.alto = this.form.get("alto").value;
+   /*   this.volumen.alto = this.form.get("alto").value;
       this.volumen.ancho = this.form.get("ancho").value;
-      this.volumen.largo = this.form.get("largo").value;
+      this.volumen.largo = this.form.get("largo").value; */
 
       console.log('Volumen 1:', this.volumen)
      
