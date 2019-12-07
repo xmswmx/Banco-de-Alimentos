@@ -41,6 +41,7 @@ import { NuevoEnvioItemsComponent } from './modules/admin/nuevo-envio/nuevo-envi
 import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntario/editar-voluntario.component';
 import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-donante.component';
 import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
+import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-tr
     NuevoEnvioItemsComponent,
     EditarVoluntarioComponent,
     EditarDonanteComponent,
-    MisTrasladosComponent
+    MisTrasladosComponent,
+    DonacionesRecibidasComponent
   ],
   imports: [
     FontAwesomeModule,
