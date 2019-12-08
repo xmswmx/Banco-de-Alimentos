@@ -173,12 +173,10 @@ a:hover {
 }
 
 a:not([href]):not([tabindex]) {
-  color: inherit;
   text-decoration: none;
 }
 
 a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-  color: inherit;
   text-decoration: none;
 }
 
@@ -12183,23 +12181,90 @@ footer {
           box-shadow: 0 0 0 0.2rem rgba(222, 222, 222, 0.5);
 }
 
-
 /* Hasta aca el footer */
+
+/* Beneficiario */
+
+.beneficiario-color{
+  background-color: #f1c232;
+}
 
 /*Estilos para botones*/
 .br-25{
   border-radius: 25px;
 }
 .br-50{
-  border-radius: 25px;
+  border-radius: 50px;
 }
 .br-75{
-  border-radius: 25px;
+  border-radius: 75px;
 }
 .br-100{
-  border-radius: 25px;
+  border-radius: 100px;
 }
 
 .pointer{
   cursor:pointer
 }
+
+/* Fuentes-Tipografias */
+
+@font-face {
+  font-family: 'poiretOne';
+  src: url(assets/fonts/PoiretOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'patrickHand', cursive;
+  src: url(assets/fonts/PatrickHand-Regular.ttf);
+}
+
+@font-face {
+
+  font-family: 'economica', sans-serif;
+  src: url(assets/fonts/Economica-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'concertOne', cursive;
+  src: url(assets/fonts/ConcertOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'neuton', serif;
+  src: url(assets/fonts/Neuton-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'marcellus', serif;
+  src: url(assets/fonts/Marcellus-Regular.ttf);
+}
+
+.font-poiretOne{
+  font-family: 'poiretOne';
+}
+
+.font-patricHand{
+  font-family: 'patrickHand', cursive;
+}
+
+.font-economica{
+  font-family: 'economica', sans-serif;
+}
+
+.font-concertOne{
+  font-family: 'concertOne', cursive;
+}
+
+.font-neuton{
+  font-family: 'neuton', serif;
+}
+
+.font-marcellus{
+  font-family: 'marcellus', serif;
+}
+
+
+
+
+

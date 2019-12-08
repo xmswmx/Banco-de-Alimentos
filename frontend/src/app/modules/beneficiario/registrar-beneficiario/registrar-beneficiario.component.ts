@@ -89,6 +89,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 
 
 	ngOnInit() {
+		document.getElementById('navbar').classList.add('beneficiario-color');		
 	}
 
 }

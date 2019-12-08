@@ -1,88 +1,83 @@
-<div class="container text-center">
-    <h2>¡Registrá tu organización como beneficiaria!</h2>
-</div>
-<div class="card border-secondary mb-4 container mt-5" id="contenedor">
-    <div class="alert alert-dismissible alert-primary mt-3"> Registrar beneficiario </div>
-    <div class="card-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiario">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet">
+<h2 class="text-center mb-2 text-uppercase" style="font-family: 'Josefin Sans', sans-serif;">¡Registrá tu organización como beneficiaria!</h2>
 
-            <div class="form-group">
-                <label for="nombreOrganizacion" id="labelNombreOrganizacion">Nombre de organización:</label>
-                <input required formControlName="nombreOrganizacion" type="text" class="form-control"
-                    id="inputNombreOrganizacion" placeholder="Ej. Comedor Nuevo Sol">
-                <div *ngIf="nombreOrganizacion.invalid && nombreOrganizacion.touched ">
-                    <small class="text-danger">El nombre de la organización es obligatorio</small>
-                </div>
-                <!-- <div *ngIf="direccion.touched">
-                        <small class="text-danger">El nombre de la organización es obligatorio</small>
-                    </div> -->
-            </div>
-
-
-            <div class="form-group">
-                <label for="direccion" id="labelDireccion">Dirección:</label>
-                <input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
-                    placeholder="Ej. La plata, Calle 12 Numero 3456 ">
-                <div *ngIf="direccion.invalid && direccion.touched ">
-                    <small class="text-danger">El campo dirección es obligatorio</small>
-                </div>
-            </div>
-
-
-            <div class="form-group col-xs-2">
-                <label for="cantidadAtendidos" id="labelCantidadAtendidos">Cantidad de personas que atiende:</label>
-                <input required formControlName="cantidadAtendidos" type="number" class="form-control"
-                    id="inputCantidadAtendidos" placeholder="50">
-                <div *ngIf="cantidadAtendidos.invalid && cantidadAtendidos.touched">
-                    <small class="text-danger">El campo cantidad de personas que atiende es obligatorio</small>
-                </div>
-            </div>
-
-
-            <div class="form-group mt-5">
-                <label id="labelEmail" for="email">Email:</label>
-                <input required [class.is-invalid]="emailIsInvalid" formControlName="email" type="email"
-                    class="form-control" id="inputEmail" placeholder="contacto@comedornuevosol.com">
-                <div *ngIf="emailIsInvalid">
-                    <small class="text-danger">El correo ingresado no es válildo</small>
-                </div>
-                <div *ngIf="email.invalid && email.touched">
-                    <small class="text-danger">El campo correo es obligatorio</small>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label id="labelPassword" for="password">Clave:</label>
-                <input required formControlName="password" type="password" class="form-control" id="inputPassword">
-                <div *ngIf="password.invalid && password.touched">
-                    <small class="text-danger">La contraseña es obligatoria</small>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label id="labelPasswordConfirm" for="passwordConfirm">Confirmar clave:</label>
-                <input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm"
-                    type="password" class="form-control" id="inputPasswordConfirm">
-                <div *ngIf="passwordsNotEquals">
-                    <small class="text-danger">Las contraseñas no coinciden</small>
-                </div>
-                <div *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
-                    <small class="text-danger">Por favor introduzca la verificación de la contraseña</small>
-                </div>
-            </div>
-
-
-            <div class="form-group text-center">
-                <button [disabled]="!registrarBeneficiario.valid" class="btn btn-primary" type="submit">Guardar</button>
-                <!-- <div *ngIf="!registrarBeneficiario.valid">
-                    <small class="text-danger">Aun no se puede registrar el beneficiario, hay campos invalidos, o requeridos sin completar</small>
-                </div> -->
-                <a routerLink="/home" class="btn" style="background-color: #f94116; color:white">Cancelar</a>
-            </div>
-
-
-        </form>
-    </div>
-</div>
+<form class="container pl-5 p-5" (ngSubmit)="onSubmit()" [formGroup]="registrarBeneficiario">
+	<h3 class="beneficiario-color text-center p-3 br-25 bold" style="font-family: 'Josefin Sans', sans-serif;">Completa con tus datos</h3>
+	<section class="p-4">
+		<div class="form-group">
+			<label for="nombreOrganizacion" id="labelNombreOrganizacion">Nombre de organización:</label>
+			<input required formControlName="nombreOrganizacion" type="text" class="form-control"
+				id="inputNombreOrganizacion" placeholder="Ej. Comedor Nuevo Sol">
+			<div *ngIf="nombreOrganizacion.invalid && nombreOrganizacion.touched ">
+				<small class="text-danger">El nombre de la organización es obligatorio</small>
+			</div>
+			<!-- <div *ngIf="direccion.touched">
+							<small class="text-danger">El nombre de la organización es obligatorio</small>
+						</div> -->
+		</div>
+	
+		<div class="form-group">
+			<label for="direccion" id="labelDireccion">Dirección:</label>
+			<input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
+				placeholder="Ej. La plata, Calle 12 Numero 3456 ">
+			<div *ngIf="direccion.invalid && direccion.touched ">
+				<small class="text-danger">El campo dirección es obligatorio</small>
+			</div>
+		</div>
+	
+	
+		<div class="form-group col-xs-2">
+			<label for="cantidadAtendidos" id="labelCantidadAtendidos">Cantidad de personas que atiende:</label>
+			<input required formControlName="cantidadAtendidos" type="number" class="form-control"
+				id="inputCantidadAtendidos" placeholder="50">
+			<div *ngIf="cantidadAtendidos.invalid && cantidadAtendidos.touched">
+				<small class="text-danger">El campo cantidad de personas que atiende es obligatorio</small>
+			</div>
+		</div>
+	
+	
+		<div class="form-group mt-5">
+			<label id="labelEmail" for="email">Email:</label>
+			<input required [class.is-invalid]="emailIsInvalid" formControlName="email" type="email" class="form-control"
+				id="inputEmail" placeholder="contacto@comedornuevosol.com">
+			<div *ngIf="emailIsInvalid">
+				<small class="text-danger">El correo ingresado no es válildo</small>
+			</div>
+			<div *ngIf="email.invalid && email.touched">
+				<small class="text-danger">El campo correo es obligatorio</small>
+			</div>
+		</div>
+	
+	
+		<div class="form-group">
+			<label id="labelPassword" for="password">Clave:</label>
+			<input required formControlName="password" type="password" class="form-control" id="inputPassword">
+			<div *ngIf="password.invalid && password.touched">
+				<small class="text-danger">La contraseña es obligatoria</small>
+			</div>
+		</div>
+	
+	
+		<div class="form-group">
+			<label id="labelPasswordConfirm" for="passwordConfirm">Confirmar clave:</label>
+			<input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm" type="password"
+				class="form-control" id="inputPasswordConfirm">
+			<div *ngIf="passwordsNotEquals">
+				<small class="text-danger">Las contraseñas no coinciden</small>
+			</div>
+			<div *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
+				<small class="text-danger">Por favor introduzca la verificación de la contraseña</small>
+			</div>
+		</div>
+	
+	
+		<div class="form-group text-center">
+			<a routerLink="/home" class="btn mr-2" style="background-color: #f94116; color:white">Cancelar</a>
+			<button [disabled]="!registrarBeneficiario.valid" class="btn btn-primary ml-2" type="submit">Guardar</button>
+			<!-- <div *ngIf="!registrarBeneficiario.valid">
+						<small class="text-danger">Aun no se puede registrar el beneficiario, hay campos invalidos, o requeridos sin completar</small>
+					</div> -->
+	
+		</div>
+	</section>
+</form>
