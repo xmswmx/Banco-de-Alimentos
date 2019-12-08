@@ -27,17 +27,17 @@ export class EditarVoluntarioComponent implements OnInit {
 
   this.form = new FormGroup({
     // atributos del voluntario
-    nombre : new FormControl(),
-    apellido : new FormControl(),
-    dni : new FormControl(),
-    username: new FormControl(),
-    email : new FormControl(),
-    celular : new FormControl(), 
+    nombre : new FormControl('',[Validators.required]),
+    apellido : new FormControl('',[Validators.required]),
+    dni : new FormControl('',[Validators.required]),
+    username: new FormControl('',[Validators.required]),
+    email : new FormControl('',[Validators.required,Validators.email,Validators.email]),
+    celular : new FormControl('',[Validators.required]), 
     observaciones: new FormControl(),
     distancia: new FormControl(),
 
     // atributos de la ubicación del voluntario
-    ubicacion: new FormControl(),
+    ubicacion: new FormControl('',[Validators.required]),
   
     // atributos del vehículo del voluntario
     marca: new FormControl(),
@@ -55,10 +55,17 @@ export class EditarVoluntarioComponent implements OnInit {
    this.idVoluntario = this.voluntario.id;
    apiVoluntario.getVehiculo(this.voluntario.id, true).subscribe((vehiculo) => {
      this.vehiculo = vehiculo;
+     this.form.controls["marca"].setValue(this.vehiculo.marca);
+     this.form.controls["modelo"].setValue(this.vehiculo.modelo);
+     this.form.controls["patente"].setValue(this.vehiculo.patente);
      apiVehiculo.getVolumen(this.vehiculo.id, true).subscribe((volumen) => {
        this.volumen = volumen;
+       this.form.controls["alto"].setValue(this.volumen.alto);
+       this.form.controls["ancho"].setValue(this.volumen.ancho);
+       this.form.controls["largo"].setValue(this.volumen.largo);
        apiVoluntario.getUbicacion(this.voluntario.id,true).subscribe((ubicacion)=>{	
          this.ubicacion = ubicacion.direccion;					
+         this.form.controls["ubicacion"].setValue(this.ubicacion); 
      })
 
    })
@@ -67,15 +74,38 @@ export class EditarVoluntarioComponent implements OnInit {
 
     this.form.controls["dni"].setValue(this.voluntario.dni);
     this.form.controls["nombre"].setValue(this.voluntario.nombre);
+    this.form.controls["apellido"].setValue(this.voluntario.apellido);
+    this.form.controls["ubicacion"].setValue(this.ubicacion);
+    this.form.controls["username"].setValue(this.voluntario.username);
+    this.form.controls["email"].setValue(this.voluntario.email);
+    this.form.controls["celular"].setValue(this.voluntario.telefono);
+    this.form.controls["distancia"].setValue(this.voluntario.distanciaMaxima);
+    this.form.controls["observaciones"].setValue(this.voluntario.observaciones);
+
  }
 
+ get nombre() {return this.form.get('nombre');}
+ get apellido() {return this.form.get('apellido');}
+  get dni() {return this.form.get('dni');}
+  get direccion() {return this.form.get('ubicacion');}
+  get username() {return this.form.get('username');}
+  get email() {return this.form.get('email');}
+  get celular() {return this.form.get('celular');}
+  get password1() {return this.form.get('password1');}
+  get password2() {return this.form.get('password2');}
+  get distancia() {return this.form.get('distancia');}
+  get observaciones() {return this.form.get('observaciones')}
+
+  get emailIsInvalid(){	
+		return this.form.get('email').dirty && !this.form.get('email').valid
+  }
 
   // ACCION QUE DISPARA EL BOTON DE ACTUALIZAR VOLUNTARIO
   onSubmit() {
  
-  //  if (this.form.valid) {       
+    if (this.form.valid) {       
       // capturo y actualizo los atributos del voluntario 
-      /*      
+            
       this.voluntario.nombre = this.form.get("nombre").value;
       this.voluntario.apellido = this.form.get("apellido").value;
       this.voluntario.dni = this.form.get("dni").value;
@@ -84,39 +114,21 @@ export class EditarVoluntarioComponent implements OnInit {
       this.voluntario.telefono = this.form.get("celular").value;
       this.voluntario.observaciones = this.form.get("observaciones").value;  
       this.voluntario.distanciaMaxima = this.form.get("distancia").value;    
-*/
-      console.log('nombre:', this.voluntario.nombre)
-      console.log('apellido:', this.voluntario.apellido)
-      console.log('dni:', this.voluntario.dni)
-      console.log('username:', this.voluntario.username)
-      console.log('email:', this.voluntario.email)
-      console.log('telefono:', this.voluntario.telefono)
-      console.log('observaciones:', this.voluntario.observaciones)
-      console.log('distanciaMaxima:', this.voluntario.distanciaMaxima)
-
-
-      // capturo y actualizo la dirección del voluntario
   
   //    this.ubicacion = this.form.get("direccion").value;            
       
-      // capturo y actualizo los datos del vehículo del voluntario
-   /*   this.vehiculo.marca = this.form.get("marca").value;
+     // capturo y actualizo los datos del vehículo del voluntario
+     this.vehiculo.marca = this.form.get("marca").value;
       this.vehiculo.modelo = this.form.get("modelo").value;
-      this.vehiculo.patente = this.form.get("patente").value;*/
+      this.vehiculo.patente = this.form.get("patente").value;
 
-      console.log('marca :', this.vehiculo.marca)
-      console.log('modelo  :', this.vehiculo.modelo)
-      console.log('patente :', this.vehiculo.patente)  
-
-      console.log('Vehículo 1:', this.vehiculo)
   
-      // capturo y actualizo el volumen del vehículo del voluntario"
-   /*   this.volumen.alto = this.form.get("alto").value;
+    // capturo y actualizo el volumen del vehículo del voluntario"
+    this.volumen.alto = this.form.get("alto").value;
       this.volumen.ancho = this.form.get("ancho").value;
-      this.volumen.largo = this.form.get("largo").value; */
+      this.volumen.largo = this.form.get("largo").value; 
 
-      console.log('Volumen 1:', this.volumen)
-     
+
       //Marco que tiene vehiculo
       if (this.form.get("marca").value != null){
         this.voluntario.tieneVehiculo = "si" 
@@ -155,10 +167,12 @@ export class EditarVoluntarioComponent implements OnInit {
                       alert('El voluntario ha sido actualizado correctamente')
                       this.router.navigateByUrl("/perfil-voluntario");
         })       
-     }
-  //}
+     } else {
+      alert('Por favor, completa los datos solicitados');
+    }
+  }
 
   ngOnInit() {
   }
-
+  
 }
