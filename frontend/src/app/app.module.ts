@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +43,7 @@ import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntari
 import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-donante.component';
 import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
 import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
+import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-beneficiario/editar-beneficiario.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-
     EditarVoluntarioComponent,
     EditarDonanteComponent,
     MisTrasladosComponent,
-    DonacionesRecibidasComponent
+    DonacionesRecibidasComponent,
+    EditarBeneficiarioComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -89,7 +92,9 @@ import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-
     ReactiveFormsModule,
     SDKBrowserModule.forRoot(),
     MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })

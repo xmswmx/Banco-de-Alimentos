@@ -27,6 +27,7 @@ import { DonanteGuard } from './_guards/donante.guard';
 import { BeneficiarioGuard } from './_guards/beneficiario.guard';
 import { EditarVoluntarioComponent } from './modules/voluntario/editar-voluntario/editar-voluntario.component';
 import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-donante.component';
+import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-beneficiario/editar-beneficiario.component';
 import { TrasladoAsignadoGuard } from './_guards/traslado-asignado.guard';
 import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
 import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
 	{path:'registrar-donacion',component:RegistrarDonacionComponent, canActivate:[DonanteGuard]},
 	{path:'registrar-envio',component:NuevoEnvioPrincipalComponent, canActivate:[AdminGuard]},
 	{path:'editar-voluntario',component:EditarVoluntarioComponent, canActivate:[VoluntarioGuard]},
+	{path:'editar-beneficiario',component:EditarBeneficiarioComponent, canActivate:[BeneficiarioGuard]},	
 	{path:'editar-donante',component:EditarDonanteComponent, canActivate:[DonanteGuard]},
 	{path:'mis-traslados',component:MisTrasladosComponent, canActivate:[VoluntarioGuard]},
 	{path:'donaciones-recibidas',component:DonacionesRecibidasComponent, canActivate:[BeneficiarioGuard]}

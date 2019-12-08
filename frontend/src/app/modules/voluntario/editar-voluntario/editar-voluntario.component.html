@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="labelNombre">Nombre</label>
                 <input type="text" class="form-control" formControlName="nombre" id="nombre"
-                    value="{{this.voluntario.nombre}}">                
+                    >                
                 <!-- 
                 <div *ngIf="nombre.invalid && nombre.touched">
                     <small class="text-danger">El nombre es obligatorio</small>
@@ -20,7 +20,7 @@
               <!--  <input type="text" class="form-control" formControlName="apellido" id="apellido"
                     value="{{this.voluntario.apellido}}">--> 
                     <input type="text" class="form-control" formControlName="apellido" id="apellido"
-                    value="{{this.voluntario.apellido}}">  
+                    >  
                 <!-- 
                 <div *ngIf="apellido.invalid && apellido.touched">
                     <small class="text-danger">El apellido es obligatorio</small>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="labelNombre">DNI</label>
-                <input type="text" class="form-control" formControlName="dni" id="dni" value="{{this.voluntario.dni}}">
+                <input type="text" class="form-control" formControlName="dni" id="dni" >
                 <!-- 
                 <div *ngIf="dni.invalid && dni.touched">
                     <small class="text-danger">El DNI es obligatorio</small>
@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label for="labelNombre">Dirección</label>
                 <input type="text" class="form-control" formControlName="ubicacion" id="ubicacion"
-                    value="{{this.ubicacion}}">
+                   >
                 <!-- 
                 <div *ngIf="direccion.invalid && direccion.touched">
                     <small class="text-danger">La dirección es obligatoria</small>
@@ -49,7 +49,7 @@
             <div class="form-group">
                 <label for="labelNombre">Nombre de usuario</label>
                 <input type="text" class="form-control" formControlName="username" id="username"
-                    value="{{this.voluntario.username}}">
+                    >
                 <!-- 
                     <div *ngIf="username.invalid && username.touched">
                             <small class="text-danger">El nombre de usuario es obligatorio</small>
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label for="labelNombre">Email</label>
                 <input type="text" class="form-control" formControlName="email" id="email"
-                    value="{{this.voluntario.email}}">
+                    >
                 <!-- 
                     <div *ngIf="email.invalid && email.touched && emailIsInvalid ">
                             <small class="text-danger">Se debe ingresar un correo con el formato mi@correo.com</small>
@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label for="labelNombre">Celular</label>
                 <input type="text" class="form-control" formControlName="celular" id="celular"
-                    value="{{this.voluntario.telefono}}">
+                   >
                     <!-- 
                     <div *ngIf="celular.invalid && celular.touched">
                             <small class="text-danger">El celular es obligatorio</small>
@@ -81,17 +81,17 @@
             <div class="form-group mt-4">
                 <label for="labelMarca">Marca</label>
                 <input type="text" class="form-control" formControlName="marca" id="marca"
-                    value="{{this.vehiculo.marca}}">
+                    >
             </div>
             <div class="form-group">
                 <label for="labelModelo">Modelo</label>
                 <input type="text" class="form-control" formControlName="modelo" id="modelo"
-                    value="{{this.vehiculo.modelo}}">
+                    >
             </div>
             <div class="form-group">
                 <label for="labelPatente">Patente</label>
                 <input  type="text" class="form-control" formControlName="patente" id="patente"
-                    value="{{this.vehiculo.patente}}">
+                    >
             </div>
             <h5>Volumen a transportar en el vehículo</h5>
             <div class="form-row mt-4">
@@ -99,7 +99,7 @@
                     <label for="form-group">Alto</label>
                     <div class="input-group ">
                         <input type="number" class="form-control" formControlName="alto" id="alto"
-                            value="{{this.volumen.alto}}">
+                            >
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -109,7 +109,7 @@
                     <label for="form-group">Ancho</label>
                     <div class="input-group">
                         <input type="number" class="form-control" formControlName="ancho" id="ancho"
-                            value="{{this.volumen.ancho}}">
+                            >
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -119,7 +119,7 @@
                     <label for="form-group">Largo</label>
                     <div class="input-group ">
                         <input type="number" class="form-control " formControlName="largo" id="largo"
-                            value="{{this.volumen.largo}}">
+                           >
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">cm</span>
                         </div>
@@ -131,7 +131,7 @@
                     <label for="form-group">Distancia máxima a recorrer</label>
                     <div class="input-group w-25 ">
                         <input type="text" class="form-control" formControlName="distancia" id="distancia"
-                            value="{{this.voluntario.distanciaMaxima}}">
+                           >
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">km</span>
                         </div>
@@ -141,7 +141,7 @@
             <div class="form-group">
                 <label for="labelObservaciones">Observaciones</label>
                 <textarea class="form-control" formControlName="observaciones" id="observaciones" rows="3"
-                    value="{{this.voluntario.observaciones}}"> </textarea>
+                   > </textarea>
             </div>
             <div class="form-group text-center">
                 <button class="btn mr-2 btn-orange " type="submit">Modificar</button>

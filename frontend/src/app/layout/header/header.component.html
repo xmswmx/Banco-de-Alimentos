@@ -1,5 +1,5 @@
  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Trochut&display=swap" rel="stylesheet">
-<nav class="navbar navbar-light d-flex flex-row justify-content-between" [ngClass]="[userApi.getCachedCurrent() ? '' : 'bg-naranja']">
+<nav class="navbar navbar-light d-flex flex-row justify-content-between mb-2" [ngClass]="[userApi.getCachedCurrent() ? '' : 'bg-naranja']">
 	<a (click)="this.router.navigate(['/home']);" class="navbar-brand d-inline-flex ml-4 pointer">
 		<img *ngIf="!userApi.getCachedCurrent()" src="../../assets/icons/logo-balp-blanco.png" width="205" height="74"
 			alt="">
@@ -72,7 +72,7 @@
 				{{userApi.getCachedCurrent().username}}
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" (click)="router.navigate(['/perfil-donante'])">Mis datos</a>
+					<a class="dropdown-item" (click)="router.navigate(['/perfil-beneficiario'])">Mis datos</a>
 					<a class="dropdown-item" (click)="router.navigate(['/editar-beneficiario'])">Configurar cuenta</a>
 					<a class="dropdown-item" (click)="router.navigate(['donaciones-recibidas'])">Donaciones recibidas</a>
 					<a class="dropdown-item"  (click)="logout()">Cerrar sesión</a>
