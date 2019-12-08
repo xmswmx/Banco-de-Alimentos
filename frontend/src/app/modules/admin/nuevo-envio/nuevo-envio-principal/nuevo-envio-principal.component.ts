@@ -11,23 +11,14 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
 
 	formEnvio : FormGroup;
 	var: string = 'hola';
-  constructor() { 
-    	  this.formEnvio = new FormGroup({
-        texto: new FormControl()
-      });
-this.var=this.formEnvio.get("texto").value;
-    	}
+  idBeneficiario:string = 'Sin seleccionar';
+  constructor() {	}
 
 
   ngOnInit() {
   }
-
-  onSubmit(){
-  	alert(this.formEnvio.get("texto").value);
-  }
-
-  enviar(){
-  	alert(this.formEnvio.get("items").value);
+  onEnviarIdBeneficiario(id:string){
+    this.idBeneficiario = id;
   }
 
 }

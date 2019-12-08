@@ -1,1 +1,7 @@
-<p>nuevo-envio-seleccionar-donante works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
+	<select id="select" formControlName="beneficiario" class="form-control" >
+		<option *ngFor="let unBeneficiario of beneficiarios" 
+
+		(click)="enviarAlPadre(unBeneficiario.id)" value="b1">{{unBeneficiario.username}}</option>
+	</select>
+</form>
