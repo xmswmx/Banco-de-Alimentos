@@ -12,6 +12,7 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
 	formEnvio : FormGroup;
 	var: string = 'hola';
   idBeneficiario:string = 'Sin seleccionar';
+  idDonacion:string = 'Sin seleccionar';
   constructor() {	}
 
 
@@ -19,6 +20,9 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   }
   onEnviarIdBeneficiario(id:string){
     this.idBeneficiario = id;
+  }
+  onEnviarIdDonacion(id:string){
+    this.idDonacion = id;
   }
 
 }

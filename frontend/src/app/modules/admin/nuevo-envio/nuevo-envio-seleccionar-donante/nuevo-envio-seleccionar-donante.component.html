@@ -1,5 +1,6 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
-	<select id="select" formControlName="beneficiario" class="form-control" >
+	<label class="inline" for="nombreOrganizacion" id="labelNombreOrganizacion">Seleccione el destino del envio:  </label>
+	<select id="select" formControlName="beneficiario" class="" >
 		<option *ngFor="let unBeneficiario of beneficiarios" 
 
 		(click)="enviarAlPadre(unBeneficiario.id)" value="b1">{{unBeneficiario.username}}</option>

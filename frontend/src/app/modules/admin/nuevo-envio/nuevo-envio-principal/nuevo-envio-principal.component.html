@@ -1,2 +1,16 @@
 <app-nuevo-envio-seleccionar-donante (enviarIdBeneficiario)="onEnviarIdBeneficiario($event)"></app-nuevo-envio-seleccionar-donante>
-<p>{{idBeneficiario}}</p>
+<p style="color:red">El select devolvió esto: {{idBeneficiario}}</p>
+
+<mat-tab-group>
+  <mat-tab label="A partir de donación..">
+    <app-nuevo-envio-seleccionar-donacion (enviarIdDonacion)="onEnviarIdDonacion($event)"></app-nuevo-envio-seleccionar-donacion>
+    <p style="color:red">El selector de donaciones devolvió esto: {{idDonacion}}</p>
+  </mat-tab>
+  <mat-tab label="A partir de stock..">
+    <p> a partir de stock </p>
+  </mat-tab>
+</mat-tab-group>
+
+<p> Widget de descripción </p>
+
+<p> Widget de volumen y peso </p>
