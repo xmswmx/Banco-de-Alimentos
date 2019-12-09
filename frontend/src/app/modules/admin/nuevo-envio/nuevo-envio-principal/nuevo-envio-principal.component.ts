@@ -15,9 +15,10 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   idBeneficiario:string = 'Sin seleccionar';
   idDonacion:string = 'Sin seleccionar';
   itemList:Item[]=[];
-  volumen:Volumen;
+  volumen:Volumen = new Volumen;
   peso:number;
   tipo:string= 'a partir de donacion'; //'a partir de donacion' o 'a partir de stock'
+  fecha:Date = new Date;
   constructor() {	}
 
 
@@ -37,9 +38,11 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   onEnviarIdDonacion(id:string){
     this.idDonacion = id;
   }
+  //Recibe [volumen,peso,fecha]
   onEnviarVolumen(array:Array<any>){
     this.volumen = array[0];
     this.peso = array[1];
+    this.fecha = array[2]
   }
   onEnviarItems(items:Item[]){
     this.itemList = items;

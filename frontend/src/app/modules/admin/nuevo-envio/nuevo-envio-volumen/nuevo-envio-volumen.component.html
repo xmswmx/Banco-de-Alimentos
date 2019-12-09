@@ -1,1 +1,46 @@
-<p>nuevo-envio-volumen works!</p>
+         <form class="border" [formGroup]="form">   
+            <h5>Volumen de alimentos</h5>
+            <div class="form-row mt-4">
+                <div class="col mb-3">
+                    <label for="form-group">Alto</label>
+                    <div class="input-group ">
+                        <input formControlName="alto" type="text" class="form-control " id="inputAlto" placeholder="65">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">mts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Ancho</label>
+                    <div class="input-group">
+                        <input formControlName="ancho" type="text" class="form-control " id="inputAncho" placeholder="124">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">mts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Largo</label>
+                    <div class="input-group ">
+                        <input formControlName="largo" type="text" class="form-control " id="inputLargo" placeholder="32">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">mts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <label for="form-group">Peso</label>
+                    <div class="input-group ">
+                        <input formControlName="peso" type="text" class="form-control " id="inputPeso" placeholder="10">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="labelNombre">Fecha asignada de retiro</label>
+                <input formControlName="fechaRetiro" type="date" class="form-control" id="inputFechaRetiro">
+            </div>
+            <button (click)="enviarAlPadre()"> Guardar </button>
+        </form>
