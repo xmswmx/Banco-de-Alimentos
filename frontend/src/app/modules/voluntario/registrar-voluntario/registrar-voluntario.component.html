@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="labelDireccion">Email</label>
                 <input formControlName="email" type="text" class="form-control" id="inputEmail" placeholder="perez@gmail.com">
-                <div *ngIf="email.invalid && email.touched && emailIsInvalid ">
+                <div *ngIf="email.invalid && email.touched">
                     <small class="text-danger">Se debe ingresar un correo con el formato mi@correo.com</small>
                 </div> 
                 

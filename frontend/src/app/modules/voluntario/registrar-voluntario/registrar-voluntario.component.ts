@@ -92,19 +92,12 @@ export class RegistrarVoluntarioComponent implements OnInit {
 
 
   onSubmit() {
-    //Validar campos
+  
     if (this.form.valid) {
       "capturo cada uno de los valores que se ingresaron en los inputs"
       this.voluntario.nombre = this.form.get("nombre").value;                         
       this.voluntario.apellido = this.form.get("apellido").value;                   
       this.voluntario.dni = this.form.get("dni").value;        
-      // this.voluntario.direccion = this.form.get("direccion").value(); 
-      /*
-       * La dirección nos quedó en ubicación, es porque lleva asociado un geopoint
-       * Entonces hay que crear un objeto ubicación, agregarle la dirección y usar
-       * el convertidor de direcciones a geopoints mockeado para darle un geopoint
-       * luego asociar esa ubicacion al voluntario dandole su id       
-      */
       this.ubicacion.direccion =this.form.get("direccion").value;
       this.ubicacion.puntoGeografico =
       this.addressConverter.coordinateForAddress(this.ubicacion.direccion);                 
@@ -126,18 +119,12 @@ export class RegistrarVoluntarioComponent implements OnInit {
       // Se crea el volumen del vehículo del voluntario"
       this.volumen.alto = this.form.get("alto").value;
       this.volumen.ancho = this.form.get("ancho").value;
-      this.volumen.largo = this.form.get("largo").value;
-      //this.volumen.vehiculoId =  Se crea mas abajo, como una promesa
-      //this.volumen.envioParaBeneficiarioId = "VER"
-      /* El volumen puede ser de un auto, un envio, o alguna otra cosa,
-       * Si el volumen que estás creando no es de un envio por ejemplo solo lo dejas en null
-       * En este caso solo se completaria el volumen.vehiculoId, lo demás en blanco
-      */
+      this.volumen.largo = this.form.get("largo").value;     
+     
       //Marco que tiene vehiculo
       if (this.form.get("marca").value != null){
         this.voluntario.tieneVehiculo = "si" //Defalt es no asique se asigna solo
       }
-      
   
       // Creo el voluntario y genero una promesa
       this.voluntarioApi.create(this.voluntario).subscribe((voluntarioCreado: Voluntario) => { 

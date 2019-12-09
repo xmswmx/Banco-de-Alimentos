@@ -56,7 +56,9 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 				 	alert('Se registró exitosamente');
 				}) //ubicacion	
 			})//beneficiario
-		}//Validation
+		} else {
+			alert('Por favor, completa los datos solicitados'); 	  
+		}
 	}//submit
 
 

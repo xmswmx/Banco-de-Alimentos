@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   onSubmit(){
 
     if (this.logInForm.valid) {    
-	 //No es el codigo mas elegante pero funciona
 	 switch (this.logInForm.get("tipoUsuario").value) {
 		 case 'a':
 			this.user = new User();
@@ -60,7 +59,6 @@ export class LoginComponent implements OnInit {
 			this.voluntario.password = this.logInForm.get("clave").value;
 			this.voluntarioApi.login(this.voluntario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-voluntario'])},(error)=>{alert("Tu nombre de usuario o contraseña es incorrecto, vuelve a intentarlo")});
 			break;
-		 
 	 }
 	} else {
 		alert('Por favor, completa los datos solicitados'); 	  

@@ -9,7 +9,7 @@
 			<input required formControlName="nombreOrganizacion" type="text" class="form-control"
 				id="inputNombreOrganizacion" placeholder="Ej. Comedor Nuevo Sol">
 			<div *ngIf="nombreOrganizacion.invalid && nombreOrganizacion.touched ">
-				<small class="text-danger">El nombre de la organización es obligatorio</small>
+				<small class="text-danger">Debe ingresar el nombre de la organización</small>
 			</div>
 			<!-- <div *ngIf="direccion.touched">
 							<small class="text-danger">El nombre de la organización es obligatorio</small>
@@ -21,7 +21,7 @@
 			<input required formControlName="direccion" type="text" class="form-control" id="inputDireccion"
 				placeholder="Ej. La plata, Calle 12 Numero 3456 ">
 			<div *ngIf="direccion.invalid && direccion.touched ">
-				<small class="text-danger">El campo dirección es obligatorio</small>
+				<small class="text-danger">Debe ingresar la dirección</small>
 			</div>
 		</div>
 	
@@ -31,7 +31,7 @@
 			<input required formControlName="cantidadAtendidos" type="number" class="form-control"
 				id="inputCantidadAtendidos" placeholder="50">
 			<div *ngIf="cantidadAtendidos.invalid && cantidadAtendidos.touched">
-				<small class="text-danger">El campo cantidad de personas que atiende es obligatorio</small>
+				<small class="text-danger">Debe ingresar la cantidad de personas que atiende</small>
 			</div>
 		</div>
 	
@@ -41,10 +41,10 @@
 			<input required [class.is-invalid]="emailIsInvalid" formControlName="email" type="email" class="form-control"
 				id="inputEmail" placeholder="contacto@comedornuevosol.com">
 			<div *ngIf="emailIsInvalid">
-				<small class="text-danger">El correo ingresado no es válildo</small>
+				<small class="text-danger">Debe ingresar un email</small>
 			</div>
 			<div *ngIf="email.invalid && email.touched">
-				<small class="text-danger">El campo correo es obligatorio</small>
+				<small class="text-danger">Debe ingresar un correo con el formato mi@correo.com</small>
 			</div>
 		</div>
 	
@@ -53,7 +53,7 @@
 			<label id="labelPassword" for="password">Clave:</label>
 			<input required formControlName="password" type="password" class="form-control" id="inputPassword">
 			<div *ngIf="password.invalid && password.touched">
-				<small class="text-danger">La contraseña es obligatoria</small>
+				<small class="text-danger">Debe ingresar una contraseña</small>
 			</div>
 		</div>
 	
@@ -62,11 +62,11 @@
 			<label id="labelPasswordConfirm" for="passwordConfirm">Confirmar clave:</label>
 			<input required [class.is-invalid]="passwordsNotEquals" formControlName="passwordConfirm" type="password"
 				class="form-control" id="inputPasswordConfirm">
-			<div *ngIf="passwordsNotEquals">
-				<small class="text-danger">Las contraseñas no coinciden</small>
+				<div *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
+					<small class="text-danger">Debe ingresar la confirmación de la contraseña</small>
 			</div>
-			<div *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
-				<small class="text-danger">Por favor introduzca la verificación de la contraseña</small>
+			<div *ngIf="passwordsNotEquals">
+				<small class="text-danger">Las contraseñas ingresadas no coinciden</small>
 			</div>
 		</div>
 	
