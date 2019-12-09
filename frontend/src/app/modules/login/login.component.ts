@@ -6,6 +6,7 @@ import { User, Beneficiario, Donante, Voluntario } from '../../_services/lbservi
 import { UserApi, BeneficiarioApi, DonanteApi, VoluntarioApi } from '../../_services/lbservice/services';
 import { AccessToken }  from '../../_services/lbservice/models'; 
 import { LoopBackConfig, BaseLoopBackApi } from '../../_services/lbservice';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -21,13 +22,18 @@ export class LoginComponent implements OnInit {
   constructor(private userApi: UserApi,private donanteApi: DonanteApi,private beneficiarioApi: BeneficiarioApi,private voluntarioApi: VoluntarioApi, private route: ActivatedRoute , private router:Router) { 
 	this.logInForm = new FormGroup({
 		tipoUsuario: new FormControl(),
-	   usuario: new FormControl(),
-	   clave: new FormControl()
+	   usuario: new FormControl('',[Validators.required]),
+	   clave: new FormControl('',[Validators.required])
     });
   }
 
+  get usuario() {return this.logInForm.get('usuario');}
+  get clave() {return this.logInForm.get('clave');}
+
   
   onSubmit(){
+
+    if (this.logInForm.valid) {    
 	 //No es el codigo mas elegante pero funciona
 	 switch (this.logInForm.get("tipoUsuario").value) {
 		 case 'a':
@@ -56,10 +62,12 @@ export class LoginComponent implements OnInit {
 			break;
 		 
 	 }
-	  
-	  
-  }
-  
+	} else {
+		alert('Por favor, completa los datos solicitados'); 	  
+	}
+}
+
+
   ngOnInit() {
   }
 
