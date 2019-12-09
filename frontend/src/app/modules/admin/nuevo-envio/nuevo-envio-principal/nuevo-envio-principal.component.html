@@ -1,22 +1,40 @@
-<app-nuevo-envio-seleccionar-donante (enviarIdBeneficiario)="onEnviarIdBeneficiario($event)"></app-nuevo-envio-seleccionar-donante>
+<h1 class="text-center m-5"> Nuevo envío para organización beneficiaria </h1>
+
+<div class="container m-5">
+	<app-nuevo-envio-seleccionar-donante (enviarIdBeneficiario)="onEnviarIdBeneficiario($event)"></app-nuevo-envio-seleccionar-donante>
+</div>
+
+<div class="container overflow-auto" style="height: 200px">
+	<mat-tab-group (selectedTabChange)="toggleTipo()">
+	  <mat-tab label="A partir de donación..">
+	    <app-nuevo-envio-seleccionar-donacion (enviarIdDonacion)="onEnviarIdDonacion($event)"></app-nuevo-envio-seleccionar-donacion>
+	  </mat-tab>
+	  <mat-tab (click)="setTipo('a partir de stock')" label="A partir de stock..">
+	    <p> a partir de stock </p>
+	  </mat-tab>
+	</mat-tab-group>
+</div>
+
+<div class="container m-5 overflow-auto" style="height: 200px">
+	<app-nuevo-envio-items (enviarItems)="onEnviarItems($event)"></app-nuevo-envio-items>
+</div>
+
+<div class="container m-5">
+	<app-nuevo-envio-volumen (enviarVolumen)="onEnviarVolumen($event)"></app-nuevo-envio-volumen>
+</div>
+
+<div class="container text-center mt-5">
+	<button class="btn btn-dark mr-2">Enviar</button>
+	<button class="btn btn-dark ">Cancelar</button>
+</div>
+
+<br>
+<br>
+<br>
 <p style="color:red">El select devolvió esto: {{idBeneficiario}}</p>
-
 <p style="color:red">Se seleccionó el tipo de envio: {{tipo}}</p>
-<mat-tab-group (selectedTabChange)="toggleTipo()">
-  <mat-tab label="A partir de donación..">
-    <app-nuevo-envio-seleccionar-donacion (enviarIdDonacion)="onEnviarIdDonacion($event)"></app-nuevo-envio-seleccionar-donacion>
-    <p style="color:red">El selector de donaciones devolvió esto: {{idDonacion}}</p>
-  </mat-tab>
-  <mat-tab (click)="setTipo('a partir de stock')" label="A partir de stock..">
-    <p> a partir de stock </p>
-  </mat-tab>
-</mat-tab-group>
-
-<app-nuevo-envio-items (enviarItems)="onEnviarItems($event)"></app-nuevo-envio-items>
-
-<app-nuevo-envio-volumen (enviarVolumen)="onEnviarVolumen($event)"></app-nuevo-envio-volumen>
+<p style="color:red">El selector de donaciones devolvió: {{idDonacion}}</p>
 <p style="color:red"> El padre recibió: {{volumen.alto}} de alto, {{volumen.ancho}} de ancho, {{volumen.largo}} de largo. {{peso}}kg. A trasladarse el día {{fecha | date: 'dd/MM/yyyy'}}</p>
-
 <br>
 <br>
 <br>
