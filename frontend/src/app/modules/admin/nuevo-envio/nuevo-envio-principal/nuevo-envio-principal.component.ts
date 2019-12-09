@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Item, Volumen } from '../../../../_services/lbservice/models';
+import { Item, Volumen, EnvioParaBeneficiario, Traslado } from '../../../../_services/lbservice/models';
+import { ItemApi, VolumenApi, EnvioParaBeneficiarioApi, TrasladoApi } from '../../../../_services/lbservice';
 
 @Component({
   selector: 'app-nuevo-envio-principal',
@@ -52,7 +53,31 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   onEnviar(){
     //Validar cada campo, si algo anda mal alert y break
 
+      //Destinatario seleccionado
+
+      //Validar tipo de envio
+
+      //Caso a partir de donacion
+
+        //Validar que se seleccione una donacio
+
+      //Caso a partir de stock
+
+        //Pendiente
+
+      //Se tiene una lista de descripcion/peso
+
+      //Validar que se tenga alto,ancho,largo,fecha y peso
+
     //Postear todo
+
+      //Crear un nuevo envio
+
+        //Caso donacion
+
+        //Caso stock
+
+      //Crearle su traslado
   }
 
 }
