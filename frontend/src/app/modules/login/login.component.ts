@@ -40,25 +40,25 @@ export class LoginComponent implements OnInit {
 			this.user = new User();
 			this.user.username = this.logInForm.get("usuario").value;
 			this.user.password = this.logInForm.get("clave").value;
-			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/panel-de-control'])});
+			this.userApi.login(this.user).subscribe((token: AccessToken)=> {this.router.navigate(['/panel-de-control'])},(error)=>{alert("Tu nombre de usuario o contraseña es incorrecto, vuelve a intentarlo")});
 			break;
 		case 'b':
 			this.beneficiario = new Beneficiario();
 			this.beneficiario.username = this.logInForm.get("usuario").value;
 			this.beneficiario.password = this.logInForm.get("clave").value;
-			this.beneficiarioApi.login(this.beneficiario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-beneficiario'])});
+			this.beneficiarioApi.login(this.beneficiario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-beneficiario'])},(error)=>{alert("Tu nombre de usuario o contraseña es incorrecto, vuelve a intentarlo")});
 			break;
 		case 'd':
 			this.donante = new Donante();
 			this.donante.username = this.logInForm.get("usuario").value;
 			this.donante.password = this.logInForm.get("clave").value;
-			this.donanteApi.login(this.donante).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-donante'])});
+			this.donanteApi.login(this.donante).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-donante'])},(error)=>{alert("Tu nombre de usuario o contraseña es incorrecto, vuelve a intentarlo")});
 			break;
 		case 'v':
 			this.voluntario = new Voluntario();
 			this.voluntario.username = this.logInForm.get("usuario").value;
 			this.voluntario.password = this.logInForm.get("clave").value;
-			this.voluntarioApi.login(this.voluntario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-voluntario'])});
+			this.voluntarioApi.login(this.voluntario).subscribe((token: AccessToken)=> {this.router.navigate(['/perfil-voluntario'])},(error)=>{alert("Tu nombre de usuario o contraseña es incorrecto, vuelve a intentarlo")});
 			break;
 		 
 	 }
