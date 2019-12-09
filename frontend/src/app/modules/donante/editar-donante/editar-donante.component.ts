@@ -6,6 +6,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Voluntario, Vehiculo, Volumen, Ubicacion, Donante } from '../../../_services/lbservice/models';
 import { DonanteApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { AddressConverter } from '../../../_models/AddressConverter';
+import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-editar-donante',
@@ -22,9 +24,9 @@ export class EditarDonanteComponent implements OnInit {
   constructor(private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
 
     this.form = new FormGroup({   
-      cuil: new FormControl(),
-      ubicacion: new FormControl(),
-      email: new FormControl()
+      cuil: new FormControl('', [Validators.required]),
+      ubicacion: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.email])
      });
     this.addressConverter = new AddressConverter;
     apiDonante.findById(this.apiDonante.getCachedCurrent().id).subscribe((donante:Donante)=>{
@@ -46,6 +48,15 @@ export class EditarDonanteComponent implements OnInit {
     })
 
    }
+
+   get cuil() { return this.form.get('cuil'); }
+   get direccion() { return this.form.get('ubicacion'); }
+   get email() { return this.form.get('email'); }
+
+   get emailIsInvalid() {
+		return this.form.get('email').dirty && !this.form.get('email').valid
+	}
+
 
   onSubmit() {
     if (this.form.valid) {
@@ -71,8 +82,11 @@ export class EditarDonanteComponent implements OnInit {
 
       })
       
-    }
+    }  else {
+			alert('Por favor, completa los datos solicitados');
+		}
   }
+
   ngOnInit() {
   }
 

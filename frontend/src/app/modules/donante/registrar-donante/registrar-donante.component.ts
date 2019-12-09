@@ -143,9 +143,7 @@ export class RegistrarDonanteComponent implements OnInit {
 					}
 				})
 			});
-		} else {
-			alert('Por favor, completa los datos solicitados');
-		}
+		} 
 	}
 
 	generarUbicacion(direccion: string) {

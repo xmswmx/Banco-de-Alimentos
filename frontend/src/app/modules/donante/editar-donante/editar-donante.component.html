@@ -1,33 +1,42 @@
 <div class="container text-center">
-    <h2>Configurar los datos de la cuenta</h2>
+    <h2>Modificar donante</h2>
     <h4></h4>
 </div>
 <div class="card border-secondary mb-4 container mt-5 " id="contenedor">
-    <div class="alert alert-dismissible alert-dark mt-3">Datos del donante </div>
+    <div class="alert alert-dismissible alert-dark mt-5">Datos del donante </div>
     <div class="card-body">
-            <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container">
 
             <div class="form-group">
                 <label for="labelDireccion">CUIL</label>
-                <input formControlName="cuil" type="text" class="form-control" formControlName="cuil" id="cuil" value= "">
+                <input formControlName="cuil" type="text" class="form-control" formControlName="cuil" id="cuil"
+                    value="">
+                <div *ngIf="cuil.invalid && cuil.touched">
+                    <small class="text-danger">Debe ingresar el CUIL</small>
+                </div>
             </div>
 
-                    
             <div class="form-group">
                 <label for="labelDireccion">Dirección</label>
-                <input formControlName="ubicacion" type="text" class="form-control" formControlName="ubicacion" id="ubicacion" value= "">
+                <input formControlName="ubicacion" type="text" class="form-control" formControlName="ubicacion"
+                    id="ubicacion" value="">
+                <div *ngIf="direccion.invalid && direccion.touched">
+                    <small class="text-danger">Debe ingresar la dirección</small>
+                </div>
             </div>
-            
 
             <div class="form-group">
                 <label for="labelDireccion">email</label>
-                <input formControlName="email" type="text" class="form-control" formControlName="email" id="email" value= "">
+                <input formControlName="email" type="text" class="form-control" formControlName="email" id="email"
+                    value="">
+                <div *ngIf="email.invalid && email.touched  ">
+                    <small class="text-danger">Debe ingresar un correo con el formato mi@correo.com</small>
+                </div>
             </div>
 
-            
             <div class="form-group text-center">
-               <button class="btn mr-2 btn-orange " type="submit">Modificar</button>
-                <button class="btn mr-2 btn-orange" type="submit">Volver</button>    
+                <button class="btn mr-2 btn-orange " type="submit">Modificar</button>
+                <button class="btn mr-2 btn-orange" type="submit">Volver</button>
             </div>
         </form>
     </div>
