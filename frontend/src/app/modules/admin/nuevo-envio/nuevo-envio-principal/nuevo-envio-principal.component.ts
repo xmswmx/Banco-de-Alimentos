@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Item, Volumen, EnvioParaBeneficiario, Traslado } from '../../../../_services/lbservice/models';
-import { ItemApi, VolumenApi, EnvioParaBeneficiarioApi, TrasladoApi } from '../../../../_services/lbservice';
+import { Item, Volumen, EnvioParaBeneficiario, Traslado, Donacion } from '../../../../_services/lbservice/models';
+import { DonacionApi, ItemApi, VolumenApi, EnvioParaBeneficiarioApi, TrasladoApi } from '../../../../_services/lbservice';
 import {Location} from '@angular/common';
 import { BALP } from '../../../../_models/BALP';
 import { AddressConverter } from '../../../../_models/AddressConverter';
@@ -29,7 +29,9 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
     private itemApi:ItemApi,
     private volumenApi:VolumenApi,
     private envioApi:EnvioParaBeneficiarioApi,
-    private trasladoApi:TrasladoApi
+    private trasladoApi:TrasladoApi,
+    private donacionApi:DonacionApi,
+    private router:Router
     ) {	}
 
 
@@ -64,12 +66,26 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
     //Validar cada campo, si algo anda mal alert y break
 
       //Destinatario seleccionado
+      if( this.idBeneficiario == 'Sin seleccionar'){
+        alert("Faltó indicar el destinatario");
+        return;
+      }
 
       //Validar tipo de envio
+      if (this.tipo == null){
+        alert("Hubo un problema al seleccionar el tipo de envio")
+        return;
+      }
 
       //Caso a partir de donacion
 
         //Validar que se seleccione una donacio
+        if (this.tipo == "a partir de donacion"){
+          if (this.idDonacion == 'Sin seleccionar'){
+            alert("Selecciona una donación");
+            return;
+          }
+        }
 
       //Caso a partir de stock
 
@@ -78,6 +94,10 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
       //Se tiene una lista de descripcion/peso
 
       //Validar que se tenga alto,ancho,largo,fecha y peso
+      if (this.volumen.alto == null || this.volumen.ancho == null || this.volumen.largo == null || this.peso == null){
+        alert("Asegurese de guardar las características del envio (Alto,Ancho,Largo,Peso,Fecha de retiro)");
+        return;
+      }
 
     //Calcular distancia y puntaje
     //Falta obtener la direccion del destinatario
@@ -91,27 +111,48 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
     }
 
     //Iniciar variables
-      //Caso a partir de donacion
-      let nuevoEnvio : EnvioParaBeneficiario = new EnvioParaBeneficiario;
-      nuevoEnvio.tipo = this.tipo;
-      nuevoEnvio.beneficiarioId = this.idBeneficiario;
-      nuevoEnvio.items = this.itemList;
-      nuevoEnvio.volumen = this.volumen; //Agregarlo aparte o buscar un nested
-      //Falta agregar su traslado
-      let nuevoTraslado: Traslado = new Traslado;
-      nuevoTraslado.fechaEstimada = this.fecha;
-      nuevoTraslado.estado = 'pendiente de retiro';
-      nuevoTraslado.tipo = 'envio';
-      nuevoTraslado.volumenTotal = this.volumen.alto * this.volumen.ancho * this.volumen.largo;
-      nuevoTraslado.distancia = distancia;
-      nuevoTraslado.puntaje = puntaje;
-      nuevoTraslado.descripcion = desc;
-      nuevoTraslado.peso = this.peso;
+    let nuevoEnvio : EnvioParaBeneficiario = new EnvioParaBeneficiario;
+    nuevoEnvio.tipo = this.tipo;
+    nuevoEnvio.beneficiarioId = this.idBeneficiario;
+    nuevoEnvio.items = this.itemList;
+    nuevoEnvio.volumen = this.volumen; //Agregarlo aparte o buscar un nested
+    let nuevoTraslado: Traslado = new Traslado;
+    nuevoTraslado.fechaEstimada = this.fecha;
+    nuevoTraslado.estado = 'pendiente de retiro';
+    nuevoTraslado.tipo = 'envio';
+    nuevoTraslado.volumenTotal = this.volumen.alto * this.volumen.ancho * this.volumen.largo;
+    nuevoTraslado.distancia = Math.round(distancia);
+    nuevoTraslado.puntaje = Math.round(puntaje);
+    nuevoTraslado.descripcion = desc;
+    nuevoTraslado.peso = Math.round(this.peso);
 
+    console.log("Se termino de inicializar las variables a postear")
     //Postear todo
     if (this.tipo == 'a partir de donacion'){
-      //Agregar su donacion
-      //Falta actualizar estado de donacion
+      //Caso a partir de una donacion
+      this.donacionApi.patchAttributes(this.idDonacion,{"estado":"en envio"}).subscribe((donacion)=>{
+        console.log("Se cambio la donacion a estado 'en envio'");
+        this.envioApi.create(nuevoEnvio).subscribe((envioCreado:EnvioParaBeneficiario)=>{
+          console.log("Se creo la entidad envio");
+          let idEnvio = envioCreado.id;
+          nuevoTraslado.idEnvioTrasladadoAUnBeneficiario = idEnvio;
+          console.log("Se vinculo el nuevo envio al traslado a crear");
+          this.trasladoApi.create(nuevoTraslado).subscribe((trasladoCreado:Traslado)=>{
+            console.log("Se creo el traslado");
+            let idTraslado = trasladoCreado.id;
+            this.envioApi.createVolumen(idEnvio,nuevoEnvio.volumen).subscribe(()=>{
+              console.log("Se agregó el volumen");
+              for (let item of this.itemList){
+                item.envioParaBeneficiarioId=idEnvio;
+              }
+              this.itemApi.createMany(this.itemList).subscribe(()=>{
+                alert("Se registró el nuevo envio");
+                this.router.navigate(['/panel-de-control']);
+              });
+            })
+          })
+        })
+      })
 
 
     }
