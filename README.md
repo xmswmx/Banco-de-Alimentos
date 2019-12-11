@@ -9,18 +9,32 @@ Se utilizará Angular para el frontend y Loopback en backend con MongoDB como ba
 
 ## Instalación
 
-Se hace con tal comando
-
+Clonar el repositorio
 ```
-El comando
+git clone https://github.com/emanuelbas/Banco-de-Alimentos
+```
+Instalar las dependencias, tanto para el frontend como el backend
+```
+npm i
 ```
 
 ## Uso
 
-## Lista de funcionalidades
+Para iniciar la aplicación en desarrollo deberá realizar los siguientes pasos:
+1. Levantar la API, posicionandose en la carpeta backend
+```
+node .
+```
+2. Levantar la aplicación posicionándose en la carpeta frontend
+```
+ng serve
+```
+3. Navegar a http://localhost:4200/
 
-* Una historia de usuario
-* Una historia de usuario
-* Una historia de usuario
-* Una historia de usuario
-* Una historia de usuario
+## Lista de funcionalidades desarrolladas
+
+* Manejo de cuentas para voluntarios, donantes, beneficiarios y administradores
+* Creación y visualización de donaciones con descripcion general o detallada
+* Creación y visualización de envios para beneficiarios a partir de una donación o de stock
+* Manejo de traslados incluyendo busqueda y asignación de voluntarios y tracking de los mismos
+* Gamificación de la app con sistema de puntos e insignias para donantes y voluntarios
