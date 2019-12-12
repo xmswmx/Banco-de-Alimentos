@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AbstractStockService } from './abstract-stock.service';
 import { Producto, TipoProducto } from '../lbservice';
+import { AbstractStockService } from '../stockservice/abstract-stock.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockStockService extends AbstractStockService {
 
-	productos;
+	productos: Producto[];
   constructor() {
   	super();
 
@@ -32,13 +32,41 @@ export class MockStockService extends AbstractStockService {
 	p3.tipoProducto = new TipoProducto;
 	p4.tipoProducto = new TipoProducto;
 	p5.tipoProducto = new TipoProducto;
-	p1.tipoProducto.nombre = 'Lechuga';
-	p2.tipoProducto.nombre = 'Milanesa Granja de Sol';
-	p3.tipoProducto.nombre = 'Leche Sancor 1lt';
-	p4.tipoProducto.nombre = 'Maní El Faro 500g';
-	p5.tipoProducto.nombre = 'Te La virginia 100g';
+	p1.tipoProducto.nombre = 'TE LA VIRGINIA';
+	p2.tipoProducto.nombre = 'MILANESA GRANJA DEL SOL';
+	p3.tipoProducto.nombre = 'SEVEN ULTRA RED BERRY';
+	p4.tipoProducto.nombre = 'CARAMELO SURTIDO MANDARINA Y FRUTILLA';
+	p5.tipoProducto.nombre = 'MENTHOPLUS ZERO POMELO ROSADO';
 	
   	this.productos = [p1,p2,p3,p4,p5];
 
+   }
+
+   //Devuelve una lista de productos con nombre, vencimiento y cantidad
+   getProductos(): Promise<Producto[]>{
+   	return new Promise((resolve)=>{this.productos})
+   }
+
+   /* Recibe una lista de productos con nombre, vencimiento y cantidad
+    * Comprueba que existan
+    * Los decrementa o los borra si no quedan mas
+    * Es importante que los productos recibidos incluyan su tipo
+    */
+   retriveProductos(productos:Producto[]): Promise<boolean>{
+   	for (let producto of productos){
+   		//Checkear si hay suficientes, sino devolver false
+   		let interno:Producto = this.productos.find(elemento => elemento.tipoProducto.nombre == producto.tipoProducto.nombre);
+   		if (interno.cantidad > producto.cantidad){
+   			//No hay suficientes
+   			return new Promise((resolve)=>{false});
+   		}
+   	}
+   	//Comprobé que hay suficiente stock de todos los productos, ahora a descontarlos
+   	for (let producto of productos){
+   		//Descrementar
+   		let interno = this.productos.find(elemento => (elemento.tipoProducto.nombre == producto.tipoProducto.nombre && producto.vencimiento == elemento.vencimiento));
+   		interno.cantidad = producto.cantidad;	
+   	}
+   	return new Promise((resolve)=>{true});
    }
 }
