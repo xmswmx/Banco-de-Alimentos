@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Item, Volumen, EnvioParaBeneficiario, Traslado, Donacion } from '../../../../_services/lbservice/models';
-import { DonacionApi, ItemApi, VolumenApi, EnvioParaBeneficiarioApi, TrasladoApi } from '../../../../_services/lbservice';
+import { Producto, Item, Volumen, EnvioParaBeneficiario, Traslado, Donacion } from '../../../../_services/lbservice/models';
+import { ProductoApi, DonacionApi, ItemApi, VolumenApi, EnvioParaBeneficiarioApi, TrasladoApi } from '../../../../_services/lbservice';
 import {Location} from '@angular/common';
 import { BALP } from '../../../../_models/BALP';
 import { AddressConverter } from '../../../../_models/AddressConverter';
@@ -25,12 +25,14 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   fecha:Date = new Date;
   converter = new AddressConverter;
   balp = new BALP;
+  productosDelStock : Producto[];
   constructor(
     private itemApi:ItemApi,
     private volumenApi:VolumenApi,
     private envioApi:EnvioParaBeneficiarioApi,
     private trasladoApi:TrasladoApi,
     private donacionApi:DonacionApi,
+    private productoApi:ProductoApi,
     private router:Router
     ) {	}
 
@@ -50,6 +52,9 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   }
   onEnviarIdDonacion(id:string){
     this.idDonacion = id;
+  }
+  onEnviarProductosDelStock(productos:Producto[]){
+    this.productosDelStock = productos;
   }
   //Recibe [volumen,peso,fecha]
   onEnviarVolumen(array:Array<any>){
@@ -155,15 +160,30 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
       })
 
 
-    }
-
-
-
-
-
-
-    else {
+    } else {
       //Caso a partir de stock
+      this.envioApi.create(nuevoEnvio).subscribe((envioCreado:EnvioParaBeneficiario)=>{
+        console.log("Se creo el envio");
+        let idEnvio = envioCreado.id;
+        this.envioApi.createManyProductos(idEnvio,this.productosDelStock).subscribe(()=>{
+          console.log("Se crearon los productos asociados al envio");
+          nuevoTraslado.idEnvioTrasladadoAUnBeneficiario = idEnvio;
+          console.log("Se vinculo el nuevo traslado con el envio creado");
+          this.trasladoApi.create(nuevoTraslado).subscribe((trasladoCreado:Traslado)=>{
+            console.log("Se creo el traslado");
+            let idTraslado = trasladoCreado.id;
+            this.envioApi.createVolumen(idEnvio,nuevoEnvio.volumen).subscribe(()=>{
+              console.log("Se creo el volumen del envio");
+              this.envioApi.createManyItems(idEnvio,this.itemList).subscribe(()=>{
+                console.log("Se crearon los items del envio");
+                alert("Se registró la nueva donación correctamente");
+                this.router.navigate(['/panel-de-control']);
+              })
+            })
+          })
+        })
+      })
+
     }
 
   }

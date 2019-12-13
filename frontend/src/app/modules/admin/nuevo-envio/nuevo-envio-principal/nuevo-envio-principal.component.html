@@ -4,13 +4,13 @@
 	<app-nuevo-envio-seleccionar-donante (enviarIdBeneficiario)="onEnviarIdBeneficiario($event)"></app-nuevo-envio-seleccionar-donante>
 </div>
 
-<div class="container overflow-auto" style="height: 200px">
+<div class="container m-5 overflow-auto" style="height: 200px">
 	<mat-tab-group (selectedTabChange)="toggleTipo()">
 	  <mat-tab label="A partir de donación..">
 	    <app-nuevo-envio-seleccionar-donacion (enviarIdDonacion)="onEnviarIdDonacion($event)"></app-nuevo-envio-seleccionar-donacion>
 	  </mat-tab>
 	  <mat-tab (click)="setTipo('a partir de stock')" label="A partir de stock..">
-	    <p> a partir de stock </p>
+	    <app-nuevo-envio-a-partir-de-stock></app-nuevo-envio-a-partir-de-stock>
 	  </mat-tab>
 	</mat-tab-group>
 </div>

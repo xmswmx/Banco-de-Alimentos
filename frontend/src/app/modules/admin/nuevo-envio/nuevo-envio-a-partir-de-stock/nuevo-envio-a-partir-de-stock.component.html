@@ -1,1 +1,35 @@
-<p>nuevo-envio-a-partir-de-stock works!</p>
+<button *ngIf="this.mostrarStock" (click)="this.mostrarStock = false" class="btn btn-dark"> Guardar </button>
+<button *ngIf="!this.mostrarStock" (click)="this.mostrarStock = true;this.test()" class="btn btn-dark"> Ver stock </button>
+<table *ngIf="this.mostrarStock" class="table mb-2" style="width:100%">
+  <thead class="thead-dark">
+	<tr>
+		<th>
+			Nombre
+		</th>
+		<th>
+			Vencimiento
+		</th>
+		<th>
+			Cantidad
+		</th>
+		<th>
+			Incluir
+		</th>
+	</tr>
+  </thead>
+	<tr *ngFor="let producto of this.productos">
+		<td>
+			{{producto.tipoProducto.nombre}}
+		</td>
+		<td>
+			{{producto.vencimiento}}	
+		</td>
+		<td>
+			<input type="number">/{{producto.cantidad}}
+		</td>
+		<td>
+			<input type="checkbox">
+		</td>
+	</tr>
+</table>
+

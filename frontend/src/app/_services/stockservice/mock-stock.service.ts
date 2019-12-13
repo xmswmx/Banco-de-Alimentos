@@ -7,7 +7,7 @@ import { AbstractStockService } from '../stockservice/abstract-stock.service';
 })
 export class MockStockService extends AbstractStockService {
 
-	productos: Producto[];
+	productos: Producto[] = [];
   constructor() {
   	super();
 
@@ -39,12 +39,15 @@ export class MockStockService extends AbstractStockService {
 	p5.tipoProducto.nombre = 'MENTHOPLUS ZERO POMELO ROSADO';
 	
   	this.productos = [p1,p2,p3,p4,p5];
+    console.log("Se inicializo el servicio: ");
+    console.log(this.productos);
 
    }
 
    //Devuelve una lista de productos con nombre, vencimiento y cantidad
    getProductos(): Promise<Producto[]>{
-   	return new Promise((resolve)=>{this.productos})
+    let promesa = Promise.resolve(this.productos);
+    return promesa;
    }
 
    /* Recibe una lista de productos con nombre, vencimiento y cantidad
