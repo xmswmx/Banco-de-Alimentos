@@ -37,7 +37,6 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 
 	onSubmit() {
 		if (this.registrarBeneficiario.valid) {
-			console.warn(this.registrarBeneficiario.value);
 			this.nuevoBeneficiario = new Beneficiario();
 			this.nuevoBeneficiario.username = this.registrarBeneficiario.get("nombreOrganizacion").value;
 			this.nuevoBeneficiario.cantidadAtendidos = this.registrarBeneficiario.get("cantidadAtendidos").value;
