@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Beneficiario } from '../../../../_services/lbservice/models';  
+import { BeneficiarioApi } from '../../../../_services/lbservice/services';
 
 @Component({
   selector: 'app-nuevo-envio-seleccionar-donante',
@@ -7,9 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevoEnvioSeleccionarDonanteComponent implements OnInit {
 
-  constructor() { }
+	form : FormGroup;
+	beneficiario : Beneficiario;
+	beneficiarios;
 
-  ngOnInit() {
-  }
+	@Input()  name: string;
+  	@Output() enviarIdBeneficiario = new EventEmitter<string>();
+    constructor(private api:BeneficiarioApi) {
+		this.form = new FormGroup({
+			beneficiario: new FormControl()
+	    });
+		api.find().subscribe((beneficiarios)=>{
+			this.beneficiarios = beneficiarios;
+		})
+
+     }
+
+    ngOnInit() {
+    }
+
+    enviarAlPadre(idBeneficiario:string){
+    	this.enviarIdBeneficiario.emit(idBeneficiario);
+
+    }
 
 }

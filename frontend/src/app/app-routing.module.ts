@@ -30,7 +30,7 @@ import { EditarDonanteComponent } from './modules/donante/editar-donante/editar-
 import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-beneficiario/editar-beneficiario.component';
 import { TrasladoAsignadoGuard } from './_guards/traslado-asignado.guard';
 import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
-
+import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -60,7 +60,8 @@ const routes: Routes = [
 	{path:'editar-voluntario',component:EditarVoluntarioComponent, canActivate:[VoluntarioGuard]},
 	{path:'editar-beneficiario',component:EditarBeneficiarioComponent, canActivate:[BeneficiarioGuard]},	
 	{path:'editar-donante',component:EditarDonanteComponent, canActivate:[DonanteGuard]},
-	{path:'mis-traslados',component:MisTrasladosComponent, canActivate:[VoluntarioGuard]}
+	{path:'mis-traslados',component:MisTrasladosComponent, canActivate:[VoluntarioGuard]},
+	{path:'donaciones-recibidas',component:DonacionesRecibidasComponent, canActivate:[BeneficiarioGuard]}
 ];
 
 @NgModule({

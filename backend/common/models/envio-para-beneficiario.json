@@ -7,22 +7,10 @@
     "validateUpsert": true
   },
   "properties": {
-    "estado": {
-      "type": "string",
-      "required": true
-    },
-    "numero": {
-      "type": "number",
-      "required": true
-    },
     "tipo": {
       "type": "string",
       "default": "a partir de stock",
       "required": true
-    },
-    "descripcion": {
-      "type": "string",
-      "default":""
     }
   },
   "validations": [],

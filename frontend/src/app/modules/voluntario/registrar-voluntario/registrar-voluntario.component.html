@@ -1,6 +1,6 @@
 <div class="container text-center">
-    <h2>¿Queres ayudarnos a ayudar?</h2>
-    <h4>Registate como voluntario</h4>
+    <h2>Sumate como Voluntario!</h2>
+    <h5 class="pt-2">Sumate al voluntariado y ayudanos a nutrir la región: El éxito en el cumplimiento de nuestra misión depende mucho del tiempo donado por nuestros voluntarios, que son el "alma de nuestra institución". El voluntariado es una actividad libre, comprometida y solidaria.</h5>
 </div>
 <div class="card border-secondary mb-4 container mt-5" id="contenedor">
     <div class="alert alert-dismissible alert-dark mt-3"> Registrar voluntario </div>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="labelDireccion">Email</label>
                 <input formControlName="email" type="text" class="form-control" id="inputEmail" placeholder="perez@gmail.com">
-                <div *ngIf="email.invalid && email.touched && emailIsInvalid ">
+                <div *ngIf="email.invalid && email.touched">
                     <small class="text-danger">Se debe ingresar un correo con el formato mi@correo.com</small>
                 </div> 
                 

@@ -1,1 +1,24 @@
-<p>nuevo-envio-seleccionar-donacion works!</p>
+<table class="table mb-2">
+    <thead class="thead-dark">
+	    <tr>
+	      <th>Descripción</th>
+	      <th>Donante</th>
+	      <th></th>
+	    </tr>
+	</thead>
+	<tbody>		
+		<tr *ngFor="let donacion of donaciones">
+			<td>
+				{{donacion.traslado.descripcion}}
+			</td>
+			<td>
+				Soon!
+			</td>
+			<td >
+				<button (click)="enviarAlPadre(donacion.id)"> 
+					Seleccionar
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

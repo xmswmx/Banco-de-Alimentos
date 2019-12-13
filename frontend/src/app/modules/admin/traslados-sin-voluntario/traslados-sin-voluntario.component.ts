@@ -38,33 +38,15 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 									let destino = this.balp.ubicacionBALP.direccion;
 									let idDonante = donante.id;
 									let fecha = traslado.fechaEstimada;
-									if (donacion.tipoDescripcion == 'general'){
-										//Caso desc general
-										apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc:DescripcionGeneral)=>{
-											this.filas.push([
+									this.filas.push([
 												origen,
 												destino,
 												idDonante,
 												fecha,
-												desc.descripcion,
+												traslado.descripcion,
 												donante,
 												traslado
-											]) //Fin push
-										});//Fin desc general
-									} else {
-										//Caso desc detallada
-										apiDonacion.getDescripcionDetallada(donacion.id,true).subscribe((desc:DescripcionDetallada)=>{
-											this.filas.push([
-												origen,
-												destino,
-												idDonante,
-												fecha,
-												desc.descripcion,
-												donante,
-												traslado
-											]) //Fin push
-										}); //Fin desc detallada
-									} //Fin else
+											]) //Fin push									
 								}) //Fin getUbicacion
 							}) //Fin donante
 							
@@ -80,7 +62,7 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 									let destino = ubicacion.direccion;
 									let idBeneficiario = beneficiario.id;
 									let fecha = traslado.fechaEstimada;
-									let descripcion = envio.descripcion;
+									let descripcion = traslado.descripcion;
 									this.filas.push([
 												origen,
 												destino,

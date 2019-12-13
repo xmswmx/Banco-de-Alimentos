@@ -68,7 +68,7 @@ export class AsignarTrasladoComponent implements OnInit {
 				//1. Recuperar el envio trasladado a un beneficiario
 				apiEnvio.findById(this.traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario) => {
 					//2. Recuperar el beneficiario de ese envio
-					apiEnvio.findById(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario) => {
+					apiBeneficiario.findById(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario) => {
 						//3. Recuperar la ubicacion de ese beneficiario						
 						apiBeneficiario.getUbicacion(beneficiarioRecuperado.id,true).subscribe((ubicacionRecuperada)=>{															
 							//4. Guardar la direccion como destino

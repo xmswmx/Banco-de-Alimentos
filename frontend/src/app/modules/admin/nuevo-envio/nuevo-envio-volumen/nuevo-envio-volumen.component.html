@@ -1,0 +1,36 @@
+<form class="" [formGroup]="form">   
+    <table class="table mb-2">
+        <thead class="thead-dark">
+            <tr>
+              <th>Alto</th>
+              <th>Ancho</th>
+              <th>Largo</th>
+              <th>Peso</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>     
+            <tr>
+                <td>
+                    <input  oninput="enviarAlPadre()" formControlName="alto" type="text" class="form-control " id="inputAlto" placeholder="Metros de alto">                 
+                </td>
+                <td>
+                    <input formControlName="ancho" type="text" class="form-control " id="inputAncho" placeholder="Metros de ancho">
+                </td>
+                <td>
+                    <input formControlName="largo" type="text" class="form-control " id="inputLargo" placeholder="Metros de largo">
+                </td>
+                <td>
+                    <input formControlName="peso" type="text" class="form-control " id="inputPeso" placeholder="Peso en kg">
+                </td>
+                <td>
+                    <input formControlName="fechaRetiro" type="date" class="form-control" id="inputFechaRetiro">
+                </td>
+                <td>
+                    <button (click)="enviarAlPadre()"> Guardar características </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
