@@ -2,45 +2,81 @@ import { Component, OnInit } from '@angular/core';
 import { Beneficiario, Ubicacion } from '../../../_services/lbservice/models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BeneficiarioApi, UbicacionApi } from '../../../_services/lbservice/services';
+import { FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
+import { AddressConverter } from '../../../_models/AddressConverter';
 
 //Revisar si se usa
 import { LoopBackConfig, BaseLoopBackApi } from '../../../_services/lbservice';
 import { Route } from '@angular/compiler/src/core';
-import { FormGroup, FormControl, NgForm } from '@angular/forms';
+
 
 @Component({
-  selector: 'editar-beneficiario',
-  templateUrl: './editar-beneficiario.component.html',
-  styleUrls: ['./editar-beneficiario.component.css']
+	selector: 'editar-beneficiario',
+	templateUrl: './editar-beneficiario.component.html',
+	styleUrls: ['./editar-beneficiario.component.css']
 })
+
 export class EditarBeneficiarioComponent implements OnInit {
-	// editarBeneficiarioForm: FormGroup;
-  beneficiario: Beneficiario;
-	username: string;
-	address: string = 'Cargando..';
-	cantAtendidos: number;
-	email: string;
+	beneficiario: Beneficiario;
+	direccion: string = 'Cargando..';
+	formBeneficiario: FormGroup;
+	convertidorDeDirecciones: AddressConverter;
+	ubicacion: Ubicacion;
 
+	constructor(private ubicacionApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
 
-  constructor(private ubiApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
-    
-    this.beneficiario = beneficiarioApi.getCachedCurrent();
+		this.beneficiario = beneficiarioApi.getCachedCurrent();
 		this.beneficiarioApi.getUbicacion(this.beneficiario.id, true).subscribe((ubicacion: Ubicacion) => {
-			this.address = ubicacion.direccion;	})
-		this.username = this.beneficiario.username;
-		this.cantAtendidos = this.beneficiario.cantidadAtendidos;
-		this.email = this.beneficiario.email;
+			this.ubicacion = ubicacion;
+			this.direccion = ubicacion.direccion;
+		})
+		this.formBeneficiario = new FormGroup({
+			username: new FormControl(this.beneficiario.username, [Validators.required]),
+			direccion: new FormControl(this.direccion),
+			cantidadAtendidos: new FormControl(this.beneficiario.cantidadAtendidos),
+			email: new FormControl(this.beneficiario.email, [Validators.required, Validators.email]),
+		});
+	}
 
-  }
 
-  ngOnInit() {
-  }
+	get username() { return this.formBeneficiario.get('username') }
+	get direccionForm() { return this.formBeneficiario.get('direccion') }
+	get email() { return this.formBeneficiario.get('email') }
+	get cantidadAtendidos() { return this.formBeneficiario.get('cantidadAtendidos') }
 
-  onSubmit(beneficiarioForm: NgForm){
-    console.log(beneficiarioForm.value);
-    console.log(beneficiarioForm.valid);
+	get emailIsInvalid() {
+		return this.formBeneficiario.get('email').dirty && !this.formBeneficiario.get('email').valid
+	}
 
-  }
+	ngOnInit() {
+	}
+
+	onSubmit() {
+		if (this.formBeneficiario.valid) {
+
+			this.beneficiarioApi.patchAttributes(this.beneficiario.id, {
+				"username": this.formBeneficiario.get("username").value,
+				"cantidadAtendidos": this.formBeneficiario.get("cantidadAtendidos").value,
+				"email": this.formBeneficiario.get("email").value
+			}).subscribe(() => {
+
+				this.beneficiarioApi.patchAttributes(this.ubicacion.id, {
+					"direccion": this.formBeneficiario.get("direccion").value,
+					"puntoGeografico": this.convertidorDeDirecciones.coordinateForAddress(this.formBeneficiario.get("direccion").value)
+				}).subscribe((nuevaUbicacion: Ubicacion) => {
+					console.log('La nueva ubicacion:', nuevaUbicacion);
+				})
+			})
+			this.router.navigateByUrl("/perfil-beneficiario");
+			alert('Los datos se modificaron correctamente');
+
+		}
+		else {
+			alert('Por favor, completa los datos solicitados');
+		}
+		//ubicacion
+	}//beneficiario
 
 
 }
+

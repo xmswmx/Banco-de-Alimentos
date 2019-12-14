@@ -1,5 +1,11 @@
 # <span style="color:#dd0031"> **Comandos de Angular** </span>
 
+## Crear Proyecto
+`ng new nombreProyecto --minimal`
+
+## Iniciar Proyecto
+`ng serve --open`
+
 ## Crear Componentes 
 `ng generate component nombreDelComponente`
 

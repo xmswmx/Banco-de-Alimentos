@@ -16,9 +16,8 @@ import { Route } from '@angular/compiler/src/core';
 	styleUrls: ['./registrar-beneficiario.component.css']
 })
 export class RegistrarBeneficiarioComponent implements OnInit {
-
-	registrarBeneficiario: FormGroup;
 	nuevoBeneficiario: Beneficiario;
+	registrarBeneficiario: FormGroup;
 	convertidorDeDirecciones: AddressConverter;
 
 	constructor(private ubicacionApi:UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
@@ -38,7 +37,6 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 
 	onSubmit() {
 		if (this.registrarBeneficiario.valid) {
-			console.warn(this.registrarBeneficiario.value);
 			this.nuevoBeneficiario = new Beneficiario();
 			this.nuevoBeneficiario.username = this.registrarBeneficiario.get("nombreOrganizacion").value;
 			this.nuevoBeneficiario.cantidadAtendidos = this.registrarBeneficiario.get("cantidadAtendidos").value;
