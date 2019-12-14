@@ -32,11 +32,16 @@ export class MockStockService extends AbstractStockService {
 	p3.tipoProducto = new TipoProducto;
 	p4.tipoProducto = new TipoProducto;
 	p5.tipoProducto = new TipoProducto;
-	p1.tipoProducto.nombre = 'TE LA VIRGINIA';
-	p2.tipoProducto.nombre = 'MILANESA GRANJA DEL SOL';
+	p1.tipoProducto.nombre = 'CARAMELO SURTIDO MANDARINA Y FRUTILLA';
+	p2.tipoProducto.nombre = 'MENTHOPLUS ZERO POMELO ROSADO';
 	p3.tipoProducto.nombre = 'SEVEN ULTRA RED BERRY';
-	p4.tipoProducto.nombre = 'CARAMELO SURTIDO MANDARINA Y FRUTILLA';
+	p4.tipoProducto.nombre = 'SEVEN ULTRA RED BERRY';
 	p5.tipoProducto.nombre = 'MENTHOPLUS ZERO POMELO ROSADO';
+  p1.tipoProductoId = "5dd8caa712011b173cced718";
+  p2.tipoProductoId = "5dd8caa712011b173cced719";
+  p3.tipoProductoId = "5dd8caa712011b173cced71a";
+  p4.tipoProductoId = "5dd8caa712011b173cced71a";
+  p5.tipoProductoId = "5dd8caa712011b173cced719";
 	
   	this.productos = [p1,p2,p3,p4,p5];
     console.log("Se inicializo el servicio: ");
@@ -58,18 +63,21 @@ export class MockStockService extends AbstractStockService {
    retriveProductos(productos:Producto[]): Promise<boolean>{
    	for (let producto of productos){
    		//Checkear si hay suficientes, sino devolver false
-   		let interno:Producto = this.productos.find(elemento => elemento.tipoProducto.nombre == producto.tipoProducto.nombre);
-   		if (interno.cantidad > producto.cantidad){
+       console.log(producto);
+       console.log(this.productos);
+       console.log(new Date == producto.vencimiento);
+   		let interno:Producto = this.productos.find(elemento => (elemento.tipoProductoId == producto.tipoProductoId));
+       if (interno.cantidad < producto.cantidad){
    			//No hay suficientes
-   			return new Promise((resolve)=>{false});
+   			return Promise.resolve(false);
    		}
    	}
    	//Comprobé que hay suficiente stock de todos los productos, ahora a descontarlos
    	for (let producto of productos){
    		//Descrementar
-   		let interno = this.productos.find(elemento => (elemento.tipoProducto.nombre == producto.tipoProducto.nombre && producto.vencimiento == elemento.vencimiento));
-   		interno.cantidad = producto.cantidad;	
+   		let interno = this.productos.find(elemento => (elemento.tipoProductoId == producto.tipoProductoId));
+   		interno.cantidad = interno.cantidad - producto.cantidad;	
    	}
-   	return new Promise((resolve)=>{true});
+   	return Promise.resolve(true);
    }
 }

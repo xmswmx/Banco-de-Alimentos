@@ -46,6 +46,9 @@ import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-
 import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-beneficiario/editar-beneficiario.component';
 import { NuevoEnvioVolumenComponent } from './modules/admin/nuevo-envio/nuevo-envio-volumen/nuevo-envio-volumen.component';
 
+import { MockStockService } from './_services/stockservice/mock-stock.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +101,8 @@ import { NuevoEnvioVolumenComponent } from './modules/admin/nuevo-envio/nuevo-en
     BrowserModule,
     FormsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [MockStockService]
 })
 export class AppModule { }
 

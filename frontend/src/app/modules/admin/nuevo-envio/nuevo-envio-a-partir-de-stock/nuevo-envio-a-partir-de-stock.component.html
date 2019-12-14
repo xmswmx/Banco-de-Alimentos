@@ -1,6 +1,48 @@
-<button *ngIf="this.mostrarStock" (click)="this.mostrarStock = false" class="btn btn-dark"> Guardar </button>
-<button *ngIf="!this.mostrarStock" (click)="this.mostrarStock = true;this.test()" class="btn btn-dark"> Ver stock </button>
-<table *ngIf="this.mostrarStock" class="table mb-2" style="width:100%">
+
+<form [formGroup]="form">
+	<label> id </label>
+	<input formControlName="id" type="number">
+	<label> Cantidad </label>
+	<input formControlName="cantidad" type="number">
+	<span class="inline" (click)="agregarAEnvio()" class="btn btn-dark"> Agregar </span>
+</form>
+
+<p> En stock </p>
+<table class="table mb-2" style="width:100%">
+  <thead class="thead-dark">
+	<tr>
+		<th>
+			id
+		</th>
+		<th>
+			Nombre
+		</th>
+		<th>
+			Vencimiento
+		</th>
+		<th>
+			Cantidad
+		</th>
+	</tr>
+  </thead>
+	<tr *ngFor="let producto of this.productosEnStock;let i=index">
+		<td>
+			{{i+1}}
+		</td>
+		<td>
+			{{producto.tipoProducto.nombre}}
+		</td>
+		<td>
+			{{producto.vencimiento}}	
+		</td>
+		<td>
+			{{producto.cantidad}}
+		</td>
+	</tr>
+</table>
+
+<p> Agregados al envio </p>
+<table class="table mb-2" style="width:100%">
   <thead class="thead-dark">
 	<tr>
 		<th>
@@ -12,12 +54,9 @@
 		<th>
 			Cantidad
 		</th>
-		<th>
-			Incluir
-		</th>
 	</tr>
   </thead>
-	<tr *ngFor="let producto of this.productos">
+	<tr *ngFor="let producto of this.productosEnEnvio">
 		<td>
 			{{producto.tipoProducto.nombre}}
 		</td>
@@ -25,10 +64,7 @@
 			{{producto.vencimiento}}	
 		</td>
 		<td>
-			<input type="number">/{{producto.cantidad}}
-		</td>
-		<td>
-			<input type="checkbox">
+			{{producto.cantidad}}
 		</td>
 	</tr>
 </table>

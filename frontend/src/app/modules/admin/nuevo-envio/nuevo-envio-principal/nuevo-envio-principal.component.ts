@@ -6,6 +6,7 @@ import { ProductoApi, DonacionApi, ItemApi, VolumenApi, EnvioParaBeneficiarioApi
 import {Location} from '@angular/common';
 import { BALP } from '../../../../_models/BALP';
 import { AddressConverter } from '../../../../_models/AddressConverter';
+import { MockStockService } from '../../../../_services/stockservice/mock-stock.service';
 
 @Component({
   selector: 'app-nuevo-envio-principal',
@@ -33,11 +34,15 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
     private trasladoApi:TrasladoApi,
     private donacionApi:DonacionApi,
     private productoApi:ProductoApi,
-    private router:Router
+    private router:Router,
+    private stock:MockStockService
     ) {	}
 
 
   ngOnInit() {
+  }
+  test(){
+    this.stock.retriveProductos(this.productosDelStock).then((value)=>{console.log(value)});
   }
   toggleTipo(){
     if (this.tipo=='a partir de donacion'){
