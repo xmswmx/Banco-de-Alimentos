@@ -172,6 +172,7 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
         let idEnvio = envioCreado.id;
         this.envioApi.createManyProductos(idEnvio,this.productosDelStock).subscribe(()=>{
           console.log("Se crearon los productos asociados al envio");
+          this.stock.retriveProductos(this.productosDelStock);
           nuevoTraslado.idEnvioTrasladadoAUnBeneficiario = idEnvio;
           console.log("Se vinculo el nuevo traslado con el envio creado");
           this.trasladoApi.create(nuevoTraslado).subscribe((trasladoCreado:Traslado)=>{

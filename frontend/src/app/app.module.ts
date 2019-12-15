@@ -47,6 +47,7 @@ import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-benef
 import { NuevoEnvioVolumenComponent } from './modules/admin/nuevo-envio/nuevo-envio-volumen/nuevo-envio-volumen.component';
 
 import { MockStockService } from './_services/stockservice/mock-stock.service';
+import { InsigniasService } from './_services/insignias.service';
 
 
 @NgModule({
@@ -102,7 +103,7 @@ import { MockStockService } from './_services/stockservice/mock-stock.service';
     FormsModule
   ],
   bootstrap: [AppComponent],
-  providers: [MockStockService]
+  providers: [MockStockService,InsigniasService]
 })
 export class AppModule { }
 

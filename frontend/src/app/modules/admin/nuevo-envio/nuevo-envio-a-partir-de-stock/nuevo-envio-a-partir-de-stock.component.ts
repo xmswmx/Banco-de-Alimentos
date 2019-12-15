@@ -51,7 +51,6 @@ export class NuevoEnvioAPartirDeStockComponent implements OnInit {
     producto.cantidad = cant;
     producto.vencimiento = this.productosEnStock[id].vencimiento;
     producto.tipoProductoId = this.productosEnStock[id].tipoProductoId;
-    //Falta crear los tipoProductos y asociarlos en el servicio
     producto.tipoProducto = this.productosEnStock[id].tipoProducto;
     this.productosEnEnvio.push(producto);
     this.enviarProductos.emit(this.productosEnEnvio);
