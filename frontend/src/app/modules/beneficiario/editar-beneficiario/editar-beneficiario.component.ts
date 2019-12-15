@@ -19,16 +19,17 @@ import { Route } from '@angular/compiler/src/core';
 export class EditarBeneficiarioComponent implements OnInit {
 	beneficiario: Beneficiario;
 	direccion: string = 'Cargando..';
+	addressConverter: AddressConverter;
 	formBeneficiario: FormGroup;
 	convertidorDeDirecciones: AddressConverter;
 	ubicacion: Ubicacion;
 
 	constructor(private ubicacionApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
-
 		this.beneficiario = beneficiarioApi.getCachedCurrent();
 		this.beneficiarioApi.getUbicacion(this.beneficiario.id, true).subscribe((ubicacion: Ubicacion) => {
 			this.ubicacion = ubicacion;
 			this.direccion = ubicacion.direccion;
+			this.addressConverter = new AddressConverter;
 		})
 		this.formBeneficiario = new FormGroup({
 			username: new FormControl(this.beneficiario.username, [Validators.required]),
@@ -58,17 +59,19 @@ export class EditarBeneficiarioComponent implements OnInit {
 				"username": this.formBeneficiario.get("username").value,
 				"cantidadAtendidos": this.formBeneficiario.get("cantidadAtendidos").value,
 				"email": this.formBeneficiario.get("email").value
-			}).subscribe(() => {
+			}).subscribe((beneficiario: Beneficiario) => {
 
-				this.beneficiarioApi.patchAttributes(this.ubicacion.id, {
+				this.ubicacionApi.patchAttributes(this.ubicacion.id, {
 					"direccion": this.formBeneficiario.get("direccion").value,
-					"puntoGeografico": this.convertidorDeDirecciones.coordinateForAddress(this.formBeneficiario.get("direccion").value)
-				}).subscribe((nuevaUbicacion: Ubicacion) => {
-					console.log('La nueva ubicacion:', nuevaUbicacion);
+					"puntoGeografico": this.addressConverter.coordinateForAddress(this.formBeneficiario.get("direccion").value)
+				}).subscribe(() => {
+					alert('Los datos se modificaron correctamente');
+					this.router.navigateByUrl("/perfil-beneficiario");
 				})
+
 			})
-			this.router.navigateByUrl("/perfil-beneficiario");
-			alert('Los datos se modificaron correctamente');
+
+
 
 		}
 		else {
@@ -76,7 +79,6 @@ export class EditarBeneficiarioComponent implements OnInit {
 		}
 		//ubicacion
 	}//beneficiario
-
 
 }
 
