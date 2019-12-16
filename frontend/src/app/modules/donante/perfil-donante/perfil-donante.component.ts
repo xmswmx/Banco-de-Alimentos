@@ -7,7 +7,7 @@ import { faStar, faCandyCane, faGift, faEgg, faGifts , faHandsHelping, faDonate 
 import { faTwitter, faFacebook,faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { UbicacionApi, DonanteApi, PersonaDeContactoApi, InsigniaApi, TipoInsigniaApi } from '../../../_services/lbservice/services';
 import { Ubicacion, Donante, PersonaDeContacto, Insignia, TipoInsignia } from '../../../_services/lbservice/models';  
-
+import { InsigniasService } from '../../../_services/insignias.service';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class PerfilDonanteComponent implements OnInit {
   	personas;
   	direccion = 'Cargando..';
     badges = []; //Se 0:Nombre, 1:icono, 2:fechaOtorgada, 3:vto
-  constructor(private apiInsignia: InsigniaApi,private apiUbicacion: UbicacionApi, private apiDonante:DonanteApi, private apiPersona:PersonaDeContactoApi,private router:Router) { 
+  constructor(private insigniasService:InsigniasService,private apiInsignia: InsigniaApi,private apiUbicacion: UbicacionApi, private apiDonante:DonanteApi, private apiPersona:PersonaDeContactoApi,private router:Router) { 
     //Esto es como un diccionario que uso para convertir texto de la api en iconos mostrables
     this.iconos=[
     ['faEgg',faEgg],
@@ -51,7 +51,7 @@ export class PerfilDonanteComponent implements OnInit {
   		this.personas = personas;
   		apiDonante.getUbicacion(this.donante.id,true).subscribe((ubicacion)=>{
         this.direccion = ubicacion.direccion;
-        apiDonante.getInsignia(this.donante.id).subscribe((insignias)=>{
+        insigniasService.getInsigniasDonante(this.donante.id).then((insignias)=>{
           for (let insignia of insignias){
             apiInsignia.getTipoInsignia(insignia.id,true).subscribe((tipodeinsignia:TipoInsignia)=>{
                 let parNombreIcono = this.iconos.find(elemento => elemento[0] == tipodeinsignia.imagen)

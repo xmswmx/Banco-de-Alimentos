@@ -7,7 +7,7 @@ import { Voluntario, Vehiculo, Volumen, Ubicacion, Insignia, TipoInsignia } from
 import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi, InsigniaApi, TipoInsigniaApi } from '../../../_services/lbservice/services';
 import { faStar, faCandyCane, faGift, faEgg, faGifts , faHandsHelping, faDonate } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFacebook,faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-
+import { InsigniasService } from '../../../_services/insignias.service';
 
 @Component({
   selector: 'app-perfil-voluntario',
@@ -34,7 +34,7 @@ export class PerfilVoluntarioComponent implements OnInit {
     iconos = [];
     badges = []; //Se 0:Nombre, 1:icono, 2:fechaOtorgada, 3:vto
 
-  constructor(private apiInsignia: InsigniaApi, private apiVoluntario: VoluntarioApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) {
+  constructor(private insigniasService: InsigniasService,private apiInsignia: InsigniaApi, private apiVoluntario: VoluntarioApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) {
    
     //Esto es como un diccionario que uso para convertir texto de la api en iconos mostrables
     this.iconos=[
@@ -81,7 +81,8 @@ export class PerfilVoluntarioComponent implements OnInit {
         this.volumen = volumen;
         apiVoluntario.getUbicacion(this.voluntario.id,true).subscribe((ubicacion)=>{	
           this.ubicacion = ubicacion.direccion;	
-          apiVoluntario.getInsignia(apiVoluntario.getCachedCurrent().id).subscribe((insignias:Insignia[])=>{
+          //Aca usaria el servicio y me devolveria un insignias:Insignia[]
+          this.insigniasService.getInsigniasVoluntario(apiVoluntario.getCachedCurrent().id).then((insignias:Insignia[])=>{
             for (let insignia of insignias){
               apiInsignia.getTipoInsignia(insignia.id,true).subscribe((tipodeinsignia:TipoInsignia)=>{
                   let parNombreIcono = this.iconos.find(elemento => elemento[0] == tipodeinsignia.imagen)
