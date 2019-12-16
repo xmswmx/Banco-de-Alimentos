@@ -65,14 +65,150 @@ export class InsigniasService {
 		})		
 	}
 
-	onTraslado(idVoluntario:string){
-		//Crear o actualizar insignias
+	onTraslado(idVoluntario:string):Promise<boolean>{
+		let insigniasDelVoluntario : Insignia[];
+		let insigniasPendientes = 1; //Aumentar este contador cada vez que se crea una medalla nueva
+		return new Promise((resolve,reject)=>{
+			console.clear();
+			console.log("Se entra en la promesa");
+			this.voluntarioApi.getInsignia(idVoluntario).subscribe((insignias:Insignia[])=>{
+				console.log("Se obtienen las insignias del voluntario");
+				insigniasDelVoluntario = insignias;
+				//Check Primer aporte
+					//? Post nueva insignia
+					//insignias pendientes == 1?
+						//resolver callback
+					//else faltan insignas
+						//decrementar una
+				if (insigniasDelVoluntario.length == 0) {
+					console.log("Como no tenia ninguna se ingreso en la creacion de Primer Aporte");
+					let insignia = new Insignia;
+					console.log("Se intenta hacer un find de la insignia buscada y devuelve lo siguiente");
+					console.log(this.getTipoInsigniaNombre("Primer aporte").id);
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Primer aporte").id;
+					insignia.voluntarioId = idVoluntario;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.voluntarioApi.createInsignia(idVoluntario,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de primer aporte");
+						if (insigniasPendientes == 1){
+							resolve(true);
+						} else {
+							insigniasPendientes--;
+							//(Continua iterando)
+						}
+					})
+				}
+
+				//Check festivas
+					//? Post alguna festiva
+					//insignias pendientes == 1?
+						//resolver callback
+					//else faltan insignas
+						//decrementar una
+
+				//Check racha
+					//? Post o Patch de racha
+					//insignias pendientes == 1?
+						//resolver callback
+					//else faltan insignas
+						//decrementar una
+
+				//Check estrella de oro
+					//Contar dias en top
+					//son 30+?
+						//no tiene la insignia?
+							//Crear la insignia para quien corresponda
+					//Actualizar top
+					//insignias pendientes == 1?
+						//resolver callback
+					//else faltan insignas
+						//decrementar una
+			})
+		})
 	}
-	onDonacion(idDonante:string){
-		//Crear o actualizar insignias
+	onDonacion(idDonante:string):Promise<boolean>{
+		let insigniasDelDonante;
+		let insigniasPendientes = 1;
+		return new Promise((resolve,reject)=>{
+			this.donanteApi.getInsignia(idDonante).subscribe((insignias:Insignia[])=>{
+				insigniasDelDonante = insignias;
+
+				if (insigniasDelDonante.length == 0) {
+					console.log("Como no tenia ninguna se ingreso en la creacion de Primer Aporte");
+					let insignia = new Insignia;
+					console.log("Se intenta hacer un find de la insignia buscada y devuelve lo siguiente");
+					console.log(this.getTipoInsigniaNombre("Primer aporte").id);
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Primer aporte").id;
+					insignia.idDonante = idDonante;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.voluntarioApi.createInsignia(idDonante,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de primer aporte");
+						if (insigniasPendientes == 1){
+							resolve(true);
+						} else {
+							insigniasPendientes--;
+							//(Continua iterando)
+						}
+					})
+				}
+
+				//Check festivas
+					//? Post alguna festiva
+
+				//Check amigo constante
+					//? Post o Patch de racha
+
+				//Check estrella de oro
+					//Contar dias en top
+					//son 30+?
+						//no tiene la insignia?
+							//Crear la insignia para quien corresponda
+					//Actualizar top
+			})
+		})
 	}
 	getTipoInsigniaNombre(nombre:string):TipoInsignia{
 		//La idea es devolver la id de la insignia con dado nombre
 		return this.tiposDeInsignia.find(tipo => tipo.nombre == nombre);
 	}
 }
+
+
+/* En el explorer tengo:
+[
+  {
+    "nombre": "Primer aporte",
+    "imagen": "faGift",
+    "id": "5dd8caa312011b173cced700"
+  },
+  {
+    "nombre": "Papa noel",
+    "imagen": "faCandyCane",
+    "id": "5dd8caa312011b173cced701"
+  },
+  {
+    "nombre": "Conejo de Pascua",
+    "imagen": "faEgg",
+    "id": "5dd8caa312011b173cced702"
+  },
+  {
+    "nombre": "Racha viajera",
+    "imagen": "faGifts",
+    "id": "5dd8caa312011b173cced703"
+  },
+  {
+    "nombre": "Amigo constante",
+    "imagen": "faHandsHelping",
+    "id": "5dd8caa312011b173cced704"
+  },
+  {
+    "nombre": "Estrella de Oro",
+    "imagen": "faStar",
+    "id": "5dd8caa312011b173cced705"
+  }
+]
+
+
+*/

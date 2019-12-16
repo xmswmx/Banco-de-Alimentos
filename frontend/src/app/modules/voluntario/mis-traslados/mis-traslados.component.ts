@@ -8,6 +8,7 @@ import { VoluntariosService } from 'src/app/_services/voluntarios.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { InsigniasService } from 'src/app/_services/insignias.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class MisTrasladosComponent implements OnInit {
   filas : FilaTrasladoPendiente[] = [];
   dirBALP : Ubicacion = (new BALP).ubicacionBALP;
   filasOriginal;
-  constructor(private apiVoluntario:VoluntarioApi, private route: ActivatedRoute, private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
+  constructor(private insigniasService:InsigniasService,private apiVoluntario:VoluntarioApi, private route: ActivatedRoute, private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
 
 
     this.form = new FormGroup ({
@@ -115,6 +116,8 @@ export class MisTrasladosComponent implements OnInit {
                 "totalDonadoEsteMes":donante.totalDonadoEsteMes
               }).subscribe(()=>{
                 //Listo
+                this.insigniasService.onDonacion(donante.id);
+                this.insigniasService.onTraslado(voluntario.id);
               })
             })
           })
@@ -129,6 +132,7 @@ export class MisTrasladosComponent implements OnInit {
           "puntuacion": voluntario.puntuacion
         }).subscribe(()=>{
           //Listo
+          this.insigniasService.onTraslado(voluntario.id);
         })
       })
     }
