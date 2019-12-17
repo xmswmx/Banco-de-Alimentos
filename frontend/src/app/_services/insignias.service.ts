@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TipoInsignia, TipoInsigniaApi, Insignia, InsigniaApi, VoluntarioApi, DonanteApi } from './lbservice';
+import { Traslado, TipoInsignia, TipoInsigniaApi, Insignia, InsigniaApi, VoluntarioApi, DonanteApi } from './lbservice';
 
 @Injectable({
   providedIn: 'root'
@@ -66,22 +66,18 @@ export class InsigniasService {
 	}
 
 	onTraslado(idVoluntario:string):Promise<boolean>{
+		console.clear();
 		let insigniasDelVoluntario : Insignia[];
-		let insigniasPendientes = 1; //Aumentar este contador cada vez que se crea una medalla nueva
+		let insigniasPendientes = 4; //Aumentar este contador cada vez que se crea una medalla nueva
 		return new Promise((resolve,reject)=>{
-			console.clear();
 			console.log("Se entra en la promesa");
 			this.voluntarioApi.getInsignia(idVoluntario).subscribe((insignias:Insignia[])=>{
 				console.log("Se obtienen las insignias del voluntario");
 				insigniasDelVoluntario = insignias;
-				//Check Primer aporte
-					//? Post nueva insignia
-					//insignias pendientes == 1?
-						//resolver callback
-					//else faltan insignas
-						//decrementar una
+
+				//Check Primer Aporte
 				if (insigniasDelVoluntario.length == 0) {
-					console.log("Como no tenia ninguna se ingreso en la creacion de Primer Aporte");
+					console.log("Como el voluntario no tenia ninguna se ingreso en la creacion de Primer Aporte");
 					let insignia = new Insignia;
 					console.log("Se intenta hacer un find de la insignia buscada y devuelve lo siguiente");
 					console.log(this.getTipoInsigniaNombre("Primer aporte").id);
@@ -98,22 +94,128 @@ export class InsigniasService {
 							//(Continua iterando)
 						}
 					})
+				} else {
+					insigniasPendientes--
 				}
 
-				//Check festivas
-					//? Post alguna festiva
-					//insignias pendientes == 1?
-						//resolver callback
-					//else faltan insignas
-						//decrementar una
+				//Check Papa noel
+				console.log("Checkeo de Papanoel");
+				console.log("Estamos en el mes "+new Date().getMonth());
+				//Si no tiene la insignia de navidad y estamos en diciembre
+				if ((!insigniasDelVoluntario.some(unaInsignia => unaInsignia.tipoInsigniaId == this.getTipoInsigniaNombre("Papa noel").id))
+					&&(new Date().getMonth()==11)){
+					console.log("No tiene la insignia y estamos en diciembre, voy a crearla ");
+					let insignia = new Insignia();
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Papa noel").id;
+					insignia.voluntarioId = idVoluntario;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.voluntarioApi.createInsignia(idVoluntario,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de Papa noel");
+						if (insigniasPendientes == 1){
+							resolve(true);
+							console.log("Era la ultima")
+						} else {
+							insigniasPendientes--;
+							console.log("Se continua revisando otras insignias");
+						}
+					})
+				} else {
+					insigniasPendientes--;
+				}
 
-				//Check racha
-					//? Post o Patch de racha
-					//insignias pendientes == 1?
-						//resolver callback
-					//else faltan insignas
-						//decrementar una
+				//Check Conejo de Pascua
+				console.log("Checkeo de conejo de pascua");
+				if ((!insigniasDelVoluntario.some(unaInsignia => unaInsignia.tipoInsigniaId == this.getTipoInsigniaNombre("Conejo de Pascua").id))
+					&&(new Date().getMonth()==3)){
+					console.log("No tiene la insignia y estamos en diciembre, voy a crearla ");
+					let insignia = new Insignia();
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Conejo de Pascua").id;
+					insignia.voluntarioId = idVoluntario;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.voluntarioApi.createInsignia(idVoluntario,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de Papa noel");
+						if (insigniasPendientes == 1){
+							resolve(true);
+							console.log("Era la ultima")
+						} else {
+							insigniasPendientes--;
+							console.log("Se continua revisando otras insignias");
+						}
+					})
+				} else {
+					insigniasPendientes--;
+				}
 
+
+
+				//Check Racha viajera
+				//Traslados finalizados una vez por semana en las ultimas 3 semanas
+				console.log("Checkeo de racha viajera");
+				let fechaActual = new Date();
+				let semana1 = new Date(new Date().setDate(fechaActual.getDate()-21));
+				let semana2 = new Date(new Date().setDate(fechaActual.getDate()-14));
+				let semana3 = new Date(new Date().setDate(fechaActual.getDate()-7));
+				let nuevoVto = new Date(new Date().setDate(fechaActual.getDate()+21));
+				//Get traslados de este idVoluntario, entre semana1 y semana3
+				this.voluntarioApi.getTraslados(idVoluntario).subscribe((traslados:Traslado[])=>{
+					console.log("Obtuve los traslados del voluntario")
+					if (
+				(traslados.some(traslado => (new Date(traslado.fechaFin)>semana1) && (new Date(traslado.fechaFin)<semana2)))
+				&&
+				(traslados.some(traslado => (new Date(traslado.fechaFin)>semana2) && (new Date(traslado.fechaFin)<semana3)))
+				)
+				{
+						console.log("Encontre que habia traslados entre las ultimas 3 semanas");
+						if (insigniasDelVoluntario.some(unaInsignia => unaInsignia.tipoInsigniaId 
+							== this.getTipoInsigniaNombre("Racha viajera").id)){
+							console.log("El voluntario ya tenia la insignia, voy a actualizarla");
+							let insignia = insigniasDelVoluntario.find(insignia => insignia.tipoInsigniaId == this.getTipoInsigniaNombre("Racha viajera").id);
+							console.log("Lei la insignia del array");
+							insignia.fechaVencimiento = nuevoVto;
+							this.insigniaApi.patchAttributes(insignia.id,insignia).subscribe(()=>{
+								console.log("Se actualizó el vencimiento de Racha viajera");
+								if(insigniasPendientes == 1){
+									console.log("Era la ultima");
+									resolve(true);								
+								} else {
+									insigniasPendientes--;
+									console.log("Se continua revisando otras insignias")
+								}
+							})
+						} else {
+							console.log("El voluntario no tenia la insignia, asique debo crearla");
+							let insignia = new Insignia();
+							insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Racha viajera").id;
+							insignia.voluntarioId = idVoluntario;
+							insignia.fechaOtorgada = new Date();
+							insignia.fechaVencimiento = new Date(new Date().setDate(fechaActual.getDate()+21));
+							this.voluntarioApi.createInsignia(idVoluntario,insignia).subscribe(()=>{
+								console.log("Se creo la insignia de Racha viajera");
+								if (insigniasPendientes == 1){
+									console.log("Era la ultima");
+									resolve(true);									
+								} else {
+									insigniasPendientes--;
+									console.log("Se continua revisando otras insignias");
+								}
+							})							
+						}			
+				} else {
+						console.log("No se cumplen las condiciones para otorgar Racha viajera");
+						if (insigniasPendientes == 1){
+							console.log("Era la ultima");
+							resolve(true);
+						} else {
+							insigniasPendientes--;
+							console.log("Se continua revisando otras insignias")
+						}					
+					}		
+				})
+
+
+				console.log("Checkeo de estrella dorada (Aun no esta funcionando");
 				//Check estrella de oro
 					//Contar dias en top
 					//son 30+?
@@ -124,6 +226,9 @@ export class InsigniasService {
 						//resolver callback
 					//else faltan insignas
 						//decrementar una
+
+
+
 			})
 		})
 	}
