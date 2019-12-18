@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Voluntario, Donante, Traslado, TipoInsignia, TipoInsigniaApi, Insignia, InsigniaApi, VoluntarioApi, DonanteApi } from './lbservice';
+import { TrasladoApi, Voluntario, Donante, Traslado, TipoInsignia, TipoInsigniaApi, Insignia, InsigniaApi, VoluntarioApi, DonanteApi } from './lbservice';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,8 @@ export class InsigniasService {
 	constructor(private insigniaApi:InsigniaApi,
 				private voluntarioApi:VoluntarioApi,
 				private donanteApi:DonanteApi,
-				private tipoInsigniaApi:TipoInsigniaApi) {
+				private tipoInsigniaApi:TipoInsigniaApi,
+				private trasladosApi:TrasladoApi) {
 		this.tipoInsigniaApi.find().subscribe((res:TipoInsignia[]) => {
 			this.tiposDeInsignia = res;
 		})
@@ -66,7 +67,6 @@ export class InsigniasService {
 	}
 
 	onTraslado(idVoluntario:string):Promise<boolean>{
-		console.clear();
 		let insigniasDelVoluntario : Insignia[];
 		let insigniasPendientes = 5; //Aumentar este contador cada vez que se crea una medalla nueva
 		return new Promise((resolve,reject)=>{
@@ -288,6 +288,7 @@ export class InsigniasService {
 	onDonacion(idDonante:string):Promise<boolean>{
 		let insigniasDelDonante;
 		let insigniasPendientes = 1;
+		console.log("Se ingresó en el método de actualizar insignias del donante")
 		return new Promise((resolve,reject)=>{
 			this.donanteApi.getInsignia(idDonante).subscribe((insignias:Insignia[])=>{
 				insigniasDelDonante = insignias;
@@ -301,7 +302,7 @@ export class InsigniasService {
 					insignia.idDonante = idDonante;
 					insignia.fechaOtorgada = new Date();
 					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
-					this.voluntarioApi.createInsignia(idDonante,insignia).subscribe(()=>{
+					this.donanteApi.createInsignia(idDonante,insignia).subscribe(()=>{
 						console.log("Se creo la insignia de primer aporte");
 						if (insigniasPendientes == 1){
 							resolve(true);
@@ -312,18 +313,70 @@ export class InsigniasService {
 					})
 				}
 
-				//Check festivas
-					//? Post alguna festiva
+				//Check Papa noel
+				console.log("Checkeo de Papanoel en donante");
+				console.log("Estamos en el mes "+new Date().getMonth());
+				//Si no tiene la insignia de navidad y estamos en diciembre
+				if ((!insigniasDelDonante.some(unaInsignia => unaInsignia.tipoInsigniaId == this.getTipoInsigniaNombre("Papa noel").id))
+					&&(new Date().getMonth()==11)){
+					console.log("No tiene la insignia y estamos en diciembre, voy a crearla ");
+					let insignia = new Insignia();
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Papa noel").id;
+					insignia.voluntarioId = idDonante;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.donanteApi.createInsignia(idDonante,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de Papa noel para el donante");
+						if (insigniasPendientes == 1){
+							resolve(true);
+							console.log("Era la ultima de donante")
+						} else {
+							insigniasPendientes--;
+							console.log("Se continua revisando otras insignias de donante");
+						}
+					})
+				} else {
+					insigniasPendientes--;
+				}
 
-				//Check amigo constante
-					//? Post o Patch de racha
+				//Check Conejo de Pascua
+				console.log("Checkeo de conejo de pascua");
+				if ((!insigniasDelDonante.some(unaInsignia => unaInsignia.tipoInsigniaId == this.getTipoInsigniaNombre("Conejo de Pascua").id))
+					&&(new Date().getMonth()==3)){
+					console.log("No tiene la insignia y estamos en diciembre, voy a crearla ");
+					let insignia = new Insignia();
+					insignia.tipoInsigniaId = this.getTipoInsigniaNombre("Conejo de Pascua").id;
+					insignia.voluntarioId = idDonante;
+					insignia.fechaOtorgada = new Date();
+					insignia.fechaVencimiento = new Date(2500, 11, 24, 10, 33, 30, 0);
+					this.donanteApi.createInsignia(idDonante,insignia).subscribe(()=>{
+						console.log("Se creo la insignia de Papa noel");
+						if (insigniasPendientes == 1){
+							resolve(true);
+							console.log("Era la ultima")
+						} else {
+							insigniasPendientes--;
+							console.log("Se continua revisando otras insignias");
+						}
+					})
+				} else {
+					insigniasPendientes--;
+				}
+
+				//Check Amigo constante
+				//Traslados de donaciones finalizados una vez por mes en las ultimos 3 meses
+				console.log("Checkeo de amigo constante (donante)");
+				let fechaActual = new Date();
+				let mes1 = new Date(new Date().setDate(fechaActual.getDate()-90));
+				let mes2 = new Date(new Date().setDate(fechaActual.getDate()-60));
+				let mes3 = new Date(new Date().setDate(fechaActual.getDate()-30));
+				let nuevoVto = new Date(new Date().setDate(fechaActual.getDate()+90));
+				//Get traslados de este idDonante, entre mes1 y mes2
+				//Ayudaría muchísimo tener la idDonante en la entidad traslado
 
 				//Check estrella de oro
-					//Contar dias en top
-					//son 30+?
-						//no tiene la insignia?
-							//Crear la insignia para quien corresponda
-					//Actualizar top
+				console.log("Checkeo de estrella de oro en donante");
+
 			})
 		})
 	}

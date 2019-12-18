@@ -116,6 +116,8 @@ export class MisTrasladosComponent implements OnInit {
                 "totalDonadoEsteMes":donante.totalDonadoEsteMes
               }).subscribe(()=>{
                 //Listo
+                console.clear();
+                console.log("Se va a llamar a onDonacion y onTraslado");
                 this.insigniasService.onDonacion(donante.id);
                 this.insigniasService.onTraslado(voluntario.id);
               })
@@ -132,6 +134,8 @@ export class MisTrasladosComponent implements OnInit {
           "puntuacion": voluntario.puntuacion
         }).subscribe(()=>{
           //Listo
+          console.clear();
+          console.log("Como el traslado no es de una donación solo se actualizaran las insignias del voluntario");
           this.insigniasService.onTraslado(voluntario.id);
         })
       })
