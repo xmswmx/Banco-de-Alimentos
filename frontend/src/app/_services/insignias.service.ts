@@ -287,7 +287,7 @@ export class InsigniasService {
 	}
 	onDonacion(idDonante:string):Promise<boolean>{
 		let insigniasDelDonante;
-		let insigniasPendientes = 1;
+		let insigniasPendientes = 3;
 		console.log("Se ingresó en el método de actualizar insignias del donante")
 		return new Promise((resolve,reject)=>{
 			this.donanteApi.getInsignia(idDonante).subscribe((insignias:Insignia[])=>{
