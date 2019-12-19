@@ -39,6 +39,20 @@ ng serve
 * Manejo de traslados incluyendo busqueda y asignación de voluntarios y tracking de los mismos
 * Gamificación de la app con sistema de puntos e insignias para donantes y voluntarios
 
-## Ejemplo de registrar una nueva donación
+## Ejemplos de funcionalidades
 
-![](https://trello-attachments.s3.amazonaws.com/5d723a0414aba735d2d95000/5d7fd60ba16feb2df59dafae/c18b9029283ddc2d3edc16bdb093ba0d/RegistrarGeneral.gif)
+###Registrar una donación para el banco
+
+![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/RegistrarGeneral.gif)
+
+###Notificar a voluntarios sobre un nuevo traslado
+
+![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/NotificarVoluntarios.gif)
+
+###Realizar traslado y obtener puntos e insignias
+
+![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/EfectuarTraslado.gif)
+
+###Registrar un envio desde el banco a una organización beneficiaria
+
+![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/NuevoEnvioParaBeneficiario.gif)
