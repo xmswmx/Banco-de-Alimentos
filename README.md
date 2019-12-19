@@ -41,18 +41,18 @@ ng serve
 
 ## Ejemplos de funcionalidades
 
-###Registrar una donación para el banco
+### Registrar una donación para el banco
 
 ![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/RegistrarGeneral.gif)
 
-###Notificar a voluntarios sobre un nuevo traslado
+### Notificar a voluntarios sobre un nuevo traslado
 
 ![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/NotificarVoluntarios.gif)
 
-###Realizar traslado y obtener puntos e insignias
+### Realizar traslado y obtener puntos e insignias
 
 ![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/EfectuarTraslado.gif)
 
-###Registrar un envio desde el banco a una organización beneficiaria
+### Registrar un envio desde el banco a una organización beneficiaria
 
 ![](https://raw.githubusercontent.com/emanuelbas/Banco-de-Alimentos/master/documentacion/Gifs%20de%20exhibicion/NuevoEnvioParaBeneficiario.gif)
