@@ -40,6 +40,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   idDonante;
   distancia;
   balp = new BALP;
+  fechaActual = new Date();
   //Inicializar el form y algunas variables
   constructor(private router: Router, private apiTraslado: TrasladoApi, private apiDonante: DonanteApi, private apiDonacion: DonacionApi, private apiDescripcion: DescripcionDetalladaApi, private apiProducto: ProductoApi, private apiTipoProducto: TipoProductoApi) {
     this.formDetallada = new FormGroup({

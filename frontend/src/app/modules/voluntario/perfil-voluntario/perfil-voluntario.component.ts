@@ -75,6 +75,7 @@ export class PerfilVoluntarioComponent implements OnInit {
     
    // Promesas para obtener los datos del voluntario logueado
     this.voluntario = apiVoluntario.getCachedCurrent();
+    this.apiVoluntario.findById(this.voluntario.id).subscribe((vol : Voluntario) => { this.voluntario = vol } )
     apiVoluntario.getVehiculo(this.voluntario.id, true).subscribe((vehiculo) => {
       this.vehiculo = vehiculo;
       apiVehiculo.getVolumen(this.vehiculo.id, true).subscribe((volumen) => {

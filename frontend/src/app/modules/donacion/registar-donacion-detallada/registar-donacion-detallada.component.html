@@ -8,7 +8,7 @@
 
             <div class="form-group">
                 <label for="labelNombre">Fecha asignada de retiro</label>
-                <input formControlName="fechaRetiro" type="date" class="form-control" id="inputFechaRetiro">
+                <input formControlName="fechaRetiro" type="date" class="form-control" id="inputFechaRetiro" min="{{this.fechaActual | date: 'yyyy-MM-dd'}}">
                 <div *ngIf="fechaRetiro.invalid && fechaRetiro.touched">
                     <small class="text-danger">Debe ingresar una fecha de retiro</small>
                 </div>
@@ -26,7 +26,7 @@
 
                 <div  class="form-group mb-2 "> 
                         <label for="labelNombre">Fecha de vencimiento</label>
-                        <input formControlName="vto" type="date" min="1" class="form-control" id="vto" placeholder="">
+                        <input formControlName="vto" type="date" min="1" class="form-control" id="vto" placeholder="" min="{{this.fechaActual | date: 'yyyy-MM-dd'}}">
                         <div *ngIf="vto.invalid && vto.touched">
                             <small class="text-danger">Debe ingresar una fecha de vencimiento</small>
                         </div>

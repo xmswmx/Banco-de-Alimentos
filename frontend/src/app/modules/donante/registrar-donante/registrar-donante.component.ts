@@ -34,14 +34,14 @@ export class RegistrarDonanteComponent implements OnInit {
 			razonSocial: new FormControl(),
 			cuil: new FormControl('', [Validators.required]),
 			direccion: new FormControl('', [Validators.required]),
-			email: new FormControl('', [Validators.required, Validators.email, Validators.email]),
+			email: new FormControl('', [Validators.required, Validators.email]),
 			password1: new FormControl('', [Validators.required]),
 			password2: new FormControl('', [Validators.required]),
-			personaNombre: new FormControl('', [Validators.required]),
-			personaApellido: new FormControl('', [Validators.required]),
-			personaDni: new FormControl('', [Validators.required]),
-			personaEmail: new FormControl('', [Validators.required, Validators.email, Validators.email]),
-			personaCelular: new FormControl('', [Validators.required])
+			personaNombre: new FormControl(),
+			personaApellido: new FormControl(),
+			personaDni: new FormControl(),
+			personaEmail: new FormControl(),
+			personaCelular: new FormControl()
 		});
 	}
 
@@ -143,7 +143,10 @@ export class RegistrarDonanteComponent implements OnInit {
 					}
 				})
 			});
-		} 
+		}
+		else {
+			alert('Por favor, completa los datos solicitados');
+		}
 	}
 
 	generarUbicacion(direccion: string) {

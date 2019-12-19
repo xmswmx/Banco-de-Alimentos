@@ -29,8 +29,8 @@ export class NuevoEnvioSeleccionarDonacionComponent implements OnInit {
 	}
 
     enviarAlPadre(id:string){
-    	this.enviarIdDonacion.emit(id);
-
+			this.enviarIdDonacion.emit(id);
+			alert('La donación ha sido seleccionada');
     }
 
 	ngOnInit() {}

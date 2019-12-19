@@ -16,8 +16,9 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
 
 	formGeneral: FormGroup;
   distancia;
+  fechaActual = new Date();
   constructor(private router:Router,private trasladoApi:TrasladoApi,private donanteApi: DonanteApi, private donacionApi:DonacionApi, private descApi:DescripcionGeneralApi) {
-
+    
   	 this.formGeneral = new FormGroup({
         fechaRetiro: new FormControl('', [Validators.required]),
         alto: new FormControl('', [Validators.required]),
@@ -25,6 +26,7 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
         largo: new FormControl('', [Validators.required]),
         texto: new FormControl('', [Validators.required]),
         peso: new FormControl('', [Validators.required])
+        
 
       });
 
