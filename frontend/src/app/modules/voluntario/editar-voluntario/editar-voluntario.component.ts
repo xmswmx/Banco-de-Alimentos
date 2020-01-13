@@ -7,6 +7,7 @@ import { Voluntario, Vehiculo, Volumen, Ubicacion } from '../../../_services/lbs
 import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-editar-voluntario',
@@ -23,7 +24,7 @@ export class EditarVoluntarioComponent implements OnInit {
   form: FormGroup;
   addressConverter: AddressConverter;
 
-  constructor(private apiVoluntario: VoluntarioApi, private apiVehiculo: VehiculoApi, private apiVolumen: VolumenApi, private router: Router) {
+  constructor(private _location:Location, private apiVoluntario: VoluntarioApi, private apiVehiculo: VehiculoApi, private apiVolumen: VolumenApi, private router: Router) {
 
     this.form = new FormGroup({
       // atributos del voluntario

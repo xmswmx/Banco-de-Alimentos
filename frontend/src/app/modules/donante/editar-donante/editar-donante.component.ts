@@ -7,6 +7,7 @@ import { Voluntario, Vehiculo, Volumen, Ubicacion, Donante } from '../../../_ser
 import { DonanteApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { Validators } from '@angular/forms';
+import { Location } from '@angular/common'
 
 
 @Component({
@@ -21,7 +22,7 @@ export class EditarDonanteComponent implements OnInit {
   donante;
   ubicacion;
 
-  constructor(private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
+  constructor(private _location:Location, private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
 
     this.form = new FormGroup({   
       cuil: new FormControl('', [Validators.required]),
