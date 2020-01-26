@@ -12,7 +12,6 @@
         <thead>
           <tr>
             <th class="text-center">Descripción</th>
-            <th class="text-center">Voluntario</th>
             <th class="text-center">Origen</th>
             <th class="text-center">Destino</th>
             <th class="text-center">Fecha estimada</th>
@@ -23,7 +22,6 @@
         <tbody *ngFor="let fila of filas| paginate: { itemsPerPage: 10, currentPage: p }" class="text-center">
           <tr>
             <td>{{fila.printDescripcion()}}</td>
-            <td>{{fila.printVoluntario()}}</td>
             <td>{{fila.printOrigen()}}</td>
             <td>{{fila.printDestino()}}</td>
             <td>{{fila.getFecha()| date: 'dd/MM/yyyy'}}</td>

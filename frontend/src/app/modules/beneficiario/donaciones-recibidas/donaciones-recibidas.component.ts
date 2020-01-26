@@ -16,7 +16,7 @@ export class DonacionesRecibidasComponent implements OnInit {
 				private beneficiarioApi:BeneficiarioApi,
 				private envioApi:EnvioParaBeneficiarioApi,
 				private voluntarioApi:VoluntarioApi,
-				private _location: Location
+				private _location: Location, private route: ActivatedRoute, private router: Router
 				) 
 	{ 
 		//Recuperar todos los envios beneficiario logueado

@@ -72,7 +72,10 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
     //Le pido todos los tipo producto a la api (0:nombre,1:codigo,2:id)
     apiTipoProducto.find().subscribe((todoslosproductos) => {
       this.productosValidos = todoslosproductos;
-      console.log(this.productosValidos); //testing
+      console.log("<<< A continuación se muestran los productos registrados y sus codigos >>>")
+      for (let i = 0;i<this.productosValidos.length;i++){
+                console.log(this.productosValidos[i].nombre + ' codigo: '+this.productosValidos[i].codigoBarra )
+      } //testing
     });
 
     //Obtengo el numero de donacion
@@ -200,7 +203,7 @@ export class RegistarDonacionDetalladaComponent implements OnInit {
   //rellenará el campo de código por lo que estaría bueno mockear ese fill
   leerConScanner() {
     alert('Se simula la lectura de un menthoplus');
-    this.formDetallada.get("barcode").setValue('9845475257847');
+    this.formDetallada.get("barcode").setValue('77946836');
   }
 
   ngOnInit() {

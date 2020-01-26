@@ -3,6 +3,7 @@
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="logInForm" class="container">
             <div class="form-group">
+                <label for="labelNombre">Tipo de cuenta</label>
 				<select formControlName="tipoUsuario" class="form-control" >
 				  <option value="v" selected>Voluntario</option>
 				  <option value="d">Donante</option>

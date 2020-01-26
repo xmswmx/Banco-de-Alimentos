@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Donacion, Donante, DescripcionGeneral, Traslado, Voluntario } from '../../../_services/lbservice/models'
 import { DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi } from '../../../_services/lbservice/services'
 import {Location} from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -14,7 +15,7 @@ export class MisDonacionesComponent implements OnInit {
 	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor(private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi) {
+	constructor(private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi, private route: ActivatedRoute, private router: Router) {
 		console.log('Si se actualiza la base log out y log in del usuario (El catcheado tiene diferente id)');
 		this.loggedDonante = apiDonante.getCachedCurrent();
 		apiDonante.getDonaciones(this.loggedDonante.id)
