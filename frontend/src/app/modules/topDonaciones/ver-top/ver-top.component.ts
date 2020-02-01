@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import { DonanteApi, VoluntarioApi } from '../../../_services/lbservice/';
-import { Donante, Voluntario } from '../../../_services/lbservice'
+import { Donante, Voluntario } from '../../../_services/lbservice';
+import { ApiRequestsService} from '../../../_services/api-requests.service';
 
 @Component({
   selector: 'app-ver-top',
@@ -13,25 +13,10 @@ export class VerTopComponent implements OnInit {
 	voluntarios = [];
 	donantes = [];
   constructor(private _location:Location,
-  			  private apiDonante:DonanteApi,
-  			  private apiVoluntario:VoluntarioApi) 
+          private requester:ApiRequestsService) 
   { 
-  	apiDonante.find().subscribe((donantes)=>{
-  		this.donantes = donantes;
-  		apiVoluntario.find().subscribe((voluntarios)=>{
-  			this.voluntarios=voluntarios;
-  			this.voluntarios = this.voluntarios.sort( this.compararVoluntarios).slice(0,10);
-  			this.donantes= this.donantes.sort(this.compararDonantes).slice(0,10);
-  		})
-  	})
-
-  }
-
-  compararVoluntarios(vol1:Voluntario, vol2:Voluntario){
-  	return vol2.puntuacion - vol1.puntuacion;
-  }
-  compararDonantes(d1,d2){
-  	return d2.puntuacion-d1.puntuacion;
+    requester.get10HighScoredDonantes().then(donantes => this.donantes = donantes);
+    requester.get10HighScoredVoluntarios().then(voluntarios => this.voluntarios = voluntarios);
   }
   ngOnInit() {
   }
