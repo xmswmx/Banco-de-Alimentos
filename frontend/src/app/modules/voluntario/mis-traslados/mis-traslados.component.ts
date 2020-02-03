@@ -146,7 +146,3 @@ export class MisTrasladosComponent implements OnInit {
   }
 
 }
-
-
-
-

@@ -3,6 +3,7 @@ import { Donacion, Donante, DescripcionGeneral, Traslado, Voluntario } from '../
 import { DonacionApi, DonanteApi, DescripcionGeneralApi, TrasladoApi, VoluntarioApi } from '../../../_services/lbservice/services'
 import {Location} from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiRequestsService} from '../../../_services/api-requests.service';
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -15,83 +16,10 @@ export class MisDonacionesComponent implements OnInit {
 	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor(private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi, private route: ActivatedRoute, private router: Router) {
-		console.log('Si se actualiza la base log out y log in del usuario (El catcheado tiene diferente id)');
+	constructor( private requester:ApiRequestsService,private _location: Location,apiVoluntario:VoluntarioApi,apiTraslado:TrasladoApi,apiDescripcionGeneral:DescripcionGeneralApi,apiDonante:DonanteApi,apiDonacion:DonacionApi, private route: ActivatedRoute, private router: Router) {
 		this.loggedDonante = apiDonante.getCachedCurrent();
-		apiDonante.getDonaciones(this.loggedDonante.id)
-		.subscribe((donaciones)=>{
-				for (let donacion of donaciones){
-					console.log(donacion.numero);
-					apiDonacion.getDescripcionGeneral(donacion.id,true).subscribe((desc)=>{
-						
-							apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
-								if(traslado.voluntarioId==null){
-									let tupla = [
-										donacion.id,
-										donacion.numero,
-										desc.descripcion,
-										'Sin asignar',
-										traslado.fechaEstimada
-									];
-									this.datosDeDonaciones.push(tupla);
-								} else {
-									apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
-										let tupla = [
-											donacion.id,
-											donacion.numero,
-											desc.descripcion,
-											voluntario.nombre+' '+voluntario.apellido,
-											traslado.fechaEstimada
-											//Sobre formatear hora (se hace en la plantilla)
-											//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
-											//https://www.geeksforgeeks.org/angularjs-date-filter/
-										];
-										this.datosDeDonaciones.push(tupla);
-									}) //voluntario
-								} //Else
-							}) //Donacion
-						}) //Fin intentocon descripcion general
-					//Ahora pruebo con desc detallada
-					apiDonacion.getDescripcionDetallada(donacion.id,true).subscribe((desc)=>{
-							apiDonacion.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
-								
-
-
-								if(traslado.voluntarioId==null){
-									let tupla = [
-										donacion.id,
-										donacion.numero,
-										desc.descripcion,
-										'Sin asignar',
-										traslado.fechaEstimada
-									];
-									this.datosDeDonaciones.push(tupla);
-								} else {
-									apiVoluntario.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
-										let tupla = [
-											donacion.id,
-											donacion.numero,
-											desc.descripcion,
-											voluntario.nombre+' '+voluntario.apellido,
-											traslado.fechaEstimada
-											//Sobre formatear hora (se hace en la plantilla)
-											//https://stackoverflow.com/questions/43630445/how-to-convert-current-date-to-yyyy-mm-dd-format-with-angular-2
-											//https://www.geeksforgeeks.org/angularjs-date-filter/
-										];
-										this.datosDeDonaciones.push(tupla);
-									}) //voluntario
-								} //Else
-							}) //Donacion
-						}) //Fin intentocon descripcion general
-
-						} //for Donaciones
-						
-
-					}); //Promesa get donaciones
-				} //constructor
-
-
-
+		requester.getAllDonacionesOf(this.loggedDonante.id).then(ans => this.datosDeDonaciones = ans);
+	}
 
 	ngOnInit() {
 	}
