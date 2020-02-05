@@ -166,7 +166,75 @@ export class ApiRequestsService {
   	})
   }
 
-  getAllTrasladosSinVoluntario():Promise<[]>{
-  	return new Promise(resolve => [])
-  }
-}
+  getAllTrasladosSinVoluntario():Promise<any[]>{
+  	return new Promise(resolve => {
+
+    let balp = new BALP;
+    let filas = []
+    this.trasladoApi.find({ 
+      where: {
+        estado: 'pendiente de retiro'
+          }
+      }).subscribe((traslados:Traslado[])=>{
+        for (let traslado of traslados){
+          if (traslado.tipo == 'donacion') {
+            //Caso de donacion
+            this.donacionApi.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
+              this.donacionApi.findById(donacion.idDonante).subscribe((donante:Donante)=>{
+                this.donanteApi.getUbicacion(donante.id,true).subscribe((ubicacion:Ubicacion)=>{
+                  donante.ubicacion = ubicacion;
+                  let origen = ubicacion.direccion;
+                  let destino = balp.ubicacionBALP.direccion;
+                  let idDonante = donante.id;
+                  let fecha = traslado.fechaEstimada;
+                  filas.push([
+                        origen,
+                        destino,
+                        idDonante,
+                        fecha,
+                        traslado.descripcion,
+                        donante,
+                        traslado
+                      ]) //Fin push                  
+                }) //Fin getUbicacion
+              }) //Fin donante
+              
+            })//Fin donacion
+
+          } else {
+            //Caso de envio
+            this.envioApi.findById(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario)=>{
+              this.beneficiarioApi.findById(envio.beneficiarioId).subscribe((beneficiario:Beneficiario)=>{
+                this.beneficiarioApi.getUbicacion(beneficiario.id, true).subscribe((ubicacion:Ubicacion)=>{
+                  beneficiario.ubicacion = ubicacion;
+                  let origen = balp.ubicacionBALP.direccion;
+                  let destino = ubicacion.direccion;
+                  let idBeneficiario = beneficiario.id;
+                  let fecha = traslado.fechaEstimada;
+                  let descripcion = traslado.descripcion;
+                  filas.push([
+                        origen,
+                        destino,
+                        idBeneficiario,
+                        fecha,
+                        descripcion,
+                        beneficiario,
+                        traslado
+                      ]) //Fin push
+                })//Fin ubicacion
+              }) //Fin beneficiario
+            }); //Fin envio
+          } //Fin if
+
+            //obtener su origen
+              //obtener su destino
+                //obtener su fecha estimada
+                  //crear fila
+                  //pushear fila
+        } // Fin For
+      }); //Fin find()
+
+      resolve(filas)
+    }); //promise
+  }//getAllTrasladosSinVoluntario
+}//Class
