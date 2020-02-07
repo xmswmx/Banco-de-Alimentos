@@ -40,7 +40,7 @@ export class MisTrasladosComponent implements OnInit {
     console.log(traslado.fechaFin);
     voluntario.puntuacion = voluntario.puntuacion + traslado.puntaje;
     //Checkear si obtuvo insignia
-    if (traslado.tipo="donacion"){
+    if (traslado.tipo=="donacion"){
       this.apiDonacion.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
         this.apiDonante.findById(donacion.idDonante).subscribe((donante:Donante)=>{
           donante.puntuacion=donante.puntuacion + traslado.peso;
@@ -49,7 +49,7 @@ export class MisTrasladosComponent implements OnInit {
           //Chequear insignias
 
           this.apiTraslado.patchAttributes(traslado.id,{
-            "estado":traslado.estado,
+            "estado":"entregado",
             "fechaFin":traslado.fechaFin
           }).subscribe(()=>{
             this.apiVoluntario.patchAttributes(voluntario.id,{
@@ -72,7 +72,7 @@ export class MisTrasladosComponent implements OnInit {
       })
     } else {
       this.apiTraslado.patchAttributes(traslado.id,{
-        "estado":traslado.estado,
+        "estado":"entregado",
         "fechaFin":traslado.fechaFin
       }).subscribe(()=>{
         this.apiVoluntario.patchAttributes(voluntario.id,{
