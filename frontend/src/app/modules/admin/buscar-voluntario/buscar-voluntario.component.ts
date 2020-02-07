@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { VoluntariosService } from 'src/app/_services/voluntarios.service';
 import { VehiculoApi, VoluntarioApi, TrasladoApi, DonanteApi, DonacionApi, DescripcionDetalladaApi, ProductoApi, TipoProductoApi } from '../../../_services/lbservice/services';
 import { Vehiculo, Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from '../../../_services/lbservice/models';
-import {Location} from '@angular/common';
-
+import { Location } from '@angular/common';
+import { environment } from "src/environments/environment"
 
 @Component({
   selector: 'app-buscar-voluntario',
@@ -30,7 +30,7 @@ export class BuscarVoluntarioComponent implements OnInit {
   	this.idTraslado = route.snapshot.paramMap.get("idTraslado");
   	this.dirOrigen = route.snapshot.paramMap.get("origen");
   	this.dirDestino = route.snapshot.paramMap.get("destino");
-    this.url = 'localhost:4200/asignar-traslado/'+this.idTraslado;
+    this.url = environment.frontendUrl+'/asignar-traslado/'+this.idTraslado;
   	console.log(this.idTraslado,this.dirOrigen,this.dirDestino);
 
     this.apiTraslado.findById(this.idTraslado).subscribe((traslado:Traslado)=>{

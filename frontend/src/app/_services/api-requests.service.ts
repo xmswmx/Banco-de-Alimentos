@@ -107,59 +107,59 @@ export class ApiRequestsService {
   getAllDonacionesOf(idDonante):Promise<any[]>{
   	return new Promise(resolve => {
   		let datosDeDonaciones = []
-		this.donanteApi.getDonaciones(idDonante)
-		.subscribe((donaciones)=>{
+		this.donanteApi.getDonaciones(idDonante,{include:["traslado","descripcionDetallada","descripcionGeneral"]})
+		.subscribe((donaciones:Donacion[])=>{
 				for (let donacion of donaciones){
-					this.donacionApi.getDescripcionGeneral(donacion.id,true).subscribe((desc)=>{	
-							this.donacionApi.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
-								if(traslado.voluntarioId==null){
+					if (typeof(donacion.descripcionGeneral) !== "undefined"){
+								if(donacion.traslado.voluntarioId==null){
 									let tupla = [
 										donacion.id,
 										donacion.numero,
-										desc.descripcion,
+										donacion.descripcionGeneral.descripcion,
 										'Sin asignar',
-										traslado.fechaEstimada
+										donacion.traslado.fechaEstimada
 									];
 									datosDeDonaciones.push(tupla);
 								} else {
-									this.voluntarioApi.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+									this.voluntarioApi.findById(donacion.traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
 										let tupla = [
 											donacion.id,
 											donacion.numero,
-											desc.descripcion,
+											donacion.descripcionGeneral.descripcion,
 											voluntario.nombre+' '+voluntario.apellido,
-											traslado.fechaEstimada
+											donacion.traslado.fechaEstimada
 										];
 										datosDeDonaciones.push(tupla);
 									}) //voluntario
 								} //Else
-							}) //Donacion
-						}) //Fin desc general
-					this.donacionApi.getDescripcionDetallada(donacion.id,true).subscribe((desc)=>{
-							this.donacionApi.getTraslado(donacion.id,true).subscribe((traslado:Traslado)=>{
-								if(traslado.voluntarioId==null){
+						} //Fin desc general
+					else{ 
+						  if (typeof(donacion.descripcionDetallada)!=="undefined"){
+								if(donacion.traslado.voluntarioId==null){
 									let tupla = [
 										donacion.id,
 										donacion.numero,
-										desc.descripcion,
+										donacion.descripcionDetallada.descripcion,
 										'Sin asignar',
-										traslado.fechaEstimada
+										donacion.traslado.fechaEstimada
 									];
 									datosDeDonaciones.push(tupla);
 								} else {
-									this.voluntarioApi.findById(traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
+									this.voluntarioApi.findById(donacion.traslado.voluntarioId).subscribe((voluntario:Voluntario)=>{
 										let tupla = [
 											donacion.id,
 											donacion.numero,
-											desc.descripcion,
+											donacion.descripcionDetallada.descripcion,
 											voluntario.nombre+' '+voluntario.apellido,
-											traslado.fechaEstimada
+											donacion.traslado.fechaEstimada
 										];
 										datosDeDonaciones.push(tupla);
 									}) //voluntario
 								} //Else
-							}) //Donacion
-						}) //Fin intentocon descripcion general
+
+              }
+
+						} //Fin intentocon descripcion general
 						} //for Donaciones	
 					}); //Promesa get donaciones
 		resolve(datosDeDonaciones)
@@ -180,10 +180,8 @@ export class ApiRequestsService {
           if (traslado.tipo == 'donacion') {
             //Caso de donacion
             this.donacionApi.findById(traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
-              this.donacionApi.findById(donacion.idDonante).subscribe((donante:Donante)=>{
-                this.donanteApi.getUbicacion(donante.id,true).subscribe((ubicacion:Ubicacion)=>{
-                  donante.ubicacion = ubicacion;
-                  let origen = ubicacion.direccion;
+              this.donanteApi.findById(donacion.idDonante , {include:"ubicacion"}).subscribe((donante:Donante)=>{
+                  let origen = donante.ubicacion.direccion;
                   let destino = balp.ubicacionBALP.direccion;
                   let idDonante = donante.id;
                   let fecha = traslado.fechaEstimada;
@@ -195,8 +193,7 @@ export class ApiRequestsService {
                         traslado.descripcion,
                         donante,
                         traslado
-                      ]) //Fin push                  
-                }) //Fin getUbicacion
+                      ]) //Fin push        
               }) //Fin donante
               
             })//Fin donacion
@@ -204,11 +201,9 @@ export class ApiRequestsService {
           } else {
             //Caso de envio
             this.envioApi.findById(traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario)=>{
-              this.beneficiarioApi.findById(envio.beneficiarioId).subscribe((beneficiario:Beneficiario)=>{
-                this.beneficiarioApi.getUbicacion(beneficiario.id, true).subscribe((ubicacion:Ubicacion)=>{
-                  beneficiario.ubicacion = ubicacion;
+              this.beneficiarioApi.findById(envio.beneficiarioId, {include:"ubicacion"}).subscribe((beneficiario:Beneficiario)=>{
                   let origen = balp.ubicacionBALP.direccion;
-                  let destino = ubicacion.direccion;
+                  let destino = beneficiario.ubicacion.direccion;
                   let idBeneficiario = beneficiario.id;
                   let fecha = traslado.fechaEstimada;
                   let descripcion = traslado.descripcion;
@@ -221,7 +216,6 @@ export class ApiRequestsService {
                         beneficiario,
                         traslado
                       ]) //Fin push
-                })//Fin ubicacion
               }) //Fin beneficiario
             }); //Fin envio
           } //Fin if
