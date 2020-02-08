@@ -55,15 +55,7 @@ export class BuscarVoluntarioComponent implements OnInit {
                 }) // fin getvolumen
               }) //Fin gevehiculo
             } 
-        }//Fin for voluntario
-
-
-
-
-
-
-
-
+        }//Fin for voluntari
       }) //apivoluntarios      
     }) //find traslado
   } //constructor
@@ -88,9 +80,27 @@ export class BuscarVoluntarioComponent implements OnInit {
 
     alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
   }
+
   enviarEmails(){
     //Para cada seleccionado llamar a enviarEmailA(casilla)
-    alert('Se envio un email a los seleccionados con la URL: '+this.url);
+    for (let voluntario of this.voluntarios) {
+      let user = {
+        name: 'Voluntario',
+        email: voluntario.email,
+        html: '<h1> ¡Tenés un traslado disponible! </h1><p>Inicia sesión en la app e ingresa al siguiente enlace para ver detalles: </p>'+ this.url,
+        subject: 'Traslado disponible'
+      }
+    this.http.sendEmail("http://localhost:3000/sendmail",user ).subscribe(
+        data => {
+          let res:any = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+    alert('El correo se ha enviado a todos los voluntarios correctamente');
+    this.router.navigateByUrl("/panel-de-control");
   }
 
   ngOnInit() {
