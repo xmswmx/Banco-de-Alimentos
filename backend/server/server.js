@@ -5,10 +5,14 @@
 
 'use strict';
 
+
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var cors = require('cors');
+var nodemailer = require('nodemailer');
 
 var app = module.exports = loopback();
+
 
 app.start = function() {
   // start the web server
@@ -22,6 +26,19 @@ app.start = function() {
     }
   });
 };
+app.use(cors({origin: "*"}));
+
+app.post("/sendmail",(req,res) => {
+  console.log("request came");
+  let user = req.body;
+  sendMail(user, info => {
+    console.log('Se envio el correo y la id es ${info.messageId}');
+    res.send(info);   
+  })
+});
+app.get("/sendmail",(req,res) => {
+  res.send("<h1>Funciona </h1>")  
+});
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
@@ -32,3 +49,26 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     app.start();
 });
+
+async function sendMail(user,callback){
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "balpiaw2019@gmail.com",
+      pass: "balpiaw2019"
+    }
+  });
+
+  let mailOptions = {
+    from: "BALP",
+    to: "balpiaw2019@gmail.com",
+    subject: "Un correo de prueba",
+    html: '<h1>Funciona</h1>'
+  }
+
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}

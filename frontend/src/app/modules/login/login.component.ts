@@ -7,6 +7,7 @@ import { UserApi, BeneficiarioApi, DonanteApi, VoluntarioApi } from '../../_serv
 import { AccessToken }  from '../../_services/lbservice/models'; 
 import { LoopBackConfig, BaseLoopBackApi } from '../../_services/lbservice';
 import { Validators } from '@angular/forms';
+import { HttpService } from '../../_services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   beneficiario:Beneficiario;
   voluntario:Voluntario;
   donante:Donante;
-  constructor(private userApi: UserApi,private donanteApi: DonanteApi,private beneficiarioApi: BeneficiarioApi,private voluntarioApi: VoluntarioApi, private route: ActivatedRoute , private router:Router) { 
+  constructor(private http: HttpService, private userApi: UserApi,private donanteApi: DonanteApi,private beneficiarioApi: BeneficiarioApi,private voluntarioApi: VoluntarioApi, private route: ActivatedRoute , private router:Router) { 
 	this.logInForm = new FormGroup({
 		tipoUsuario: new FormControl(),
 	   usuario: new FormControl('',[Validators.required]),
@@ -65,6 +66,22 @@ export class LoginComponent implements OnInit {
 	}
 }
 
+	testingEnviarEmail(){
+	this.http.sendEmail("http://localhost:3000/sendmail", {
+      name: 'Juancito',
+      email: 'balpiaw2019@gmail.com'
+    }).subscribe(
+      data => {
+        let res:any = data; 
+        console.log(
+          `👏 > 👏 > 👏 > 👏  is successfully register and mail has been sent and the message id is ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
+}
 
   ngOnInit() {
   }
