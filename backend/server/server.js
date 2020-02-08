@@ -10,9 +10,12 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var cors = require('cors');
 var nodemailer = require('nodemailer');
+var bodyParser = require('body-parser');
 
 var app = module.exports = loopback();
 
+app.use(cors({origin: "*"}));
+app.use(bodyParser.json());
 
 app.start = function() {
   // start the web server
@@ -26,7 +29,7 @@ app.start = function() {
     }
   });
 };
-app.use(cors({origin: "*"}));
+
 
 app.post("/sendmail",(req,res) => {
   console.log("request came");
@@ -63,9 +66,9 @@ async function sendMail(user,callback){
 
   let mailOptions = {
     from: "BALP",
-    to: "balpiaw2019@gmail.com",
-    subject: "Un correo de prueba",
-    html: '<h1>Funciona</h1>'
+    to: user.email,
+    subject: user.subject,
+    html: user.html
   }
 
   let info = await transporter.sendMail(mailOptions);

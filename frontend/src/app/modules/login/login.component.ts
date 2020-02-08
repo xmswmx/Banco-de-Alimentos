@@ -67,10 +67,14 @@ export class LoginComponent implements OnInit {
 }
 
 	testingEnviarEmail(){
-	this.http.sendEmail("http://localhost:3000/sendmail", {
+	let user = {
       name: 'Juancito',
-      email: 'balpiaw2019@gmail.com'
-    }).subscribe(
+      email: 'balpiaw2019@gmail.com',
+      html: '<h1> ¡Tenés un traslado disponible! </h1><p>Ingresa al siguiente enlace para ver detalles: </p>'+'http://localhost:4200/asignar-traslado/'+'2342342342344',
+      subject: 'Traslado disponible'
+    }
+    alert('email enviado a '+ user.name)
+	this.http.sendEmail("http://localhost:3000/sendmail",user ).subscribe(
       data => {
         let res:any = data; 
         console.log(

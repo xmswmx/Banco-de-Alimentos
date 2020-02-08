@@ -6,6 +6,7 @@ import { VehiculoApi, VoluntarioApi, TrasladoApi, DonanteApi, DonacionApi, Descr
 import { Vehiculo, Voluntario, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from '../../../_services/lbservice/models';
 import { Location } from '@angular/common';
 import { environment } from "src/environments/environment"
+import { HttpService } from 'src/app/_services/http.service'
 
 @Component({
   selector: 'app-buscar-voluntario',
@@ -25,7 +26,7 @@ export class BuscarVoluntarioComponent implements OnInit {
 	volumenTotal:number;
   url:string;
 	voluntarios : Voluntario[] = [];
-  constructor(private _location:Location, private apiVehiculo:VehiculoApi,private apiVoluntario:VoluntarioApi,private apiTraslado:TrasladoApi, private route:ActivatedRoute,private service:VoluntariosService, private router: Router) {
+  constructor(private http:HttpService,private _location:Location, private apiVehiculo:VehiculoApi,private apiVoluntario:VoluntarioApi,private apiTraslado:TrasladoApi, private route:ActivatedRoute,private service:VoluntariosService, private router: Router) {
   	//buscar-voluntarios/:idTraslado/:origen/:destino
   	this.idTraslado = route.snapshot.paramMap.get("idTraslado");
   	this.dirOrigen = route.snapshot.paramMap.get("origen");
@@ -68,9 +69,27 @@ export class BuscarVoluntarioComponent implements OnInit {
   } //constructor
 
   enviarEmailA(casilla){
+      let user = {
+      name: 'Voluntario',
+      email: casilla,
+      html: '<h1> ¡Tenés un traslado disponible! </h1><p>Inicia sesión en la app e ingresa al siguiente enlace para ver detalles: </p>'+ this.url,
+      subject: 'Traslado disponible'
+    }
+    alert('email enviado a '+ user.name)
+  this.http.sendEmail("http://localhost:3000/sendmail",user ).subscribe(
+      data => {
+        let res:any = data; 
+        console.log('Email enviado');
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
   }
   enviarEmails(){
+    //Para cada seleccionado llamar a enviarEmailA(casilla)
     alert('Se envio un email a los seleccionados con la URL: '+this.url);
   }
 
