@@ -14,18 +14,14 @@ import { ApiRequestsService } from 'src/app/_services/api-requests.service'
 })
 export class TrasladosSinVoluntarioComponent implements OnInit {
 
-	filas = [];
+	traslados = [];
 	constructor(private requester: ApiRequestsService, private router:Router,private service: VoluntariosService,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) {
-		requester.getAllTrasladosSinVoluntario().then(arr => this.filas =arr)
+		requester.getAllTrasladosSinVoluntario().then(arr => this.traslados =arr)
 	 } //Fin constructor
 
-	buscarVoluntariosParaFila(fila){
-		//Esta solucion se rompe si ingresan direcciones con barra /
-		let ruta = '/buscar-voluntarios/'+fila[6].id+'/'+fila[0]+'/'+fila[1];
+	buscarVoluntariosParaTraslado(traslado){
+		let ruta = '/buscar-voluntarios/'+traslado[6].id+'/'+encodeURIComponent(traslado[0])+'/'+encodeURIComponent(traslado[1]);
 		this.router.navigate([ruta]);
-
-		
-		
 	}
 
 	ngOnInit() {

@@ -7,6 +7,9 @@ import { VoluntariosService } from 'src/app/_services/voluntarios.service';
 import { BALP } from '../../../_models/BALP';
 import { VehiculoApi, VoluntarioApi, BeneficiarioApi, UbicacionApi, TrasladoApi, DonanteApi, DonacionApi, DescripcionDetalladaApi, ProductoApi, TipoProductoApi, EnvioParaBeneficiarioApi } from '../../../_services/lbservice/services';
 import { Vehiculo, Voluntario, Beneficiario, Donante, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from '../../../_services/lbservice/models';
+import { environment } from '../../../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-asignar-traslado',
   templateUrl: './asignar-traslado.component.html',
@@ -21,14 +24,16 @@ export class AsignarTrasladoComponent implements OnInit {
 	destino:  string;
 	voluntario: Voluntario;
 	balp : BALP = new BALP;
+	url: string;
 
 	/*
 		El usuario recibe un email como 
 		localhost:4200/asignar-traslado/5de0d2485d310221a87098aa
 	*/
- 	constructor(private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
+ 	constructor(protected http: HttpClient, private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
  		//Obtengo el idTraslado por la URL
-		  this.idTraslado = route.snapshot.paramMap.get("idTraslado")
+			this.idTraslado = route.snapshot.paramMap.get("idTraslado");
+			this.url = environment.backendUrl + '/api/Traslados/' + this.idTraslado;
 		  this.form = new FormGroup ({
 			// atributos del traslado
 			fecha : new FormControl(),
@@ -39,9 +44,11 @@ export class AsignarTrasladoComponent implements OnInit {
 
 		// obtengo el voluntario que tiene iniciada la sesión
 		this.voluntario = apiVoluntario.getCachedCurrent();
-	
+		let traslado = this.http.get(this.url);
+		console.log(traslado);
 		// obtengo el traslado a partir del idDeTraslado recibido por parámetro
 		apiTraslado.findById(this.idTraslado).subscribe((trasladoRecuperado:Traslado) =>	{
+			
 			this.traslado = trasladoRecuperado;		
 			/*	Tenemos el traslado
 				A partir de acá pueden pasar dos cosas

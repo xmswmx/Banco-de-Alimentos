@@ -45,10 +45,10 @@ import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-tr
 import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
 import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-beneficiario/editar-beneficiario.component';
 import { NuevoEnvioVolumenComponent } from './modules/admin/nuevo-envio/nuevo-envio-volumen/nuevo-envio-volumen.component';
-
 import { MockStockService } from './_services/stockservice/mock-stock.service';
 import { InsigniasService } from './_services/insignias.service';
-
+import { HttpClientModule } from '@angular/common/http';
+import { DataApiService } from './_services/data-api.service';
 
 @NgModule({
   declarations: [
@@ -94,16 +94,16 @@ import { InsigniasService } from './_services/insignias.service';
     FontAwesomeModule,
     NgxPaginationModule,
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SDKBrowserModule.forRoot(),
     MatTabsModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
-  providers: [MockStockService,InsigniasService]
+  providers: [MockStockService,InsigniasService,DataApiService]
 })
 export class AppModule { }
 

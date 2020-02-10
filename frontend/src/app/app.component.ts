@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { DataApiService } from './_services/data-api.service'
 import { LoggerService, LoopBackConfig } from './_services/lbservice';
 
 @Component({
