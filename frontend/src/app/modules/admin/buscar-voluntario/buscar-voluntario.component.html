@@ -51,7 +51,7 @@
                 <td>{{voluntario.telefono}}</td>
                 <td>
                     <button (click)="enviarEmailA(voluntario.email)">Enviar email</button> 
-                    <input type="checkbox" id="cbox1" value="first_checkbox">    
+                    <!-- <input type="checkbox" id="cbox1"value="first_checkbox">  -->   
                 </td>
             </tr>
         </tbody>
@@ -59,7 +59,7 @@
 			
     <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>	
     <section class="card-header text-center p-3 mt-4 mb-4">
-        <button type="button" class="btn btn-dark text-center mr-2" (click)="enviarEmails()">Enviar correo a los seleccionados</button>
+        <button type="button" class="btn btn-dark text-center mr-2" (click)="enviarEmails()">Enviar correo a todos</button>
         <button type="button" class="btn btn-dark text-center"  (click)='this._location.back()'>Volver</button>
     </section>
 </div>

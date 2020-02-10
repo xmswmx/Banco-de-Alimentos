@@ -58,14 +58,29 @@ export class BuscarVoluntarioComponent implements OnInit {
   } //constructor
 
   enviarEmailA(casilla){
+    this.sendTo(casilla);
+    alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
+  }
+
+  enviarEmails(){
+    
+    let casillasDeTodos =this.voluntarios.map(voluntario => voluntario.email).join(', ');
+    this.sendTo(casillasDeTodos);
+    alert('El correo se ha enviado a todos los voluntarios correctamente');
+    this.router.navigateByUrl("/panel-de-control");
+  }
+
+  ngOnInit() {
+  }
+
+  sendTo(casilla){
       let user = {
       name: 'Voluntario',
       email: casilla,
       html: '<h1> ¡Tenés un traslado disponible! </h1><p>Inicia sesión en la app e ingresa al siguiente enlace para ver detalles: </p>'+ this.url,
       subject: 'Traslado disponible'
     }
-    alert('email enviado a '+ user.name)
-  this.http.sendEmail(environment.backendUrl+"/sendmail",user ).subscribe(
+    this.http.sendEmail(environment.backendUrl+"/sendmail",user ).subscribe(
       data => {
         let res:any = data; 
         console.log('Email enviado');
@@ -74,33 +89,6 @@ export class BuscarVoluntarioComponent implements OnInit {
         console.log(err);
       }
     );
-
-    alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
-  }
-
-  enviarEmails(){
-    //Para cada seleccionado llamar a enviarEmailA(casilla)
-    for (let voluntario of this.voluntarios) {
-      let user = {
-        name: 'Voluntario',
-        email: voluntario.email,
-        html: '<h1> ¡Tenés un traslado disponible! </h1><p>Inicia sesión en la app e ingresa al siguiente enlace para ver detalles: </p>'+ this.url,
-        subject: 'Traslado disponible'
-      }
-    this.http.sendEmail(environment.backendUrl+"/sendmail",user ).subscribe(
-        data => {
-          let res:any = data;
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    }
-    alert('El correo se ha enviado a todos los voluntarios correctamente');
-    this.router.navigateByUrl("/panel-de-control");
-  }
-
-  ngOnInit() {
   }
 
 }
