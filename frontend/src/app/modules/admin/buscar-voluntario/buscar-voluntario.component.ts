@@ -29,7 +29,7 @@ export class BuscarVoluntarioComponent implements OnInit {
   voluntarios : Voluntario[] = [];
   
 
-  constructor(public dataApi:DataApiService, protected httpClient: HttpClient,private http:HttpService,private _location:Location, private apiVehiculo:VehiculoApi,private apiVoluntario:VoluntarioApi,private apiTraslado:TrasladoApi, private route:ActivatedRoute,private service:VoluntariosService, private router: Router) {
+  constructor(public dataApi:DataApiService, private http:HttpService,private _location:Location, private apiVehiculo:VehiculoApi,private apiVoluntario:VoluntarioApi,private apiTraslado:TrasladoApi, private route:ActivatedRoute,private service:VoluntariosService, private router: Router) {
   	//buscar-voluntarios/:idTraslado/:origen/:destino
   	this.idTraslado = route.snapshot.paramMap.get("idTraslado");
   	this.dirOrigen = route.snapshot.paramMap.get("origen");

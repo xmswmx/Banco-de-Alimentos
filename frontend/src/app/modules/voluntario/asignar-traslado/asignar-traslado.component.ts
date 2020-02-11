@@ -9,6 +9,8 @@ import { VehiculoApi, VoluntarioApi, BeneficiarioApi, UbicacionApi, TrasladoApi,
 import { Vehiculo, Voluntario, Beneficiario, Donante, Traslado, Ubicacion, Volumen, Donacion, EnvioParaBeneficiario } from '../../../_services/lbservice/models';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataApiService } from 'src/app/_services/data-api.service';
+
 
 @Component({
   selector: 'app-asignar-traslado',
@@ -24,16 +26,14 @@ export class AsignarTrasladoComponent implements OnInit {
 	destino:  string;
 	voluntario: Voluntario;
 	balp : BALP = new BALP;
-	url: string;
 
 	/*
 		El usuario recibe un email como 
 		localhost:4200/asignar-traslado/5de0d2485d310221a87098aa
 	*/
- 	constructor(protected http: HttpClient, private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
+ 	constructor(public dataApi:DataApiService, protected http: HttpClient, private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
  		//Obtengo el idTraslado por la URL
 			this.idTraslado = route.snapshot.paramMap.get("idTraslado");
-			this.url = environment.backendUrl + '/api/Traslados/' + this.idTraslado;
 		  this.form = new FormGroup ({
 			// atributos del traslado
 			fecha : new FormControl(),
@@ -44,11 +44,9 @@ export class AsignarTrasladoComponent implements OnInit {
 
 		// obtengo el voluntario que tiene iniciada la sesión
 		this.voluntario = apiVoluntario.getCachedCurrent();
-		let traslado = this.http.get(this.url);
-		console.log(traslado);
+
 		// obtengo el traslado a partir del idDeTraslado recibido por parámetro
-		apiTraslado.findById(this.idTraslado).subscribe((trasladoRecuperado:Traslado) =>	{
-			
+    this.dataApi.getTrasladoPorId(this.idTraslado).subscribe((trasladoRecuperado:Traslado)=>{
 			this.traslado = trasladoRecuperado;		
 			/*	Tenemos el traslado
 				A partir de acá pueden pasar dos cosas
@@ -57,12 +55,12 @@ export class AsignarTrasladoComponent implements OnInit {
 			*/
 			if (this.traslado.tipo == 'donacion'){
 				//Caso 1 (donación)
-				//1. Recuperar la donacion trasladada al banco				
-				apiDonacion.findById(this.traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion) => {
-					//2. Recuperar el donante de esa donacion 							
-					apiDonante.findById(donacion.idDonante).subscribe((donanteRecuperado:Donante) => { // obtuve al donante
-						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)					
-						apiDonante.getUbicacion(donanteRecuperado.id,true).subscribe((ubicacionRecuperada)=>{						
+				//1. Recuperar la donacion trasladada al banco
+				this.dataApi.getDonacionPorId(this.traslado.idDonacionTrasladadaAlBanco).subscribe((donacion:Donacion)=>{
+					//2. Recuperar el donante de esa donacion
+					this.dataApi.getDonantePorId(donacion.idDonante).subscribe((donanteRecuperado:Donante)=>{ // obtuve al donante
+						//3. Recuperar la ubicación de ese donante (busco la ubicación del donante con el id del donanteRecuperado)
+					this.dataApi.getUbicacionPorIdDonante(donanteRecuperado.id).subscribe((ubicacionRecuperada:Ubicacion)=>{				
 							//4. Guardar la direccion como origen
 							//console.log('Ubicacion ', ubicacionRecuperada.direccion);					
 							this.origen = ubicacionRecuperada.direccion
@@ -73,11 +71,12 @@ export class AsignarTrasladoComponent implements OnInit {
 			} else {
 				//Caso 2 (envio)
 				//1. Recuperar el envio trasladado a un beneficiario
-				apiEnvio.findById(this.traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario) => {
+				this.dataApi.getEnvioPorId(this.traslado.idEnvioTrasladadoAUnBeneficiario).subscribe((envio:EnvioParaBeneficiario)=>{					
 					//2. Recuperar el beneficiario de ese envio
-					apiBeneficiario.findById(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario) => {
+					this.dataApi.getBeneficarioPorId(envio.beneficiarioId).subscribe((beneficiarioRecuperado:Beneficiario)=>{
 						//3. Recuperar la ubicacion de ese beneficiario						
-						apiBeneficiario.getUbicacion(beneficiarioRecuperado.id,true).subscribe((ubicacionRecuperada)=>{															
+					this.dataApi.getUbicacionPorIdBeneficiario(beneficiarioRecuperado.id).subscribe((ubicacionRecuperada:any)=>{	
+																
 							//4. Guardar la direccion como destino
 							 this.destino = ubicacionRecuperada.direccion;						
 							//5. Guardar la direccion del banco como origen
@@ -97,10 +96,11 @@ export class AsignarTrasladoComponent implements OnInit {
 			this.traslado.voluntarioId = this.voluntario.id;
 			this.traslado.estado = "en traslado";
 			this.traslado.fechaAsignacion = new Date;	
-		
-				this.apiTraslado.upsert(this.traslado).subscribe(()=>
-					console.log('id voluntario:', this.voluntario.id)
-				)
+			this.dataApi.asignarTraslado(this.traslado);
+			console.log('id voluntario:', this.voluntario.id)
+				// this.apiTraslado.upsert(this.traslado).subscribe(()=>
+				// 	console.log('id voluntario:', this.voluntario.id)
+				// )
 				
 				alert('La asignación del traslado se registró correctamente');
 					console.log('voluntario asignado al traslado:', this.traslado.voluntarioId);
