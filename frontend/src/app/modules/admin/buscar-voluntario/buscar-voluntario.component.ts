@@ -59,15 +59,10 @@ export class BuscarVoluntarioComponent implements OnInit {
 
   enviarEmailA(casilla){
     this.sendTo(casilla);
-    alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
   }
 
   enviarEmails(){
-    
-    let casillasDeTodos =this.voluntarios.map(voluntario => voluntario.email).join(', ');
-    this.sendTo(casillasDeTodos);
-    alert('El correo se ha enviado a todos los voluntarios correctamente');
-    this.router.navigateByUrl("/panel-de-control");
+    this.sendTo(this.voluntarios.map(voluntario => voluntario.email).join(', '));
   }
 
   ngOnInit() {
@@ -83,7 +78,7 @@ export class BuscarVoluntarioComponent implements OnInit {
     this.http.sendEmail(environment.backendUrl+"/sendmail",user ).subscribe(
       data => {
         let res:any = data; 
-        console.log('Email enviado');
+        alert('Se envio un email a '+casilla+' con la siguiente URL: '+this.url)
       },
       err => {
         console.log(err);

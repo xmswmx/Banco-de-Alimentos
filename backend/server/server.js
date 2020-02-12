@@ -32,10 +32,9 @@ app.start = function() {
 
 
 app.post("/sendmail",(req,res) => {
-  console.log("request came");
   let user = req.body;
   sendMail(user, info => {
-    console.log('Se envio el correo y la id es ${info.messageId}');
+    console.log('Mail enviado.');
     res.send(info);   
   })
 });
