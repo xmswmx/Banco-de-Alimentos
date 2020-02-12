@@ -8,6 +8,7 @@ import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-editar-voluntario',
@@ -24,7 +25,7 @@ export class EditarVoluntarioComponent implements OnInit {
   form: FormGroup;
   addressConverter: AddressConverter;
 
-  constructor(private _location:Location, private apiVoluntario: VoluntarioApi, private apiVehiculo: VehiculoApi, private apiVolumen: VolumenApi, private router: Router) {
+  constructor(private data:DataShareService, private _location:Location, private apiVoluntario: VoluntarioApi, private apiVehiculo: VehiculoApi, private apiVolumen: VolumenApi, private router: Router) {
 
     this.form = new FormGroup({
       // atributos del voluntario
@@ -103,7 +104,6 @@ export class EditarVoluntarioComponent implements OnInit {
 
   // ACCION QUE DISPARA EL BOTON DE ACTUALIZAR VOLUNTARIO
   onSubmit() {
-
     if (this.form.valid) {
       // capturo y actualizo los atributos del voluntario 
 
@@ -176,6 +176,7 @@ export class EditarVoluntarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data.cambiarTitulo("Editar mis datos");
   }
 
 }

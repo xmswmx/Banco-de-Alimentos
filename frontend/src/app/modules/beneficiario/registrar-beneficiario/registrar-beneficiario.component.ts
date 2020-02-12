@@ -9,6 +9,7 @@ import { BeneficiarioApi, UbicacionApi } from '../../../_services/lbservice/serv
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { LoopBackConfig, BaseLoopBackApi } from '../../../_services/lbservice';
 import { Route } from '@angular/compiler/src/core';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
 	selector: 'app-registrar-beneficiario',
@@ -20,7 +21,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 	registrarBeneficiario: FormGroup;
 	convertidorDeDirecciones: AddressConverter;
 
-	constructor(private ubicacionApi:UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
+	constructor(private data:DataShareService, private ubicacionApi:UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
 
 		this.nuevoBeneficiario = new Beneficiario();
 		this.convertidorDeDirecciones = new AddressConverter();
@@ -89,6 +90,7 @@ export class RegistrarBeneficiarioComponent implements OnInit {
 
 
 	ngOnInit() {
+    this.data.cambiarTitulo("");
 		document.getElementById('navbar').classList.add('beneficiario-color');		
 	}
 

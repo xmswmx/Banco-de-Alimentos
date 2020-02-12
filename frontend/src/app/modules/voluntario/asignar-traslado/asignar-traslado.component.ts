@@ -10,6 +10,7 @@ import { Vehiculo, Voluntario, Beneficiario, Donante, Traslado, Ubicacion, Volum
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataApiService } from 'src/app/_services/data-api.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class AsignarTrasladoComponent implements OnInit {
 		El usuario recibe un email como 
 		localhost:4200/asignar-traslado/5de0d2485d310221a87098aa
 	*/
- 	constructor(public dataApi:DataApiService, protected http: HttpClient, private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
+ 	constructor(private data:DataShareService, public dataApi:DataApiService, protected http: HttpClient, private apiBeneficiario:BeneficiarioApi, private apiEnvio:EnvioParaBeneficiarioApi, private apiDonante:DonanteApi ,private apiDonacion:DonacionApi,private apiVoluntario:VoluntarioApi, private apiTraslado:TrasladoApi, private apiUbicacion:UbicacionApi, private router: ActivatedRoute, private route:ActivatedRoute) {
  		//Obtengo el idTraslado por la URL
 			this.idTraslado = route.snapshot.paramMap.get("idTraslado");
 		  this.form = new FormGroup ({
@@ -110,6 +111,7 @@ export class AsignarTrasladoComponent implements OnInit {
 			}
 		
 	ngOnInit() {
+		this.data.cambiarTitulo("Asignar traslado");
 	}	
 
 }

@@ -8,6 +8,7 @@ import { Ubicacion, Donante, PersonaDeContacto } from '../../../_services/lbserv
 import { GeoPoint } from '../../../_models/GeoPoint';
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { Validators } from '@angular/forms';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
 	selector: 'app-registrar-donante',
@@ -22,7 +23,7 @@ export class RegistrarDonanteComponent implements OnInit {
 	convertidorDeDirecciones: AddressConverter;
 
 
-	constructor(private ubicacionApi: UbicacionApi, private personasDeContactoApi: PersonaDeContactoApi, private donanteApi: DonanteApi, private route: ActivatedRoute, private router: Router) {
+	constructor(private data:DataShareService, private ubicacionApi: UbicacionApi, private personasDeContactoApi: PersonaDeContactoApi, private donanteApi: DonanteApi, private route: ActivatedRoute, private router: Router) {
 
 		//Se crea el nuevo donante y los controladores de los campos
 		this.nuevoDonante = new Donante();
@@ -157,6 +158,7 @@ export class RegistrarDonanteComponent implements OnInit {
 	}
 
 	ngOnInit() {
+    this.data.cambiarTitulo("");
 	}
 
 }

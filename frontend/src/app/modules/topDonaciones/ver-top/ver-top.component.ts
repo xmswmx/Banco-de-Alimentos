@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { Donante, Voluntario } from '../../../_services/lbservice';
 import { ApiRequestsService} from '../../../_services/api-requests.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-ver-top',
@@ -12,13 +13,15 @@ export class VerTopComponent implements OnInit {
 
 	voluntarios = [];
 	donantes = [];
-  constructor(private _location:Location,
+  constructor(private data:DataShareService,
+          private _location:Location,
           private requester:ApiRequestsService) 
   { 
     requester.get10HighScoredDonantes().then(donantes => this.donantes = donantes);
     requester.get10HighScoredVoluntarios().then(voluntarios => this.voluntarios = voluntarios);
   }
   ngOnInit() {
+    this.data.cambiarTitulo("Top 10");
   }
 
 }

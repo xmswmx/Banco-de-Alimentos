@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-registrar-donacion',
@@ -8,9 +9,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 })
 export class RegistrarDonacionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data:DataShareService) { }
 
   ngOnInit() {
+    this.data.cambiarTitulo("Registrar donación");
   }
 
 }

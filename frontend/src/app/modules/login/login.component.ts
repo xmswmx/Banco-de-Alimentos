@@ -8,6 +8,7 @@ import { AccessToken }  from '../../_services/lbservice/models';
 import { LoopBackConfig, BaseLoopBackApi } from '../../_services/lbservice';
 import { Validators } from '@angular/forms';
 import { HttpService } from '../../_services/http.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   beneficiario:Beneficiario;
   voluntario:Voluntario;
   donante:Donante;
-  constructor(private http: HttpService, private userApi: UserApi,private donanteApi: DonanteApi,private beneficiarioApi: BeneficiarioApi,private voluntarioApi: VoluntarioApi, private route: ActivatedRoute , private router:Router) { 
+  constructor(private data:DataShareService, private http: HttpService, private userApi: UserApi,private donanteApi: DonanteApi,private beneficiarioApi: BeneficiarioApi,private voluntarioApi: VoluntarioApi, private route: ActivatedRoute , private router:Router) { 
 	this.logInForm = new FormGroup({
 		tipoUsuario: new FormControl(),
 	   usuario: new FormControl('',[Validators.required]),
@@ -88,6 +89,7 @@ export class LoginComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.data.cambiarTitulo("");
   }
 
 }

@@ -8,6 +8,7 @@ import { Voluntario, Vehiculo, Volumen, Ubicacion } from '../../../_services/lbs
 import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { GeoPoint } from '../../../_models/GeoPoint';
 import { AddressConverter } from '../../../_models/AddressConverter';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-registrar-voluntario',
@@ -23,7 +24,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
   addressConverter: AddressConverter;
   ubicacion: Ubicacion;
 
-  constructor(private ubicacionApi:UbicacionApi, private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi, private route: ActivatedRoute , private router:Router ) {
+  constructor(private data:DataShareService, private ubicacionApi:UbicacionApi, private voluntarioApi: VoluntarioApi, private vehiculoApi : VehiculoApi, private volumenApi : VolumenApi, private route: ActivatedRoute , private router:Router ) {
 
     // se crean las instancias de voluntario, vehiculo y volumen
     this.voluntario = new Voluntario();
@@ -155,7 +156,7 @@ export class RegistrarVoluntarioComponent implements OnInit {
 }
 
 ngOnInit() {
-
+  this.data.cambiarTitulo("");
 }
 
 }

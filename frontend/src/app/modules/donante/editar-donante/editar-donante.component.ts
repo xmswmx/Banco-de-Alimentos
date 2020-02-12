@@ -8,6 +8,7 @@ import { DonanteApi, VehiculoApi, VolumenApi, UbicacionApi } from '../../../_ser
 import { AddressConverter } from '../../../_models/AddressConverter';
 import { Validators } from '@angular/forms';
 import { Location } from '@angular/common'
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class EditarDonanteComponent implements OnInit {
   donante;
   ubicacion;
 
-  constructor(private _location:Location, private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
+  constructor(private data:DataShareService, private _location:Location, private apiUbicacion: UbicacionApi, private apiDonante: DonanteApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) { 
 
     this.form = new FormGroup({   
       cuil: new FormControl('', [Validators.required]),
@@ -89,6 +90,7 @@ export class EditarDonanteComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.data.cambiarTitulo("Editar mis datos");
   }
 
 }

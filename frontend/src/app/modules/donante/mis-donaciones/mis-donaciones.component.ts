@@ -4,6 +4,7 @@ import { DonacionApi, DonanteApi } from '../../../_services/lbservice/services'
 import {Location} from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiRequestsService} from '../../../_services/api-requests.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-mis-donaciones',
@@ -16,12 +17,13 @@ export class MisDonacionesComponent implements OnInit {
 	datosDeDonaciones=[];
 	loggedDonante : Donante;
 
-	constructor( private requester:ApiRequestsService,private _location: Location,apiDonante:DonanteApi,private route: ActivatedRoute, private router: Router) {
+	constructor(private data:DataShareService, private requester:ApiRequestsService,private _location: Location,apiDonante:DonanteApi,private route: ActivatedRoute, private router: Router) {
 		this.loggedDonante = apiDonante.getCachedCurrent();
 		requester.getAllDonacionesOf(this.loggedDonante.id).then(ans => this.datosDeDonaciones = ans);
 	}
 
 	ngOnInit() {
+		this.data.cambiarTitulo("Mis donaciones");
 	}
 
 }
