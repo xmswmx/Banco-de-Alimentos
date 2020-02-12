@@ -77,7 +77,7 @@ export class BuscarVoluntarioComponent implements OnInit {
       let user = {
       name: 'Voluntario',
       email: casilla,
-      html: '<h1> ¡Tenés un traslado disponible! </h1><p>Inicia sesión en la app e ingresa al siguiente enlace para ver detalles: </p>'+ this.url,
+      html: '<body style="border-style: dashed; padding: 25px"><h1 style="text-align: center;color:#f94116;"> ¡Tenés un traslado disponible! </h1><p style="font-size: 20px">Desde BALP te invitamos a realizar un traslado, inicia sesión en la app e ingresa al siguiente enlace para ver detalles:<br><br>'+ this.url + "</p></body>",
       subject: 'Traslado disponible'
     }
     this.http.sendEmail(environment.backendUrl+"/sendmail",user ).subscribe(
