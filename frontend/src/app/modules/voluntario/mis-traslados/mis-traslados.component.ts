@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { InsigniasService } from 'src/app/_services/insignias.service';
 import { ApiRequestsService } from 'src/app/_services/api-requests.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-mis-traslados',
@@ -23,7 +24,7 @@ export class MisTrasladosComponent implements OnInit {
   filas : FilaTrasladoPendiente[] = [];
   dirBALP : Ubicacion = (new BALP).ubicacionBALP;
   filasOriginal;
-  constructor(private requester:ApiRequestsService,private insigniasService:InsigniasService,private apiVoluntario:VoluntarioApi, private route: ActivatedRoute, private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
+  constructor(private data:DataShareService, private requester:ApiRequestsService,private insigniasService:InsigniasService,private apiVoluntario:VoluntarioApi, private route: ActivatedRoute, private router:Router,private voluntarioApi: VoluntarioApi,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) { 
 
 
     this.form = new FormGroup ({
@@ -88,6 +89,7 @@ export class MisTrasladosComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.data.cambiarTitulo("Mis traslados");
   }
 
 }

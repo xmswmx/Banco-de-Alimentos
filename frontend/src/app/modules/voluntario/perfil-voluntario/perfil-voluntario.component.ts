@@ -8,6 +8,7 @@ import { VoluntarioApi, VehiculoApi, VolumenApi, UbicacionApi, InsigniaApi, Tipo
 import { faStar, faCandyCane, faGift, faEgg, faGifts , faHandsHelping, faDonate } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFacebook,faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { InsigniasService } from '../../../_services/insignias.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-perfil-voluntario',
@@ -34,7 +35,7 @@ export class PerfilVoluntarioComponent implements OnInit {
     iconos = [];
     badges = []; //Se 0:Nombre, 1:icono, 2:fechaOtorgada, 3:vto
 
-  constructor(private insigniasService: InsigniasService,private apiInsignia: InsigniaApi, private apiVoluntario: VoluntarioApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) {
+  constructor(private data:DataShareService, private insigniasService: InsigniasService,private apiInsignia: InsigniaApi, private apiVoluntario: VoluntarioApi, apiVehiculo: VehiculoApi, apiVolumen: VolumenApi, private router: Router) {
    
     //Esto es como un diccionario que uso para convertir texto de la api en iconos mostrables
     this.iconos=[
@@ -106,6 +107,7 @@ export class PerfilVoluntarioComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.data.cambiarTitulo("Mis datos");
   }
 
 }

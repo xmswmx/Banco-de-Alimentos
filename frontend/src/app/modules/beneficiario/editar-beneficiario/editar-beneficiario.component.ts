@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BeneficiarioApi, UbicacionApi } from '../../../_services/lbservice/services';
 import { FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { AddressConverter } from '../../../_models/AddressConverter';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 //Revisar si se usa
 import { LoopBackConfig, BaseLoopBackApi } from '../../../_services/lbservice';
@@ -24,7 +25,7 @@ export class EditarBeneficiarioComponent implements OnInit {
 	convertidorDeDirecciones: AddressConverter;
 	ubicacion: Ubicacion;
 
-	constructor(private ubicacionApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
+	constructor(private data:DataShareService, private ubicacionApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
 		this.beneficiario = beneficiarioApi.getCachedCurrent();
 		this.beneficiarioApi.getUbicacion(this.beneficiario.id, true).subscribe((ubicacion: Ubicacion) => {
 			this.ubicacion = ubicacion;
@@ -50,6 +51,7 @@ export class EditarBeneficiarioComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.data.cambiarTitulo("Editar mis datos");
 	}
 
 	onSubmit() {

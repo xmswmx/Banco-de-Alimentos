@@ -3,6 +3,7 @@ import { Voluntario, VoluntarioApi, TrasladoApi, Traslado, Beneficiario, Benefic
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-donaciones-recibidas',
@@ -12,7 +13,8 @@ import {Location} from '@angular/common';
 export class DonacionesRecibidasComponent implements OnInit {
 
 	filas=[];
-	constructor(private trasladoApi:TrasladoApi,
+	constructor(private data:DataShareService, 
+				private trasladoApi:TrasladoApi,
 				private beneficiarioApi:BeneficiarioApi,
 				private envioApi:EnvioParaBeneficiarioApi,
 				private voluntarioApi:VoluntarioApi,
@@ -48,6 +50,8 @@ export class DonacionesRecibidasComponent implements OnInit {
 		})
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.data.cambiarTitulo("Donaciones recibidas");
+	}
 
 }

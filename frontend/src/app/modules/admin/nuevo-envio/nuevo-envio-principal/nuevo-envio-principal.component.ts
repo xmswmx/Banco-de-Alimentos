@@ -7,6 +7,7 @@ import {Location} from '@angular/common';
 import { BALP } from '../../../../_models/BALP';
 import { AddressConverter } from '../../../../_models/AddressConverter';
 import { MockStockService } from '../../../../_services/stockservice/mock-stock.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-nuevo-envio-principal',
@@ -28,6 +29,7 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
   balp = new BALP;
   productosDelStock : Producto[];
   constructor(
+    private data:DataShareService, 
     private itemApi:ItemApi,
     private volumenApi:VolumenApi,
     private envioApi:EnvioParaBeneficiarioApi,
@@ -40,6 +42,9 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
 
 
   ngOnInit() {
+    
+		this.data.cambiarTitulo("Nuevo envío para organización beneficiaria");
+
   }
   test(){
     this.stock.retriveProductos(this.productosDelStock).then((value)=>{console.log(value)});

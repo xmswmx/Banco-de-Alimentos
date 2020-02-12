@@ -5,6 +5,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { faShippingFast, faDolly, faUserClock, faCubes, faKey } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFacebook,faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { DataShareService } from 'src/app/_services/data-share.service';
+
+
 
 @Component({
   selector: 'app-panel',
@@ -19,9 +22,10 @@ export class PanelComponent implements OnInit {
 	 faCubes=faCubes
 	 faKey=faKey;
 
-	constructor(private router:Router) { }
+	constructor(private data:DataShareService, private router:Router) { }
 
 	ngOnInit() {
+		this.data.cambiarTitulo("Panel de control");
 	}
 
 }

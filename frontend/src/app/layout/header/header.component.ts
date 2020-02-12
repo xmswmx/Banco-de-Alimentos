@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, Beneficiario } from '../../_services/lbservice/models';
 import { UserApi, BeneficiarioApi  } from '../../_services/lbservice/services';
+import { DataShareService } from "../../_services/data-share.service"
+
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,7 @@ export class HeaderComponent implements OnInit {
   titulo = "";
   userLogged;
   tipoDeUsuario;
-  constructor(private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
+  constructor(public data:DataShareService, private userApi:UserApi, private router:Router, private beneficiarioApi:BeneficiarioApi) { 
     this.userLogged = userApi.getCachedCurrent();
     if (this.userLogged) {
       this.tipoDeUsuario = this.userLogged.tipoDeUsuario;
@@ -35,9 +37,6 @@ export class HeaderComponent implements OnInit {
     
   }
 
-  setTitulo(titulo){
-    this.titulo = titulo;
-  }
 
   ngOnInit() {
   }

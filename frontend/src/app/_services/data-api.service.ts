@@ -27,7 +27,37 @@ export class DataApiService {
   }
 
   getVolumenDelVehiculo(idVehiculo:string){
-    return this.http.get(environment.backendUrl + '/api/Volumen/findOne?filter[where][vehiculoId]=' + idVehiculo );
+    return this.http.get(environment.backendUrl + '/api/volumen/findOne?filter[where][vehiculoId]=' + idVehiculo );
+  }
+
+  getDonacionPorId(idDonacion:string){
+    return this.http.get(environment.backendUrl + '/api/donaciones/' + idDonacion);
+  }
+
+  getDonantePorId(idDonante:string){
+    return this.http.get(environment.backendUrl + '/api/Donantes/' + idDonante);
+  }
+
+  getUbicacionPorIdDonante(idDonante:string){
+    return this.http.get(environment.backendUrl + '/api/Ubicacions/findOne?filter[where][idDonante]=' + idDonante);
+  }
+
+  getEnvioPorId(idEnvio:string){
+    return this.http.get(environment.backendUrl + '/api/EnviosParaBeneficiario/' + idEnvio);
+  }
+
+  getBeneficarioPorId(idBeneficiario:string){
+    return this.http.get(environment.backendUrl + '/api/Beneficiarios/' + idBeneficiario);
+  }
+
+  getUbicacionPorIdBeneficiario(idBeneficiario:string){
+    return this.http.get(environment.backendUrl + '/api/Ubicacions/findOne?filter[where][beneficiarioId]=' + idBeneficiario);
+  }
+
+  asignarTraslado(traslado){
+    return this.http.put(environment.backendUrl + '/api/Traslados/' + traslado.id, traslado);
+    // let where = { "id" : traslado.id };
+    // return this.http.post(environment.backendUrl + '/api/Traslados/upsertWithWhere', traslado).toPromise();
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 @Component({
   selector: 'app-cambiar-clave',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CambiarClaveComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data:DataShareService) { }
 
   ngOnInit() {
+    this.data.cambiarTitulo("Cambiar clave");
   }
 
 }

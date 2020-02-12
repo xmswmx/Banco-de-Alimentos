@@ -5,7 +5,9 @@ import {Location} from '@angular/common';
 import { VoluntariosService } from 'src/app/_services/voluntarios.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiRequestsService } from 'src/app/_services/api-requests.service'
+import { ApiRequestsService } from 'src/app/_services/api-requests.service';
+import { DataShareService } from 'src/app/_services/data-share.service';
+
 
 @Component({
   selector: 'app-traslados-sin-voluntario',
@@ -15,7 +17,7 @@ import { ApiRequestsService } from 'src/app/_services/api-requests.service'
 export class TrasladosSinVoluntarioComponent implements OnInit {
 
 	traslados = [];
-	constructor(private requester: ApiRequestsService, private router:Router,private service: VoluntariosService,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) {
+	constructor(private data:DataShareService, private requester: ApiRequestsService, private router:Router,private service: VoluntariosService,private apiBeneficiario: BeneficiarioApi,private apiEnvio:EnvioParaBeneficiarioApi ,private apiDescGeneral: DescripcionGeneralApi, private apiUbicacion:UbicacionApi, private apiDonante:DonanteApi, private apiDonacion:DonacionApi,private _location: Location, private apiTraslado: TrasladoApi) {
 		requester.getAllTrasladosSinVoluntario().then(arr => this.traslados =arr)
 	 } //Fin constructor
 
@@ -25,6 +27,8 @@ export class TrasladosSinVoluntarioComponent implements OnInit {
 	}
 
 	ngOnInit() {
+    this.data.cambiarTitulo("Traslados sin vouluntario");
+
 	}
 
 }

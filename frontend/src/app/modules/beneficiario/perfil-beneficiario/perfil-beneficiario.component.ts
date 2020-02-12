@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Beneficiario, Ubicacion } from '../../../_services/lbservice/models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BeneficiarioApi, UbicacionApi } from '../../../_services/lbservice/services';
+import { DataShareService } from 'src/app/_services/data-share.service';
 
 
 //Revisar si se usa
@@ -21,7 +22,7 @@ export class PerfilBeneficiarioComponent implements OnInit {
 	address: string = 'Cargando..';
 	cantAtendidos: number;
 	email: string;
-	constructor(private ubiApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
+	constructor(private data:DataShareService, private ubiApi: UbicacionApi, private beneficiarioApi: BeneficiarioApi, private route: ActivatedRoute, private router: Router) {
 
 		this.loggedBeneficiario = beneficiarioApi.getCachedCurrent();
 		this.beneficiarioApi.getUbicacion(this.loggedBeneficiario.id, true).subscribe((ubicacion: Ubicacion) => {
@@ -33,6 +34,7 @@ export class PerfilBeneficiarioComponent implements OnInit {
 
 
 	ngOnInit() {
+		this.data.cambiarTitulo("Mis datos");
 	}
 
 }
