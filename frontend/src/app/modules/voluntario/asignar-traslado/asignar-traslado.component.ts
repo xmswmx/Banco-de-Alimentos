@@ -97,11 +97,11 @@ export class AsignarTrasladoComponent implements OnInit {
 			this.traslado.voluntarioId = this.voluntario.id;
 			this.traslado.estado = "en traslado";
 			this.traslado.fechaAsignacion = new Date;	
-			this.dataApi.asignarTraslado(this.traslado);
+			//this.dataApi.asignarTraslado(this.traslado);
 			console.log('id voluntario:', this.voluntario.id)
-				// this.apiTraslado.upsert(this.traslado).subscribe(()=>
-				// 	console.log('id voluntario:', this.voluntario.id)
-				// )
+				 this.apiTraslado.upsert(this.traslado).subscribe(()=>
+				 	console.log('id voluntario:', this.voluntario.id)
+				 )
 				
 				alert('La asignación del traslado se registró correctamente');
 					console.log('voluntario asignado al traslado:', this.traslado.voluntarioId);

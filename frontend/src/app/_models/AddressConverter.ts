@@ -10,6 +10,6 @@ export class AddressConverter {
 		return new GeoPoint(1,1);
 	}
 	distanceFromTo(origin:GeoPoint,destination:GeoPoint){
-		return Math.random()*100;
+		return Math.round(Math.random()*100);
 	}
 }

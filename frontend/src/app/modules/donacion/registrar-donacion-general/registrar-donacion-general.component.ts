@@ -81,7 +81,7 @@ export class RegistrarDonacionGeneralComponent implements OnInit {
             traslado.tipo = 'donacion';
             traslado.volumenTotal = alto * ancho * largo;
             traslado.descripcion = texto;
-            traslado.puntaje = Math.round(this.distancia * peso);
+            traslado.puntaje = this.distancia * peso;
             traslado.distancia = this.distancia;
             traslado.peso= peso;
             this.trasladoApi.create(traslado).subscribe(()=>{
