@@ -52,39 +52,30 @@ export class EditarVoluntarioComponent implements OnInit {
       largo: new FormControl(),
     });
 
-    // Promesas para obtener los datos del voluntario logueado
+
     this.voluntario = apiVoluntario.getCachedCurrent();
     this.idVoluntario = this.voluntario.id;
-    apiVoluntario.getVehiculo(this.voluntario.id, true).subscribe((vehiculo) => {
-      this.vehiculo = vehiculo;
+    apiVoluntario.findOne({where: {id: this.idVoluntario},include:  [{"vehiculo": "volumen"},"ubicacion"] }).subscribe((voluntario:Voluntario) => {
+      this.vehiculo = voluntario.vehiculo;
       this.form.controls["marca"].setValue(this.vehiculo.marca);
       this.form.controls["modelo"].setValue(this.vehiculo.modelo);
       this.form.controls["patente"].setValue(this.vehiculo.patente);
-      apiVehiculo.getVolumen(this.vehiculo.id, true).subscribe((volumen) => {
-        this.volumen = volumen;
-        this.form.controls["alto"].setValue(this.volumen.alto);
-        this.form.controls["ancho"].setValue(this.volumen.ancho);
-        this.form.controls["largo"].setValue(this.volumen.largo);
-        apiVoluntario.getUbicacion(this.voluntario.id, true).subscribe((ubicacion) => {
-          this.ubicacion = ubicacion.direccion;
-          this.form.controls["ubicacion"].setValue(this.ubicacion);
-        })
-
+      this.volumen = voluntario.vehiculo.volumen;
+      this.form.controls["alto"].setValue(this.volumen.alto);
+      this.form.controls["ancho"].setValue(this.volumen.ancho);
+      this.form.controls["largo"].setValue(this.volumen.largo);
+      this.ubicacion = voluntario.ubicacion.direccion;
+      this.form.controls["ubicacion"].setValue(this.ubicacion);
+      this.form.controls["dni"].setValue(voluntario.dni);
+      this.form.controls["nombre"].setValue(voluntario.nombre);
+      this.form.controls["apellido"].setValue(voluntario.apellido);
+      this.form.controls["username"].setValue(voluntario.username);
+      this.form.controls["email"].setValue(voluntario.email);
+      this.form.controls["celular"].setValue(voluntario.telefono);
+      this.form.controls["distancia"].setValue(voluntario.distanciaMaxima);
+      this.form.controls["observaciones"].setValue(voluntario.observaciones);
       })
-
-    })
-
-    this.form.controls["dni"].setValue(this.voluntario.dni);
-    this.form.controls["nombre"].setValue(this.voluntario.nombre);
-    this.form.controls["apellido"].setValue(this.voluntario.apellido);
-    this.form.controls["ubicacion"].setValue(this.ubicacion);
-    this.form.controls["username"].setValue(this.voluntario.username);
-    this.form.controls["email"].setValue(this.voluntario.email);
-    this.form.controls["celular"].setValue(this.voluntario.telefono);
-    this.form.controls["distancia"].setValue(this.voluntario.distanciaMaxima);
-    this.form.controls["observaciones"].setValue(this.voluntario.observaciones);
-
-  }
+    }
 
   get nombre() { return this.form.get('nombre'); }
   get apellido() { return this.form.get('apellido'); }
