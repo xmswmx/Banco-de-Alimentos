@@ -43,7 +43,7 @@ export class NuevoEnvioPrincipalComponent implements OnInit {
 
   ngOnInit() {
     
-		this.data.cambiarTitulo("Nuevo envío para organización beneficiaria");
+		this.data.cambiarTitulo("Generar envío");
 
   }
   test(){

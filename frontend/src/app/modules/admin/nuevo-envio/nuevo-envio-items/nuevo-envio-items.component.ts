@@ -32,6 +32,7 @@ export class NuevoEnvioItemsComponent implements OnInit {
     	item.descripcion= this.form.get("descripcion").value;
     	item.peso= this.form.get("peso").value;
     	this.lista.push(item);
+      this.form.reset();
     	this.enviarAlPadre();
     }
 

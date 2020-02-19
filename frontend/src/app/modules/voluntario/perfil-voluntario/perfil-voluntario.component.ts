@@ -76,33 +76,25 @@ export class PerfilVoluntarioComponent implements OnInit {
     
    // Promesas para obtener los datos del voluntario logueado
     this.voluntario = apiVoluntario.getCachedCurrent();
-    this.apiVoluntario.findById(this.voluntario.id).subscribe((vol : Voluntario) => { this.voluntario = vol } )
-    apiVoluntario.getVehiculo(this.voluntario.id, true).subscribe((vehiculo) => {
-      this.vehiculo = vehiculo;
-      apiVehiculo.getVolumen(this.vehiculo.id, true).subscribe((volumen) => {
-        this.volumen = volumen;
-        apiVoluntario.getUbicacion(this.voluntario.id,true).subscribe((ubicacion)=>{	
-          this.ubicacion = ubicacion.direccion;	
-          //Aca usaria el servicio y me devolveria un insignias:Insignia[]
-          this.insigniasService.getInsigniasVoluntario(apiVoluntario.getCachedCurrent().id).then((insignias:Insignia[])=>{
-            for (let insignia of insignias){
-              apiInsignia.getTipoInsignia(insignia.id,true).subscribe((tipodeinsignia:TipoInsignia)=>{
-                  let parNombreIcono = this.iconos.find(elemento => elemento[0] == tipodeinsignia.imagen)
-                  let icono = parNombreIcono[1];
-                  this.badges.push([
-                     tipodeinsignia.nombre,
-                     icono,
-                     insignia.fechaOtorgada,
-                     insignia.fechaVencimiento
-                    ]);
-                })            
-              } //Termina el for
-          })				
-      })
-
+    this.apiVoluntario.findById(this.voluntario.id,{include: [{"vehiculo":"volumen"},"ubicacion"]}).subscribe((vol : Voluntario) =>{
+      this.volumen = vol.vehiculo.volumen;
+      if (vol.vehiculo != null) {this.vehiculo = vol.vehiculo}
+      this.ubicacion = vol.ubicacion.direccion
     })
-
-  })
+    this.insigniasService.getInsigniasVoluntario(apiVoluntario.getCachedCurrent().id).then((insignias:Insignia[])=>{
+      for (let insignia of insignias){
+        apiInsignia.getTipoInsignia(insignia.id,true).subscribe((tipodeinsignia:TipoInsignia)=>{
+            let parNombreIcono = this.iconos.find(elemento => elemento[0] == tipodeinsignia.imagen)
+            let icono = parNombreIcono[1];
+            this.badges.push([
+               tipodeinsignia.nombre,
+               icono,
+               insignia.fechaOtorgada,
+               insignia.fechaVencimiento
+              ]);
+          })            
+        } //Termina el for
+     })				
 
   }
 

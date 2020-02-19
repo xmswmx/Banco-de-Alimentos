@@ -21,7 +21,7 @@ export class VerTopComponent implements OnInit {
     requester.get10HighScoredVoluntarios().then(voluntarios => this.voluntarios = voluntarios);
   }
   ngOnInit() {
-    this.data.cambiarTitulo("Top 10");
+    this.data.cambiarTitulo("Clasificación");
   }
 
 }
