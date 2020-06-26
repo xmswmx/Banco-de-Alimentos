@@ -31,6 +31,9 @@ import { EditarBeneficiarioComponent } from './modules/beneficiario/editar-benef
 import { TrasladoAsignadoGuard } from './_guards/traslado-asignado.guard';
 import { MisTrasladosComponent } from './modules/voluntario/mis-traslados/mis-traslados.component';
 import { DonacionesRecibidasComponent } from './modules/beneficiario/donaciones-recibidas/donaciones-recibidas.component';
+import { StockVentanaPrincipalComponent} from "./modules/admin/stock/stock-ventana-principal/stock-ventana-principal.component";
+import { StockCargarProductoIndividualComponent} from "./modules/admin/stock/stock-cargar-producto-individual/stock-cargar-producto-individual.component";
+import { StockCargarProductosDonacionComponent} from "./modules/admin/stock/stock-cargar-productos-donacion/stock-cargar-productos-donacion.component";
 
 const routes: Routes = [
 	{path:'',redirectTo:'/home',pathMatch:'full'},
@@ -61,7 +64,10 @@ const routes: Routes = [
 	{path:'editar-beneficiario',component:EditarBeneficiarioComponent, canActivate:[BeneficiarioGuard]},	
 	{path:'editar-donante',component:EditarDonanteComponent, canActivate:[DonanteGuard]},
 	{path:'mis-traslados',component:MisTrasladosComponent, canActivate:[VoluntarioGuard]},
-	{path:'donaciones-recibidas',component:DonacionesRecibidasComponent, canActivate:[BeneficiarioGuard]}
+	{path:'donaciones-recibidas',component:DonacionesRecibidasComponent, canActivate:[BeneficiarioGuard]},
+	{path:'ver-stock',component:StockVentanaPrincipalComponent, canActivate:[AdminGuard]},
+	{path:'cargar-producto-a-stock',component:StockCargarProductoIndividualComponent, canActivate:[AdminGuard]},
+	{path:'cargar-donacion-a-stock',component:StockCargarProductosDonacionComponent, canActivate:[AdminGuard]}
 ];
 
 @NgModule({

@@ -49,6 +49,9 @@ import { MockStockService } from './_services/stockservice/mock-stock.service';
 import { InsigniasService } from './_services/insignias.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DataApiService } from './_services/data-api.service';
+import { StockVentanaPrincipalComponent } from './modules/admin/stock/stock-ventana-principal/stock-ventana-principal.component';
+import { StockCargarProductoIndividualComponent } from './modules/admin/stock/stock-cargar-producto-individual/stock-cargar-producto-individual.component';
+import { StockCargarProductosDonacionComponent } from './modules/admin/stock/stock-cargar-productos-donacion/stock-cargar-productos-donacion.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,10 @@ import { DataApiService } from './_services/data-api.service';
     MisTrasladosComponent,
     DonacionesRecibidasComponent,
     EditarBeneficiarioComponent,
-    NuevoEnvioVolumenComponent
+    NuevoEnvioVolumenComponent,
+    StockVentanaPrincipalComponent,
+    StockCargarProductoIndividualComponent,
+    StockCargarProductosDonacionComponent
   ],
   imports: [
     FontAwesomeModule,
